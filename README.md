@@ -10,6 +10,15 @@ First you need to install [Docker](https://www.docker.com/community-edition#/dow
 
 Export environment variables (This is *NIX style, you fix Windows some other way, I don't know how).
 
+Clone this repository and install dependencies
+``` bash
+git clone https://github.com/IT2810/it2810-webutvikling-h17-prosjekt-4-group-22.git
+
+cd it2810-webutvikling-h17-prosjekt-4-group-22
+
+npm install
+```
+
 ``` bash
 # Required environment variables
 export P4_TMDB_KEY=<tmdb-api-key> # API key for TMDb.
