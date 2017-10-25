@@ -31,7 +31,9 @@ With that all set up, just start the project!
 ``` bash
 docker-compose up serve
 
-# Note that you may need `sudo` on some systems and configurations to use this command. To avoid this on a linux system, add your user to the Docker group with the following command. You need to log out and log in again for these changes to take effect.
+# Note that you may need `sudo` on some systems and configurations to use this command.
+# To avoid this on a linux system, add your user to the Docker group with the following command.
+# You need to log out and log in again for these changes to take effect.
 
 sudo usermod -aG docker $USER
 ```
@@ -39,6 +41,8 @@ sudo usermod -aG docker $USER
 The project will then be available in your browser at `localhost:8000`!
 
 ## Setup with Angular-CLI
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.9.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
