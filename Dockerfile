@@ -1,11 +1,8 @@
 FROM node:8.6.0
 
-ENV HOME=/usr/src/app
+ENV APP_DIR=/srv/app
 
-RUN mkdir $HOME 
+RUN mkdir -p $APP_DIR
+WORKDIR $APP_DIR
 
-COPY package.json $HOME/
-
-WORKDIR $HOME
-
-RUN rm -rf node_modules && npm install
+CMD ["bash"]
