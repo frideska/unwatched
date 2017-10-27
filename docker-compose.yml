@@ -1,56 +1,29 @@
-version: '2'
+version: '3'
 services:
-  cmd:
+
+  mongodb:
+    image: mongo
+
+  api:
     build: .
+    command: npm run server
     environment:
-      NODE_ENV: development
+      - NODE_ENV=development
+      - P4_AUTH_GOOGLE_KEY
+      - P4_AUTH_GOOGLE_SECRET
+      - P4_AUTH_GOOGLE_CALLBACK
+      - P4_DB_HOST=mongodb
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-  lint:
-    build: .
-    command: npm run lint
-    environment:
-      NODE_ENV: development
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - .:/srv/app
+    ports:
+      - "8000:8000"
 
   serve:
     build: .
     command: npm start
     environment:
-      NODE_ENV: development
+      - NODE_ENV=development
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - .:/srv/app
     ports:
       - "4200:4200"
-    # see: https://github.com/docker/compose/issues/2231#issuecomment-165137408
-    #tty: true # problem: https://github.com/docker/compose/issues/3783
-
-  # FIXME(hoatle): $ docker-compose up test should work repeatedly
-  test:
-    build: .
-    command: npm run test
-    environment:
-      NODE_ENV: development
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    privileged: true # for Chrome to run on Docker
-    # see: https://github.com/docker/compose/issues/2231#issuecomment-165137408
-    #tty: true # problem: https://github.com/docker/compose/issues/3783
-
-  # FIXME(hoatle): $ docker-compose up e2e should work
-  e2e:
-    build: .
-    command: npm run e2e
-    environment:
-      NODE_ENV: development
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    #privileged: true # for Chrome to run on Docker
-    # see: https://github.com/docker/compose/issues/2231#issuecomment-165137408
-    #tty: true # problem: https://github.com/docker/compose/issues/3783
