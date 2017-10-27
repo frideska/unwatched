@@ -74,7 +74,4 @@ const projectName = `
 
 console.log(projectName)
 
-console.log(process.env.container)
-console.log(process.env.CONTAINER)
-
 let server = app.listen(PORT, HOST, () => console.log(`Project server running on: '${HOST}:${PORT}'`))
