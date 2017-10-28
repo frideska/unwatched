@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+
+enum FooBar {
+  FOO, BAR
+}
 
 @Component({
   selector: 'app-home',
@@ -7,14 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  title = 'foo'
-  constructor() { }
+  title = FooBar[FooBar.FOO]
+  constructor() {}
 
   ngOnInit() {
   }
 
   onClick() {
-    this.title = 'bar'
+    this.title = FooBar[FooBar.BAR]
   }
 
 }

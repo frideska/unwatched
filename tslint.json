@@ -21,7 +21,8 @@
     "import-spacing": true,
     "indent": [
       true,
-      "spaces"
+      "spaces",
+      4
     ],
     "interface-over-type-literal": true,
     "label-position": true,
@@ -87,8 +88,8 @@
     ],
     "radix": true,
     "semicolon": [
-      false,
-      "always"
+      true,
+      "never"
     ],
     "triple-equals": [
       true,

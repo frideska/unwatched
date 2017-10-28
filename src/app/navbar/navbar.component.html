@@ -1,0 +1,26 @@
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">
+      <ul class="uk-navbar-nav">
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['home']"><div uk-icon="icon : home"></div>Home</a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['search']"><span uk-icon="icon : search"></span>Search</a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['library']"><span uk-icon="icon : folder"></span>library</a>
+        </li>
+      </ul>
+    </div>
+    <div class="uk-navbar-center">
+      <form class="uk-search uk-search-navbar">
+        <span uk-search-icon></span>
+        <input class="uk-search-input" type="search" placeholder="Search...">
+      </form>
+    </div>
+    <div class="uk-navbar-right">
+        <div class="uk-navbar-item">
+          <button class="uk-button uk-button-default"><span uk-icon="icon : google-plus"></span>  Log in</button>
+        </div>
+    </div>
+</nav>
