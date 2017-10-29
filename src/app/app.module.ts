@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import {Routes, RouterModule, Router} from '@angular/router'
 
+import { UserModule } from './user/user.module'
+
 import { AppComponent } from './app.component'
 import { HomeComponent } from './home/home.component'
 import { CardComponent } from './card/card.component'
@@ -29,6 +31,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    UserModule,
     RouterModule.forRoot(routes, {useHash: false})
   ],
   providers: [],
