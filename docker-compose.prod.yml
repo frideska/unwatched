@@ -6,12 +6,12 @@ services:
 
   api:
     build: .
-    command: bas -c "npm run build && npm run server"
+    command: bash -c "npm run build && npm run server"
     environment:
       - NODE_ENV=production
       - P4_AUTH_GOOGLE_KEY
       - P4_AUTH_GOOGLE_SECRET
-      - P4_AUTH_GOOGLE_CALLBACK
+      - P4_AUTH_GOOGLE_CALLBACK="http://it2810-22.idi.ntnu.no:8084"
       - P4_DB_HOST=mongodb
     volumes:
       - .:/srv/app
