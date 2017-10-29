@@ -11,6 +11,8 @@ let User = new Schema({
 		id: { type: String, required: true, unique: true },
 		token: { type: String, required: true, unique: true },
 		name: { type: String, required: true },
+		image: { type: String },
+		email: { type: String }
 	},
 	admin: { type: Boolean, default: false },
     fullname: { type: String },

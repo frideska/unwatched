@@ -2,6 +2,7 @@ const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 
 let User = require('./db/models/User')
+let UserController = require('./db/controllers/UserController')
 
 /**
  * Google OAuth2 configuration options.
@@ -24,22 +25,19 @@ const config = {
  */
 const login = async (token, refreshToken, profile, done) => {
     try {
-        let user = await User.findOne({ 'google.id': profile.id })
-        if (user) {
-            return done(null, user)
-        } else {
-            var newUser = new User()
-            newUser.google.id = profile.id
-            newUser.google.token = token
-            newUser.google.name = profile.displayName
-            try {
-                await newUser.save()
-                return done(null, newUser)
-            } catch (err) {
-                throw err
-            }
+        let user = await UserController.getByGoogle(profile.id)
+        if (!user) {
+            user = new User()
         }
+        user.google.id = profile.id
+        user.google.token = token
+        user.google.name = profile.displayName
+        user.google.image = profile.photos[0].value
+        user.google.email = profile.emails[0].value
+        console.log('Before save')
+        done(null, await UserController.save(user))
     } catch (err) {
+        console.log('Catch at Login!')
         return done(err)
     }
 }
