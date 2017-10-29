@@ -20,7 +20,7 @@ services:
 
   serve:
     build: .
-    command: npm start
+    command: npm run build:watch
     environment:
       - NODE_ENV=development
     volumes:
