@@ -6,7 +6,7 @@ const User = require('../models/User')
  * @param {String} id Google ID.
  * @returns {User} A single User object.
  */
-module.getByGoogle = async (id) => {
+const getByGoogle = async (id) => {
     try {
         return await User.findOne({ 'google.id': id})
     } catch (err) {
@@ -19,7 +19,7 @@ module.getByGoogle = async (id) => {
  * @param {ObjectId} id User _id (created by database).
  * @returns {User} A single User object.
  */
-module.getOne = async (id) => {
+const getOne = async (id) => {
     try {
         return await User.findById(id)
     } catch (err) {
@@ -32,10 +32,17 @@ module.getOne = async (id) => {
  * @param {User} user A single User object.
  * @returns {User} The updated User object.
  */
-module.save = async (user) => {
+const save = async (user) => {
     try {
+        user.updated = Date.now()
         return await user.save()
     } catch (err) {
         console.error(err)
     }
+}
+
+module.exports = {
+    getByGoogle,
+    getOne,
+    save
 }
