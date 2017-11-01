@@ -43,16 +43,16 @@ var sess = {
     secret: SECRET,
     cookie: {}
 }
- 
+
 if (ENV === 'production') {
-    app.set('trust proxy', 1) // trust first proxy 
-    sess.cookie.secure = true // serve secure cookies 
+    app.set('trust proxy', 1) // trust first proxy
+    sess.cookie.secure = true // serve secure cookies
 }
 
 global.tmdb = new tmdb({
     apiv3: TMDB_TOKEN
 })
- 
+
 app.use(session(sess))
 
 app.set('view options', { pretty: true })
