@@ -9,6 +9,9 @@ export class CardComponent implements OnInit {
   @Input() cardTitle: string
   @Input() cardDesc: string
   @Input() cardImgSrc: string
+  @Input() movieRating: string
+  @Input() movieYear: string
+  @Input() movieGenre: string
 
   constructor() { }
 
