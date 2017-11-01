@@ -1,19 +1,25 @@
 <!--Card Container-->
-<div class="uk-card uk-card-small uk-card-hover uk-card-secondary uk-child-width-1-2  " uk-grid>
+<div class="uk-card uk-card-small uk-card-hover uk-card-secondary uk-child-width-1-2  card_container " uk-grid>
 
   <!--Card Image-->
-  <div class="uk-card-media-left uk-cover-container ">
+  <div class="uk-card-media-left uk-cover-container  ">
     <img src="{{ cardImgSrc }}" alt="" uk-cover>
     <canvas width="100" height='300'></canvas>
   </div>
 
   <!--Card Body-->
-  <div class="uk-card-body">
+  <div class="uk-padding-small uk-padding-remove-top">
     <div>
 
       <!--Card Title-->
-      <h3 class="uk-card-title"> {{ cardTitle }} </h3>
-      <p class="uk-text-small uk-text-muted">{{ cardDesc }}</p>
+      <h3 class="uk-margin-remove-bottom title_text "> {{ cardTitle }} </h3>
+      <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ movieGenre }}</span> - {{ movieYear }}</h3>
+
+      <hr class="uk-divider-small " />
+
+      <div class=" ">
+        <p class="uk-text-muted desc_text uk-text-break ">{{ cardDesc }}</p>
+      </div>
 
     </div>
 
@@ -21,11 +27,14 @@
     <div class="uk-card-footer ">
 
       <!--Progress bar-->
-      <progress class="uk-progress" value="4" max="10"></progress>
+
     </div>
 
   </div>
 
 </div>
+
+
+
 
 
