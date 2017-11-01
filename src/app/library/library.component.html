@@ -1,5 +1,13 @@
-<p>
-  library works!
 
-  <app-card></app-card>
-</p>
+<div class="uk-container">
+
+  <!--Grid Row Container-->
+  <div class="uk-child-width-1-3 uk-text-left uk-animation-slide-bottom-small" uk-grid>
+
+    <!--Card-->
+
+    <app-card *ngFor="let card of cards" [cardTitle]="card.title" [cardDesc]="card.content" [cardImgSrc]="card.imgSrc"></app-card>
+
+
+  </div>
+</div>
