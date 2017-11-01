@@ -13,6 +13,7 @@ services:
       - P4_AUTH_GOOGLE_SECRET
       - P4_AUTH_GOOGLE_CALLBACK
       - P4_DB_HOST=mongodb
+      - P4_TMDB_TOKEN
     volumes:
       - .:/srv/app
     ports:
