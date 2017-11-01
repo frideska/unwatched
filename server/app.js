@@ -12,6 +12,7 @@ const cookieparser = require('cookie-parser')
 const session = require('express-session')
 const path = require('path')
 const passport = require('passport')
+const tmdb = require('tmdbapi')
 
 /**
  * Get local dependencies
@@ -24,11 +25,13 @@ const routes = require('./routes')
  * Define constants
  */
 
+
 const PORT = process.env.P4_PORT || 8000
 const HOST = process.env.P4_HOST || '0.0.0.0'
 const LOG_LEVEL = process.env.P4_LOG_LEVEL || 'debug'
 const ENV = process.env.P4_ENV || 'development'
 const SECRET = process.env.P4_SECRET || 'MagicalNarwhalsAndPinkOrcasDancingTogetherInImaginationLand'
+const TMDB_TOKEN = process.env.P4_TMDB_TOKEN || ''
 
 /**
  * Initial server setup
@@ -45,6 +48,10 @@ if (ENV === 'production') {
     app.set('trust proxy', 1) // trust first proxy 
     sess.cookie.secure = true // serve secure cookies 
 }
+
+global.tmdb = new tmdb({
+    apiv3: TMDB_TOKEN
+})
  
 app.use(session(sess))
 
@@ -66,7 +73,7 @@ app.use('/', routes)
 const projectName = `
   __                _           _                                  __  
  / /_ __  _ __ ___ (_) ___  ___| |_      _ __   __ _ _ __ ___   ___\\ \\ 
-/ /| '_ \\| '__/ _ \\| |/ _ \\/ __| __|____| '_ \\ / _  | '_   _ \\ / _ \\  \\
+/ /| '_ \\| '__/ _ \\| |/ _ \\/ __| __|____| '_ \\ / _  | '_   _ \\ / _ \\\\ \\
 \\ \\| |_) | | | (_) | |  __/ (__| ||_____| | | | (_| | | | | | |  __// /
  \\_\\ .__/|_|  \\___// |\\___|\\___|\\__|    |_| |_|\\__,_|_| |_| |_|\\___/_/ 
    |_|           |__/                                                  
