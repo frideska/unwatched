@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core'
 })
 export class LibraryComponent implements OnInit {
 
+  titles: string[] = ['title1', 'title2', 'title3']
   constructor() { }
 
   ngOnInit() {
