@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-
-enum FooBar {
-  FOO, BAR
-}
+import { DiscoverService } from './discover.service'
 
 @Component({
   selector: 'app-home',
@@ -11,14 +8,12 @@ enum FooBar {
 })
 export class HomeComponent implements OnInit {
 
-  title = FooBar[FooBar.FOO]
-  constructor() {}
+  movies: any
 
-  ngOnInit() {
+  constructor(private discover: DiscoverService) {
   }
 
-  onClick() {
-    this.title = FooBar[FooBar.BAR]
+  async ngOnInit() {
+    this.movies = await this.discover.getDiscovery()
   }
-
 }
