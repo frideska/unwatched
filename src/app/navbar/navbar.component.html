@@ -1,31 +1,56 @@
-<nav class="uk-navbar-container bg_style" uk-navbar>
-    <div class="uk-navbar-left">
-      <ul class="uk-navbar-nav">
-        <li [routerLinkActive]="['active']">
-          <a [routerLink]="['home']"><div uk-icon="icon : home"></div>Home</a>
-        </li>
-        <li [routerLinkActive]="['active']">
-          <a [routerLink]="['search']"><span uk-icon="icon : search"></span>Search</a>
-        </li>
-        <li [routerLinkActive]="['active']">
-          <a [routerLink]="['library']"><span uk-icon="icon : folder"></span>library</a>
-        </li>
-      </ul>
-    </div>
-    <div class="uk-navbar-center">
-      <form class="uk-search uk-search-navbar">
-        <span uk-search-icon></span>
-        <input class="uk-search-input" type="search" placeholder="Search...">
+<nav class="uk-navbar-container bg_style navbar_position uk-navbar-sticky" uk-sticky="bottom: #top" uk-navbar>
+
+  <div class="uk-navbar-left  nav-overlay">
+
+    <!--Menu items-->
+    <ul class="uk-navbar-nav">
+      <li [routerLinkActive]="['active']">
+        <a [routerLink]="['home']"><div uk-icon="icon : home"></div>Home</a>
+      </li>
+      <li [routerLinkActive]="['active']">
+        <a [routerLink]="['library']"><span uk-icon="icon : folder"></span>library</a>
+      </li>
+    </ul>
+
+  </div>
+
+  <!--Search toggle button-->
+  <div class="nav-overlay uk-navbar-right">
+    <a class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+  </div>
+
+  <!--Search overlay-->
+  <div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
+    <div class="uk-navbar-item uk-width-expand">
+      <form class="uk-search uk-search-navbar uk-width-1-1">
+        <input class="uk-search-input" type="search" placeholder="Search..." autofocus>
       </form>
     </div>
-    <div class="uk-navbar-right">
-        <div class="uk-navbar-item">
-          <a href="/auth/google">
-            <button class="uk-button uk-button-default">
-              <span uk-icon="icon : google-plus"></span>
-              Log in
-            </button>
-          </a>
+    <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+  </div>
+
+  <!--Google Login-->
+  <div class="uk-navbar-right uk-margin-remove uk-position-top-right">
+    <div class="uk-navbar-item">
+      <a href="/auth/google" >
+        <div class="uk-inline">
+
+          <!--Log in button-->
+        <button class="uk-button uk-button-secondary">
+          <span uk-icon="icon : google-plus" ></span>
+          Log in
+        </button>
+
+          <!--Dropdown menu user-->
+          <div uk-dropdown>
+            <ul class="uk-nav  uk-dropdown-nav">
+              <li class="uk-active"><a href="#">Log out</a></li>
+              <li><a href="#">Profile</a></li>
+            </ul>
+          </div>
         </div>
+      </a>
     </div>
+  </div>
+
 </nav>
