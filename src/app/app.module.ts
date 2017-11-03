@@ -11,6 +11,7 @@ import { CardComponent } from './card/card.component'
 import { NavbarComponent } from './navbar/navbar.component'
 import { LibraryComponent } from './library/library.component'
 import { SearchComponent } from './search/search.component'
+import { DiscoverService } from './home/discover.service'
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -36,7 +37,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes, {useHash: false})
   ],
-  providers: [],
+  providers: [DiscoverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
