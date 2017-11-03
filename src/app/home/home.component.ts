@@ -8,7 +8,7 @@ import { DiscoverService } from './discover.service'
 })
 export class HomeComponent implements OnInit {
 
-  private movies: any
+  movies: any
 
   constructor(private discover: DiscoverService) {
   }
