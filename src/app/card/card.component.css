@@ -1,0 +1,38 @@
+
+
+.card_container {
+  margin-right: 25px;
+  margin-bottom: -15px;
+  height: 300px;
+
+}
+
+
+.title_text {
+  font-size: 1.6vw;
+  padding-top: 5px;
+}
+
+.subtitle_text {
+  font-size: 0.6rem;
+  padding-top: -10px;
+}
+
+
+.desc_text {
+  font-size: 0.8rem;
+}
+
+.test {
+  background-color: red;
+  display: flex;
+}
+
+
+.uk-label {
+  font-size: 0.45rem;
+}
+
+.uk-divider-small::after{
+  width: 100%;
+}
