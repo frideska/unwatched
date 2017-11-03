@@ -3,7 +3,7 @@
 
 
   <!--Poster Modal-->
-  <div id="movie-image" class="uk-flex-top " uk-modal>
+  <div id="card-movieID-{{ movieID }}" class="uk-flex-top " uk-modal>
     <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
       <button class="uk-modal-close-outside" type="button" uk-close></button>
       <img src="{{ cardImgSrc }}" alt="" style="height: 45vw">
@@ -14,7 +14,7 @@
   <div class="uk-card-media-left uk-cover-container  ">
     <img src="{{ cardImgSrc }}" alt="" uk-cover>
     <div class="uk-position-bottom-right ">
-      <a href="#movie-image" class="uk-icon-link" uk-toggle>
+      <a href="#card-movieID-{{ movieID }}" class="uk-icon-link" uk-toggle>
       <img src="http://sachinchoolur.github.io/lightGallery/static/img/icons/zoom-w.png" alt="" style="height: 2.5rem; padding: 8px"/></a>
     </div>
     <canvas width="100" height='300'></canvas>
@@ -30,9 +30,7 @@
 
       <hr class="uk-divider-small " />
 
-      <div class=" ">
-        <p class="uk-text-muted desc_text uk-text-break ">{{ cardDesc }}</p>
-      </div>
+      <p class="uk-text-muted desc_text uk-text-break ">{{ cardDesc }}</p>
 
     </div>
 
