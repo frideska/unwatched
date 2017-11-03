@@ -11,6 +11,7 @@ class GoogleUser {
     email: string
     token: string
 
+
     constructor(user) {
         this.image = user.google.image
         this.name = user.google.name
