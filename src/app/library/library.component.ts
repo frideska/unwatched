@@ -14,7 +14,7 @@ export class LibraryComponent implements OnInit {
     rating: '4',
     year: '2001',
     genre: 'Action'
-    },
+  },
     {
       title: 'Kill Bill: Vol. 2',
       content: 'The Bride continues her quest of vengeance against her former boss and lover Bill, the reclusive bouncer Budd and the treacherous, one-eyed Elle.',
