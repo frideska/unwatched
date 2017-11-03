@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import {Routes, RouterModule, Router} from '@angular/router'
+import { HttpModule } from '@angular/http'
 
 import { UserModule } from './user/user.module'
 
@@ -32,6 +33,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     UserModule,
+    HttpModule,
     RouterModule.forRoot(routes, {useHash: false})
   ],
   providers: [],
