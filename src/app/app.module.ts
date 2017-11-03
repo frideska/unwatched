@@ -12,12 +12,13 @@ import { NavbarComponent } from './navbar/navbar.component'
 import { LibraryComponent } from './library/library.component'
 import { SearchComponent } from './search/search.component'
 import { DiscoverService } from './home/discover.service'
+import { SearchService } from './search/search.service'
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'find', redirectTo: 'search'},
   {path: 'home', component: HomeComponent},
-  {path: 'search', component: HomeComponent},
+  {path: 'search', component: SearchComponent},
   {path: 'library', component: LibraryComponent},
   {path: '**', component: HomeComponent}
 ]
@@ -37,7 +38,10 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes, {useHash: false})
   ],
-  providers: [DiscoverService],
+  providers: [
+    DiscoverService,
+    SearchService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

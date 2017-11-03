@@ -1,3 +1,8 @@
-<p>
-  search works!
-</p>
+<div>
+  <button (click)="onChange()">Test</button>
+  <ul>
+    <li *ngFor="let title of titles">
+      {{ title }}
+    </li>
+  </ul>
+</div>

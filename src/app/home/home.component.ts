@@ -15,5 +15,6 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     this.movies = await this.discover.getDiscovery()
+    console.log(this.movies)
   }
 }
