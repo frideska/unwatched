@@ -6,7 +6,16 @@
 
     <!--Card-->
 
-    <app-card *ngFor="let card of cards" [cardTitle]="card.title" [cardDesc]="card.content" [cardImgSrc]="card.imgSrc"></app-card>
+    <app-card *ngFor="let card of cards"
+              [cardTitle]="card.title"
+              [cardDesc]="card.content"
+              [cardImgSrc]="card.imgSrc"
+              [movieRating]="card.rating"
+              [movieYear]="card.year"
+              [movieGenre]="card.genre"
+
+
+    ></app-card>
 
 
   </div>
