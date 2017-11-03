@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http'
 
 @Injectable()
-export default class DiscoverService {
+export class DiscoverService {
   private discoveryURL = 'api/tmdb/discover/movie'
 
   constructor(private http: Http) {}
