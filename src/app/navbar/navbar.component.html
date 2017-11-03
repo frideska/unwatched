@@ -15,7 +15,7 @@
     <div class="uk-navbar-center">
       <form class="uk-search uk-search-navbar">
         <span uk-search-icon></span>
-        <input class="uk-search-input" type="search" placeholder="Search...">
+        <input class="uk-search-input" (ngModelChange)="onChange($event)" type="search" placeholder="Search...">
       </form>
     </div>
     <div class="uk-navbar-right">
