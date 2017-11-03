@@ -11,5 +11,4 @@ export default class DiscoverService {
     const response = await this.http.get(this.discoveryURL).toPromise()
     return response.json().data
   }
-
 }
