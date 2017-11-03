@@ -7,6 +7,7 @@
     <!--Card-->
 
     <app-card *ngFor="let card of cards"
+              [movieID]="card.movieID"
               [cardTitle]="card.title"
               [cardDesc]="card.content"
               [cardImgSrc]="card.imgSrc"
