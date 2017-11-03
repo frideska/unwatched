@@ -1,5 +1,15 @@
 <div>
-  <button (click)="onChange()">Test</button>
+  <form class="uk-search uk-search-navbar">
+    <span uk-search-icon></span>
+    <input
+      class="uk-search-input"
+      [(ngModel)]="search"
+      (ngModelChange)="onChange($event)"
+      [ngModelOptions]="{standalone: true}"
+      type="search"
+      placeholder="Search..."
+    >
+  </form>
   <ul>
     <li *ngFor="let title of titles">
       {{ title }}

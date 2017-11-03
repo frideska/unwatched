@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { SearchService } from './search.service'
+import { NgModel } from '@angular/forms'
 
 @Component({
   selector: 'app-search',
@@ -15,9 +16,11 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
 
   }
-  async onChange() {
-    this.keyword = 'The dark night'
-    this.result = await this.searchService.getSearch(this.keyword)
-    this.titles = this.result.results.map((result) => result.title)
+  async onChange(event) {
+    this.keyword = event
+    if (this.keyword) {
+      this.result = await this.searchService.getSearch(this.keyword)
+      this.titles = this.result.results.map((result) => result.title)
+    }
   }
 }
