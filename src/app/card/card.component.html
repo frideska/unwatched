@@ -1,5 +1,5 @@
 <!--Card Container-->
-<div class="uk-card uk-card-small uk-card-hover uk-card-secondary uk-child-width-1-2  card_container " uk-grid>
+<div class="uk-card uk-card-small uk-card-hover uk-card-secondary uk-child-width-1-2  card_container "  style="min-width: 400px; max-width: 400px;"  uk-grid>
 
 
   <!--Poster Modal-->
@@ -21,14 +21,14 @@
   </div>
 
   <!--Card Body-->
-  <div class="uk-padding-small uk-padding-remove-top">
+  <div class="uk-padding-small">
     <div>
 
       <!--Card Title-->
-      <h3 class="uk-margin-remove-bottom title_text "> {{ cardTitle }} </h3>
-      <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ movieGenre }}</span> - {{ movieYear }}</h3>
+      <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ cardTitle }} </h3><p class=" uk-display-inline uk-text-muted subtitle_text">{{ movieYear }}</p>
+      <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ movieGenre }}</span> </h3>
 
-      <hr class="uk-divider-small " />
+      <hr class="uk-divider-small uk-margin-remove" />
 
       <p class="uk-text-muted desc_text uk-text-break ">{{ cardDesc }}</p>
 
