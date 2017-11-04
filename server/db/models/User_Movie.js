@@ -3,13 +3,14 @@ const mongoose = require('mongoose')
 let Schema = mongoose.Schema
 
 /**
- * Define Shema for movies
+ * Define Shema for userMovie,
+ * many to many relation for move and users
  */
-let movieSchema = new Schema({
-  id: { type: String, required: true, unique: true },
-  name: { type: String },
+let userMovieScema = new Schema({
+  move_id: { type: String, required: true, unique: true },
+  user_id: { type: String, required: true, unique: true },
 })
 
-movie = mongoose.model('Movie', movieSchema)
+userMovie = mongoose.model('Movie', userMovieScema)
 
-module.exports = movie
+module.exports = userMovie
