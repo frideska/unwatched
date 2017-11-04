@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { SearchService } from './search.service'
 import { NgModel } from '@angular/forms'
-import {isNullOrUndefined, isUndefined} from "util";
+import {isNullOrUndefined, isUndefined} from 'util'
 
 @Component({
   selector: 'app-search',
