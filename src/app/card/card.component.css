@@ -15,7 +15,6 @@
 
 .subtitle_text {
   font-size: 0.6rem;
-  padding-top: -10px;
 }
 
 
@@ -35,4 +34,6 @@
 
 .uk-divider-small::after{
   width: 100%;
+  margin-top: 10px;
 }
+
