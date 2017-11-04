@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http'
+import { Injectable } from '@angular/core'
+import { Headers, Http } from '@angular/http'
 
 @Injectable()
-export class SearchService {
-  private searchURL = '/api/tmdb/search/'
+export class WatchlistService {
+  private URL = '/watchlist'
 
   constructor(private http: Http) {}
 
-  public async getSearch(keyword: String): Promise<any> {
+  public async addMovieToWatchlist(id: string) {
     try {
-      const response = await this.http.get(this.searchURL + keyword).toPromise()
-      return response.json()
+      const headers = new Headers()
+      const response = await this.http.post(this.URL,
+        JSON.stringify({id: id}), {headers: headers} ).toPromise()
     } catch (err) {
       console.error(err)
     }

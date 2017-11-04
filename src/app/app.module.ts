@@ -14,6 +14,8 @@ import { LibraryComponent } from './library/library.component'
 import { SearchComponent } from './search/search.component'
 import { DiscoverService } from './home/discover.service'
 import { SearchService } from './search/search.service'
+import { WatchlistComponent } from './watchlist/watchlist.component'
+import {WatchlistService} from './watchlist/watchlist.service'
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -21,6 +23,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'search', component: SearchComponent},
   {path: 'library', component: LibraryComponent},
+  {path: 'watchlist', component: WatchlistComponent},
   {path: '**', component: HomeComponent}
 ]
 
@@ -31,7 +34,8 @@ const routes: Routes = [
     CardComponent,
     NavbarComponent,
     LibraryComponent,
-    SearchComponent
+    SearchComponent,
+    WatchlistComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,7 @@ const routes: Routes = [
   ],
   providers: [
     DiscoverService,
+    WatchlistService,
     SearchService
   ],
   bootstrap: [AppComponent]
