@@ -1,10 +1,16 @@
 const UserMovie = require('../models/UserMovie')
 
-let newMovie = async ( movieID, userID) => {
-  new UserMovie({movie_id: movieID, user_id: userID})
+let newMovie = async (movieID, user) => {
+  let movie = UserMovie.findOne({movie_id: movieID, user: user})
+  if(!movie){
+    UserMovie.create({movie_id: movieID, user: user}, (err) => {
+      console.log(err)
+    })
+  }
 }
-let findMovieForUser = async (userID) => {
-  return await UserMovie.find({user_id: userID})
+
+let findMovieForUser = async (user) => {
+  return await UserMovie.find({user: user})
 }
 
 module.exports = {

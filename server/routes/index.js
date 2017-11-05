@@ -4,11 +4,11 @@ const passport = require('passport')
 
 const api = require('./api')
 const auth = require('./auth')
-const watchlist = require('./watchlist')
+
 
 routes.use('/api', api)
 routes.use('/auth', auth)
-routes.use('/watchlist', watchlist)
+
 
 /**
  * Define routes for Angular
