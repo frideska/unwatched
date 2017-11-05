@@ -14,4 +14,12 @@ export class WatchlistService {
       console.error(err)
     }
   }
+  public async getWatchlist(): Promise<any> {
+    try {
+      const response = await this.http.get(this.URL).toPromise()
+      return response.json()
+    } catch (err) {
+      console.error(err)
+    }
+  }
 }

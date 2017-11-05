@@ -7,11 +7,14 @@ import { WatchlistService } from './watchlist.service'
   styleUrls: ['./watchlist.component.css']
 })
 export class WatchlistComponent implements OnInit {
+  movies: any
 
   constructor(private watchlistService: WatchlistService) {}
 
   ngOnInit() {
     this.watchlistService.addMovieToWatchlist('test')
+    this.movies = this.watchlistService.getWatchlist()
+    console.log(this.movies)
   }
 
 
