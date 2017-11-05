@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Headers, Http } from '@angular/http'
+import { Http } from '@angular/http'
 
 @Injectable()
 export class WatchlistService {
@@ -9,10 +9,7 @@ export class WatchlistService {
 
   public async addMovieToWatchlist(id: string) {
     try {
-      const headers = new Headers()
-      console.log(JSON.stringify({id: id}))
-      const response = await this.http.post(this.URL,
-        JSON.stringify({id: id}), {headers: headers} ).toPromise()
+      const response = await this.http.post(this.URL, {id: id}).toPromise()
     } catch (err) {
       console.error(err)
     }
