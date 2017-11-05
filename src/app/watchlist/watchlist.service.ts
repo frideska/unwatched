@@ -3,7 +3,7 @@ import { Http } from '@angular/http'
 
 @Injectable()
 export class WatchlistService {
-  private URL = '/watchlist'
+  private URL = '/api/watchlist'
 
   constructor(private http: Http) {}
 

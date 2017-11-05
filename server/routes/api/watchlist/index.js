@@ -1,5 +1,5 @@
 const router = require('express').Router()
-let MovieController = require('../../db/controllers/MovieController')
+let MovieController = require('../../../db/controllers/MovieController')
 
 router.post('/', (req, res) => {
     MovieController.newMovie(req.body.id, req.user)

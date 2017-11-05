@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module'
 
 import { AppComponent } from './app.component'
 import { HomeComponent } from './home/home.component'
+import { UserComponent } from './user/user.component'
 import { CardComponent } from './card/card.component'
 import { NavbarComponent } from './navbar/navbar.component'
 import { LibraryComponent } from './library/library.component'
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'find', redirectTo: 'search'},
   {path: 'home', component: HomeComponent},
+  {path: 'user', component: UserComponent},
   {path: 'search', component: SearchComponent},
   {path: 'library', component: LibraryComponent},
   {path: 'watchlist', component: WatchlistComponent},
