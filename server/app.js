@@ -76,6 +76,8 @@ app.use(session(sess))
 app.set('view options', { pretty: true })
 app.set('json spaces', 2)
 
+// Point static path to dist
+app.use(express.static(path.join(__dirname, 'dist')))
 app.use(cookieparser())
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(bodyparser.json())

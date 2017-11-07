@@ -1,9 +1,11 @@
-const routes = require('express').Router()
+const express = require('express')
 const path = require('path')
 const passport = require('passport')
 
 const api = require('./api')
 const auth = require('./auth')
+
+const routes = express.Router()
 
 
 routes.use('/api', api)
