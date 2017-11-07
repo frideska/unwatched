@@ -42,26 +42,40 @@
 
   <!--Google Login-->
   <div class="uk-navbar-right uk-margin-remove uk-position-top-right">
-    <div class="uk-navbar-item">
+    <div class="uk-navbar-item" *ngIf="!userService.loggedIn; else loggedIn">
       <a href="/auth/google" >
         <div class="uk-inline">
 
           <!--Log in button-->
-        <button class="uk-button uk-button-secondary">
-          <span uk-icon="icon : google-plus" ></span>
-          Log in
-        </button>
+          <button class="uk-button uk-button-secondary">
+            <span uk-icon="icon : google-plus" ></span>
+            Log in
+          </button>
 
-          <!--Dropdown menu user-->
-          <div uk-dropdown>
-            <ul class="uk-nav  uk-dropdown-nav">
-              <li class="uk-active"><a href="#">Log out</a></li>
-              <li><a href="#">Profile</a></li>
-            </ul>
-          </div>
         </div>
       </a>
     </div>
   </div>
 
 </nav>
+
+<ng-template #loggedIn>
+  <div class="uk-navbar-item">
+    <div class="uk-inline">
+
+      <!--Log in button-->
+    <button class="uk-button uk-button-secondary">
+      {{ userService.user.name }}
+    </button>
+
+      <!--Dropdown menu user-->
+      <div uk-dropdown>
+        <ul class="uk-nav  uk-dropdown-nav">
+          <li class="uk-active"><a (click)="userService.logout()">Log out</a></li>
+          <li><a [routerLink]="['user']">Profile</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
