@@ -22,7 +22,7 @@
 
     <!--Card-->
 
-    <app-card *ngFor="let result of searchResult"
+    <app-card *ngFor="let result of searchService.results"
               [movieID]="result.movieID"
               [cardTitle]="result.title"
               [cardDesc]="result.content"
