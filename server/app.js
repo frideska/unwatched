@@ -4,6 +4,22 @@
  */
 
 /**
+ * Make sure node version supports async/await.
+ * If not, the program will fail with error suggesting async syntax is wrong.
+ */
+const NODE_VERSION = process.versions.node
+const SUPPORTED_NODE_VERSION = '8.9.0'
+
+if (NODE_VERSION.charAt(0) < 8) {
+    console.log(`
+        You are running an outdated version of Nodejs!
+        Nodejs version ${NODE_VERSION} is NOT supported.
+        Please upgrade to at least version ${SUPPORTED_NODE_VERSION}!
+    `)
+    process.exit(1)
+}
+
+/**
  * Get external dependencies
  */
 const express = require('express')
@@ -13,6 +29,7 @@ const session = require('express-session')
 const path = require('path')
 const passport = require('passport')
 const tmdb = require('tmdbapi')
+
 
 /**
  * Get local dependencies
@@ -24,7 +41,6 @@ const routes = require('./routes')
 /**
  * Define constants
  */
-
 
 const PORT = process.env.P4_PORT || 8000
 const HOST = process.env.P4_HOST || '0.0.0.0'
@@ -41,7 +57,9 @@ const app = express()
 
 var sess = {
     secret: SECRET,
-    cookie: {}
+    cookie: {},
+    resave: true,
+    saveUninitialized: true
 }
 
 if (ENV === 'production') {
@@ -58,6 +76,7 @@ app.use(session(sess))
 app.set('view options', { pretty: true })
 app.set('json spaces', 2)
 
+
 app.use(cookieparser())
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(bodyparser.json())
@@ -70,20 +89,5 @@ app.use('/', routes)
 
 //const db = require('./db')
 
-const projectName = `
-
-  ___    _ ,---.   .--..--.      .--.   ____   ,---------.   _______   .---.  .---.     .-''-.   ______      
-.'   |  | ||    \\  |  ||  |_     |  | .'  __ \`.\\          \\ /   __  \\  |   |  |_ _|   .'_ _   \\ |    _ \`''.  
-|   .'  | ||  ,  \\ |  || _( )_   |  |/   '  \\  \\\`--.  ,---'| ,_/  \\__) |   |  ( ' )  / ( \` )   '| _ | ) _  \\ 
-.'  '_  | ||  |\\_ \\|  ||(_ o _)  |  ||___|  /  |   |   \\ ,-./  )       |   '-(_{;}_). (_ o _)  ||( ''_'  ) | 
-'   ( \\.-.||  _( )_\\  || (_,_) \\ |  |   _.-\`   |   :_ _: \\  '_ '\`)     |      (_,_) |  (_,_)___|| . (_) \`. | 
-' (\`. _\` /|| (_ o _)  ||  |/    \\|  |.'   _    |   (_I_)  > (_)  )  __ | _ _--.   | '  \\   .---.|(_    ._) ' 
-| (_ (_) _)|  (_,_)\\  ||  '  /\\  \`  ||  _( )_  |  (_(=)_)(  .  .-'_/  )|( ' ) |   |  \\  \`-'    /|  (_.\\.' /  
- \\ /  . \\ /|  |    |  ||    /  \\    |\\ (_ o _) /   (_I_)  \`-'\`-'     / (_{;}_)|   |   \\       / |       .'   
-  \`\`-'\`-'' '--'    '--'\`---'    \`---\` '.(_,_).'    '---'    \`._____.'  '(_,_) '---'    \`'-..-'  '-----'\`     
-                                                                                                             
-`
-
-console.log(projectName)
 
 let server = app.listen(PORT, HOST, () => console.log(`Project server running on: '${HOST}:${PORT}'`))

@@ -27,7 +27,7 @@
       <!--Card Title-->
       <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ cardTitle }} </h3><p class=" uk-display-inline uk-text-muted subtitle_text">{{ movieYear }}</p>
       <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ movieGenre }}</span> </h3>
-
+      <button (click) = "addToWatchlist()">Add to watchlist</button>
       <hr class="uk-divider-small uk-margin-remove" />
 
       <p class="uk-text-muted desc_text uk-text-break ">{{ cardDesc }}</p>
