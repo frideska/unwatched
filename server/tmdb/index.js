@@ -5,5 +5,6 @@
 module.exports = {
     find: require('./find').find,
     discover: require('./discover'),
-    search: require('./search').search
+    search: require('./search').search,
+    movie: require('./movie')
 }
