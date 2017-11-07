@@ -13,6 +13,7 @@ export class CardComponent implements OnInit {
   @Input() cardImgSrc: string
   @Input() movieRating: string
   @Input() movieYear: string
+  @Input() inWatchlist: boolean
   @Input() movieGenre: string
 
 
@@ -22,7 +23,14 @@ export class CardComponent implements OnInit {
   }
 
   addToWatchlist() {
-    this.watchlistService.addMovieToWatchlist(this.movieID)
+    console.log(this.watchlistService.watchlist)
+    console.log(this.inWatchlist)
+    if (this.inWatchlist) {
+      this.watchlistService.removeMovieFromWatchlist(this.movieID)
+    } else  {
+      this.watchlistService.addMovieToWatchlist(this.movieID)
+    }
   }
-
 }
+
+
