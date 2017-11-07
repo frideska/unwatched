@@ -9,7 +9,15 @@ router.post('/', (req, res) => {
 })
 router.get('/', async (req, res) => {
     console.log("User is logged in")
-    res.send(await MovieController.findMovieForUser(req.user))
+    let movies = await MovieController.findMovieForUser(req.user)
+    if(movies.length) {
+      res.send(await MovieController.findMovieForUser(req.user))
+    }
+    else {
+      res.send('You have no movies in your watchlist!')
+    }
+
+
 })
 
 module.exports = router
