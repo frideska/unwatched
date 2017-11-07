@@ -1,13 +1,8 @@
-
-
 .card_container {
-  margin-right: 25px;
-  margin-bottom: -15px;
+  margin-right: 35px;
   height: 300px;
   overflow:hidden;
-
 }
-
 
 .title_text {
   font-size: 1.6vw;
@@ -18,16 +13,9 @@
   font-size: 0.6rem;
 }
 
-
 .desc_text {
   font-size: 0.8rem;
 }
-
-.test {
-  background-color: red;
-  display: flex;
-}
-
 
 .uk-label {
   font-size: 0.45rem;
