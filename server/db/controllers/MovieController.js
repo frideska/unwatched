@@ -11,17 +11,20 @@ const tmdbWrapper = require('../../tmdb/')
  */
 let newMovie = async (movieID, user) => {
   let movie = await UserMovie.findOne({movie_id: movieID, user_id: user._id})
-  try {
-    let userMovie = new UserMovie()
-    userMovie.movie_id = movieID
-    userMovie.user_id = user._id
-    userMovie.save()
-    return true
+  if(!movie){
+    try {
+      let userMovie = new UserMovie()
+      userMovie.movie_id = movieID
+      userMovie.user_id = user._id
+      userMovie.save()
+      return true
+    }
+    catch(err) {
+      console.error(error)
+      return false
+    }
   }
-  catch(err) {
-    console.error(error)
-    return false
-  }
+  return false
   }
 
 
