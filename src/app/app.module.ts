@@ -40,7 +40,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'find', redirectTo: 'search'},
   {path: 'home', component: HomeComponent},
-  {path: 'user', component: UserComponent},
+  {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'search', component: SearchComponent},
   {path: 'library', component: LibraryComponent},
   {path: 'watchlist', component: WatchlistComponent, canActivate: [AuthGuard]},
