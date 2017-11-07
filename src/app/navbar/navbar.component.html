@@ -10,6 +10,9 @@
       <li [routerLinkActive]="['active']">
         <a [routerLink]="['library']"><span uk-icon="icon : folder"></span>library</a>
       </li>
+      <li [routerLinkActive]="['active']">
+        <a [routerLink]="['watchlist']"><span uk-icon="icon : video-camera"></span>Watchlist</a>
+      </li>
     </ul>
 
   </div>
@@ -23,10 +26,18 @@
   <div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
     <div class="uk-navbar-item uk-width-expand">
       <form class="uk-search uk-search-navbar uk-width-1-1">
-        <input class="uk-search-input" type="search" placeholder="Search..." autofocus>
+        <input
+          class="uk-search-input"
+          type="search"
+          placeholder="Search..."
+          autofocus
+          [(ngModel)]="search"
+          (ngModelChange)="onSearchChange($event)"
+          [ngModelOptions]="{standalone: true}"
+        >
       </form>
     </div>
-    <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+    <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#" (click)="cleanSearchField()"></a>
   </div>
 
   <!--Google Login-->
