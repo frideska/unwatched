@@ -19,7 +19,7 @@ const config = {
  * Tries to find user in database, if user exists, return user.
  * If user doesn't exist, create the user based on google info and return created user.
  * @param {String} token Google OAuth2 token.
- * @param {*} refreshToken 
+ * @param {*} refreshToken
  * @param {Object} profile Google profile object, containing user information.
  * @param {function} done Passport callback.
  */
@@ -42,7 +42,9 @@ const login = async (token, refreshToken, profile, done) => {
     }
 }
 
+
 module.exports = (passport) => {
+
     /**
      * Passport function for serializing user.
      */

@@ -17,7 +17,8 @@ export class WatchlistService {
   public async getWatchlist(): Promise<any> {
     try {
       const response = await this.http.get(this.URL).toPromise()
-      return response.json()
+      console.log(response.status)
+        return response.json()
     } catch (err) {
       console.error(err)
     }
