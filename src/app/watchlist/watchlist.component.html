@@ -1,3 +1,20 @@
-<p>
-  Welcome to watchlist!
-</p>
+<div class="uk-container uk-width-auto uk-margin-remove">
+
+  <!--Grid Row Container-->
+  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
+
+    <!--Card-->
+
+      <app-card *ngFor="let movie of watchlistService.watchlist"
+                [movieID]="movie.movieID"
+                [cardTitle]="movie.title"
+                [cardDesc]="movie.content"
+                [cardImgSrc]="movie.imgSrc"
+                [movieRating]="movie.rating"
+                [movieYear]="movie.year"
+                [inWatchlist] ="movie.inWatchlist"
+                [movieGenre]="movie.genre">
+      </app-card>
+
+  </div>
+</div>
