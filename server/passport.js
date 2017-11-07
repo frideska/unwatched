@@ -1,6 +1,7 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 
+const misc = require('./misc')
 let User = require('./db/models/User')
 let UserController = require('./db/controllers/UserController')
 
@@ -9,8 +10,8 @@ let UserController = require('./db/controllers/UserController')
  * KEY and SECRET are fetched from environment variables exclusively.
  */
 const config = {
-    clientID: process.env.P4_AUTH_GOOGLE_KEY || '',
-    clientSecret: process.env.P4_AUTH_GOOGLE_SECRET || '',
+    clientID: process.env.P4_AUTH_GOOGLE_KEY ? process.env.P4_AUTH_GOOGLE_KEY : misc.missing('P4_AUTH_GOOGLE_KEY'),
+    clientSecret: process.env.P4_AUTH_GOOGLE_SECRET ? process.env.P4_AUTH_GOOGLE_SECRET : misc.missing('P4_AUTH_GOOGLE_SECRET'),
     callbackURL: process.env.P4_AUTH_GOOGLE_CALLBACK || 'http://localhost:8000/auth/google-callback'
 }
 
