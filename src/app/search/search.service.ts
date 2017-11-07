@@ -40,6 +40,7 @@ export class SearchService {
           imgSrc: result.poster_path ? POSTER_PATH.concat(result.poster_path) : MISSING_PATH,
           rating: result.vote_average,
           genre: result.genre_ids,
+          inWatchlist: false,
           year: result.release_date ? '(' + result.release_date.substring(0, 4) + ')' : result.release_date
         }})
 
