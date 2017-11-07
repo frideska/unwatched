@@ -6,9 +6,10 @@ services:
 
   api:
     build: .
-    command: bash -c "npm run build && npm run server"
+    command: bash -c "npm run prod"
     environment:
       - NODE_ENV=production
+      - P4_ENV=production
       - P4_AUTH_GOOGLE_KEY
       - P4_AUTH_GOOGLE_SECRET
       - P4_AUTH_GOOGLE_CALLBACK="http://it2810-22.idi.ntnu.no:8084"
