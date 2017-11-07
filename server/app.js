@@ -14,6 +14,7 @@ const path = require('path')
 const passport = require('passport')
 const tmdb = require('tmdbapi')
 
+
 /**
  * Get local dependencies
  */
@@ -58,6 +59,7 @@ app.use(session(sess))
 app.set('view options', { pretty: true })
 app.set('json spaces', 2)
 
+
 app.use(cookieparser())
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(bodyparser.json())
@@ -70,20 +72,5 @@ app.use('/', routes)
 
 //const db = require('./db')
 
-const projectName = `
-
-  ___    _ ,---.   .--..--.      .--.   ____   ,---------.   _______   .---.  .---.     .-''-.   ______      
-.'   |  | ||    \\  |  ||  |_     |  | .'  __ \`.\\          \\ /   __  \\  |   |  |_ _|   .'_ _   \\ |    _ \`''.  
-|   .'  | ||  ,  \\ |  || _( )_   |  |/   '  \\  \\\`--.  ,---'| ,_/  \\__) |   |  ( ' )  / ( \` )   '| _ | ) _  \\ 
-.'  '_  | ||  |\\_ \\|  ||(_ o _)  |  ||___|  /  |   |   \\ ,-./  )       |   '-(_{;}_). (_ o _)  ||( ''_'  ) | 
-'   ( \\.-.||  _( )_\\  || (_,_) \\ |  |   _.-\`   |   :_ _: \\  '_ '\`)     |      (_,_) |  (_,_)___|| . (_) \`. | 
-' (\`. _\` /|| (_ o _)  ||  |/    \\|  |.'   _    |   (_I_)  > (_)  )  __ | _ _--.   | '  \\   .---.|(_    ._) ' 
-| (_ (_) _)|  (_,_)\\  ||  '  /\\  \`  ||  _( )_  |  (_(=)_)(  .  .-'_/  )|( ' ) |   |  \\  \`-'    /|  (_.\\.' /  
- \\ /  . \\ /|  |    |  ||    /  \\    |\\ (_ o _) /   (_I_)  \`-'\`-'     / (_{;}_)|   |   \\       / |       .'   
-  \`\`-'\`-'' '--'    '--'\`---'    \`---\` '.(_,_).'    '---'    \`._____.'  '(_,_) '---'    \`'-..-'  '-----'\`     
-                                                                                                             
-`
-
-console.log(projectName)
 
 let server = app.listen(PORT, HOST, () => console.log(`Project server running on: '${HOST}:${PORT}'`))

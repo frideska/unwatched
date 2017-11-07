@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const User = require('./User')
 
 let Schema = mongoose.Schema
 
@@ -7,10 +8,10 @@ let Schema = mongoose.Schema
  * many to many relation for move and users
  */
 let userMovieSchema = new Schema({
-  movie_id: { type: String, required: true, unique: true },
-  user: { type: Schema.Types.ObjectId, ref: 'User', required: true, unique: true },
+  movie_id: { type: String, required: true },
+  user: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 
-UserMovie = mongoose.model('UserMovie', userMovieSchema)
+let UserMovie = mongoose.model('UserMovie', userMovieSchema)
 
 module.exports = UserMovie

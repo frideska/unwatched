@@ -12,9 +12,7 @@ export class WatchlistComponent implements OnInit {
   constructor(private watchlistService: WatchlistService) {}
 
   ngOnInit() {
-    this.watchlistService.addMovieToWatchlist('test')
-    this.movies = this.watchlistService.getWatchlist()
-    console.log(this.movies)
+    this.watchlistService.getWatchlist()
   }
 
 
