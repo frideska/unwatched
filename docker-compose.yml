@@ -3,6 +3,8 @@ services:
 
   mongodb:
     image: mongo
+    logging:
+      driver: none
 
   api:
     build: .

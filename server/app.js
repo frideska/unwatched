@@ -10,13 +10,15 @@
 const NODE_VERSION = process.versions.node
 const SUPPORTED_NODE_VERSION = '8.9.0'
 
-if (NODE_VERSION.charAt(0) < 8) {
+if (NODE_VERSION.charAt(0) < SUPPORTED_NODE_VERSION.charAt(0)) {
     console.log(`
         You are running an outdated version of Nodejs!
         Nodejs version ${NODE_VERSION} is NOT supported.
         Please upgrade to at least version ${SUPPORTED_NODE_VERSION}!
     `)
     process.exit(1)
+} else {
+    console.log(`Running with Nodejs version ${NODE_VERSION}`)
 }
 
 /**
@@ -30,29 +32,27 @@ const path = require('path')
 const passport = require('passport')
 const tmdb = require('tmdbapi')
 
-
 /**
  * Get local dependencies
  */
-
-const models = require('./db')
+const misc = require('./misc')
+const db = require('./db')
 const routes = require('./routes')
 
 /**
- * Define constants
+ * Define constants from environment
  */
-
 const PORT = process.env.P4_PORT || 8000
 const HOST = process.env.P4_HOST || '0.0.0.0'
 const LOG_LEVEL = process.env.P4_LOG_LEVEL || 'debug'
 const ENV = process.env.P4_ENV || 'development'
 const SECRET = process.env.P4_SECRET || 'MagicalNarwhalsAndPinkOrcasDancingTogetherInImaginationLand'
-const TMDB_TOKEN = process.env.P4_TMDB_TOKEN || ''
+const TMDB_TOKEN = process.env.P4_TMDB_TOKEN ? process.env.P4_TMDB_TOKEN : misc.missing('P4_TMDB_TOKEN')
 
 /**
  * Initial server setup
  */
-
+const mongoose = db.init()
 const app = express()
 
 var sess = {
@@ -88,7 +88,4 @@ app.use(passport.session())
 
 app.use('/', routes)
 
-//const db = require('./db')
-
-
-let server = app.listen(PORT, HOST, () => console.log(`Project server running on: '${HOST}:${PORT}'`))
+let server = app.listen(PORT, HOST, () => console.log(`Project server running on: ${HOST}:${PORT}`))
