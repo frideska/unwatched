@@ -3,7 +3,7 @@ const passport = require('passport')
 const router = require('express').Router()
 
 router.get('/profile', (req, res) => {
-    res.json(req.user)
+    res.json({user: req.user || undefined})
 })
 
 router.get('/logout', (req, res) => {

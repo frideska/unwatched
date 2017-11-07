@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser'
-import { NgModule } from '@angular/core'
-import {Routes, RouterModule, Router} from '@angular/router'
+import { NgModule, APP_INITIALIZER } from '@angular/core'
+import { Routes, RouterModule, Router } from '@angular/router'
 import { HttpModule } from '@angular/http'
 import { FormsModule } from '@angular/forms'
 
-import { UserModule } from './user/user.module'
-
+/**
+ * Import Components
+ */
 import { AppComponent } from './app.component'
 import { HomeComponent } from './home/home.component'
 import { UserComponent } from './user/user.component'
@@ -13,10 +14,27 @@ import { CardComponent } from './card/card.component'
 import { NavbarComponent } from './navbar/navbar.component'
 import { LibraryComponent } from './library/library.component'
 import { SearchComponent } from './search/search.component'
+import { WatchlistComponent } from './watchlist/watchlist.component'
+
+/**
+ * Import Services
+ */
+import { UserService } from './services/user.service'
 import { DiscoverService } from './home/discover.service'
 import { SearchService } from './search/search.service'
-import { WatchlistComponent } from './watchlist/watchlist.component'
-import {WatchlistService} from './watchlist/watchlist.service'
+import { WatchlistService } from './watchlist/watchlist.service'
+import { AuthGuard } from './services/auth-guard.service'
+
+export const initUserServiceFactory = (userService: UserService): Function => {
+  return () => userService.getUser()
+}
+
+export const USER_INIT = {
+  provide: APP_INITIALIZER,
+  useFactory: initUserServiceFactory,
+  deps: [UserService],
+  multi: true
+}
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -25,7 +43,7 @@ const routes: Routes = [
   {path: 'user', component: UserComponent},
   {path: 'search', component: SearchComponent},
   {path: 'library', component: LibraryComponent},
-  {path: 'watchlist', component: WatchlistComponent},
+  {path: 'watchlist', component: WatchlistComponent, canActivate: [AuthGuard]},
   {path: '**', component: HomeComponent}
 ]
 
@@ -33,6 +51,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
+    UserComponent,
     CardComponent,
     NavbarComponent,
     LibraryComponent,
@@ -41,7 +60,6 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    UserModule,
     HttpModule,
     FormsModule,
     RouterModule.forRoot(routes, {useHash: false})
@@ -49,7 +67,10 @@ const routes: Routes = [
   providers: [
     DiscoverService,
     WatchlistService,
-    SearchService
+    SearchService,
+    UserService,
+    AuthGuard,
+    USER_INIT
   ],
   bootstrap: [AppComponent]
 })

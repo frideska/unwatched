@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { SearchService } from '../search/search.service'
+import { UserService } from '../services/user.service'
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private searchService: SearchService,
+    private userService: UserService,
     private router: Router
   ) {
     this.previous = '/home'
