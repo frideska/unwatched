@@ -26,7 +26,6 @@ const routes = require('./routes')
  * Define constants
  */
 
-
 const PORT = process.env.P4_PORT || 8000
 const HOST = process.env.P4_HOST || '0.0.0.0'
 const LOG_LEVEL = process.env.P4_LOG_LEVEL || 'debug'
@@ -42,7 +41,9 @@ const app = express()
 
 var sess = {
     secret: SECRET,
-    cookie: {}
+    cookie: {},
+    resave: true,
+    saveUninitialized: true
 }
 
 if (ENV === 'production') {
