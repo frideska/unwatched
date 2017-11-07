@@ -1,6 +1,6 @@
 const UserMovie = require('../models/UserMovie')
 const User = require('../models/User')
-
+const tmdbWrapper = require('../../tmdb/')
 
 let newMovie = async (movieID, user) => {
   let movie = UserMovie.findOne({movie_id: movieID.toString(), user: user._id})
@@ -16,8 +16,11 @@ let newMovie = async (movieID, user) => {
 }
 
 let findMovieForUser = async (user) => {
-  return await UserMovie.find({})
+  let usermovies = await UserMovie.find({})
+  return usermovies.map(movie => tmdbWrapper.details(movie.movie_id))
 }
+
+
 
 module.exports = {
   newMovie,
