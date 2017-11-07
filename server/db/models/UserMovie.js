@@ -9,7 +9,8 @@ let Schema = mongoose.Schema
  */
 let userMovieSchema = new Schema({
   movie_id: { type: String, required: true },
-  user: { type: Schema.Types.ObjectId, ref: 'User' }
+  user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true},
+  date: { type: Date, default: Date.now }
 })
 
 let UserMovie = mongoose.model('UserMovie', userMovieSchema)
