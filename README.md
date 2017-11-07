@@ -1,8 +1,32 @@
 # Project4
 
+## Production setup
+
+Setting up this project for production is quite easy.
+
+You will need `nodejs` version `8.9.0` (LTS) or above with `npm`, and `mongodb` installed and running at port `27017`.
+
+Then open up a terminal/shell and run the following commands:
+
+``` bash
+# Clone this git repository
+git clone https://github.com/IT2810/it2810-webutvikling-h17-prosjekt-4-group-22.git
+
+# Enter the project folder
+cd it2810-webutvikling-h17-prosjekt-4-group-22
+
+# Install dependencies
+npm install
+
+# Run project
+npm run prod
+```
+
+The project will be available in your browser at `localhost:8000`.
+
 ## Development server
 
-This project has multiple services, and the easies way to run it is with Docker and Docker-Compose. If you want to do it without Docker, there is a guide below.
+This project has multiple services, and the easiest way to run it is with Docker and Docker-Compose. If you want to do it without Docker, there is a guide below.
 
 ### Setup with Docker
 
@@ -37,7 +61,7 @@ export P4_AUTH_GOOGLE_CALLBACK=<google-oath2-callback-url> # Default = http://lo
 With that all set up, just start the project!
 
 ``` bash
-docker-compose up serve
+docker-compose up
 
 # Note that you may need `sudo` on some systems and configurations to use this command.
 # When using sudo, environment variables from your current shell will not work!
