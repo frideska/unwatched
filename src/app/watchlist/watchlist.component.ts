@@ -7,12 +7,12 @@ import { WatchlistService } from './watchlist.service'
   styleUrls: ['./watchlist.component.css']
 })
 export class WatchlistComponent implements OnInit {
-  movies: any
 
-  constructor(private watchlistService: WatchlistService) {}
+  constructor(public watchlistService: WatchlistService) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.watchlistService.getWatchlist()
+
   }
 
 
