@@ -34,10 +34,9 @@ const login = async (token, refreshToken, profile, done) => {
         user.google.name = profile.displayName
         user.google.image = profile.photos[0].value
         user.google.email = profile.emails[0].value
-        console.log('Before save')
         done(null, await UserController.save(user))
     } catch (err) {
-        console.log('Catch at Login!')
+        console.error(err)
         return done(err)
     }
 }
