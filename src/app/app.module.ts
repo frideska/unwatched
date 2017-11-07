@@ -23,7 +23,8 @@ import { UserService } from './services/user.service'
 import { DiscoverService } from './home/discover.service'
 import { SearchService } from './search/search.service'
 import { WatchlistService } from './watchlist/watchlist.service'
-import { AuthGuard } from './services/auth-guard.service'
+import { AuthGuard } from './services/auth-guard.service';
+import { NotfoundComponent } from './notFound/notFound.component'
 
 export const initUserServiceFactory = (userService: UserService): Function => {
   return () => userService.getUser()
@@ -44,7 +45,7 @@ const routes: Routes = [
   {path: 'search', component: SearchComponent},
   {path: 'library', component: LibraryComponent},
   {path: 'watchlist', component: WatchlistComponent, canActivate: [AuthGuard]},
-  {path: '**', component: HomeComponent}
+  {path: '**', component: NotfoundComponent}
 ]
 
 @NgModule({
@@ -56,7 +57,8 @@ const routes: Routes = [
     NavbarComponent,
     LibraryComponent,
     SearchComponent,
-    WatchlistComponent
+    WatchlistComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
