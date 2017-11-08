@@ -15,7 +15,7 @@ import { NavbarComponent } from 'components/navbar/navbar.component'
 import { LibraryComponent } from 'components/library/library.component'
 import { SearchComponent } from 'components/search/search.component'
 import { WatchlistComponent } from 'components/watchlist/watchlist.component'
-import { NotfoundComponent } from 'components/notFound/notFound.component'
+import { NotFoundComponent } from 'components/not-found/not-found.component'
 
 /**
  * Import Services
@@ -47,7 +47,7 @@ const routes: Routes = [
   {path: 'search', component: SearchComponent},
   {path: 'library', component: LibraryComponent},
   {path: 'watchlist', component: WatchlistComponent, canActivate: [AuthGuard]},
-  {path: '**', component: NotfoundComponent}
+  {path: '**', component: NotFoundComponent}
 ]
 
 @NgModule({
@@ -60,7 +60,7 @@ const routes: Routes = [
     LibraryComponent,
     SearchComponent,
     WatchlistComponent,
-    NotfoundComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
