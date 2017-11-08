@@ -8,23 +8,25 @@ import { FormsModule } from '@angular/forms'
  * Import Components
  */
 import { AppComponent } from './app.component'
-import { HomeComponent } from './home/home.component'
-import { UserComponent } from './user/user.component'
-import { CardComponent } from './card/card.component'
-import { NavbarComponent } from './navbar/navbar.component'
-import { LibraryComponent } from './library/library.component'
-import { SearchComponent } from './search/search.component'
-import { WatchlistComponent } from './watchlist/watchlist.component'
+import { HomeComponent } from 'components/home/home.component'
+import { UserComponent } from 'components/user/user.component'
+import { CardComponent } from 'components/card/card.component'
+import { NavbarComponent } from 'components/navbar/navbar.component'
+import { LibraryComponent } from 'components/library/library.component'
+import { SearchComponent } from 'components/search/search.component'
+import { WatchlistComponent } from 'components/watchlist/watchlist.component'
+import { NotfoundComponent } from 'components/notFound/notFound.component'
 
 /**
  * Import Services
  */
-import { UserService } from './services/user.service'
-import { DiscoverService } from './home/discover.service'
-import { SearchService } from './search/search.service'
-import { WatchlistService } from './watchlist/watchlist.service'
-import { AuthGuard } from './services/auth-guard.service';
-import { NotfoundComponent } from './notFound/notFound.component'
+
+
+import { UserService } from 'services/user.service'
+import { DiscoverService } from 'services/discover.service'
+import { SearchService } from 'services/search.service'
+import { WatchlistService } from 'services/watchlist.service'
+import { AuthGuard } from 'services/auth-guard.service'
 
 export const initUserServiceFactory = (userService: UserService): Function => {
   return () => userService.getUser()

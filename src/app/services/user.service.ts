@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-import { GoogleUser } from '../classes/user'
+import { GoogleUser } from 'classes/user'
 
 const URLS = {
   profile: '/auth/profile',

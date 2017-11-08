@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core'
-import { WatchlistService} from "../watchlist/watchlist.service";
+import { WatchlistService} from 'services/watchlist.service'
 
 @Component({
   selector: 'app-card',
@@ -15,7 +15,6 @@ export class CardComponent implements OnInit {
   @Input() movieYear: string
   @Input() inWatchlist: boolean
   @Input() movieGenre: string
-
 
   constructor(private watchlistService: WatchlistService) { }
 
