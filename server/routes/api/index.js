@@ -8,7 +8,7 @@ const watchlist = require('./watchlist')
 
 
 api.get('/', (req, res) => {
-    res.send({hello: 'world!'})
+    res.send('Welcome to our API!')
 })
 
 api.use('/tmdb', tmdb)
