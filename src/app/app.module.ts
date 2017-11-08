@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms'
 /**
  * Import Components
  */
-import { AppComponent } from './app.component'
+import { AppComponent } from 'app.component'
 import { HomeComponent } from 'components/home/home.component'
 import { UserComponent } from 'components/user/user.component'
 import { CardComponent } from 'components/card/card.component'
@@ -15,6 +15,7 @@ import { NavbarComponent } from 'components/navbar/navbar.component'
 import { LibraryComponent } from 'components/library/library.component'
 import { SearchComponent } from 'components/search/search.component'
 import { WatchlistComponent } from 'components/watchlist/watchlist.component'
+import { SlideshowItemComponent } from 'components/home/SlideshowItem/slideshow-item.component'
 
 /**
  * Import Services
@@ -56,7 +57,8 @@ const routes: Routes = [
     NavbarComponent,
     LibraryComponent,
     SearchComponent,
-    WatchlistComponent
+    WatchlistComponent,
+    SlideshowItemComponent
   ],
   imports: [
     BrowserModule,

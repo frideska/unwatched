@@ -2,25 +2,58 @@
   <div class="uk-container uk-container-small">
     <h1 class="uk-heading-primary uk-light">Discover</h1>
 
-    <div class="uk-position-relative uk-animation-slide-top-small uk-visible-toggle" uk-slideshow="ratio: 7:3">
+    <div class="uk-position-relative" uk-slideshow>
+        <ul class="uk-slideshow-items autoplay: true">
+          <!--li >
+            <img src="https://getuikit.com/docs/images/dark.jpg" alt="whale" uk-cover/>
+          </li-->
+          <app-slideshow-item [movie]="movies[0]"></app-slideshow-item>
+          <app-slideshow-item [movie]="movies[1]"></app-slideshow-item>
+          <app-slideshow-item [movie]="movies[2]"></app-slideshow-item>
+          <app-slideshow-item [movie]="movies[3]"></app-slideshow-item>
+          <app-slideshow-item [movie]="movies[4]"></app-slideshow-item>
+          <app-slideshow-item [movie]="movies[5]"></app-slideshow-item>
+          <app-slideshow-item [movie]="movies[6]"></app-slideshow-item>
+          <app-slideshow-item [movie]="movies[7]"></app-slideshow-item>
+        </ul>
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous" style="color:rgb(255, 255, 255)"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next" style="color:rgb(255, 255, 255)"></a>
+      </div>
+
+    <!--div class="uk-position-relative uk-animation-slide-top-small uk-visible-toggle" uk-slideshow="ratio: 7:3">
       <ul class="uk-slideshow-items">
-        <li>
-          <img src="https://getuikit.com/docs/images/photo.jpg" alt="whale" uk-cover/>
-        <li>
-          <img src="https://getuikit.com/docs/images/dark.jpg" alt="whale" uk-cover/>
-        </li>
-        <li>
-          <img src="https://getuikit.com/docs/images/light.jpg" alt="whale" uk-cover/>
+        <li *ngFor="let movie of movies">
+            <img src="{{movie.poster}}" alt="" uk-cover>
+            <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom">
+                <h3 class="uk-margin-remove">{{movie.title}}</h3>
+                <p class="uk-margin-remove">{{movie.overviews}}</p>
+            </div>
         </li>
       </ul>
       <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
       <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
-    </div>
+    </div-->
+
+    <!--div class="uk-position-relative uk-visible-toggle uk-light" uk-slideshow="ratio: 7:3" data-uk-observe>
+      <ul class="uk-slideshow-items">
+        <li *ngFor="let movie of movies">
+          <div>
+            <img uk-cover="" src="{{movie.poster}}" alt="It" class="uk-cover">
+            <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom">
+              <h3 class="uk-margin-remove">{{movie.title}}</h3>
+              <p class="uk-margin-remove">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+      <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+    </div-->
 
     <h2 class="uk-heading-line uk-text-right uk-light"><span>New movies</span></h2>
     <div class="uk-container uk-width-auto uk-margin-remove">
       <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
-        <app-card *ngFor="let movie of discover.movies"
+        <app-card *ngFor="let movie of movies"
           [movieID]="movie.movieID">
         </app-card>
       </div>
