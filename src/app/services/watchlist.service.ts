@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-const POSTER_PATH = 'https://image.tmdb.org/t/p/w1280/'
 const MISSING_PATH = 'http://www.latorredelsol.com/press/components/com_easyblog/themes/wireframe/images/placeholder-image.png'
+const PREVIEW_IMG_PATH = 'https://image.tmdb.org/t/p/w185/'
+const POSTER_PATH = 'https://image.tmdb.org/t/p/w1280/'
 
 @Injectable()
 export class WatchlistService {
@@ -46,7 +47,8 @@ export class WatchlistService {
         video: result.video || false,
         title: result.title || result.name,
         content: (overview.length <= 30) ? overview : overview.substring(0, 150).concat(' (...)'),
-        imgSrc: result.poster_path ? POSTER_PATH.concat(result.poster_path) : MISSING_PATH,
+        imgSrc: result.poster_path ? PREVIEW_IMG_PATH.concat(result.poster_path) : MISSING_PATH,
+        posterSrc: result.poster_path ? POSTER_PATH.concat(result.poster_path) : MISSING_PATH,
         rating: result.vote_average,
         genre: 'none',
         inWatchlist: true,
