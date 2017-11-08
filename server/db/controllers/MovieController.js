@@ -27,6 +27,13 @@ let newMovie = async (movieID, user) => {
   return false
   }
 
+/**
+ * Removes any nulls or undefined from object before returning it
+ */
+let clean = (watchlist) => {
+  let returnList = watchlist.filter((movie) => movie)
+  return returnList
+}
 
 /**
  * Findes all the movies the given user have in his/hers watchlist
@@ -39,10 +46,10 @@ let findMovieForUser = async (user) => {
   //For each id in the UserMovie database, we return all the informasjon about the movie, we use
   //promise all to make sure that the array is not returned while pending
   try {
-    return await Promise.all(userMovies.map(movie => tmdbWrapper.details(movie.movie_id.toString())))
+    let watchlist = await Promise.all(userMovies.map(movie => tmdbWrapper.details(movie.movie_id)))
+    return clean(watchlist)
   }catch (err) {
     console.log(err)
-    return false
   }
 }
 

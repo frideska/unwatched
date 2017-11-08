@@ -5,8 +5,6 @@ const tmdb = require('./tmdb')
 const watchlist = require('./watchlist')
 
 
-
-
 api.get('/', (req, res) => {
     res.send('Welcome to our API!')
 })
