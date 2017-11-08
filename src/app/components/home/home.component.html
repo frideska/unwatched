@@ -2,7 +2,7 @@
   <div class="uk-container uk-container-small">
     <h1 class="uk-heading-primary uk-light">Discover</h1>
 
-    <div class="uk-position-relative uk-visible-toggle" uk-slideshow="ratio: 7:3">
+    <div class="uk-position-relative uk-animation-slide-top-small uk-visible-toggle" uk-slideshow="ratio: 7:3">
       <ul class="uk-slideshow-items">
         <li>
           <img src="https://getuikit.com/docs/images/photo.jpg" alt="whale" uk-cover/>
@@ -20,7 +20,9 @@
     <h2 class="uk-heading-line uk-text-right uk-light"><span>New movies</span></h2>
     <div class="uk-container uk-width-auto uk-margin-remove">
       <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
-        
+        <app-card *ngFor="let movie of discover.movies"
+          [movieID]="movie.movieID">
+        </app-card>
       </div>
     </div>
 
