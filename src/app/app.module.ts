@@ -45,7 +45,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'search', component: SearchComponent},
-  {path: 'library', component: LibraryComponent},
+  {path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
   {path: 'watchlist', component: WatchlistComponent, canActivate: [AuthGuard]},
   {path: '**', component: NotFoundComponent}
 ]
