@@ -7,14 +7,15 @@ import { WatchlistService} from 'services/watchlist.service'
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
-  @Input() movieID: string
+  @Input() cardMovieID: string
   @Input() cardTitle: string
   @Input() cardDesc: string
-  @Input() cardImgSrc: string
-  @Input() movieRating: string
-  @Input() movieYear: string
-  @Input() inWatchlist: boolean
-  @Input() movieGenre: string
+  @Input() cardPreviewSrc: string
+  @Input() cardPosterSrc: string
+  @Input() cardMovieRating: string
+  @Input() cardMovieYear: string
+  @Input() cardInWatchlist: boolean
+  @Input() cardMovieGenre: string
 
   constructor(private watchlistService: WatchlistService) { }
 
@@ -23,11 +24,11 @@ export class CardComponent implements OnInit {
 
   addToWatchlist() {
     console.log(this.watchlistService.watchlist)
-    console.log(this.inWatchlist)
-    if (this.inWatchlist) {
-      this.watchlistService.removeMovieFromWatchlist(this.movieID)
+    console.log(this.cardInWatchlist)
+    if (this.cardInWatchlist) {
+      this.watchlistService.removeMovieFromWatchlist(this.cardMovieID)
     } else  {
-      this.watchlistService.addMovieToWatchlist(this.movieID)
+      this.watchlistService.addMovieToWatchlist(this.cardMovieID)
     }
   }
 }
