@@ -7,13 +7,14 @@
     <!--Card-->
 
     <app-card *ngFor="let card of cards"
-              [movieID]="card.movieID"
+              [cardMovieID]="card.movieID"
               [cardTitle]="card.title"
               [cardDesc]="card.content"
-              [cardImgSrc]="card.imgSrc"
-              [movieRating]="card.rating"
-              [movieYear]="card.year"
-              [movieGenre]="card.genre"
+              [cardPreviewSrc]="card.imgSrc"
+              [cardPosterSrc]="card.imgSrc"
+              [cardMovieRating]="card.rating"
+              [cardMovieYear]="card.year"
+              [cardMovieGenre]="card.genre"
 
 
     ></app-card>
