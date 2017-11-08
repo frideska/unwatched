@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
-import { SearchService } from '../search/search.service'
-import { UserService } from '../services/user.service'
+import { SearchService } from 'services/search.service'
+import { UserService } from 'services/user.service'
 
 @Component({
   selector: 'app-navbar',

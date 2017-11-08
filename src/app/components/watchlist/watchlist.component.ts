@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { WatchlistService } from './watchlist.service'
+import { WatchlistService } from 'services/watchlist.service'
 
 @Component({
   selector: 'app-watchlist',
