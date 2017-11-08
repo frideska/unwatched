@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-
 const POSTER_PATH = 'https://image.tmdb.org/t/p/w1280/'
 const MISSING_PATH = 'http://www.latorredelsol.com/press/components/com_easyblog/themes/wireframe/images/placeholder-image.png'
-
 
 @Injectable()
 export class WatchlistService {
