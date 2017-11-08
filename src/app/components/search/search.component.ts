@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core'
-import { SearchService } from './search.service'
 import { NgModel } from '@angular/forms'
+
+import { SearchService } from 'services/search.service'
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  templateUrl: './search.component.html'
 })
 export class SearchComponent implements OnInit {
   constructor( private searchService: SearchService) { }
