@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   if(movies) {
     res.send(movies)
   } else {
-    //If something goes wrong we respond with a 400
+    //If something goes wrong the server respond with a 400
     res.send(400)
   }
 })
@@ -41,7 +41,7 @@ router.get('/remove/:id', async (req, res) => {
     res.sendStatus(200)
   }
   else{
-    //If something goes wrong we send a 400
+    //If something goes wrong the server respond with a 400
     res.sendStatus(400)
   }
 })
