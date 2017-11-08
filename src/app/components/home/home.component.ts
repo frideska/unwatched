@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
+
 import { DiscoverService } from 'services/discover.service'
+import { DiscoverMovie } from 'classes/DicoverMovie'
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,7 @@ import { DiscoverService } from 'services/discover.service'
 })
 export class HomeComponent implements OnInit {
 
-  movies: any
+  public movies: DiscoverMovie[]
 
   constructor(private discover: DiscoverService) {
   }
