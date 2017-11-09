@@ -25,8 +25,8 @@
     <div>
 
       <!--Card Title-->
-      <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ cardTitle }} </h3><p class=" uk-display-inline uk-text-muted subtitle_text">{{ movieYear }}</p>
-      <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ movieGenre }}</span> </h3>
+      <h3 class="uk-margin-remove-bottom title_text uk-display-inline">{{ cardTitle }}</h3>
+      <p class="uk-margin-remove uk-text-muted subtitle_text">{{ movieYear }}</p>
       <button (click) = "addToWatchlist(inWatchlist)">
         <label *ngIf='inWatchlist' >Remove from watchlist!</label>
         <label *ngIf='!inWatchlist' >Add to watchlist!</label>
@@ -40,8 +40,3 @@
   </div>
 
 </div>
-
-
-
-
-
