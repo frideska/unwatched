@@ -1,12 +1,9 @@
 <div>
-  <div class="uk-container uk-container-small">
-    <h1 class="uk-heading-primary uk-light">Discover</h1>
+  <div class="uk-container">
+    <h2 class="uk-light">Discover movies and tv-series</h2>
 
-    <div class="uk-position-relative" uk-slideshow>
+    <div class="uk-position-relative" uk-slideshow="ratio: 7:3">
         <ul class="uk-slideshow-items autoplay: true">
-          <!--li >
-            <img src="https://getuikit.com/docs/images/dark.jpg" alt="whale" uk-cover/>
-          </li-->
           <app-slideshow-item [movie]="movies[0]"></app-slideshow-item>
           <app-slideshow-item [movie]="movies[1]"></app-slideshow-item>
           <app-slideshow-item [movie]="movies[2]"></app-slideshow-item>
@@ -50,16 +47,23 @@
       <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
     </div-->
 
-    <h2 class="uk-heading-line uk-text-right uk-light"><span>New movies</span></h2>
+    <h2 class="uk-heading-line uk-text-right uk-light"><span>Discover movies</span></h2>
     <div class="uk-container uk-width-auto uk-margin-remove">
       <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
         <app-card *ngFor="let movie of movies"
-          [movieID]="movie.movieID">
+          [movieID]="movie.movieID"
+          [cardTitle]="movie.title"
+          [cardDesc]="movie.overview"
+          [cardImgSrc]="movie.poster2"
+          [movieRating]="movie.score"
+          [movieYear]="movie.releaseDate"
+          [inWatchlist]="movie.inWatchlist"
+          [movieGenre]="movie.genres">
         </app-card>
       </div>
     </div>
 
-    <h2 class="uk-heading-line uk-text-right uk-light"><span>New tv-series</span></h2>
+    <h2 class="uk-heading-line uk-text-right uk-light"><span>Discover tv-series</span></h2>
     <div class="uk-container uk-width-auto uk-margin-remove">
       <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
       </div>
