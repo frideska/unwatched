@@ -1,17 +1,17 @@
-<nav class="uk-navbar-container bg_style navbar_position uk-navbar-sticky" uk-sticky="bottom: #top" uk-navbar>
+<nav class="uk-navbar-container bg_style navbar_position uk-navbar-sticky uk-box-shadow-small" uk-sticky="bottom: #top" uk-navbar>
 
   <div class="uk-navbar-left  nav-overlay">
 
     <!--Menu items-->
-    <ul class="uk-navbar-nav">
+    <ul class="uk-navbar-nav menubar_items">
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['home']"><div uk-icon="icon : home"></div>Home</a>
+        <a [routerLink]="['home']">Home</a>
       </li>
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']"><span uk-icon="icon : folder"></span>library</a>
+        <a [routerLink]="['library']">library</a>
       </li>
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['watchlist']"><span uk-icon="icon : video-camera"></span>Watchlist</a>
+        <a [routerLink]="['watchlist']">Watchlist</a>
       </li>
     </ul>
 
