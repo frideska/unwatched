@@ -14,7 +14,7 @@ export class DiscoverMovie {
     constructor({ genre_ids, overview, backdrop_path, poster_path, release_date, title, vote_average }) {
         this.genres = genre_ids
         this.overview2 = (overview.length <= 30) ? overview : overview.substring(0, 150).concat(' (...)')
-        this.overview = overview    
+        this.overview = overview
         this.poster = POSTER_URL + backdrop_path
         this.poster2 = POSTER_URL + poster_path
         this.releaseDate = release_date ? '(' + release_date.substring(0, 4) + ')' : release_date
