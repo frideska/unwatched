@@ -39,5 +39,6 @@ export class NavbarComponent implements OnInit {
 
   cleanSearchField() {
     this.searchService.setQuery('')
+    this.router.navigate([this.previous || '/'])
   }
 }
