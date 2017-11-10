@@ -76,7 +76,7 @@ let findMovieForUser = async (user) => {
   //promise all to make sure that the array is not returned while pending
   try {
     console.log(user)
-    let watchlist = await Promise.all(userMovies.map((movie) => tmdbWrapper.details.movieDetails(movie.movie_id, user)))
+    let watchlist = await Promise.all(userMovies.map(async movie => await tmdbWrapper.details.movieDetails(movie.movie_id, user)))
     return clean(watchlist)
   }catch (err) {
     console.log(err)

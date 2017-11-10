@@ -20,7 +20,8 @@ const tvDetails = async (id, user) => {
         'release_date': tv.release_date,
         'vote_average': tv.vote_average,
         'watchlist': watchlist,
-        'library': library
+        'library': library,
+        'media_type': tv.media_type
       }
     } catch (err) {
         console.error(err)
@@ -29,11 +30,10 @@ const tvDetails = async (id, user) => {
 }
 const movieDetails = async (id, user) => {
     try {
-        console.log(id)
+
         let movie =  await tmdb.movie.details({
             movie_id: id || ''
         })
-          console.log("test")
           let watchlist = await watchlistController.movieInWatchlist(id, user)
           let library = await libraryController.movieInLibrary(id, user)
           return await {
@@ -45,8 +45,9 @@ const movieDetails = async (id, user) => {
             'poster': movie.poster,
             'release_date': movie.release_date,
             'vote_average': movie.vote_average,
-            'watchlist': false, //watchlist,
-            'library': false //library
+            'watchlist': watchlist,
+            'library': library,
+            'media_type': movie.media_type
           }
         } catch (err) {
         console.error(err)
