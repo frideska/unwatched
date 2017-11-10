@@ -1,15 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core'
+
 import { WatchlistService} from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
-
 import { SearchElement } from 'classes/SearchElement'
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: 'app-search-card',
+  templateUrl: './search-card.component.html',
+  styleUrls: ['../card.component.css']
 })
-export class CardComponent implements OnInit {
+export class SearchCardComponent implements OnInit {
   @Input() element: SearchElement
 
   constructor(private watchlistService: WatchlistService, private libraryService: LibraryService) { }
@@ -32,5 +32,3 @@ export class CardComponent implements OnInit {
     }
   }
 }
-
-
