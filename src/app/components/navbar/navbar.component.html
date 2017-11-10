@@ -18,7 +18,7 @@
   </div>
 
   <!--Search toggle button-->
-  <div class="nav-overlay uk-navbar-right">
+  <div class="nav-overlay uk-navbar-right navbar_search">
     <a class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
   </div>
 
@@ -41,7 +41,7 @@
   </div>
 
   <!--Google Login-->
-  <div class="uk-navbar-right uk-margin-remove uk-position-top-right">
+  <div class="uk-navbar-right uk-margin-remove uk-position-right">
     <div class="uk-navbar-item" *ngIf="!userService.loggedIn; else loggedIn">
       <a href="/auth/google" >
         <div class="uk-inline">

@@ -1,3 +1,6 @@
-.bg_style {
+.app_body {
   background-color: #444444;
+  height: 100%;
+  padding-bottom: 5rem;
+
 }
