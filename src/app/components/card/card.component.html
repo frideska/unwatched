@@ -31,6 +31,10 @@
         <label *ngIf='watchlist' >Remove from watchlist!</label>
         <label *ngIf='!watchlist' >Add to watchlist!</label>
       </button>
+      <button (click) = "addToLibrary()">
+        <label *ngIf='library' >Remove from library!</label>
+        <label *ngIf='!library' >Add to library!</label>
+      </button>
       <hr class="uk-divider-small uk-margin-remove" />
 
       <p class="uk-text-muted desc_text uk-text-break ">{{ cardDesc }}</p>
