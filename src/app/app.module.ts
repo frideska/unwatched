@@ -23,8 +23,6 @@ import { FilterComponent } from './components/filter/filter.component'
 /**
  * Import Services
  */
-
-
 import { UserService } from 'services/user.service'
 import { DiscoverService } from 'services/discover.service'
 import { SearchService } from 'services/search.service'
@@ -53,7 +51,7 @@ const routes: Routes = [
   {path: 'search', component: SearchComponent},
   {path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
   {path: 'watchlist', component: WatchlistComponent, canActivate: [AuthGuard]},
-  {path: '**', component: WordCloudComponent}
+  {path: '**', component: NotFoundComponent}
 ]
 
 @NgModule({
