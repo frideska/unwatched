@@ -1,21 +1,20 @@
+<app-filter></app-filter>
 <div class="uk-container uk-width-auto uk-margin-remove">
 
   <!--Grid Row Container-->
   <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
 
     <!--Card-->
-
-    <app-card *ngFor="let movie of libraryService.library"
-              [movieID]="movie.movieID"
-              [cardTitle]="movie.title"
-              [cardDesc]="movie.content"
-              [cardImgSrc]="movie.imgSrc"
-              [movieRating]="movie.rating"
-              [movieYear]="movie.year"
-              [inWatchlist] ="movie.inWatchlist"
-              [inLibrary] ="movie.inLibrary"
-              [movieGenre]="movie.genre">
+    <app-card *ngFor="let card of libraryService.library"
+              [movieID]="card.movieID"
+              [cardTitle]="card.title"
+              [cardDesc]="card.content"
+              [cardImgSrc]="card.imgSrc"
+              [movieRating]="card.rating"
+              [movieYear]="card.year"
+              [inWatchlist] ="card.inWatchlist"
+              [inLibrary] ="card.inLibrary"
+              [movieGenre]="card.genre">
     </app-card>
-
   </div>
 </div>
