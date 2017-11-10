@@ -1,24 +1,34 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-const MISSING_PATH = 'http://www.latorredelsol.com/press/components/com_easyblog/themes/wireframe/images/placeholder-image.png'
-const PREVIEW_IMG_PATH = 'https://image.tmdb.org/t/p/w185/'
-const POSTER_PATH = 'https://image.tmdb.org/t/p/w1280/'
-
+import { SearchSeries } from 'classes/SearchSeries'
+import { SearchMovie } from 'classes/SearchMovie'
+import { SearchType } from 'enums/SearchType'
 
 @Injectable()
 export class SearchService {
-  private searchURL = '/api/tmdb/search/'
+  private searchURL = '/api/tmdb/search'
+  private searchType: SearchType
   public query: string
   public results: any
 
   constructor(private http: Http) {
     this.query = ''
+    this.searchType = SearchType.MULTI
+  }
+
+  private getSearchType() {
+    switch (this.searchType) {
+      case 0: return 'multi'
+      case 1: return 'movie'
+      case 2: return 'tv'
+    }
   }
 
   public async search(): Promise<any> {
     try {
-      const response = await this.http.get(this.searchURL + this.query).toPromise()
+      const url = `${this.searchURL}/${this.getSearchType()}?q=${this.query}`
+      const response = await this.http.get(url).toPromise()
       return this.reconfigure(response.json())
     } catch (err) {
       console.error(err)
@@ -30,24 +40,13 @@ export class SearchService {
   }
 
   private reconfigure(json) {
-      this.results = json.results.map((result) => {
-        const overview = result.overview || 'No description'
+    this.results = json.results.map((result) => {
+      switch (result.media_type) {
+        case 'movie': return new SearchMovie(result)
+        case 'tv': return new SearchSeries(result)
+      }
+    })
 
-        return {
-          movieID: result.id,
-          mediaType: result.media_type,
-          video: result.video || false,
-          title: result.title || result.name,
-          content: (overview.length <= 30) ? overview : overview.substring(0, 150).concat(' (...)'),
-          imgSrc: result.poster_path ? PREVIEW_IMG_PATH.concat(result.poster_path) : MISSING_PATH,
-          posterSrc: result.poster_path ? POSTER_PATH.concat(result.poster_path) : MISSING_PATH,
-          rating: result.vote_average,
-          genre: result.genre_ids,
-          inWatchlist: false,
-          inLibrary: false,
-          year: result.release_date ? '(' + result.release_date.substring(0, 4) + ')' : result.release_date
-        }})
-
-      console.log(this.results)
+    console.log(this.results)
   }
 }

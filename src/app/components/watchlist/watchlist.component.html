@@ -6,18 +6,7 @@
   <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
 
     <!--Card-->
-
-      <app-card *ngFor="let movie of watchlistService.watchlist"
-                [cardMovieID]="movie.movieID"
-                [cardTitle]="movie.title"
-                [cardDesc]="movie.content"
-                [cardPreviewSrc]="movie.imgSrc"
-                [cardPosterSrc]="movie.cardPosterSrc"
-                [cardMovieRating]="movie.rating"
-                [cardMovieYear]="movie.year"
-                [cardInWatchlist]="movie.inWatchlist"
-                [cardMovieGenre]="movie.genre">
-      </app-card>
+      <app-card *ngFor="let movie of watchlistService.watchlist" [element]="movie"></app-card>
 
   </div>
 </div>
