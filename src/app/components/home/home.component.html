@@ -34,9 +34,10 @@
     </div-->
 
     <h2 class="uk-heading-line uk-text-right uk-light"><span>Discover movies</span></h2>
-    <div class="uk-container uk-width-auto uk-margin-remove">
-      <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
-        <app-card *ngFor="let movie of movies"
+    <div class="uk-width-auto">
+      <div class="uk-animation-slide-bottom-small uk-flex-center" uk-grid>
+        <span class="uk-flex uk-flex-middle" uk-icon="icon: chevron-left; ratio: 3" style="color:rgb(255, 255, 255)"></span>
+        <app-card *ngFor="let movie of (movies | slice:movies.length - 2)"
           [movieID]="movie.movieID"
           [cardTitle]="movie.title"
           [cardDesc]="movie.overview2"
@@ -45,6 +46,7 @@
           [movieYear]="movie.releaseDate"
           [inWatchlist]="movie.inWatchlist">
         </app-card>
+        <span class="uk-flex uk-flex-middle" uk-icon="icon: chevron-right; ratio: 3" style="color:rgb(255, 255, 255)"></span>
       </div>
     </div>
 
