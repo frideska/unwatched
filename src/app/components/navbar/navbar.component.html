@@ -4,8 +4,8 @@
 
     <!--Menu items NOT logged in-->
     <ul class="uk-navbar-nav" *ngIf="!userService.loggedIn; else loggedIn_menu">
-      <li [routerLinkActive]="['active']">
-        <a [routerLink]="['home']">Discover</a>
+      <li>
+        <a [routerLinkActive]="['active']" [routerLink]="['home']">Discover</a>
       </li>
       <li>
         <a>library</a>
