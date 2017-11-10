@@ -44,7 +44,7 @@ export class LibraryService {
   }
 
   private reconfigure(json) {
-    this.library = json.results.map((result) => {
+    this.library = json.map((result) => {
       switch (result.media_type) {
         case 'movie':
           return new SearchMovie(result)

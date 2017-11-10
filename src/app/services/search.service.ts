@@ -40,7 +40,7 @@ export class SearchService {
   }
 
   private reconfigure(json) {
-    this.results = json.map((result) => {
+    this.results = json.results.map((result) => {
       switch (result.media_type) {
         case 'movie': return new SearchMovie(result)
         case 'tv': return new SearchSeries(result)
