@@ -11,6 +11,37 @@
 
 }
 
+.item_disabled {
+  color: #777777;
+
+}
+
+.hover_style{
+  background-color: rebeccapurple;
+  color: white;
+  font-weight: lighter;
+  font-size: 0.8rem;
+  padding: 0.8rem;
+  flex-direction: row;
+  display: flex;
+
+
+
+}
+.uk-drop {
+  width: auto;
+  margin-top: -1rem;
+}
+
+.icon_center{
+  align-items: center;
+  margin-right: 0.3rem;
+
+}
+
+.uk-button-secondary{
+  background-color: rebeccapurple;
+}
 
 .uk-navbar-nav>li>a {
 
