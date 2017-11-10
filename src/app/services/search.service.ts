@@ -41,6 +41,7 @@ export class SearchService {
           rating: result.vote_average,
           genre: result.genre_ids,
           inWatchlist: false,
+          inLibrary: false,
           year: result.release_date ? '(' + result.release_date.substring(0, 4) + ')' : result.release_date
         }})
 

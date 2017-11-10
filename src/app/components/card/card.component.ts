@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core'
 import { WatchlistService} from 'services/watchlist.service'
+import { LibraryService } from 'services/library.service'
 
 @Component({
   selector: 'app-card',
@@ -14,20 +15,26 @@ export class CardComponent implements OnInit {
   @Input() movieRating: string
   @Input() movieYear: string
   @Input() inWatchlist: boolean
+  @Input() inLibrary: boolean
   @Input() movieGenre: string
 
-  constructor(private watchlistService: WatchlistService) { }
+  constructor(private watchlistService: WatchlistService, private libraryService: LibraryService) { }
 
   ngOnInit() {
   }
 
   addToWatchlist() {
-    console.log(this.watchlistService.watchlist)
-    console.log(this.inWatchlist)
     if (this.inWatchlist) {
       this.watchlistService.removeMovieFromWatchlist(this.movieID)
     } else  {
       this.watchlistService.addMovieToWatchlist(this.movieID)
+    }
+  }
+  addToLibrary() {
+    if (this.inLibrary) {
+      this.libraryService.removeMovieFromLibrary(this.movieID)
+    } else  {
+      this.libraryService.addMovieToLibrary(this.movieID)
     }
   }
 }
