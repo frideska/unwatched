@@ -13,7 +13,7 @@ export class WatchlistService {
 
   public async addMovieToWatchlist(id: string) {
     try {
-      const response = await this.http.post(this.URL + '/movie', {id: id}).toPromise()
+      const response = await this.http.post(this.URL + '/movie/', {id: id}).toPromise()
     } catch (err) {
       console.error(err)
     }
@@ -27,8 +27,9 @@ export class WatchlistService {
   }
   public async getWatchlist() {
     try {
-      const response = await this.http.get(this.URL + '/movie/').toPromise()
+      const response = await this.http.get(this.URL + '/movie').toPromise()
       if (response.status === 200) {
+        console.log(response)
         this.reconfigure(response.json())
       }
     }catch (err) {

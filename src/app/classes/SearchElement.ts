@@ -9,5 +9,6 @@ export interface SearchElement {
     rating: number
     genres: number[]
     watchlist: boolean
+    library: boolean
     date: Date
 }
