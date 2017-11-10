@@ -4,8 +4,6 @@ import { LibraryService } from 'services/library.service'
 
 import { SearchElement } from 'classes/SearchElement'
 
-import { SearchElement } from 'classes/SearchElement'
-
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
