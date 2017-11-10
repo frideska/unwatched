@@ -2,7 +2,7 @@
   <div class="uk-container">
     <h2 class="uk-light">Discover movies and tv-series</h2>
 
-    <div class="uk-position-relative" uk-slideshow="ratio: 7:3">
+    <div class="uk-position-relative uk-animation-slide-top-medium" uk-slideshow="ratio: 7:3">
         <ul class="uk-slideshow-items">
           <app-slideshow-item [movie]="movies[0]"></app-slideshow-item>
           <app-slideshow-item [movie]="movies[1]"></app-slideshow-item>
@@ -16,20 +16,6 @@
         <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous" style="color:rgb(255, 255, 255)"></a>
         <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next" style="color:rgb(255, 255, 255)"></a>
       </div>
-
-    <!--div class="uk-position-relative uk-animation-slide-top-small uk-visible-toggle" uk-slideshow="ratio: 7:3">
-      <ul class="uk-slideshow-items">
-        <li *ngFor="let movie of movies">
-            <img src="{{movie.poster}}" alt="" uk-cover>
-            <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom">
-                <h3 class="uk-margin-remove">{{movie.title}}</h3>
-                <p class="uk-margin-remove">{{movie.overviews}}</p>
-            </div>
-        </li>
-      </ul>
-      <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-      <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
-    </div-->
 
     <!--div class="uk-position-relative uk-visible-toggle uk-light" uk-slideshow="ratio: 7:3" data-uk-observe>
       <ul class="uk-slideshow-items">
@@ -53,7 +39,7 @@
         <app-card *ngFor="let movie of movies"
           [movieID]="movie.movieID"
           [cardTitle]="movie.title"
-          [cardDesc]="movie.overview"
+          [cardDesc]="movie.overview2"
           [cardImgSrc]="movie.poster2"
           [movieRating]="movie.score"
           [movieYear]="movie.releaseDate"
