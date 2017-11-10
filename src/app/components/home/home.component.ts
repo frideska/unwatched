@@ -5,11 +5,14 @@ import { DiscoverMovie } from 'classes/DicoverMovie'
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
   public movies: DiscoverMovie[]
+  public value1: number
+  public value2: number
 
   constructor(private discover: DiscoverService) {
   }
@@ -19,6 +22,12 @@ export class HomeComponent implements OnInit {
     console.log(this.movies)
   }
 
+  nextObject(value) {
+    console.log("next")
+  }
 
+  prevObject() {
+    console.log("prev")
+  }
 
 }

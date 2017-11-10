@@ -13,8 +13,8 @@
           <app-slideshow-item [movie]="movies[6]"></app-slideshow-item>
           <app-slideshow-item [movie]="movies[7]"></app-slideshow-item>
         </ul>
-        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous" style="color:rgb(255, 255, 255)"></a>
-        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next" style="color:rgb(255, 255, 255)"></a>
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover navigation" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover navigation" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
       </div>
 
     <!--div class="uk-position-relative uk-visible-toggle uk-light" uk-slideshow="ratio: 7:3" data-uk-observe>
@@ -34,28 +34,34 @@
     </div-->
 
     <h2 class="uk-heading-line uk-text-right uk-light"><span>Discover movies</span></h2>
-    <div class="uk-width-auto">
-      <div class="uk-animation-slide-bottom-small uk-flex-center" uk-grid>
-        <span class="uk-flex uk-flex-middle" uk-icon="icon: chevron-left; ratio: 3" style="color:rgb(255, 255, 255)"></span>
-        <app-card *ngFor="let movie of (movies | slice:movies.length - 2)"
-          [movieID]="movie.movieID"
-          [cardTitle]="movie.title"
-          [cardDesc]="movie.overview2"
-          [cardImgSrc]="movie.poster2"
-          [movieRating]="movie.score"
-          [movieYear]="movie.releaseDate"
-          [inWatchlist]="movie.inWatchlist">
-        </app-card>
-        <span class="uk-flex uk-flex-middle" uk-icon="icon: chevron-right; ratio: 3" style="color:rgb(255, 255, 255)"></span>
-      </div>
+    <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
+      <span class="uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-left; ratio: 2;" (click)="prevObject()"></span>
+      <app-card *ngFor="let movie of (movies | slice:0:2)"
+        [movieID]="movie.movieID"
+        [cardTitle]="movie.title"
+        [cardDesc]="movie.overview2"
+        [cardImgSrc]="movie.poster2"
+        [movieRating]="movie.score"
+        [movieYear]="movie.releaseDate"
+        [inWatchlist]="movie.inWatchlist">
+      </app-card>
+      <span class="uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-right;  ratio: 2;" (click)="nextObject()"></span>
     </div>
 
     <h2 class="uk-heading-line uk-text-right uk-light"><span>Discover tv-series</span></h2>
-    <div class="uk-container uk-width-auto uk-margin-remove">
-      <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
-      </div>
+    <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
+      <span class="uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-left; ratio: 2;" (click)="prevObject()"></span>
+      <app-card *ngFor="let movie of (movies | slice:0:2)"
+        [movieID]="movie.movieID"
+        [cardTitle]="movie.title"
+        [cardDesc]="movie.overview2"
+        [cardImgSrc]="movie.poster2"
+        [movieRating]="movie.score"
+        [movieYear]="movie.releaseDate"
+        [inWatchlist]="movie.inWatchlist">
+      </app-card>
+      <span class="uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-right;  ratio: 2;" (click)="nextObject()"></span>
     </div>
 
-    <hr class="uk-divider-small">
   </div>
 </div>
