@@ -4,8 +4,8 @@
 
     <!--Menu items NOT logged in-->
     <ul class="uk-navbar-nav" *ngIf="!userService.loggedIn; else loggedIn_menu">
-      <li [routerLinkActive]="['active']">
-        <a [routerLink]="['home']">Discover</a>
+      <li>
+        <a [routerLinkActive]="['active']" [routerLink]="['home']">Discover</a>
       </li>
       <li>
         <a>library</a>
@@ -24,14 +24,14 @@
     <!--Menu items logged in-->
     <ng-template #loggedIn_menu>
       <ul class="uk-navbar-nav menubar_items">
-        <li [routerLinkActive]="['active']">
-          <a [routerLink]="['home']">Discover</a>
+        <li >
+          <a [routerLinkActive]="['active']" [routerLink]="['home']">Discover</a>
         </li>
-        <li [routerLinkActive]="['active']">
-          <a [routerLink]="['library']" dus>library</a>
+        <li>
+          <a [routerLinkActive]="['active']" [routerLink]="['library']">library</a>
         </li>
-        <li [routerLinkActive]="['active']">
-          <a [routerLink]="['watchlist']">Watchlist</a>
+        <li>
+          <a [routerLinkActive]="['active']" [routerLink]="['watchlist']">Watchlist</a>
         </li>
       </ul>
     </ng-template>
@@ -40,7 +40,7 @@
 
   <!--Search toggle button-->
   <div class="nav-overlay uk-navbar-right navbar_search">
-    <a class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+    <div id="search_text" class="uk-navbar-toggle" id="search_text" uk-toggle="target: .nav-overlay; animation: uk-animation-fade">Search <span uk-icon="icon : search;" id="search_icon"></span></div>
   </div>
 
   <!--Search overlay-->

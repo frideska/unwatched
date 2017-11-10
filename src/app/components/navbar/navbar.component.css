@@ -16,6 +16,19 @@
 
 }
 
+#search_icon{
+  margin-left:0.5rem ;
+}
+
+#search_text{
+  font-size: 1rem;
+}
+.uk-navbar-nav[_ngcontent-c1] > li[_ngcontent-c1] > a[_ngcontent-c1]:focus {
+  color: rebeccapurple;
+
+}
+
+
 .hover_style{
   background-color: rebeccapurple;
   color: white;
@@ -24,8 +37,6 @@
   padding: 0.8rem;
   flex-direction: row;
   display: flex;
-
-
 
 }
 .uk-drop {
