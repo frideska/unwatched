@@ -4,6 +4,34 @@ const User = require('../models/User')
 const tmdbWrapper = require('../../tmdb/')
 
 /**
+ * Checks if a give movie is in watchlist for a given user
+ * @param movieID
+ * @param user
+ * @returns {Promise.<boolean>}
+ */
+let movieInWatchlist = async (movieID, user) => {
+  let movie =  await UserMovie.findOne({movie_id: movieID, user_id: user._id})
+  if(movie){
+    return true
+  }
+  return false
+}
+
+/**
+ * Checks if a give tv-show is in library for a given user
+ * @param movieID
+ * @param user
+ * @returns {Promise.<boolean>}
+ */
+let tvInWatchlist = async (movieID, user) => {
+  let tv =  await UserTv.findOne({movie_id: movieID, user_id: user._id})
+  if(tv){
+    return true
+  }
+  return false
+}
+
+/**
  * Creates a new entry in the UserMovie collection
  * with a given movie_id and user._id
  * @param movieID
@@ -47,7 +75,8 @@ let findMovieForUser = async (user) => {
   //For each id in the UserMovie database, we return all the informasjon about the movie, we use
   //promise all to make sure that the array is not returned while pending
   try {
-    let watchlist = await Promise.all(userMovies.map(movie => tmdbWrapper.details.movieDetails(movie.movie_id)))
+    console.log(user)
+    let watchlist = await Promise.all(userMovies.map((movie) => tmdbWrapper.details.movieDetails(movie.movie_id, user)))
     return clean(watchlist)
   }catch (err) {
     console.log(err)
@@ -131,5 +160,7 @@ module.exports = {
   removeMovieForUser,
   newTv,
   findTvForUser,
-  removeTvForUser
+  removeTvForUser,
+  movieInWatchlist,
+  tvInWatchlist
 }
