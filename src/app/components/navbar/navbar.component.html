@@ -2,18 +2,39 @@
 
   <div class="uk-navbar-left  nav-overlay">
 
-    <!--Menu items-->
-    <ul class="uk-navbar-nav menubar_items">
+    <!--Menu items NOT logged in-->
+    <ul class="uk-navbar-nav" *ngIf="!userService.loggedIn; else loggedIn_menu">
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['home']">Home</a>
+        <a [routerLink]="['home']">Discover</a>
       </li>
-      <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']">library</a>
+      <li>
+        <a>library</a>
+          <div uk-drop="animation: uk-animation-slide-top-small; duration: 100">
+            <div class="uk-card-small uk-card-body uk-card-secondary uk-margin-remove hover_style" ><span uk-icon="icon : lock; ratio: 0.9" class="icon_center"></span>You are not logged in</div>
+          </div>
       </li>
-      <li [routerLinkActive]="['active']">
-        <a [routerLink]="['watchlist']">Watchlist</a>
+      <li>
+        <a>Watchlist</a>
+        <div uk-drop="animation: uk-animation-slide-top-small; duration: 100">
+          <div class="uk-card-small uk-card-body uk-card-secondary uk-margin-remove hover_style" ><span uk-icon="icon : lock; ratio: 0.9" class="icon_center"></span>You are not logged in</div>
+        </div>
       </li>
     </ul>
+
+    <!--Menu items logged in-->
+    <ng-template #loggedIn_menu>
+      <ul class="uk-navbar-nav menubar_items">
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['home']">Discover</a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['library']" dus>library</a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['watchlist']">Watchlist</a>
+        </li>
+      </ul>
+    </ng-template>
 
   </div>
 
@@ -65,9 +86,9 @@
     <div class="uk-inline">
 
       <!--Log in button-->
-    <button class="uk-button uk-button-secondary">
-      {{ userService.user.name }}
-    </button>
+      <button class="uk-button uk-button-secondary">
+        {{ userService.user.name }}
+      </button>
 
       <!--Dropdown menu user-->
       <div uk-dropdown>
