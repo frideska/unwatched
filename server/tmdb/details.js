@@ -1,6 +1,6 @@
-const details = async (id) => {
+const tvDetails = async (id) => {
     try {
-        return await tmdb.movie.details(
+        return await tmdb.tv.details(
             {
               movie_id: id || ''
             }
@@ -10,7 +10,20 @@ const details = async (id) => {
       return null
     }
 }
+const movieDetails = async (id) => {
+  try {
+    return await tmdb.movie.details(
+      {
+        movie_id: id || ''
+      }
+    )
+  } catch (err) {
+    console.error(err)
+    return null
+  }
+}
 
 module.exports = {
-  details
+  movieDetails,
+  tvDetails
 }

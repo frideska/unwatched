@@ -4,7 +4,7 @@
 
 module.exports = {
     find: require('./find').find,
-    details: require('./details').details,
+    details: require('./details'),
     discover: require('./discover'),
     search: require('./search').search
 }
