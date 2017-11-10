@@ -36,14 +36,14 @@
     <h2 class="uk-heading-line uk-text-right uk-light"><span>Discover movies</span></h2>
     <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
       <span class="uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-left; ratio: 2;" (click)="prevObject()"></span>
-      <app-card *ngFor="let movie of (movies | slice:0:2)" [element]="movie"></app-card>
+      <app-discover-card *ngFor="let movie of (movies | slice:0:2)" [element]="movie"></app-discover-card>
       <span class="uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-right;  ratio: 2;" (click)="nextObject()"></span>
     </div>
 
     <h2 class="uk-heading-line uk-text-right uk-light"><span>Discover tv-series</span></h2>
     <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
       <span class="uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-left; ratio: 2;" (click)="prevObject()"></span>
-      <app-card *ngFor="let movie of (movies | slice:0:2)" [element]="movie"></app-card>
+      <app-discover-card *ngFor="let movie of (movies | slice:2:4)" [element]="movie"></app-discover-card>
       <span class="uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-right;  ratio: 2;" (click)="nextObject()"></span>
     </div>
 

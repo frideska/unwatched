@@ -1,7 +1,8 @@
+import { DiscoverElement } from 'classes/DiscoverElement'
 
 const POSTER_URL = 'https://image.tmdb.org/t/p/w1280/'
 
-export class DiscoverMovie {
+export class DiscoverMovie implements DiscoverElement {
     public genres: number[]
     public overview: string
     public overview2: string
