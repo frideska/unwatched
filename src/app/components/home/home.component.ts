@@ -18,4 +18,7 @@ export class HomeComponent implements OnInit {
     this.movies = await this.discover.getDiscovery()
     console.log(this.movies)
   }
+
+
+
 }

@@ -1,5 +1,5 @@
 .card_container {
-  margin-right: 35px;
+  margin: 5px;
   height: 300px;
   overflow:hidden;
 }
@@ -25,4 +25,3 @@
   width: 100%;
   margin-top: 10px;
 }
-
