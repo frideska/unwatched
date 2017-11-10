@@ -16,6 +16,7 @@ import { LibraryComponent } from 'components/library/library.component'
 import { SearchComponent } from 'components/search/search.component'
 import { WatchlistComponent } from 'components/watchlist/watchlist.component'
 import { NotFoundComponent } from 'components/not-found/not-found.component'
+import { FilterComponent } from './components/filter/filter.component'
 
 /**
  * Import Services
@@ -61,7 +62,8 @@ const routes: Routes = [
     LibraryComponent,
     SearchComponent,
     WatchlistComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

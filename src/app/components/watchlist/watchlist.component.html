@@ -6,14 +6,15 @@
     <!--Card-->
 
       <app-card *ngFor="let movie of watchlistService.watchlist"
-                [movieID]="movie.movieID"
+                [cardMovieID]="movie.movieID"
                 [cardTitle]="movie.title"
                 [cardDesc]="movie.content"
-                [cardImgSrc]="movie.imgSrc"
-                [movieRating]="movie.rating"
-                [movieYear]="movie.year"
-                [inWatchlist] ="movie.inWatchlist"
-                [movieGenre]="movie.genre">
+                [cardPreviewSrc]="movie.imgSrc"
+                [cardPosterSrc]="movie.cardPosterSrc"
+                [cardMovieRating]="movie.rating"
+                [cardMovieYear]="movie.year"
+                [cardInWatchlist]="movie.inWatchlist"
+                [cardMovieGenre]="movie.genre">
       </app-card>
 
   </div>

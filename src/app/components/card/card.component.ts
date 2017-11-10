@@ -8,15 +8,17 @@ import { LibraryService } from 'services/library.service'
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
-  @Input() movieID: string
+  @Input() cardMovieID: string
   @Input() cardTitle: string
   @Input() cardDesc: string
-  @Input() cardImgSrc: string
-  @Input() movieRating: string
-  @Input() movieYear: string
+  @Input() cardPreviewSrc: string
+  @Input() cardPosterSrc: string
+  @Input() cardMovieRating: string
+  @Input() cardMovieYear: string
+  @Input() cardInWatchlist: boolean
+  @Input() cardMovieGenre: string
   @Input() inWatchlist: boolean
   @Input() inLibrary: boolean
-  @Input() movieGenre: string
 
   constructor(private watchlistService: WatchlistService, private libraryService: LibraryService) { }
 
@@ -24,17 +26,17 @@ export class CardComponent implements OnInit {
   }
 
   addToWatchlist() {
-    if (this.inWatchlist) {
-      this.watchlistService.removeMovieFromWatchlist(this.movieID)
+    if (this.cardInWatchlist) {
+      this.watchlistService.removeMovieFromWatchlist(this.cardMovieID)
     } else  {
-      this.watchlistService.addMovieToWatchlist(this.movieID)
+      this.watchlistService.addMovieToWatchlist(this.cardMovieID)
     }
   }
   addToLibrary() {
     if (this.inLibrary) {
-      this.libraryService.removeMovieFromLibrary(this.movieID)
+      this.libraryService.removeMovieFromLibrary(this.cardMovieID)
     } else  {
-      this.libraryService.addMovieToLibrary(this.movieID)
+      this.libraryService.addMovieToLibrary(this.cardMovieID)
     }
   }
 }
