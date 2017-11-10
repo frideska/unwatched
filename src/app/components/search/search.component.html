@@ -6,18 +6,7 @@
   <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
 
     <!--Card-->
+    <app-card *ngFor="let result of searchService.results" [element]="result"></app-card>
 
-    <app-card *ngFor="let result of searchService.results"
-              [cardMovieID]="result.movieID"
-              [cardTitle]="result.title"
-              [cardDesc]="result.content"
-              [cardPreviewSrc]="result.imgSrc"
-              [cardPosterSrc]="result.cardPreviewSrc"
-              [cardMovieRating]="result.rating"
-              [cardMovieYear]="result.year"
-              [cardInWatchlist]="result.inWatchlist"
-              [cardMovieGenre]="result.genre"
-  ></app-card>
-
-</div>
+  </div>
 </div>
