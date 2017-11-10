@@ -11,6 +11,22 @@
 
 }
 
+.item_disabled {
+  color: #777777;
+
+}
+
+.hover_style{
+  background-color: rebeccapurple;
+  color: white;
+  font-size: 0.8rem;
+  padding: 0.8rem;
+
+}
+.uk-drop {
+  width: auto;
+  margin-top: -1rem;
+}
 
 .uk-navbar-nav>li>a {
 
