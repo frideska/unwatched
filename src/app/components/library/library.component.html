@@ -5,20 +5,7 @@
   <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
 
     <!--Card-->
-
-    <app-card *ngFor="let card of cards"
-              [cardMovieID]="card.movieID"
-              [cardTitle]="card.title"
-              [cardDesc]="card.content"
-              [cardPreviewSrc]="card.imgSrc"
-              [cardPosterSrc]="card.imgSrc"
-              [cardMovieRating]="card.rating"
-              [cardMovieYear]="card.year"
-              [cardMovieGenre]="card.genre"
-
-
-    ></app-card>
-
+    <app-card *ngFor="let card of cards" [element]="card"></app-card>
 
   </div>
 </div>
