@@ -45,7 +45,7 @@ export class WordCloudComponent implements OnInit {
       bottom: 10,
       left: 10
     },
-    labels: true // false to hide hover labels
+    labels: false // false to hide hover labels
   }
 
   constructor() { }
