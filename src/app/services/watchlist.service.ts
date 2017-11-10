@@ -38,7 +38,7 @@ export class WatchlistService {
   }
 
   private reconfigure(json) {
-    this.watchlist = json.results.map((result) => {
+    this.watchlist = json.map((result) => {
       switch (result.media_type) {
         case 'movie': return new SearchMovie(result)
         case 'tv': return new SearchSeries(result)
