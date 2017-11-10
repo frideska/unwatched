@@ -1,0 +1,20 @@
+.bg_style {
+  background-color: #555555;
+}
+
+.navbar_position {
+  padding-left: 16rem;
+  padding-right: 16rem;
+  margin-top: -1.2rem;
+  height: 2rem;
+  z-index: 199;
+  display: flex;
+
+}
+
+.list_elements {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  color: #777;
+}

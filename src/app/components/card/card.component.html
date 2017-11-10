@@ -1,23 +1,23 @@
 <!--Card Container-->
-<div class="uk-card uk-card-small uk-card-hover uk-card-secondary uk-child-width-1-2  card_container "  style="min-width: 400px; max-width: 400px;"  uk-grid>
+<div class="uk-card uk-card-small uk-card-hover uk-card-secondary uk-child-width-1-2  card_container"  style="min-width: 400px; max-width: 400px;"  uk-grid>
 
 
   <!--Poster Modal-->
-  <div id="card-movieID-{{ movieID }}"  uk-modal>
+  <div id="card-movieID-{{ element.id }}"  uk-modal>
     <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
       <button class="uk-modal-close-outside" type="button" uk-close></button>
-      <img src="{{ cardImgSrc }}" alt="" style="height: 45vw">
+      <img src="{{ element.poster }}" alt="" style="height: 45vw">
     </div>
   </div>
 
   <!--Card Image-->
-  <div class="uk-card-media-left uk-cover-container  ">
-    <img src="{{ cardImgSrc }}" alt="" uk-cover>
+  <div class="uk-card-media-left uk-cover-container">
+    <img src="{{ element.image }}" alt="" class="img_size" uk-cover>
     <div class="uk-position-bottom-right ">
-      <a href="#card-movieID-{{ movieID }}" class="uk-icon-link" uk-toggle>
+      <a href="#card-movieID-{{ element.id }}" class="uk-icon-link" uk-toggle>
       <img src="http://sachinchoolur.github.io/lightGallery/static/img/icons/zoom-w.png" alt="" style="height: 2.5rem; padding: 8px"/></a>
     </div>
-    <canvas width="100" height='300'></canvas>
+    <!--<canvas width="100" height='300'></canvas>-->
   </div>
 
   <!--Card Body-->
@@ -25,11 +25,11 @@
     <div>
 
       <!--Card Title-->
-      <h3 class="uk-margin-remove-bottom title_text uk-display-inline">{{ cardTitle }}</h3>
-      <p class="uk-margin-remove uk-text-muted subtitle_text">{{ movieYear }}</p>
-      <button (click) = "addToWatchlist(inWatchlist)">
-        <label *ngIf='inWatchlist' >Remove from watchlist!</label>
-        <label *ngIf='!inWatchlist' >Add to watchlist!</label>
+      <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ element.title }} </h3><p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getYear() }}</p>
+      <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
+      <button (click) = "addToWatchlist(watchlist)">
+        <label *ngIf='watchlist' >Remove from watchlist!</label>
+        <label *ngIf='!watchlist' >Add to watchlist!</label>
       </button>
       <hr class="uk-divider-small uk-margin-remove" />
 

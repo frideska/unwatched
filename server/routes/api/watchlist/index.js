@@ -1,4 +1,8 @@
 const router = require('express').Router()
+const express = require('../../../express')
+
+router.use(express.loggedIn)
+
 let MovieController = require('../../../db/controllers/MovieController')
 
 /**

@@ -1,24 +1,24 @@
-<nav class="uk-navbar-container bg_style navbar_position uk-navbar-sticky" uk-sticky="bottom: #top" uk-navbar>
+<nav class="uk-navbar-container bg_style navbar_position uk-navbar-sticky uk-box-shadow-small" uk-sticky="bottom: #top" uk-navbar>
 
   <div class="uk-navbar-left  nav-overlay">
 
     <!--Menu items-->
-    <ul class="uk-navbar-nav">
+    <ul class="uk-navbar-nav menubar_items">
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['home']"><div uk-icon="icon : home"></div>Home</a>
+        <a [routerLink]="['home']">Home</a>
       </li>
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']"><span uk-icon="icon : folder"></span>library</a>
+        <a [routerLink]="['library']">library</a>
       </li>
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['watchlist']"><span uk-icon="icon : video-camera"></span>Watchlist</a>
+        <a [routerLink]="['watchlist']">Watchlist</a>
       </li>
     </ul>
 
   </div>
 
   <!--Search toggle button-->
-  <div class="nav-overlay uk-navbar-right">
+  <div class="nav-overlay uk-navbar-right navbar_search">
     <a class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
   </div>
 
@@ -42,7 +42,7 @@
   </div>
 
   <!--Google Login-->
-  <div class="uk-navbar-right uk-margin-remove uk-position-top-right">
+  <div class="uk-navbar-right uk-margin-remove uk-position-right">
     <div class="uk-navbar-item" *ngIf="!userService.loggedIn; else loggedIn">
       <a href="/auth/google" >
         <div class="uk-inline">

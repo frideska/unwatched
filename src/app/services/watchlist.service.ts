@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-const POSTER_PATH = 'https://image.tmdb.org/t/p/w1280/'
-const MISSING_PATH = 'http://www.latorredelsol.com/press/components/com_easyblog/themes/wireframe/images/placeholder-image.png'
+import { SearchSeries } from 'classes/SearchSeries'
+import { SearchMovie } from 'classes/SearchMovie'
 
 @Injectable()
 export class WatchlistService {
@@ -37,21 +37,13 @@ export class WatchlistService {
   }
 
   private reconfigure(json) {
-    this.watchlist =  json.map((result) => {
-      const overview = result.overview || 'No description'
-
-      return {
-        movieID: result.id,
-        mediaType: 'Movie',
-        video: result.video || false,
-        title: result.title || result.name,
-        content: (overview.length <= 30) ? overview : overview.substring(0, 150).concat(' (...)'),
-        imgSrc: result.poster_path ? POSTER_PATH.concat(result.poster_path) : MISSING_PATH,
-        rating: result.vote_average,
-        genre: 'none',
-        inWatchlist: true,
-        year: result.release_date ? '(' + result.release_date.substring(0, 4) + ')' : result.release_date
+    this.watchlist = json.results.map((result) => {
+      switch (result.media_type) {
+        case 'movie': return new SearchMovie(result)
+        case 'tv': return new SearchSeries(result)
       }
     })
+
+    console.log(this.watchlist)
   }
 }

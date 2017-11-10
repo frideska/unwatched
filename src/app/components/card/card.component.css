@@ -1,6 +1,7 @@
 .card_container {
-  margin: 5px;
   height: 300px;
+  margin: 1px;
+  margin-top: 1rem;
   overflow:hidden;
 }
 
@@ -24,4 +25,10 @@
 .uk-divider-small::after{
   width: 100%;
   margin-top: 10px;
+}
+
+.img_size {
+  height: 100%;
+  width: 100%
+
 }
