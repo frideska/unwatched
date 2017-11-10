@@ -30,6 +30,7 @@
           class="uk-search-input"
           type="search"
           placeholder="Search..."
+          value="{{searchService.query}}"
           autofocus
           [(ngModel)]="search"
           (ngModelChange)="onSearchChange($event)"

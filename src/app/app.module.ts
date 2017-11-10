@@ -8,7 +8,7 @@ import { AgWordCloudModule} from 'angular4-word-cloud'
 /**
  * Import Components
  */
-import { AppComponent } from './app.component'
+import { AppComponent } from 'app.component'
 import { HomeComponent } from 'components/home/home.component'
 import { UserComponent } from 'components/user/user.component'
 import { CardComponent } from 'components/card/card.component'
@@ -16,6 +16,7 @@ import { NavbarComponent } from 'components/navbar/navbar.component'
 import { LibraryComponent } from 'components/library/library.component'
 import { SearchComponent } from 'components/search/search.component'
 import { WatchlistComponent } from 'components/watchlist/watchlist.component'
+import { SlideshowItemComponent } from 'components/home/SlideshowItem/slideshow-item.component'
 import { NotFoundComponent } from 'components/not-found/not-found.component'
 import { FilterComponent } from './components/filter/filter.component'
 
@@ -64,6 +65,7 @@ const routes: Routes = [
     LibraryComponent,
     SearchComponent,
     WatchlistComponent,
+    SlideshowItemComponent,
     NotFoundComponent,
     FilterComponent,
     WordCloudComponent
