@@ -87,7 +87,7 @@
 
       <!--Log in button-->
       <button class="uk-button uk-button-secondary">
-        {{ userService.user.name }}
+        {{ userService.user.name.split(' ')[0] }} {{ userService.user.name.split(' ')[1].substring(0,1).concat('.') }}
       </button>
 
       <!--Dropdown menu user-->
