@@ -18,8 +18,6 @@ export class CardComponent implements OnInit {
   }
 
   addToWatchlist() {
-    console.log(this.watchlistService.watchlist)
-    console.log(this.element.watchlist)
     if (this.element.watchlist) {
       this.watchlistService.removeMovieFromWatchlist(this.element.id)
     } else  {
@@ -27,10 +25,10 @@ export class CardComponent implements OnInit {
     }
   }
   addToLibrary() {
-    if (this.inLibrary) {
-      this.libraryService.removeMovieFromLibrary(this.cardMovieID)
+    if (this.element.library) {
+      this.libraryService.removeMovieFromLibrary(this.element.id)
     } else  {
-      this.libraryService.addMovieToLibrary(this.cardMovieID)
+      this.libraryService.addMovieToLibrary(this.element.id)
     }
   }
 }
