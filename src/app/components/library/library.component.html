@@ -1,23 +1,11 @@
-
-<div class="uk-container uk-width-auto uk-margin-remove">
+<app-filter></app-filter>
+<div class="uk-container uk-width-auto ">
 
   <!--Grid Row Container-->
   <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
 
     <!--Card-->
-
-    <app-card *ngFor="let card of cards"
-              [movieID]="card.movieID"
-              [cardTitle]="card.title"
-              [cardDesc]="card.content"
-              [cardImgSrc]="card.imgSrc"
-              [movieRating]="card.rating"
-              [movieYear]="card.year"
-              [movieGenre]="card.genre"
-
-
-    ></app-card>
-
+    <app-card *ngFor="let card of cards" [element]="card"></app-card>
 
   </div>
 </div>

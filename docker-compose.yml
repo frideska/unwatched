@@ -8,7 +8,7 @@ services:
 
   api:
     build: .
-    command: npm run server
+    command: npm run server:watch
     environment:
       - NODE_ENV=development
       - P4_AUTH_GOOGLE_KEY
