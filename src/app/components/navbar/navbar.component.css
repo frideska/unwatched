@@ -1,5 +1,6 @@
 .bg_style {
   background-color: #222222;
+  height: 4rem;
 }
 
 .navbar_position {
@@ -10,6 +11,38 @@
 
 }
 
-.menubar_items{
-  font-size: 2rem;
+
+.uk-navbar-nav>li>a {
+
+  color: white;
+  font-size: 1.5rem;
+}
+
+
+.uk-navbar-nav>li>a.uk-open{
+
+  color: #777777;
+
+}
+.uk-navbar-nav>li>a:focus {
+
+  color: #777777;
+
+}
+.uk-navbar-nav>li:hover>a {
+
+  color: #777777;
+
+}
+
+.uk-navbar-toggle{
+  height: auto;
+}
+
+.uk-navbar-item{
+  height:auto;
+}
+
+.uk-navbar-item>li>a {
+  height: auto;
 }
