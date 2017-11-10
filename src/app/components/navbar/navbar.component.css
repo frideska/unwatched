@@ -6,4 +6,10 @@
   padding-left: 16rem;
   padding-right: 16rem;
   z-index: 999;
+  box-shadow: -0.2px 5px 1px #222222;
+
+}
+
+.menubar_items{
+  font-size: 2rem;
 }
