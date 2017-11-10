@@ -1,4 +1,3 @@
-
 <div class="uk-container uk-width-auto uk-margin-remove">
 
   <!--Grid Row Container-->
@@ -6,18 +5,17 @@
 
     <!--Card-->
 
-    <app-card *ngFor="let card of cards"
-              [movieID]="card.movieID"
-              [cardTitle]="card.title"
-              [cardDesc]="card.content"
-              [cardImgSrc]="card.imgSrc"
-              [movieRating]="card.rating"
-              [movieYear]="card.year"
-              [movieGenre]="card.genre"
-
-
-    ></app-card>
-
+    <app-card *ngFor="let movie of libraryService.library"
+              [movieID]="movie.movieID"
+              [cardTitle]="movie.title"
+              [cardDesc]="movie.content"
+              [cardImgSrc]="movie.imgSrc"
+              [movieRating]="movie.rating"
+              [movieYear]="movie.year"
+              [inWatchlist] ="movie.inWatchlist"
+              [inLibrary] ="movie.inLibrary"
+              [movieGenre]="movie.genre">
+    </app-card>
 
   </div>
 </div>

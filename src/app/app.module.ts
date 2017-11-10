@@ -26,6 +26,7 @@ import { UserService } from 'services/user.service'
 import { DiscoverService } from 'services/discover.service'
 import { SearchService } from 'services/search.service'
 import { WatchlistService } from 'services/watchlist.service'
+import { LibraryService } from 'services/library.service'
 import { AuthGuard } from 'services/auth-guard.service'
 
 export const initUserServiceFactory = (userService: UserService): Function => {
@@ -73,6 +74,7 @@ const routes: Routes = [
     WatchlistService,
     SearchService,
     UserService,
+    LibraryService,
     AuthGuard,
     USER_INIT
   ],
