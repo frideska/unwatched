@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-import { SearchSeries } from 'classes/SearchSeries'
-import { SearchMovie } from 'classes/SearchMovie'
+import { CardElement } from 'classes/CardElement'
+
 
 @Injectable()
 export class WatchlistService {
@@ -40,12 +40,8 @@ export class WatchlistService {
 
   private reconfigure(json) {
     console.log(json.movie_results[0])
-    this.watchlist = json.map((result) => {
-      switch (result.media_type) {
-        case 'movie': return new SearchMovie(result)
-        case 'tv': return new SearchSeries(result)
-      }
-    })
+    json = json.movie_results
+    this.watchlist = json.map((result) => new CardElement(result))
 
   }
 }

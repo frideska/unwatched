@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
 
-import { SearchSeries } from 'classes/SearchSeries'
-import { SearchMovie } from 'classes/SearchMovie'
+import { CardElement } from 'classes/CardElement'
+
 
 const POSTER_PATH = 'https://image.tmdb.org/t/p/w1280/'
 const MISSING_PATH = 'http://www.latorredelsol.com/press/components/com_easyblog/themes/wireframe/images/placeholder-image.png'
@@ -44,14 +44,6 @@ export class LibraryService {
   }
 
   private reconfigure(json) {
-    this.library = json.map((result) => {
-      switch (result.media_type) {
-        case 'movie':
-          return new SearchMovie(result)
-        case 'tv':
-          return new SearchSeries(result)
-      }
-    })
-
+    this.library = json.map((result) => new CardElement(result))
   }
 }
