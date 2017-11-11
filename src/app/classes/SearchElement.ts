@@ -11,4 +11,5 @@ export interface SearchElement {
     watchlist: boolean
     library: boolean
     date: Date
+    media_type: string
 }

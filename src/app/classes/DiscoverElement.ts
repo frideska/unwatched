@@ -8,4 +8,5 @@ export interface DiscoverElement {
     releaseDate: string
     title: string
     score: number
+    media_type: string
 }

@@ -11,8 +11,9 @@ export class DiscoverMovie implements DiscoverElement {
     public releaseDate: string
     public title: string
     public score: number
+    public media_type: string
 
-    constructor({ genre_ids, overview, backdrop_path, poster_path, release_date, title, vote_average }) {
+    constructor({ genre_ids, overview, backdrop_path, poster_path, release_date, title, vote_average, media_type }) {
         this.genres = genre_ids
         this.overview2 = (overview.length <= 30) ? overview : overview.substring(0, 150).concat(' (...)')
         this.overview = overview
@@ -21,5 +22,6 @@ export class DiscoverMovie implements DiscoverElement {
         this.releaseDate = release_date ? '(' + release_date.substring(0, 4) + ')' : release_date
         this.title = title
         this.score = vote_average
+        this.media_type = media_type
     }
 }

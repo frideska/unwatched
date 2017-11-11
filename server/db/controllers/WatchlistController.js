@@ -1,7 +1,9 @@
 const UserMovie = require('../models/Watchlist/WatchlistUserMovie')
 const UserTv = require('../models/Watchlist/WatchlistUserTv')
-const User = require('../models/User')
 const tmdbWrapper = require('../../tmdb/')
+const ContainsMovie = require('./ContainsMovieController')
+const ContainsTv = require('./ContainsTvContoller')
+
 
 /**
  * Creates a new entry in the UserMovie collection
@@ -47,8 +49,11 @@ let findMovieForUser = async (user) => {
   //For each id in the UserMovie database, we return all the informasjon about the movie, we use
   //promise all to make sure that the array is not returned while pending
   try {
-    let watchlist = await Promise.all(userMovies.map(movie => tmdbWrapper.details.movieDetails(movie.movie_id)))
-    return clean(watchlist)
+    return clean(await Promise.all(userMovies.map(async (movie) =>  {
+      const watchlist = await ContainsMovie.movieInWatchlist(movie.movie_id, user)
+      const library = await ContainsMovie.movieInLibrary(movie.movie_id, user)
+      return await tmdbWrapper.details.movie(movie.movie_id, watchlist, library)
+    })))
   }catch (err) {
     console.log(err)
   }
@@ -72,11 +77,12 @@ let removeMovieForUser = async (movieID, user) => {
 
 
 let newTv = async (tvID, user) => {
+  console.log(tvID)
   let movie = await UserTv.findOne({tv_id: tvID, user_id: user._id})
   if(!movie){
     try {
       let userTv = new UserTv()
-      userTv.movie_id = movieID
+      userTv.tv_id = tvID
       userTv.user_id = user._id
       userTv.save()
       return true
@@ -100,8 +106,12 @@ let findTvForUser = async (user) => {
   //For each id in the tvMovie database, we return all the informasjon about the movie, we use
   //promise all to make sure that the array is not returned while pending
   try {
-    let tvWatchlist = await Promise.all(UserTv.map(tv => tmdbWrapper.details.tvDetails(tv.tv_id)))
-    return clean(tvWatchlist)
+    return clean(await Promise.all(userTv.map(async (tv) => {
+      const watchlist = await ContainsTv.tvInWatchlist(tv.tv_id, user)
+      const library = await ContainsTv.tvInLibrary(tv.tv_id, user)
+      const details = await tmdbWrapper.details.tv(tv.tv_id, watchlist, library)
+      return details
+    })))
   }catch (err) {
     console.log(err)
   }
