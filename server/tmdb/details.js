@@ -2,7 +2,7 @@ let watchlistController = require('../db/controllers/WatchlistController')
 let libraryController = require('../db/controllers/LibraryController')
 
 
-const tvDetails = async (id, user) => {
+const tv = async (id, user) => {
     try {
         let tv = await tmdb.tv.details({
             tv_id: id || ''
@@ -28,9 +28,8 @@ const tvDetails = async (id, user) => {
         return null
     }
 }
-const movieDetails = async (id, user) => {
+const movie = async (id, user) => {
     try {
-
         let movie =  await tmdb.movie.details({
             movie_id: id || ''
         })
@@ -56,6 +55,8 @@ const movieDetails = async (id, user) => {
 }
 
 module.exports = {
-    movieDetails,
-    tvDetails
+  details: {
+    movie,
+    tv
+  }
 }

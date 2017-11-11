@@ -1,6 +1,5 @@
 const UserMovie = require('../models/Watchlist/WatchlistUserMovie')
 const UserTv = require('../models/Watchlist/WatchlistUserTv')
-const User = require('../models/User')
 const tmdbWrapper = require('../../tmdb/')
 
 /**
@@ -75,8 +74,12 @@ let findMovieForUser = async (user) => {
   //For each id in the UserMovie database, we return all the informasjon about the movie, we use
   //promise all to make sure that the array is not returned while pending
   try {
-    console.log(user)
-    let watchlist = await Promise.all(userMovies.map(async movie => await tmdbWrapper.details.movieDetails(movie.movie_id, user)))
+    let watchlist = await Promise.all(userMovies.map(async (movie) =>  {
+      console.log(user._id)
+      console.log(movie.movie_id)
+      let details = await tmdbWrapper.details.movie(movie.movie_id, user)
+      return details
+    }))
     return clean(watchlist)
   }catch (err) {
     console.log(err)
