@@ -18,6 +18,13 @@ export class WatchlistService {
       console.error(err)
     }
   }
+  public async addTvToWatchlist(id: string) {
+    try {
+      const response = await this.http.post(this.URL + '/tv/', {id: id}).toPromise()
+    } catch (err) {
+      console.error(err)
+    }
+  }
   public async removeMovieFromWatchlist(id: string) {
     try {
       const response = await this.http.get(this.URL + '/movie/remove/' + id ).toPromise()
@@ -37,9 +44,7 @@ export class WatchlistService {
   }
 
   private reconfigure(json) {
-    console.log(json.movie_results[0])
-    json = json.movie_results
+    console.log(json)
     this.watchlist = json.map((result) => new CardElement(result))
-
   }
 }
