@@ -7,7 +7,6 @@ import { CardElement } from 'classes/CardElement'
 @Injectable()
 export class WatchlistService {
   private URL = '/api/watchlist'
-  private findURL = 'api/tmdb/find'
   watchlist: any
 
   constructor(private http: Http) {}
@@ -28,8 +27,7 @@ export class WatchlistService {
   }
   public async getWatchlist() {
     try {
-      const url = `${this.findURL}/${'tt0100507'}?`
-      const response = await this.http.get(url).toPromise()
+      const response = await this.http.get(this.URL + '/movie/').toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json())
       }
