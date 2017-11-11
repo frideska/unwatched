@@ -1,35 +1,9 @@
 const UserMovie = require('../models/Watchlist/WatchlistUserMovie')
 const UserTv = require('../models/Watchlist/WatchlistUserTv')
-const LibraryController = require('./LibraryController')
 const tmdbWrapper = require('../../tmdb/')
+const ContainsMovie = require('./ContainsMovieController')
+const ContainsTv = require('./ContainsTvContoller')
 
-/**
- * Checks if a give movie is in watchlist for a given user
- * @param movieID
- * @param user
- * @returns {Promise.<boolean>}
- */
-let movieInWatchlist = async (movieID, user) => {
-  let movie =  await UserMovie.findOne({movie_id: movieID, user_id: user._id})
-  if(movie){
-    return true
-  }
-  return false
-}
-
-/**
- * Checks if a give tv-show is in library for a given user
- * @param movieID
- * @param user
- * @returns {Promise.<boolean>}
- */
-let tvInWatchlist = async (tvID, user) => {
-  let tv =  await UserTv.findOne({tv_id: tvID, user_id: user._id})
-  if(tv){
-    return true
-  }
-  return false
-}
 
 /**
  * Creates a new entry in the UserMovie collection
@@ -76,8 +50,8 @@ let findMovieForUser = async (user) => {
   //promise all to make sure that the array is not returned while pending
   try {
     return clean(await Promise.all(userMovies.map(async (movie) =>  {
-      const watchlist = await movieInWatchlist(movie.movie_id, user)
-      const library = await LibraryController.movieInLibrary(movie.movie_id, user)
+      const watchlist = await ContainsMovie.movieInWatchlist(movie.movie_id, user)
+      const library = await ContainsMovie.movieInLibrary(movie.movie_id, user)
       return await tmdbWrapper.details.movie(movie.movie_id, watchlist, library)
     })))
   }catch (err) {
@@ -133,8 +107,8 @@ let findTvForUser = async (user) => {
   //promise all to make sure that the array is not returned while pending
   try {
     return clean(await Promise.all(userTv.map(async (tv) => {
-      const watchlist = await tvInWatchlist(tv.tv_id, user)
-      const library = await LibraryController.tvInLibrary(tv.tv_id, user)
+      const watchlist = await ContainsTv.tvInWatchlist(tv.tv_id, user)
+      const library = await ContainsTv.tvInLibrary(tv.tv_id, user)
       const details = await tmdbWrapper.details.tv(tv.tv_id, watchlist, library)
       return details
     })))
@@ -167,7 +141,5 @@ module.exports = {
   removeMovieForUser,
   newTv,
   findTvForUser,
-  removeTvForUser,
-  movieInWatchlist,
-  tvInWatchlist
+  removeTvForUser
 }
