@@ -12,7 +12,6 @@ export class WatchlistComponent implements OnInit {
 
   async ngOnInit() {
     this.watchlistService.getWatchlist()
-
   }
 
 

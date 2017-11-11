@@ -28,7 +28,7 @@ router.get('/movie', async (req, res) => {
     res.send(movies)
   } else {
     //If something goes wrong the server respond with a 400
-    res.send(400)
+    res.sendStatus(400)
   }
 })
 
