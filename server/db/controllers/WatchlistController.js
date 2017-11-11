@@ -1,5 +1,6 @@
 const UserMovie = require('../models/Watchlist/WatchlistUserMovie')
 const UserTv = require('../models/Watchlist/WatchlistUserTv')
+const LibraryController = require('./LibraryController')
 const tmdbWrapper = require('../../tmdb/')
 
 /**
@@ -22,8 +23,8 @@ let movieInWatchlist = async (movieID, user) => {
  * @param user
  * @returns {Promise.<boolean>}
  */
-let tvInWatchlist = async (movieID, user) => {
-  let tv =  await UserTv.findOne({movie_id: movieID, user_id: user._id})
+let tvInWatchlist = async (tvID, user) => {
+  let tv =  await UserTv.findOne({tv_id: tvID, user_id: user._id})
   if(tv){
     return true
   }
@@ -74,14 +75,11 @@ let findMovieForUser = async (user) => {
   //For each id in the UserMovie database, we return all the informasjon about the movie, we use
   //promise all to make sure that the array is not returned while pending
   try {
-    console.log(await tmdbWrapper.details.movie(155, user) )
-    let watchlist = await Promise.all(userMovies.map(async (movie) =>  {
-      console.log(user._id)
-      console.log(movie.movie_id)
-      let details = await tmdbWrapper.details.movie(movie.movie_id, user)
-      return details
-    }))
-    return clean(watchlist)
+    return clean(await Promise.all(userMovies.map(async (movie) =>  {
+      const watchlist = await movieInWatchlist(movie.movie_id, user)
+      const library = await LibraryController.movieInLibrary(movie.movie_id, user)
+      return await tmdbWrapper.details.movie(movie.movie_id, watchlist, library)
+    })))
   }catch (err) {
     console.log(err)
   }
@@ -105,11 +103,12 @@ let removeMovieForUser = async (movieID, user) => {
 
 
 let newTv = async (tvID, user) => {
+  console.log(tvID)
   let movie = await UserTv.findOne({tv_id: tvID, user_id: user._id})
   if(!movie){
     try {
       let userTv = new UserTv()
-      userTv.movie_id = movieID
+      userTv.tv_id = tvID
       userTv.user_id = user._id
       userTv.save()
       return true
@@ -133,8 +132,12 @@ let findTvForUser = async (user) => {
   //For each id in the tvMovie database, we return all the informasjon about the movie, we use
   //promise all to make sure that the array is not returned while pending
   try {
-    let tvWatchlist = await Promise.all(UserTv.map(tv => tmdbWrapper.details.tvDetails(tv.tv_id)))
-    return clean(tvWatchlist)
+    return clean(await Promise.all(userTv.map(async (tv) => {
+      const watchlist = await tvInWatchlist(tv.tv_id, user)
+      const library = await LibraryController.tvInLibrary(tv.tv_id, user)
+      const details = await tmdbWrapper.details.tv(tv.tv_id, watchlist, library)
+      return details
+    })))
   }catch (err) {
     console.log(err)
   }
