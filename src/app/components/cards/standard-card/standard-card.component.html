@@ -32,8 +32,8 @@
         <label *ngIf='!element.watchlist' >Add to watchlist!</label>
       </button>
       <button (click) = "addToLibrary()">
-        <label *ngIf='element.watchlist' >Remove from library!</label>
-        <label *ngIf='!element.watchlist' >Add to library!</label>
+        <label *ngIf='element.library' >Remove from library!</label>
+        <label *ngIf='!element.library' >Add to library!</label>
       </button>
       <hr class="uk-divider-small uk-margin-remove" />
 
