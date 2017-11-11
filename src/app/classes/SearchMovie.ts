@@ -17,14 +17,15 @@ export class SearchMovie implements SearchElement {
     public watchlist: boolean
     public library: boolean
     public date: Date
+    public media_type: string
 
-    constructor({id, video, title, name, overview, poster_path, vote_average, genre_ids, release_date}) {
+    constructor({id, video, title, name, overview, poster_path, vote_average, genre_ids, release_date, media_type}) {
 
         const o = overview || 'No description'
 
         this.id = id
         this.video = video || false
-        this.title = title
+        this.title = title || name
         this.content = (o.length <= 30) ? o : o.substring(0, 150).concat(' (...)')
         this.image = poster_path ? PREVIEW_IMG_PATH.concat(poster_path) : MISSING_PATH
         this.poster = poster_path ? POSTER_PATH.concat(poster_path) : MISSING_PATH
@@ -33,5 +34,7 @@ export class SearchMovie implements SearchElement {
         this.watchlist = false
         this.library = false
         this.date = new Date(release_date)
+        this.media_type = media_type
+
     }
 }
