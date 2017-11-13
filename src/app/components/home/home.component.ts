@@ -37,9 +37,10 @@ export class HomeComponent implements OnInit {
   }
 
   prevObject() {
-    this.value1 > 0 ? this.value1 -= 2 : this.value1 = this.movies.length - 3
-    this.value2 > 2 ? this.value2 -= 2 : this.value2 = this.movies.length - 1
+    this.value1 > 2 ? this.value1 -= 2 : this.value1 = this.movies.length - 3
+    this.value2 > 4 ? this.value2 -= 2 : this.value2 = this.movies.length - 1
     this.showObjects(this.value1, this.value2)
+    console.log(this.value1, this.value2)
   }
 
 }
