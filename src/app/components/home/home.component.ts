@@ -11,6 +11,7 @@ import { DiscoverMovie } from 'classes/DicoverMovie'
 export class HomeComponent implements OnInit {
 
   public movies: DiscoverMovie[]
+  public moviesSliced: DiscoverMovie[]
   public value1: number
   public value2: number
 
@@ -19,15 +20,26 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     this.movies = await this.discover.getDiscovery()
-    console.log(this.movies)
+    this.value1 = 0
+    this.value2 = 2
+    this.showObjects(this.value1, this.value2)
+    console.log(this.moviesSliced)
   }
 
-  nextObject(value) {
-    console.log("next")
+  showObjects(value1, value2) {
+    this.moviesSliced = this.movies.slice(value1, value2)
+  }
+
+  nextObject() {
+    this.value1 < this.movies.length - 3 ? this.value1 += 2 : this.value1 = 0
+    this.value2 < this.movies.length - 1 ? this.value2 += 2 : this.value2 = 2
+    this.showObjects(this.value1, this.value2)
   }
 
   prevObject() {
-    console.log("prev")
+    this.value1 > 0 ? this.value1 -= 2 : this.value1 = this.movies.length - 3
+    this.value2 > 2 ? this.value2 -= 2 : this.value2 = this.movies.length - 1
+    this.showObjects(this.value1, this.value2)
   }
 
 }
