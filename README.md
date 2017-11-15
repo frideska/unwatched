@@ -22,7 +22,10 @@ To get access to the main functionality like *Library* and *Watchlist*, you have
 
   * Profile
   In the Profile page, you can delete your account, see a word cloud overview of your most seen genres,
-  and see your search history.
+  and see your search history.  
+  The word cloud only generates if you have five or more movies in your library.
+  Press the "Generate cloud!" button to generate the cloud. If it is empty, it will show you; if it has less than five
+  movies, it will ask you to add more to your library.
 
 
 ## Production setup
