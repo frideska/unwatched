@@ -1,7 +1,7 @@
 const UserMovie = require('../models/Watchlist/WatchlistUserMovie')
 const UserTv = require('../models/Watchlist/WatchlistUserTv')
 const LibraryUserMovie = require('../models/Library/LibraryUserMovie')
-//const LibraryUserTv = require('../models/Library/LibraryUserTv)
+const LibraryUserTv = require('../models/Library/LibraryUserTv')
 const tmdbWrapper = require('../../tmdb/')
 
 
@@ -16,10 +16,8 @@ const tmdbWrapper = require('../../tmdb/')
 let newMovie = async (movieID, user) => {
   let movieWatchlist = await UserMovie.findOne({movie_id: movieID, user_id: user._id})
   let movieLibrary = await LibraryUserMovie.findOne({movie_id: movieID, user_id: user._id})
-  if(!movieWatchlist){
-    if(movieLibrary) {
-
-    }
+  //to add a movie it can not be in library or watchlist
+  if(!movieWatchlist && !movieLibrary){
     try {
       let userMovie = new UserMovie()
       userMovie.movie_id = movieID
@@ -87,9 +85,10 @@ let removeMovieForUser = async (movieID, user) => {
  * @returns {Promise.<boolean>}
  */
 let newTv = async (tvID, user) => {
-  console.log(tvID)
   let movie = await UserTv.findOne({tv_id: tvID, user_id: user._id})
-  if(!movie){
+  let libraryTv = await LibraryUserTv.findOne({tv_id: tvID, user_id: user._id})
+  //checks that tv-show is not in library or watchlist
+  if(!movie && !libraryTv){
     try {
       let userTv = new UserTv()
       userTv.tv_id = tvID
