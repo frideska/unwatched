@@ -2,9 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core'
 import { LibraryService } from 'services/library.service'
 import { ActivatedRoute, Router } from '@angular/router'
 
+
 @Component({
   selector: 'app-library',
-  templateUrl: './library.component.html'
+  templateUrl: './library.component.html',
+  styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit, OnDestroy {
 
