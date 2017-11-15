@@ -38,6 +38,30 @@ img {
   padding-right: 2rem;
   padding-bottom: 2rem;
   background-color: #222222;
+
 }
 
+.uk-list-divider>li:nth-child(n+2){
+
+  border-bottom-width: 1px;
+  margin: 0;
+  border-color: #777777;
+}
+
+
+.uk-list-divider>li:nth-child(1){
+
+  border-top-style: solid;
+  border-top-width: 1px;
+  margin: 0;
+  border-color: #777777;
+}
+
+.uk-list-divider>li:nth-last-child(1){
+
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  margin: 0;
+  border-color: #777777;
+}
 
