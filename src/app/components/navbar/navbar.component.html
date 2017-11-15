@@ -2,24 +2,45 @@
 
   <div class="uk-navbar-left  nav-overlay">
 
-    <!--Menu items-->
-    <ul class="uk-navbar-nav menubar_items">
-      <li [routerLinkActive]="['active']">
-        <a [routerLink]="['home']">Home</a>
+    <!--Menu items NOT logged in-->
+    <ul class="uk-navbar-nav" *ngIf="!userService.loggedIn; else loggedIn_menu">
+      <li>
+        <a [routerLinkActive]="['active']" [routerLink]="['home']">Discover</a>
       </li>
-      <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']">library</a>
+      <li>
+        <a>library</a>
+          <div uk-drop="animation: uk-animation-slide-top-small; duration: 100">
+            <div class="uk-card-small uk-card-body uk-card-secondary uk-margin-remove hover_style" ><span uk-icon="icon : lock; ratio: 0.9" class="icon_center"></span>You are not logged in</div>
+          </div>
       </li>
-      <li [routerLinkActive]="['active']">
-        <a [routerLink]="['watchlist']">Watchlist</a>
+      <li>
+        <a>Watchlist</a>
+        <div uk-drop="animation: uk-animation-slide-top-small; duration: 100">
+          <div class="uk-card-small uk-card-body uk-card-secondary uk-margin-remove hover_style" ><span uk-icon="icon : lock; ratio: 0.9" class="icon_center"></span>You are not logged in</div>
+        </div>
       </li>
     </ul>
+
+    <!--Menu items logged in-->
+    <ng-template #loggedIn_menu>
+      <ul class="uk-navbar-nav menubar_items">
+        <li >
+          <a [routerLinkActive]="['active']" [routerLink]="['home']">Discover</a>
+        </li>
+        <li>
+          <a [routerLinkActive]="['active']" [routerLink]="['library']">library</a>
+        </li>
+        <li>
+          <a [routerLinkActive]="['active']" [routerLink]="['watchlist']">Watchlist</a>
+        </li>
+      </ul>
+    </ng-template>
 
   </div>
 
   <!--Search toggle button-->
   <div class="nav-overlay uk-navbar-right navbar_search">
-    <a class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+    <div id="search_text" class="uk-navbar-toggle" id="search_text" uk-toggle="target: .nav-overlay; animation: uk-animation-fade">Search <span uk-icon="icon : search;" id="search_icon"></span></div>
   </div>
 
   <!--Search overlay-->
@@ -65,9 +86,9 @@
     <div class="uk-inline">
 
       <!--Log in button-->
-    <button class="uk-button uk-button-secondary">
-      {{ userService.user.name }}
-    </button>
+      <button class="uk-button uk-button-secondary">
+        {{ userService.user.name.split(' ')[0] }} {{ userService.user.name.split(' ')[1].substring(0,1).concat('.') }}
+      </button>
 
       <!--Dropdown menu user-->
       <div uk-dropdown>

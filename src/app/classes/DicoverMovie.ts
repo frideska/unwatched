@@ -1,7 +1,8 @@
+import { DiscoverElement } from 'classes/DiscoverElement'
 
 const POSTER_URL = 'https://image.tmdb.org/t/p/w1280/'
 
-export class DiscoverMovie {
+export class DiscoverMovie implements DiscoverElement {
     public genres: number[]
     public overview: string
     public overview2: string
@@ -10,15 +11,17 @@ export class DiscoverMovie {
     public releaseDate: string
     public title: string
     public score: number
+    public media_type: string
 
-    constructor({ genre_ids, overview, backdrop_path, poster_path, release_date, title, vote_average }) {
+    constructor({ genre_ids, overview, backdrop_path, poster_path, release_date, title, vote_average, media_type }) {
         this.genres = genre_ids
         this.overview2 = (overview.length <= 30) ? overview : overview.substring(0, 150).concat(' (...)')
-        this.overview = overview    
+        this.overview = overview
         this.poster = POSTER_URL + backdrop_path
         this.poster2 = POSTER_URL + poster_path
         this.releaseDate = release_date ? '(' + release_date.substring(0, 4) + ')' : release_date
         this.title = title
         this.score = vote_average
+        this.media_type = media_type
     }
 }

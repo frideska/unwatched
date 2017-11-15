@@ -15,21 +15,25 @@ export class SearchSeries implements SearchElement {
     public rating: number
     public genres: number[]
     public watchlist: boolean
+    public library: boolean
     public date: Date
+    public media_type: string
 
-    constructor({id, video, title, name, overview, poster_path, vote_average, genre_ids, release_date}) {
+    constructor({id, video, title, name, overview, poster_path, vote_average, genre_ids, release_date, media_type}) {
 
         const o = overview || 'No description'
 
         this.id = id
         this.video = video || false
-        this.title = name
+        this.title = name || title
         this.content = (o.length <= 30) ? o : o.substring(0, 150).concat(' (...)')
         this.image = poster_path ? PREVIEW_IMG_PATH.concat(poster_path) : MISSING_PATH
         this.poster = poster_path ? POSTER_PATH.concat(poster_path) : MISSING_PATH
         this.rating = vote_average
         this.genres = genre_ids
         this.watchlist = false
+        this.library = false
         this.date = new Date(release_date)
+        this.media_type = media_type
     }
 }

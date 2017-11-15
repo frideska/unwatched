@@ -25,15 +25,19 @@
     <div>
 
       <!--Card Title-->
-      <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ element.title }} </h3><p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getYear() }}</p>
+      <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ element.title }} </h3><p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date }}</p>
       <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
       <button (click) = "addToWatchlist(watchlist)">
         <label *ngIf='watchlist' >Remove from watchlist!</label>
         <label *ngIf='!watchlist' >Add to watchlist!</label>
       </button>
+      <button (click) = "addToLibrary()">
+        <label *ngIf='library' >Remove from library!</label>
+        <label *ngIf='!library' >Add to library!</label>
+      </button>
       <hr class="uk-divider-small uk-margin-remove" />
 
-      <p class="uk-text-muted desc_text uk-text-break ">{{ cardDesc }}</p>
+      <p class="uk-text-muted desc_text uk-text-break ">{{ element.content }}</p>
 
     </div>
 
