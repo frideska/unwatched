@@ -5,6 +5,7 @@ export class CardElement {
     public title: string
     public genres: string[]
     public overview: string
+    public overview2: string
     public backdropPath: string
     public poster: string
     public rating: number
@@ -20,6 +21,7 @@ export class CardElement {
         this.id = id
         this.title = title
         this.overview = (o.length <= 30) ? o : o.substring(0, 150).concat(' (...)')
+        this.overview2 = o
         this.poster = POSTER_URL + poster_path
         this.backdropPath = POSTER_URL + backdrop_path
         this.rating = vote_average
