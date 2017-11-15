@@ -4,26 +4,44 @@
   <!--Grid Row Container-->
   <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid *ngIf="libraryService.listView">
     <!--GridView-->
-      <app-standard-card *ngFor="let card of libraryService.library" [element]="card"></app-standard-card>
+    <app-standard-card *ngFor="let card of libraryService.library" [element]="card"></app-standard-card>
   </div>
 
   <!--List View Container-->
-  <div class="uk-text-left  uk-flex-center" uk-grid *ngIf="!libraryService.listView" style="padding-top: 5rem">
+  <div class=" uk-text-left  uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " uk-grid *ngIf="!libraryService.listView" style="padding-top: 5rem">
+
     <!--ListView-->
+    <ul uk-accordion="collapsible: false" class=" uk-padding-small list_view_container ">
 
-    <ul uk-accordion="collapsible: false" class="uk-background-secondary">
+      <!--ListElement-->
+      <li *ngFor="let card of libraryService.library" style="padding-left: 2rem">
 
-      <li *ngFor="let card of libraryService.library" class="uk-card">
-        <h3 class="uk-accordion-title">{{card.title}} {{ card.date.getFullYear() }}</h3>
-        <div class="uk-accordion-content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <!--Title-->
+        <h3 class="uk-accordion-title title_content title_text uk-display-inline">{{card.title}}</h3>
+        <!--Year-->
+        <p class="title_content uk-text-muted subtitle_text uk-display-inline">{{ card.date.getFullYear() }}</p>
+
+        <!--Genres-->
+        <h3 class="title_content subtitle_text uk-display-inline"><span class="uk-label uk-text-muted">{{ card.genres }}</span> </h3>
+
+        <!--Content-->
+        <div class="uk-accordion-content desc_container" >
+
+          <!--Image-->
+          <div>
+            <img src="{{ card.image }}" alt="" class="uk-display-inline ">
+          </div>
+
+          <!--Description-->
+          <div class=" uk-container-small uk-display-inline" >
+            <p class="uk-display-inline ">Proin turpis nunc, gravida id viverra id, eleifend a odio. Praesent gravida leo in tortor luctus, eget interdum lacus viverra. Quisque ut dapibus risus. Phasellus elementum lacus id nunc ultricies sagittis. Nunc mollis eu lacus a iaculis. Quisque lectus mauris, egestas nec tincidunt vel, cursus eget dolor. Quisque a iaculis ex. Suspendisse mi libero, dapibus eu mi ut, commodo imperdiet elit. Cras tempor nisl at elit varius consectetur. Morbi maximus arcu sapien, quis venenatis lacus convallis eu. Aenean porttitor iaculis lectus a facilisis. Suspendisse non ornare arcu, vitae gravida justo. Sed mattis tortor erat, et pretium nibh lacinia a. Proin dictum erat in nisl malesuada, a mattis purus fermentum. Suspendisse in quam quis massa dignissim gravida vitae vel lacus.
+            </p>
+          </div>
         </div>
+
       </li>
-
-
     </ul>
 
   </div>
-
 
 </div>
