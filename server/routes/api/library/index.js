@@ -10,7 +10,6 @@ let controller = require('../../../db/controllers/LibraryController')
  * the movie is then added to the UserMovie collection
  */
 router.post('/movie', (req, res) => {
-  console.log("trying to add movie")
     if(controller.newMovie(req.body.id, req.user)) {
       res.sendStatus(200)
     }
