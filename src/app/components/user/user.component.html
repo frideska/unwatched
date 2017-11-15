@@ -1,41 +1,42 @@
 <div class="uk-container uk-width-auto ">
-  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center uk-child-width-1-2" uk-grid>
+  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center uk-child-width-1-1@s uk-child-width-1-2@m" uk-grid>
 
     <!--User info-->
     <div class="uk-card uk-card-secondary usercard ">
-        <div class="uk-card-header">
-          <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-auto">
-              <img class="uk-border-circle" width="40" height="40" src="{{ userService.user.image }}">
-            </div>
-            <div class="uk-width-expand">
-              <h3 class="uk-card-title uk-margin-remove-bottom">{{ userService.user.name }}</h3>
-              <p class="uk-text-meta uk-margin-remove-top">{{ userService.user.email }}</p>
-            </div>
+      <div class="uk-card-header">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+          <div class="uk-width-auto">
+            <img class="uk-border-circle" width="40" height="40" src="{{ userService.user.image }}">
           </div>
-
-        </div>
-        <div class="uk-card-body">
-          <p>Updated: {{ userService.user.updated }}</p>
-
-        </div>
-        <div class="uk-card-footer">
-          <a class="uk-button uk-button-danger" (click)="userService.delete()">Delete me</a>
-        </div>
-    </div>
-    <!--User Statistics-->
-
-      <div class="uk-card uk-card-secondary usercard">
-        <div class="uk-card-header">
-          <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-expand">
-              <h3 class="uk-card-title uk-margin-remove-bottom" style="text-align: center">Your favourite genres</h3>
-            </div>
+          <div class="uk-width-expand">
+            <h3 class="uk-card-title uk-margin-remove-bottom">{{ userService.user.name }}</h3>
+            <p class="uk-text-meta uk-margin-remove-top">{{ userService.user.email }}</p>
           </div>
         </div>
-        <app-word-cloud style="align-content: center"></app-word-cloud>
+
       </div>
+      <div class="uk-card-body">
+        <p>Updated: {{ userService.user.updated }}</p>
 
+      </div>
+      <div class="uk-card-footer">
+        <a class="uk-button uk-button-danger" (click)="userService.delete()">Delete me</a>
+      </div>
+    </div>
+
+    <!--User Statistics-->
+      <div class="uk-card uk-card-secondary usercard statistics_container">
+        <div class="uk-card-header">
+          <div class="uk-grid-small" uk-grid>
+            <div>
+              <h3 class="uk-card-title uk-margin-remove-bottom">Your favourite genres</h3>
+            </div>
+          </div>
+        </div>
+        <div class="cloud_container">
+          <app-word-cloud></app-word-cloud>
+        </div>
+      </div>
     <!--User Search History-->
 
     <div class="uk-card uk-card-secondary usercard uk-width-expand">
@@ -48,11 +49,11 @@
       </div>
       <div>
         <ul>
-          <li>en film</li>
-          <li>en film</li>
-          <li>en film</li>
-          <li>en film</li>
-          <li>en film</li>
+          <li>search query1</li>
+          <li>search query2</li>
+          <li>search query3</li>
+          <li>search query4</li>
+          <li>search query5</li>
         </ul>
       </div>
     </div>

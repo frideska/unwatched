@@ -34,6 +34,11 @@
  * with_release_type
  * with_original_language
  */
+
+
+
+const GenreController = require('../../db/Controllers/GenreController')
+
 const movie = async () => {
     try {
         const results = await tmdb.discover.movie(
@@ -58,7 +63,22 @@ const movie = async () => {
                 with_original_language: ''
             }
         )
-        return results
+      return await Promise.all(results.results.map(async result => {
+        return await {
+          'id': result.id,
+          'title': result.title,
+          'genres': await GenreController.getGenreMovie(result.genre_ids),
+          'overview': result.overview,
+          'backdrop_path': result.backdrop_path,
+          'poster_path': result.poster_path,
+          'release_date': result.release_date,
+          'vote_average': result.vote_average,
+          'watchlist': false,
+          'library': false,
+          'media_type': 'movie'
+        }
+      }))
+
     } catch (err) {
         console.error(err)
     }
@@ -99,7 +119,21 @@ const tv = async () => {
                 with_original_language: ''
             }
         )
-        return results
+      return await results.results.map(result => {
+        return {
+          'id': result.id,
+          'title': result.title,
+          'genres': result.genre_ids,
+          'overview': result.overview,
+          'backdrop_path': result.backdrop_path,
+          'poster_path': result.poster_path,
+          'release_date': result.release_date,
+          'vote_average': result.vote_average,
+          'watchlist': false,
+          'library': false,
+          'media_type': result.media_type
+        }
+      })
     } catch (err) {
         console.error(err)
     }
