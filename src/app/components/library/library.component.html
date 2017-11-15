@@ -8,10 +8,10 @@
   </div>
 
   <!--List View Container-->
-  <div class=" uk-text-left  uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " uk-grid *ngIf="!libraryService.listView" style="padding-top: 5rem">
+  <div class=" uk-text-left uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " uk-grid *ngIf="!libraryService.listView" style="padding-top: 5rem">
 
     <!--ListView-->
-    <ul uk-accordion="collapsible: false" class=" uk-padding-small list_view_container ">
+    <ul uk-accordion="collapsible: false" class=" uk-padding-small list_view_container uk-list uk-list-divider">
 
       <!--ListElement-->
       <li *ngFor="let card of libraryService.library" style="padding-left: 2rem">
@@ -34,14 +34,15 @@
 
           <!--Description-->
           <div class=" uk-container-small uk-display-inline" >
-            <p class="uk-display-inline ">Proin turpis nunc, gravida id viverra id, eleifend a odio. Praesent gravida leo in tortor luctus, eget interdum lacus viverra. Quisque ut dapibus risus. Phasellus elementum lacus id nunc ultricies sagittis. Nunc mollis eu lacus a iaculis. Quisque lectus mauris, egestas nec tincidunt vel, cursus eget dolor. Quisque a iaculis ex. Suspendisse mi libero, dapibus eu mi ut, commodo imperdiet elit. Cras tempor nisl at elit varius consectetur. Morbi maximus arcu sapien, quis venenatis lacus convallis eu. Aenean porttitor iaculis lectus a facilisis. Suspendisse non ornare arcu, vitae gravida justo. Sed mattis tortor erat, et pretium nibh lacinia a. Proin dictum erat in nisl malesuada, a mattis purus fermentum. Suspendisse in quam quis massa dignissim gravida vitae vel lacus.
+            <p class="uk-display-inline ">
+              {{ card.overview }}
             </p>
           </div>
         </div>
 
       </li>
-    </ul>
 
+    </ul>
   </div>
 
 </div>
