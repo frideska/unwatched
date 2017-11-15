@@ -5,20 +5,19 @@ const tv = async (id, watchlist, library) => {
         let tv = await tmdb.tv.details({
             tv_id: id || ''
         })
-
-        return await Promise.all({
+        return await {
             id: tv.id,
-            name: tv.title,
+            title: tv.name,
             genres: tv.genres.map((genre) => genre.name),
             overview: tv.overview,
             backdrop_path: tv.backdrop_path,
             poster_path: tv.poster_path,
-            release_date: tv.release_date,
+            release_date: tv.first_air_date,
             vote_average: tv.vote_average,
             watchlist: watchlist,
             library: library,
             media_type: 'tv'
-        })
+        }
     } catch (err) {
         console.error(err)
         return null

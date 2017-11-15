@@ -46,7 +46,7 @@ export class WordCloudComponent implements OnInit {
      * library and every instance of a genre.
      */
     await this.libraryService.getLibrary()
-    let library = this.libraryService.library
+    let library = this.libraryService.libraryMovie
     let genres = library.map(movie => movie.genres)
     this.countGenres(genres)
 

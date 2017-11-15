@@ -5,10 +5,10 @@
     <!--Menu items-->
     <ul class="uk-navbar-nav ">
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['home']">Movies</a>
+        <a [routerLink]="['/library']" [queryParams]="{type: 'movie'}">Movies</a>
       </li>
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']">Series</a>
+        <a [routerLink]="['/library']" [queryParams]="{type: 'tv'}">series</a>
       </li>
 
       <li><div class="list_elements uk-navbar-item">|</div></li>

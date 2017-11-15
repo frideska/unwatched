@@ -11,7 +11,8 @@ const MISSING_PATH = 'http://www.latorredelsol.com/press/components/com_easyblog
 @Injectable()
 export class LibraryService {
   private URL = '/api/library'
-  library: any
+  libraryMovie: any
+  libraryTv: any
 
   constructor(private http: Http) {
   }
@@ -19,6 +20,13 @@ export class LibraryService {
   public async addMovieToLibrary(id: string) {
     try {
       const response = await this.http.post(this.URL + '/movie', {id: id}).toPromise()
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  public async addTvToLibrary(id: string) {
+    try {
+      const response = await this.http.post(this.URL + '/tv', {id: id}).toPromise()
     } catch (err) {
       console.error(err)
     }
@@ -36,14 +44,31 @@ export class LibraryService {
     try {
       const response = await this.http.get(this.URL + '/movie/').toPromise()
       if (response.status === 200) {
-        this.reconfigure(response.json())
+        this.reconfigure(response.json(), 'movie')
+      }
+    } catch (err) {
+      console.error(err)
+    }
+
+    try {
+      const response = await this.http.get(this.URL + '/tv/').toPromise()
+      if (response.status === 200) {
+        this.reconfigure(response.json(), 'tv')
       }
     } catch (err) {
       console.error(err)
     }
   }
 
-  private reconfigure(json) {
-    this.library = json.map((result) => new CardElement(result))
+  private reconfigure(json, type) {
+    switch (type) {
+      case('movie'):
+        this.libraryMovie = json.map((result) => new CardElement(result))
+        break
+      case('tv'):
+        this.libraryTv = json.map((result) => new CardElement(result))
+        break
+    }
+
   }
 }
