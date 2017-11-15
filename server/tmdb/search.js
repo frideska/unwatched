@@ -1,4 +1,4 @@
-//const findController = require('../db/controllers/FindController')
+
 
 const multi = async (query) => {
     try {
