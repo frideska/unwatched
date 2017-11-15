@@ -33,7 +33,13 @@ export class WordCloudComponent implements OnInit {
   }
 
   // Colors to use in cloud.
-  colors = ['#653399', '#982d84', '#b5d83c', '#e3d83f', '#22BAA0']
+  colors = ['#653399', '#982d84', '#b5d83c', '#e3d83f', '#00D377']
+
+  emptyLib: [
+    {size: 2, text: 'LIBRARY'},
+    {size: 1, text: ' '},
+    {size: 2, text: 'EMPTY'}
+    ]
 
 
   constructor(public libraryService: LibraryService) {
@@ -45,22 +51,21 @@ export class WordCloudComponent implements OnInit {
      * On init, we will fetch the users
      * library and every instance of a genre.
      */
+    this.wordCloudChart.color = this.colors
     await this.libraryService.getLibrary()
     let library = this.libraryService.libraryMovie
     let genres = library.map(movie => movie.genres)
-    if (genres.length == 0) {
-      this.wordData.push({size: 2, text: 'LIBRARY'})
-      this.wordData.push({size: 1, text: ' '})
-      this.wordData.push({size: 2, text: 'EMPTY'})
-    }
-    else {
-      this.countGenres(genres)
-    }
+    console.log(genres)
 
-    // Set cloud colors and update cloud.
-    this.wordCloudChart.color = this.colors
-    this.wordCloudChart.update()
-  }
+    if (genres.length == 0) {
+      this.wordData = this.emptyLib
+    } else {
+      this.countGenres(genres)
+      this.wordData.push({size: 1, text: ' '})
+      this.wordData.push({size: 2, text: ' '})
+    }
+      this.wordCloudChart.update()
+    }
 
   countGenres(genres) {
     /**
@@ -73,10 +78,9 @@ export class WordCloudComponent implements OnInit {
      */
     var arr = genres.reduce((a, b) => a.concat(b), [])
     let counted = this.countEm(arr, String)
-     for (var key in counted) {
-      this.wordData.push({size: counted[key], text: key})
-     }
-    console.log(this.wordData)
+      for (var key in counted) {
+        this.wordData.push({size: counted[key], text: key})
+    }
   }
 
   countEm(ary, classifier) {
