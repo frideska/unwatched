@@ -14,8 +14,12 @@ export class HomeComponent implements OnInit {
   public moviesSliced: DiscoverMovie[]
   public value1: number
   public value2: number
+  public movieCard: any
+  public tvCard: any
 
   constructor(private discover: DiscoverService) {
+    //this.movieCard = document.getElementById("movieCard")
+    //this.tvCard = document.getElementById("tvCard")
   }
 
   async ngOnInit() {
@@ -23,7 +27,6 @@ export class HomeComponent implements OnInit {
     this.value1 = 0
     this.value2 = 2
     this.showObjects(this.value1, this.value2)
-    console.log(this.moviesSliced)
   }
 
   showObjects(value1, value2) {
@@ -37,10 +40,9 @@ export class HomeComponent implements OnInit {
   }
 
   prevObject() {
-    this.value1 > 2 ? this.value1 -= 2 : this.value1 = this.movies.length - 3
-    this.value2 > 4 ? this.value2 -= 2 : this.value2 = this.movies.length - 1
+    this.value1 > 0 ? this.value1 -= 2 : this.value1 = this.movies.length - 3
+    this.value2 > 2 ? this.value2 -= 2 : this.value2 = this.movies.length - 1
     this.showObjects(this.value1, this.value2)
-    console.log(this.value1, this.value2)
   }
 
 }
