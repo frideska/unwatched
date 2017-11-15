@@ -48,7 +48,14 @@ export class WordCloudComponent implements OnInit {
     await this.libraryService.getLibrary()
     let library = this.libraryService.library
     let genres = library.map(movie => movie.genres)
-    this.countGenres(genres)
+    if (genres.length == 0) {
+      this.wordData.push({size: 2, text: 'LIBRARY'})
+      this.wordData.push({size: 1, text: ' '})
+      this.wordData.push({size: 2, text: 'EMPTY'})
+    }
+    else {
+      this.countGenres(genres)
+    }
 
     // Set cloud colors and update cloud.
     this.wordCloudChart.color = this.colors
@@ -62,7 +69,7 @@ export class WordCloudComponent implements OnInit {
      * We want to concat this array as one array, and then count instances in countEm.
      * After counting we push the AgWordCloudData dictionary,
      * {size: counted_number, text: genre}, into the wordData.
-     * @param {genres}: Array<Array> Genres list of lists.
+     * @param {genres} Array<Array> Genres list of lists.
      */
     var arr = genres.reduce((a, b) => a.concat(b), [])
     let counted = this.countEm(arr, String)
@@ -76,8 +83,8 @@ export class WordCloudComponent implements OnInit {
     /**
      * Main counter. Counts instances of each String (classifier) genre,
      * and returns number of instances.
-     * @param {ary}: Array<String> Array to count.
-     * @param {classifier}: Type Classifier.
+     * @param {ary} Array<String> Array to count.
+     * @param {classifier} Type Classifier.
      */
     classifier = classifier || String;
     return ary.reduce(function (counter, item) {
