@@ -1,54 +1,127 @@
 <app-filter></app-filter>
 <div class="uk-container uk-width-auto ">
 
-  <!--Grid Row Container-->
 
-  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid *ngIf="!libraryService.listView">
-    <!--GridView-->
-   <div *ngIf="type=='movie'">
-    <app-card *ngFor="let card of libraryService.libraryMovie" [element]="card"></app-card>
+
+
+  <!------------GridView------------>
+  <div *ngIf="!libraryService.listView">
+
+    <!--Grid Row Container-->
+
+    <!------------Render Movies------------>
+    <div uk-grid *ngIf="type=='movie'" class="uk-text-left uk-animation-slide-bottom-small uk-flex-center">
+
+    <!--If Movies is empty-->
+      <div *ngIf="libraryService.isEmpty('movie')" class="uk-flex uk-flex-center uk-padding-large empty_text">
+        <h1> No movies in library </h1>
+      </div>
+
+      <app-card *ngFor="let card of libraryService.libraryMovie" [element]="card"></app-card>
     </div>
-    <div *ngIf="type=='tv'">
-    <app-card *ngFor="let card of libraryService.libraryTv" [element]="card"></app-card>
+
+    <!------------Render Series------------>
+    <div uk-grid *ngIf="type=='tv'" class="uk-text-left uk-animation-slide-bottom-small uk-flex-center">
+
+      <!--If Series is empty-->
+      <div *ngIf="libraryService.isEmpty('tv')" class="uk-flex uk-flex-center uk-padding-large empty_text">
+        <h1> No series in library </h1>
+      </div>
+
+      <app-card *ngFor="let card of libraryService.libraryTv" [element]="card"></app-card>
     </div>
   </div>
 
-  <!--List View Container-->
-  <div class=" uk-text-left uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " uk-grid *ngIf="libraryService.listView" style="  padding-left: 2rem;">
+  <!------------ListView------------>
+  <div *ngIf="libraryService.listView">
 
-    <!--ListView-->
-    <ul uk-accordion="collapsible: false" class=" uk-padding-small uk-list uk-list-divider">
+    <!------------Render Movies------------>
+    <!--List View Container-->
+    <div *ngIf="type=='movie'" class=" uk-text-left uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " style="  padding-left: 2rem;">
 
-      <!--ListElement-->
-      <li *ngFor="let card of libraryService.libraryMovie" class="list_elements" >
+      <!--If Movies is empty-->
+      <div *ngIf="libraryService.isEmpty('movie')" class="uk-flex uk-flex-center uk-padding-large empty_text">
+        <h1> No movies in library </h1>
+      </div>
+      <!--ListView-->
+      <ul uk-accordion="collapsible: false" class=" uk-padding-small uk-list uk-list-divider">
 
-        <!--Title-->
-        <h3 class="uk-accordion-title title_content title_text uk-display-inline">{{card.title}}</h3>
-        <!--Year-->
-        <p class="title_content uk-text-muted subtitle_text uk-display-inline">{{ card.date.getFullYear() }}</p>
+        <!--ListElement-->
+        <li *ngFor="let card of libraryService.libraryMovie" class="list_elements" >
 
-        <!--Genres-->
-        <h3 class="title_content subtitle_text uk-display-inline"><span class="uk-label uk-text-muted">{{ card.genres }}</span> </h3>
+          <!--Title-->
+          <h3 class="uk-accordion-title title_content title_text uk-display-inline">{{card.title}}</h3>
+          <!--Year-->
+          <p class="title_content uk-text-muted subtitle_text uk-display-inline">{{ card.date.getFullYear() }}</p>
 
-        <!--Content-->
-        <div class="uk-accordion-content desc_container" >
+          <!--Genres-->
+          <h3 class="title_content subtitle_text uk-display-inline"><span class="uk-label uk-text-muted">{{ card.genres }}</span> </h3>
 
-          <!--Image-->
-          <div>
-            <img src="{{ card.image }}" alt="" class="uk-display-inline ">
+          <!--Content-->
+          <div class="uk-accordion-content desc_container" >
+
+            <!--Image-->
+            <div>
+              <img src="{{ card.image }}" alt="" class="uk-display-inline ">
+            </div>
+
+            <!--Description-->
+            <div class=" uk-container-small uk-display-inline" >
+              <p class="uk-display-inline ">
+                {{ card.overview }}
+              </p>
+            </div>
           </div>
 
-          <!--Description-->
-          <div class=" uk-container-small uk-display-inline" >
-            <p class="uk-display-inline ">
-              {{ card.overview }}
-            </p>
+        </li>
+
+      </ul>
+    </div>
+
+    <!------------ Render Series ------------>
+    <!--List View Container-->
+    <div *ngIf="type=='tv'" class=" uk-text-left uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " style="  padding-left: 2rem;">
+
+      <!--If Series is empty-->
+      <div *ngIf="libraryService.isEmpty('tv')" class="uk-flex uk-flex-center uk-padding-large empty_text">
+        <h1> No series in library </h1>
+      </div>
+
+      <!--ListView-->
+      <ul uk-accordion="collapsible: false" class=" uk-padding-small uk-list uk-list-divider">
+
+        <!--ListElement-->
+        <li *ngFor="let card of libraryService.libraryTv" class="list_elements" >
+
+          <!--Title-->
+          <h3 class="uk-accordion-title title_content title_text uk-display-inline">{{card.title}}</h3>
+          <!--Year-->
+          <p class="title_content uk-text-muted subtitle_text uk-display-inline">{{ card.date.getFullYear() }}</p>
+
+          <!--Genres-->
+          <h3 class="title_content subtitle_text uk-display-inline"><span class="uk-label uk-text-muted">{{ card.genres }}</span> </h3>
+
+          <!--Content-->
+          <div class="uk-accordion-content desc_container" >
+
+            <!--Image-->
+            <div>
+              <img src="{{ card.image }}" alt="" class="uk-display-inline ">
+            </div>
+
+            <!--Description-->
+            <div class=" uk-container-small uk-display-inline" >
+              <p class="uk-display-inline ">
+                {{ card.overview }}
+              </p>
+            </div>
           </div>
-        </div>
 
-      </li>
+        </li>
 
-    </ul>
+      </ul>
+    </div>
+
   </div>
 
 </div>

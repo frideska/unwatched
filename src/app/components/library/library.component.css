@@ -51,14 +51,6 @@ img {
 }
 
 
-/*.uk-list-divider>li:nth-child(1){
-
-  border-top-style: solid;
-  border-top-width: 1px;
-  margin: 0;
-  border-color: #777777;
-}*/
-
 .uk-list-divider>li:nth-last-child(1){
 
   border-bottom-style: solid;
@@ -66,4 +58,10 @@ img {
   margin: 0;
   border-color: #777777;
 }
+
+h1{
+  color: #777777;
+}
+
+
 
