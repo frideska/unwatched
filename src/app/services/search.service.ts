@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-import { SearchSeries } from 'classes/SearchSeries'
-import { SearchMovie } from 'classes/SearchMovie'
+import { CardElement } from 'classes/CardElement'
 import { SearchType } from 'enums/SearchType'
 
 @Injectable()
@@ -40,10 +39,10 @@ export class SearchService {
   }
 
   private reconfigure(json) {
-    this.results = json.results.map((result) => {
+    this.results = json.map((result) => {
       switch (result.media_type) {
-        case 'movie': return new SearchMovie(result)
-        case 'tv': return new SearchSeries(result)
+        case 'movie': return new CardElement(result)
+        case 'tv': return new CardElement(result)
       }
     })
 
