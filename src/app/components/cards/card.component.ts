@@ -2,14 +2,14 @@ import {Component, Input, OnInit} from '@angular/core'
 
 import { WatchlistService} from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
-import { CardElement } from '../../../classes/CardElement'
+import { CardElement } from '../../classes/CardElement'
 
 @Component({
-  selector: 'app-standard-card',
-  templateUrl: './standard-card.component.html',
-  styleUrls: ['../card.component.css']
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.css']
 })
-export class StandardCardComponent implements OnInit {
+export class CardComponent implements OnInit {
   @Input() element: CardElement
 
   constructor(private watchlistService: WatchlistService, private libraryService: LibraryService) { }
