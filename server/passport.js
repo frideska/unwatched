@@ -33,6 +33,8 @@ const login = async (token, refreshToken, profile, done) => {
         user.google.id = profile.id
         user.google.token = token
         user.google.name = profile.displayName
+        user.google.firstName = profile.name.givenName
+        user.google.lastName = profile.name.familyName
         user.google.image = profile.photos[0].value
         user.google.email = profile.emails[0].value
         done(null, await UserController.save(user))
