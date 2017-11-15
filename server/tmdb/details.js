@@ -6,7 +6,7 @@ const tv = async (id, watchlist, library) => {
             tv_id: id || ''
         })
 
-        return await {
+        return await Promise.all({
             id: tv.id,
             name: tv.title,
             genres: tv.genres.map((genre) => genre.name),
@@ -18,7 +18,7 @@ const tv = async (id, watchlist, library) => {
             watchlist: watchlist,
             library: library,
             media_type: 'tv'
-        }
+        })
     } catch (err) {
         console.error(err)
         return null
@@ -30,10 +30,10 @@ const movie = async (id, watchlist, library) => {
         if (!movie) {
             movie = await tmdb.movie.details({ movie_id: id || '' })
             movie.movie_id = movie.id
-            Movie.create(movie)
+            movie = Movie.create(movie)
         }
         return await {
-            id: movie.movie_id || movie.id,
+            id: movie.movie_id,
             title: movie.title,
             genres: movie.genres.map((genre) => genre.name),
             overview: movie.overview,
