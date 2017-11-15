@@ -2,19 +2,20 @@
 <div class="uk-container uk-width-auto ">
 
   <!--Grid Row Container-->
-  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid *ngIf="libraryService.listView">
+  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid *ngIf="!libraryService.listView">
     <!--GridView-->
     <app-standard-card *ngFor="let card of libraryService.library" [element]="card"></app-standard-card>
   </div>
 
   <!--List View Container-->
-  <div class=" uk-text-left uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " uk-grid *ngIf="!libraryService.listView" style="padding-top: 5rem">
+  <div class=" uk-text-left uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " uk-grid *ngIf="libraryService.listView" style="  padding-left: 2rem;">
 
     <!--ListView-->
-    <ul uk-accordion="collapsible: false" class=" uk-padding-small list_view_container uk-list uk-list-divider">
+    <ul uk-accordion="collapsible: false" class=" uk-padding-small uk-list uk-list-divider">
 
       <!--ListElement-->
-      <li *ngFor="let card of libraryService.library" style="padding-left: 2rem">
+      <li *ngFor="let card of libraryService.library" class="list_elements" >
+
 
         <!--Title-->
         <h3 class="uk-accordion-title title_content title_text uk-display-inline">{{card.title}}</h3>
