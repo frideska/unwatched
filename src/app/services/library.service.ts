@@ -3,6 +3,7 @@ import { Http } from '@angular/http'
 
 
 import { CardElement } from 'classes/CardElement'
+import {isNullOrUndefined} from "util";
 
 
 const POSTER_PATH = 'https://image.tmdb.org/t/p/w1280/'
@@ -70,6 +71,30 @@ export class LibraryService {
       case('tv'):
         this.libraryTv = json.map((result) => new CardElement(result))
         break
+    }
+
+  }
+
+  public isEmpty(type): boolean{
+    switch(type){
+      case 'movie':{
+
+        if ( isNullOrUndefined(this.libraryMovie) ) return true
+        if (this.libraryMovie.length == 0) return true
+        else false
+
+      }
+      case 'tv':{
+
+        if ( isNullOrUndefined(this.libraryTv) ) return true
+        if (this.libraryTv.length == 0) return true
+        else false
+
+      }
+
+      default:{
+        return false
+      }
     }
 
   }
