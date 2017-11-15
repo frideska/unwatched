@@ -1,1 +1,12 @@
-<div AgWordCloud [wordData]="wordData" [options]="options"></div>
+<div class="cloud_wrapper">
+  <div class="cloud"
+       AgWordCloud
+       #word_cloud_chart=ag-word-cloud
+       [wordData]="wordData"
+       [options]="options">
+  </div>
+
+  <div class="buttonHolder">
+    <button (click)="word_cloud_chart.update()">Generate cloud!</button>
+  </div>
+</div>

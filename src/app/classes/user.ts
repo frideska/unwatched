@@ -7,6 +7,8 @@ export class GoogleUser {
     updated: string
     email: string
     token: string
+    firstName: string
+    lastName: string
 
     constructor(user) {
         this.image = user.google.image
@@ -17,5 +19,7 @@ export class GoogleUser {
         this.updated = user.updated
         this.email = user.google.email
         this.token = user.google.token
+        this.firstName = user.google.firstName
+        this.lastName = user.google.lastName
     }
 }

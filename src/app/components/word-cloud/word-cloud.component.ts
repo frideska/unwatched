@@ -1,56 +1,91 @@
-import { Component, OnInit } from '@angular/core'
-import { AgWordCloudData } from 'angular4-word-cloud'
+import { Component, OnInit, ViewChild } from '@angular/core'
+import { AgWordCloudData, AgWordCloudDirective } from 'angular4-word-cloud'
+
+import { LibraryService } from 'services/library.service'
+
 
 @Component({
   selector: 'app-word-cloud',
   templateUrl: './word-cloud.component.html',
   styleUrls: ['./word-cloud.component.css']
 })
+
 export class WordCloudComponent implements OnInit {
-  wordData: Array<AgWordCloudData> = [
-    {size: 500, text: 'vitae'},
-    {size: 301, text: 'amet'},
-    {size: 123, text: 'sit'},
-    {size: 321, text: 'eget'},
-    {size: 231, text: 'quis'},
-    {size: 123, text: 'sem'},
-    {size: 346, text: 'massa'},
-    {size: 107, text: 'nec'},
-    {size: 436, text: 'sed'},
-    {size: 731, text: 'semper'},
-    {size: 80, text: 'scelerisque'},
-    {size: 96, text: 'egestas'},
-    {size: 531, text: 'libero'},
-    {size: 109, text: 'nisl'},
-    {size: 972, text: 'odio'},
-    {size: 213, text: 'tincidunt'},
-    {size: 294, text: 'vulputate'},
-    {size: 472, text: 'venenatis'},
-    {size: 297, text: 'malesuada'},
-    {size: 456, text: 'finibus'},
-    {size: 123, text: 'tempor'},
-    {size: 376, text: 'tortor'},
-    {size: 93, text: 'congue'},
-    {size: 123, text: 'possit'},
-  ]
+
+  // WordCloudDirective
+  @ViewChild('word_cloud_chart') wordCloudChart: AgWordCloudDirective;
+
+  // Main word cloud.
+  wordData: Array<AgWordCloudData> = []
 
   options = {
     settings: {
-      minFontSize: 10,
-      maxFontSize: 100,
+      minFontSize: 70,
+      maxFontSize: 150,
     },
     margin: {
-      top: 10,
-      right: 10,
-      bottom: 10,
-      left: 10
+      top: 5,
+      right: 5,
+      bottom: 5,
+      left: 5
     },
     labels: false // false to hide hover labels
   }
 
-  constructor() { }
+  // Colors to use in cloud.
+  colors = ['#653399', '#982d84', '#b5d83c', '#e3d83f', '#22BAA0']
 
-  ngOnInit() {
+
+  constructor(public libraryService: LibraryService) {
+
   }
+
+  async ngOnInit() {
+    /**
+     * On init, we will fetch the users
+     * library and every instance of a genre.
+     */
+    await this.libraryService.getLibrary()
+    let library = this.libraryService.library
+    let genres = library.map(movie => movie.genres)
+    this.countGenres(genres)
+
+    // Set cloud colors and update cloud.
+    this.wordCloudChart.color = this.colors
+    this.wordCloudChart.update()
+  }
+
+  countGenres(genres) {
+    /**
+     * Genres will look like genres = [[drama, crime], [comedy, action], ... ]
+     * where every array in the genre array is a specific movie.
+     * We want to concat this array as one array, and then count instances in countEm.
+     * After counting we push the AgWordCloudData dictionary,
+     * {size: counted_number, text: genre}, into the wordData.
+     * @param {genres}: Array<Array> Genres list of lists.
+     */
+    var arr = genres.reduce((a, b) => a.concat(b), [])
+    let counted = this.countEm(arr, String)
+     for (var key in counted) {
+      this.wordData.push({size: counted[key], text: key})
+     }
+    console.log(this.wordData)
+  }
+
+  countEm(ary, classifier) {
+    /**
+     * Main counter. Counts instances of each String (classifier) genre,
+     * and returns number of instances.
+     * @param {ary}: Array<String> Array to count.
+     * @param {classifier}: Type Classifier.
+     */
+    classifier = classifier || String;
+    return ary.reduce(function (counter, item) {
+      var p = classifier(item)
+      counter[p] = counter.hasOwnProperty(p) ? counter[p] + 1 : 1
+      return counter
+    }, {})
+  }
+
 
 }

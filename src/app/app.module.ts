@@ -11,9 +11,7 @@ import { AgWordCloudModule} from 'angular4-word-cloud'
 import { AppComponent } from 'app.component'
 import { HomeComponent } from 'components/home/home.component'
 import { UserComponent } from 'components/user/user.component'
-import { SearchCardComponent } from 'components/cards/search-card/search-card.component'
-import { StandardCardComponent } from 'components/cards/standard-card/standard-card.component'
-import { DiscoverCardComponent } from 'components/cards/discover-card/discover-card.component'
+import { CardComponent } from 'components/cards/card.component'
 import { NavbarComponent } from 'components/navbar/navbar.component'
 import { LibraryComponent } from 'components/library/library.component'
 import { SearchComponent } from 'components/search/search.component'
@@ -61,8 +59,6 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     UserComponent,
-    SearchCardComponent,
-    DiscoverCardComponent,
     NavbarComponent,
     LibraryComponent,
     SearchComponent,
@@ -71,15 +67,15 @@ const routes: Routes = [
     NotFoundComponent,
     FilterComponent,
     WordCloudComponent,
-    StandardCardComponent,
-    ListViewComponent
+    ListViewComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     RouterModule.forRoot(routes, {useHash: false}),
-    AgWordCloudModule
+    AgWordCloudModule.forRoot()
   ],
   providers: [
     DiscoverService,
