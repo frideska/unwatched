@@ -10,11 +10,13 @@ const MISSING_PATH = 'http://www.latorredelsol.com/press/components/com_easyblog
 
 @Injectable()
 export class LibraryService {
+  public listView = false
   private URL = '/api/library'
   library: any
 
   constructor(private http: Http) {
   }
+
 
   public async addMovieToLibrary(id: string) {
     try {
@@ -46,4 +48,9 @@ export class LibraryService {
   private reconfigure(json) {
     this.library = json.map((result) => new CardElement(result))
   }
+
+  private toggleListView(){
+    this.listView = !this.listView
+  }
+
 }

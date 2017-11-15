@@ -2,10 +2,48 @@
 <div class="uk-container uk-width-auto ">
 
   <!--Grid Row Container-->
-  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
-
-    <!--Card-->
+  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid *ngIf="!libraryService.listView">
+    <!--GridView-->
     <app-card *ngFor="let card of libraryService.library" [element]="card"></app-card>
-
   </div>
+
+  <!--List View Container-->
+  <div class=" uk-text-left uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " uk-grid *ngIf="libraryService.listView" style="  padding-left: 2rem;">
+
+    <!--ListView-->
+    <ul uk-accordion="collapsible: false" class=" uk-padding-small uk-list uk-list-divider">
+
+      <!--ListElement-->
+      <li *ngFor="let card of libraryService.library" class="list_elements" >
+
+
+        <!--Title-->
+        <h3 class="uk-accordion-title title_content title_text uk-display-inline">{{card.title}}</h3>
+        <!--Year-->
+        <p class="title_content uk-text-muted subtitle_text uk-display-inline">{{ card.date.getFullYear() }}</p>
+
+        <!--Genres-->
+        <h3 class="title_content subtitle_text uk-display-inline"><span class="uk-label uk-text-muted">{{ card.genres }}</span> </h3>
+
+        <!--Content-->
+        <div class="uk-accordion-content desc_container" >
+
+          <!--Image-->
+          <div>
+            <img src="{{ card.image }}" alt="" class="uk-display-inline ">
+          </div>
+
+          <!--Description-->
+          <div class=" uk-container-small uk-display-inline" >
+            <p class="uk-display-inline ">
+              {{ card.overview }}
+            </p>
+          </div>
+        </div>
+
+      </li>
+
+    </ul>
+  </div>
+
 </div>

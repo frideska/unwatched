@@ -18,7 +18,9 @@ import { SearchComponent } from 'components/search/search.component'
 import { WatchlistComponent } from 'components/watchlist/watchlist.component'
 import { SlideshowItemComponent } from 'components/home/SlideshowItem/slideshow-item.component'
 import { NotFoundComponent } from 'components/not-found/not-found.component'
-import { FilterComponent } from './components/filter/filter.component'
+import { FilterComponent } from 'components/filter/filter.component'
+import { WordCloudComponent } from 'components/word-cloud/word-cloud.component'
+import { ListViewComponent } from 'components/list-view/list-view.component'
 
 /**
  * Import Services
@@ -27,10 +29,8 @@ import { UserService } from 'services/user.service'
 import { DiscoverService } from 'services/discover.service'
 import { SearchService } from 'services/search.service'
 import { WatchlistService } from 'services/watchlist.service'
-
 import { LibraryService } from 'services/library.service'
 import { AuthGuard } from 'services/auth-guard.service'
-import { WordCloudComponent } from './components/word-cloud/word-cloud.component'
 
 export const initUserServiceFactory = (userService: UserService): Function => {
   return () => userService.getUser()
@@ -67,6 +67,7 @@ const routes: Routes = [
     NotFoundComponent,
     FilterComponent,
     WordCloudComponent,
+    ListViewComponent,
     CardComponent
   ],
   imports: [
