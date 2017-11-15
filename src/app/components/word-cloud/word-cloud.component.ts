@@ -35,10 +35,16 @@ export class WordCloudComponent implements OnInit {
   // Colors to use in cloud.
   colors = ['#653399', '#982d84', '#b5d83c', '#e3d83f', '#00D377']
 
-  emptyLib: [
+  emptyLib = [
     {size: 2, text: 'LIBRARY'},
     {size: 1, text: ' '},
     {size: 2, text: 'EMPTY'}
+    ]
+
+  addMore = [
+    {size: 2, text: 'LIBRARY NEEDS'},
+    {size: 1, text: ' '},
+    {size: 2, text: 'MORE CONTENT'}
     ]
 
 
@@ -55,16 +61,19 @@ export class WordCloudComponent implements OnInit {
     await this.libraryService.getLibrary()
     let library = this.libraryService.libraryMovie
     let genres = library.map(movie => movie.genres)
-    console.log(genres)
+    console.log("Genres", genres)
 
     if (genres.length == 0) {
       this.wordData = this.emptyLib
+    } else if (genres.length < 5) {
+        this.wordData = this.addMore
     } else {
-      this.countGenres(genres)
-      this.wordData.push({size: 1, text: ' '})
-      this.wordData.push({size: 2, text: ' '})
+        this.countGenres(genres)
+        this.wordData.push({size: 1, text: ' '})
+        this.wordData.push({size: 2, text: ' '})
     }
-      this.wordCloudChart.update()
+    console.log("Data", this.wordData)
+    this.wordCloudChart.update()
     }
 
   countGenres(genres) {
