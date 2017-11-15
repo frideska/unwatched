@@ -12,7 +12,9 @@ let User = new Schema({
 		token: { type: String, required: true, unique: true },
 		name: { type: String, required: true },
 		image: { type: String },
-		email: { type: String }
+		email: { type: String },
+		firstName: { type: String, required: true },
+		lastName: { type: String, required: true }
 	},
 	admin: { type: Boolean, default: false },
     fullname: { type: String },
