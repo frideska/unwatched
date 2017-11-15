@@ -3,8 +3,8 @@ const route = require('express').Router()
 const discover = require('../../../tmdb/discover')
 const findController = require('../../../db/controllers/FindController')
 route.get('/movie', async (req, res) => {
+  let response = await discover.movie()
     if(req.user){
-        let response = await discover.movie()
         response = await Promise.all(response.map(async movie => {
           const watchlist = await findController.movieInWatchlist(movie.id, req.user)
           const library = await findController.movieInLibrary(movie.id, req.user)
@@ -12,11 +12,9 @@ route.get('/movie', async (req, res) => {
           movie.library = library
           return movie
       }))
-      res.send(response)
+
     }
-    else {
-      res.send(await discover.movie())
-    }
+    res.send(response)
 })
 
 route.get('/tv', async (req, res) => {
