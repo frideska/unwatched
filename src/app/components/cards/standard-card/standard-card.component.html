@@ -25,7 +25,7 @@
     <div>
 
       <!--Card Title-->
-      <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ element.title }} </h3><p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date }}</p>
+      <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ element.title }} </h3><p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
       <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
       <button (click) = "addToWatchlist(element.watchlist)">
         <label *ngIf='element.watchlist' >Remove from watchlist!</label>
