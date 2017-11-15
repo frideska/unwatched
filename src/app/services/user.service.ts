@@ -11,7 +11,6 @@ const URLS = {
 
 @Injectable()
 export class UserService {
-
   public user: GoogleUser
   public loggedIn: boolean
 

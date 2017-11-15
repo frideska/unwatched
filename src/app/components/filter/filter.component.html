@@ -1,12 +1,23 @@
 <nav class="uk-navbar-container bg_style navbar_position uk-navbar-sticky" uk-sticky="bottom: #top"  uk-navbar>
 
-  <div class="uk-navbar-left  nav-overlay">
+  <div class="uk-navbar-left nav-overlay">
 
     <!--Menu items-->
-    <ul class="uk-navbar-nav ">
+    <ul class="uk-navbar-nav"  >
+
+      <li *ngIf="!libraryService.listView; else cardView_icon">
+        <a (click)="libraryService.toggleListView()"><span uk-icon="icon : list"></span></a>
+      </li>
+      <ng-template #cardView_icon>
+        <li>
+          <a (click)="libraryService.toggleListView()"><span uk-icon="icon : grid"></span></a>
+        </li>
+      </ng-template>
+
       <li [routerLinkActive]="['active']">
         <a [routerLink]="['/library']" [queryParams]="{type: 'movie'}">Movies</a>
       </li>
+
       <li [routerLinkActive]="['active']">
         <a [routerLink]="['/library']" [queryParams]="{type: 'tv'}">series</a>
       </li>
@@ -28,6 +39,7 @@
       <li [routerLinkActive]="['active']">
         <a [routerLink]="['library']">Date<span uk-icon="icon : arrow-down"></span></a>
       </li>
+
     </ul>
 
   </div>
