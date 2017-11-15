@@ -1,4 +1,6 @@
 const UserMovie = require('../models/Library/LibraryUserMovie')
+const WatchlistUserMovie = require('../models/Watchlist/WatchlistUserMovie')
+const WatchlistUserTv = require('../models/Watchlist/WatchlistUserTv')
 const UserTv = require('../models/Library/LibraryUserTv')
 const tmdbWrapper = require('../../tmdb/')
 
@@ -12,6 +14,15 @@ const tmdbWrapper = require('../../tmdb/')
  */
 let newMovie = async (movieID, user) => {
   let movie = await UserMovie.findOne({movie_id: movieID, user_id: user._id})
+  //Checks if the move is in watchlist, if so remove it
+  let movieWatchlist = await WatchlistUserMovie.findOne({movie_id: movieID, user_id: user._id})
+  if(movieWatchlist)
+    try {
+      await WatchlistUserMovie.remove({movie_id: movieID, user_id: user._id})
+    } catch (err) {
+      console.log(err)
+      return false
+    }
   if(!movie){
     try {
       let userMovie = new UserMovie()
@@ -82,6 +93,15 @@ let removeMovieForUser = async (movieID, user) => {
  */
 let newTv = async (tvID, user) => {
   let movie = await UserTv.findOne({tv_id: tvID, user_id: user._id})
+  //Checks if the tv-show is in watchlist, if so remove it
+  let tvWatchlist = await WatchlistUserTv.findOne({movie_id: movieID, user_id: user._id})
+  if(tvWatchlist)
+    try {
+      await WatchlistUserTv.remove({movie_id: movieID, user_id: user._id})
+    } catch (err) {
+      console.log(err)
+      return false
+    }
   if(!movie){
     try {
       let userTv = new UserTv()
