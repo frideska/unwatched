@@ -2,10 +2,28 @@
 <div class="uk-container uk-width-auto ">
 
   <!--Grid Row Container-->
-  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
+  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid *ngIf="libraryService.listView">
+    <!--GridView-->
+      <app-standard-card *ngFor="let card of libraryService.library" [element]="card"></app-standard-card>
+  </div>
 
-    <!--Card-->
-    <app-standard-card *ngFor="let card of libraryService.library" [element]="card"></app-standard-card>
+  <!--List View Container-->
+  <div class="uk-text-left  uk-flex-center" uk-grid *ngIf="!libraryService.listView" style="padding-top: 5rem">
+    <!--ListView-->
+
+    <ul uk-accordion="collapsible: false" class="uk-background-secondary">
+
+      <li *ngFor="let card of libraryService.library" class="uk-card">
+        <h3 class="uk-accordion-title">{{card.title}} {{ card.date.getFullYear() }}</h3>
+        <div class="uk-accordion-content">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </li>
+
+
+    </ul>
 
   </div>
+
+
 </div>
