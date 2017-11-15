@@ -6,5 +6,6 @@ module.exports = {
     find: require('./find').find,
     details: require('./details').details,
     discover: require('./discover'),
-    search: require('./search').search
+    search: require('./search').search,
+    genre: require('./genre').getGenres
 }
