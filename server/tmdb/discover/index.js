@@ -117,7 +117,7 @@ const tv = async () => {
       return await results.results.map(result => {
         return {
           'id': result.id,
-          'title': result.name,
+          'title': result.title,
           'genres': result.genre_ids,
           'overview': result.overview,
           'backdrop_path': result.backdrop_path,
@@ -126,7 +126,7 @@ const tv = async () => {
           'vote_average': result.vote_average,
           'watchlist': false,
           'library': false,
-          'media_type': 'tv'
+          'media_type': result.media_type
         }
       })
     } catch (err) {
