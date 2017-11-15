@@ -18,3 +18,8 @@
   text-transform: uppercase;
   color: #777;
 }
+
+.uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
+  height: auto;
+}
+

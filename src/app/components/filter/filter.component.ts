@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+
+import { LibraryService } from 'services/library.service'
 
 @Component({
   selector: 'app-filter',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private libraryService: LibraryService
+  ) { }
 
   ngOnInit() {
   }
