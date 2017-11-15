@@ -1,0 +1,11 @@
+.footer_bg{
+  background-color: #222222;
+  height: 4rem;
+}
+
+.footer_postition {
+  width: 100%;
+  padding-top: 1rem;
+  z-index: 999;
+  box-shadow: -0.2px 5px 1px #222222;
+}
