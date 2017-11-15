@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-import { SearchSeries } from 'classes/SearchSeries'
-import { SearchMovie } from 'classes/SearchMovie'
+import { CardElement } from 'classes/CardElement'
+
 
 @Injectable()
 export class WatchlistService {
@@ -13,21 +13,28 @@ export class WatchlistService {
 
   public async addMovieToWatchlist(id: string) {
     try {
-      const response = await this.http.post(this.URL, {id: id}).toPromise()
+      const response = await this.http.post(this.URL + '/movie/', {id: id}).toPromise()
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  public async addTvToWatchlist(id: string) {
+    try {
+      const response = await this.http.post(this.URL + '/tv/', {id: id}).toPromise()
     } catch (err) {
       console.error(err)
     }
   }
   public async removeMovieFromWatchlist(id: string) {
     try {
-      const response = await this.http.get(this.URL + '/remove/' + id ).toPromise()
+      const response = await this.http.get(this.URL + '/movie/remove/' + id ).toPromise()
     } catch (err) {
       console.error(err)
     }
   }
   public async getWatchlist() {
     try {
-      const response = await this.http.get(this.URL).toPromise()
+      const response = await this.http.get(this.URL + '/movie/').toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json())
       }
@@ -37,13 +44,7 @@ export class WatchlistService {
   }
 
   private reconfigure(json) {
-    this.watchlist = json.results.map((result) => {
-      switch (result.media_type) {
-        case 'movie': return new SearchMovie(result)
-        case 'tv': return new SearchSeries(result)
-      }
-    })
-
-    console.log(this.watchlist)
+    console.log(json)
+    this.watchlist = json.map((result) => new CardElement(result))
   }
 }

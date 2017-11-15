@@ -3,6 +3,7 @@ import { NgModule, APP_INITIALIZER } from '@angular/core'
 import { Routes, RouterModule, Router } from '@angular/router'
 import { HttpModule } from '@angular/http'
 import { FormsModule } from '@angular/forms'
+import { AgWordCloudModule} from 'angular4-word-cloud'
 
 /**
  * Import Components
@@ -10,7 +11,9 @@ import { FormsModule } from '@angular/forms'
 import { AppComponent } from 'app.component'
 import { HomeComponent } from 'components/home/home.component'
 import { UserComponent } from 'components/user/user.component'
-import { CardComponent } from 'components/card/card.component'
+import { SearchCardComponent } from 'components/cards/search-card/search-card.component'
+import { StandardCardComponent } from 'components/cards/standard-card/standard-card.component'
+import { DiscoverCardComponent } from 'components/cards/discover-card/discover-card.component'
 import { NavbarComponent } from 'components/navbar/navbar.component'
 import { LibraryComponent } from 'components/library/library.component'
 import { SearchComponent } from 'components/search/search.component'
@@ -22,13 +25,14 @@ import { FilterComponent } from './components/filter/filter.component'
 /**
  * Import Services
  */
-
-
 import { UserService } from 'services/user.service'
 import { DiscoverService } from 'services/discover.service'
 import { SearchService } from 'services/search.service'
 import { WatchlistService } from 'services/watchlist.service'
-import { AuthGuard } from 'services/auth-guard.service';
+
+import { LibraryService } from 'services/library.service'
+import { AuthGuard } from 'services/auth-guard.service'
+import { WordCloudComponent } from './components/word-cloud/word-cloud.component'
 
 export const initUserServiceFactory = (userService: UserService): Function => {
   return () => userService.getUser()
@@ -57,26 +61,31 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     UserComponent,
-    CardComponent,
+    SearchCardComponent,
+    DiscoverCardComponent,
     NavbarComponent,
     LibraryComponent,
     SearchComponent,
     WatchlistComponent,
     SlideshowItemComponent,
     NotFoundComponent,
-    FilterComponent
+    FilterComponent,
+    WordCloudComponent,
+    StandardCardComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot(routes, {useHash: false})
+    RouterModule.forRoot(routes, {useHash: false}),
+    AgWordCloudModule
   ],
   providers: [
     DiscoverService,
     WatchlistService,
     SearchService,
     UserService,
+    LibraryService,
     AuthGuard,
     USER_INIT
   ],
