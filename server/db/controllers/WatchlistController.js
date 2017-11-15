@@ -1,8 +1,9 @@
 const UserMovie = require('../models/Watchlist/WatchlistUserMovie')
 const UserTv = require('../models/Watchlist/WatchlistUserTv')
+const LibraryUserMovie = require('../models/Library/LibraryUserMovie')
+const LibraryUserTv = require('../models/Library/LibraryUserTv')
 const tmdbWrapper = require('../../tmdb/')
-const ContainsMovie = require('./ContainsMovieController')
-const ContainsTv = require('./ContainsTvContoller')
+
 
 
 /**
@@ -13,8 +14,10 @@ const ContainsTv = require('./ContainsTvContoller')
  * @returns {Promise.<boolean>}
  */
 let newMovie = async (movieID, user) => {
-  let movie = await UserMovie.findOne({movie_id: movieID, user_id: user._id})
-  if(!movie){
+  let movieWatchlist = await UserMovie.findOne({movie_id: movieID, user_id: user._id})
+  let movieLibrary = await LibraryUserMovie.findOne({movie_id: movieID, user_id: user._id})
+  //to add a movie it can not be in library or watchlist
+  if(!movieWatchlist && !movieLibrary){
     try {
       let userMovie = new UserMovie()
       userMovie.movie_id = movieID
@@ -50,8 +53,8 @@ let findMovieForUser = async (user) => {
   //promise all to make sure that the array is not returned while pending
   try {
     return clean(await Promise.all(userMovies.map(async (movie) =>  {
-      const watchlist = await ContainsMovie.movieInWatchlist(movie.movie_id, user)
-      const library = await ContainsMovie.movieInLibrary(movie.movie_id, user)
+      const watchlist = true
+      const library = false
       return await tmdbWrapper.details.movie(movie.movie_id, watchlist, library)
     })))
   }catch (err) {
@@ -75,11 +78,17 @@ let removeMovieForUser = async (movieID, user) => {
   return true
 }
 
-
+/**
+ * Addes a new tv-show to the watchlist for a given user
+ * @param tvID
+ * @param user
+ * @returns {Promise.<boolean>}
+ */
 let newTv = async (tvID, user) => {
-  console.log(tvID)
   let movie = await UserTv.findOne({tv_id: tvID, user_id: user._id})
-  if(!movie){
+  let libraryTv = await LibraryUserTv.findOne({tv_id: tvID, user_id: user._id})
+  //checks that tv-show is not in library or watchlist
+  if(!movie && !libraryTv){
     try {
       let userTv = new UserTv()
       userTv.tv_id = tvID
@@ -107,8 +116,8 @@ let findTvForUser = async (user) => {
   //promise all to make sure that the array is not returned while pending
   try {
     return clean(await Promise.all(userTv.map(async (tv) => {
-      const watchlist = await ContainsTv.tvInWatchlist(tv.tv_id, user)
-      const library = await ContainsTv.tvInLibrary(tv.tv_id, user)
+      const watchlist = true
+      const library = false
       const details = await tmdbWrapper.details.tv(tv.tv_id, watchlist, library)
       return details
     })))
