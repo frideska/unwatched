@@ -1,4 +1,29 @@
-# Project4
+# IT2810 - Project 4 - UnWatched
+
+## Description
+The UnWatched application is a movie- and TV show manager.
+To get access to the main functionality like *Library* and *Watchlist*, you have to log into your Google account.
+
+  * Discover  
+   The front page of the application presents the user with kind of fresh news on movies and shows.
+
+  * Search  
+   In the search bar, the you can search for any movie or TV show.
+   Here you can add them to your Library or Watchlist.
+
+  * Library  
+   All movies and TV shows added to Library appears here.
+   The The Library's intent is to serve as a "watch history" of movies and TV shows you have seen.
+
+  * Watchlist  
+   All movies and TV shows added to Watchlist appears here.  
+   The Watchlist's intent is to serve as a wish list of movies and TV show you want to see in the future.
+  
+
+  * Profile
+  In the Profile page, you can delete your account, see a word cloud overview of your most seen genres,
+  and see your search history.
+
 
 ## Production setup
 
