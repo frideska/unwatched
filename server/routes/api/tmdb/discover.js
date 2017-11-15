@@ -12,7 +12,6 @@ route.get('/movie', async (req, res) => {
           movie.library = library
           return movie
       }))
-
     }
     res.send(response)
 })
