@@ -11,7 +11,6 @@ export class LibraryComponent implements OnInit {
 
   async ngOnInit() {
     this.libraryService.getLibrary()
-
   }
 
 

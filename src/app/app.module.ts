@@ -78,7 +78,7 @@ const routes: Routes = [
     HttpModule,
     FormsModule,
     RouterModule.forRoot(routes, {useHash: false}),
-    AgWordCloudModule
+    AgWordCloudModule.forRoot()
   ],
   providers: [
     DiscoverService,
