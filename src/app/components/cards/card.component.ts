@@ -26,9 +26,9 @@ export class CardComponent implements OnInit {
   }
   addToLibrary() {
     if (this.element.library) {
-      this.libraryService.removeMovieFromLibrary(this.element.id)
+      this.libraryService.removeFromLibrary(this.element)
     } else  {
-      this.libraryService.addMovieToLibrary(this.element.id)
+      this.libraryService.addToLibrary(this.element)
     }
   }
 }
