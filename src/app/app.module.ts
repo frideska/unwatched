@@ -20,6 +20,7 @@ import { SlideshowItemComponent } from 'components/home/SlideshowItem/slideshow-
 import { NotFoundComponent } from 'components/not-found/not-found.component'
 import { FilterComponent } from 'components/filter/filter.component'
 import { WordCloudComponent } from 'components/word-cloud/word-cloud.component'
+import { WordCloudWishComponent } from './components/word-cloud-wish/word-cloud-wish.component'
 import { ListViewComponent } from 'components/list-view/list-view.component'
 
 /**
@@ -30,7 +31,7 @@ import { DiscoverService } from 'services/discover.service'
 import { SearchService } from 'services/search.service'
 import { WatchlistService } from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
-import { AuthGuard } from 'services/auth-guard.service'
+import { AuthGuard } from 'services/auth-guard.service';
 
 export const initUserServiceFactory = (userService: UserService): Function => {
   return () => userService.getUser()
@@ -68,7 +69,8 @@ const routes: Routes = [
     FilterComponent,
     WordCloudComponent,
     ListViewComponent,
-    CardComponent
+    CardComponent,
+    WordCloudWishComponent
   ],
   imports: [
     BrowserModule,
