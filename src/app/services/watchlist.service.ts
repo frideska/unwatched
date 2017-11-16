@@ -44,7 +44,6 @@ export class WatchlistService {
   }
 
   private reconfigure(json) {
-    console.log(json)
     this.watchlist = json.map((result) => new CardElement(result))
   }
 }
