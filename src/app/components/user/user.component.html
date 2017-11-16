@@ -24,22 +24,8 @@
       </div>
     </div>
 
-    <!--User Statistics-->
-      <div class="uk-card uk-card-secondary usercard statistics_container">
-        <div class="uk-card-header">
-          <div class="uk-grid-small" uk-grid>
-            <div>
-              <h3 class="uk-card-title uk-margin-remove-bottom">Your favourite genres</h3>
-            </div>
-          </div>
-        </div>
-        <div class="cloud_container">
-          <app-word-cloud></app-word-cloud>
-        </div>
-      </div>
     <!--User Search History-->
-
-    <div class="uk-card uk-card-secondary usercard uk-width-expand">
+    <div class="uk-card uk-card-secondary usercard">
       <div class="uk-card-header">
         <div class="uk-grid-small uk-flex-middle" uk-grid>
           <div class="uk-width-expand">
@@ -57,6 +43,34 @@
         </ul>
       </div>
     </div>
+
+    <!--User Statistics-->
+      <div class="uk-card uk-card-secondary usercard statistics_container">
+        <div class="uk-card-header">
+          <div class="uk-grid-small" uk-grid>
+            <div>
+              <h4 class="uk-card-title uk-margin-remove-bottom">Favourites</h4>
+            </div>
+          </div>
+        </div>
+        <div class="cloud_container">
+          <app-word-cloud></app-word-cloud>
+        </div>
+      </div>
+
+    <div class="uk-card uk-card-secondary usercard statistics_container">
+      <div class="uk-card-header">
+        <div class="uk-grid-small" uk-grid>
+          <div>
+            <h4 class="uk-card-title uk-margin-remove-bottom">Desires</h4>
+          </div>
+        </div>
+      </div>
+      <div class="cloud_container">
+        <app-word-cloud-wish></app-word-cloud-wish>
+      </div>
+    </div>
+
 
   </div>
 </div>
