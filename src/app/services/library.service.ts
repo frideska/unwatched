@@ -3,11 +3,8 @@ import { Http } from '@angular/http'
 
 
 import { CardElement } from 'classes/CardElement'
-import {isNullOrUndefined} from "util";
+import { isNullOrUndefined } from 'util'
 
-
-const POSTER_PATH = 'https://image.tmdb.org/t/p/w1280/'
-const MISSING_PATH = 'http://www.latorredelsol.com/press/components/com_easyblog/themes/wireframe/images/placeholder-image.png'
 
 @Injectable()
 export class LibraryService {
@@ -19,30 +16,24 @@ export class LibraryService {
   constructor(private http: Http) {
   }
 
-
-  public async addMovieToLibrary(id: string) {
+  public async addToLibrary(element: CardElement) {
+    const type = element.type
+    const id = element.id
     try {
-      const response = await this.http.post(this.URL + '/movie', {id: id}).toPromise()
+      const response = await this.http.post(this.URL + '/' + type, {id: id}).toPromise()
     } catch (err) {
       console.error(err)
     }
   }
-  public async addTvToLibrary(id: string) {
+  public async removeFromLibrary(element: CardElement) {
+    const type = element.type
+    const id = element.id
     try {
-      const response = await this.http.post(this.URL + '/tv', {id: id}).toPromise()
+      const response = await this.http.get(this.URL + '/' + type + '/remove/' + id).toPromise()
     } catch (err) {
       console.error(err)
     }
   }
-
-  public async removeMovieFromLibrary(id: string) {
-    try {
-      const response = await this.http.get(this.URL + '/movie/remove/' + id).toPromise()
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
   public async getLibrary() {
     try {
       const response = await this.http.get(this.URL + '/movie/').toPromise()
@@ -62,7 +53,6 @@ export class LibraryService {
       console.error(err)
     }
   }
-
   private reconfigure(json, type) {
     switch (type) {
       case('movie'):
@@ -72,19 +62,16 @@ export class LibraryService {
         this.libraryTv = json.map((result) => new CardElement(result))
         break
     }
-
   }
-
   public isEmpty(type): boolean{
-    switch(type){
-      case 'movie':{
-
+    switch (type) {
+      case 'movie': {
         if ( isNullOrUndefined(this.libraryMovie) ) return true
         if (this.libraryMovie.length == 0) return true
         else false
 
       }
-      case 'tv':{
+      case 'tv': {
 
         if ( isNullOrUndefined(this.libraryTv) ) return true
         if (this.libraryTv.length == 0) return true
@@ -92,14 +79,14 @@ export class LibraryService {
 
       }
 
-      default:{
+      default: {
         return false
       }
     }
 
   }
 
-  private toggleListView(){
+  private toggleListView() {
     this.listView = !this.listView
   }
 
