@@ -1,7 +1,7 @@
 
 
 
-const GenreController = require('../db/Controllers/GenreController')
+const GenreController = require('../db/controllers/GenreController')
 
 
 const multi = async (query) => {
