@@ -3,32 +3,78 @@
     <h2 class="uk-light">Discover movies and tv-series</h2>
 
     <div class="uk-position-relative" uk-slideshow="ratio: 7:3">
-        <ul class="uk-slideshow-items uk-animation-slide-top-medium">
-          <app-slideshow-item [movie]="movies[0]"></app-slideshow-item>
-          <app-slideshow-item [movie]="movies[1]"></app-slideshow-item>
-          <app-slideshow-item [movie]="movies[2]"></app-slideshow-item>
-          <app-slideshow-item [movie]="movies[3]"></app-slideshow-item>
-          <app-slideshow-item [movie]="movies[4]"></app-slideshow-item>
-          <app-slideshow-item [movie]="movies[5]"></app-slideshow-item>
-          <app-slideshow-item [movie]="movies[6]"></app-slideshow-item>
-          <app-slideshow-item [movie]="movies[7]"></app-slideshow-item>
-        </ul>
-        <a class="uk-position-center-left uk-position-small uk-hidden-hover navigation" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-        <a class="uk-position-center-right uk-position-small uk-hidden-hover navigation" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
-      </div>
-
-    <h2 class="uk-heading-line uk-text-right uk-light"><span>Discover movies</span></h2>
-    <div class="uk-text-left uk-flex-center" uk-grid>
-      <span class="uk-animation-slide-right uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-left; ratio: 2;" (click)="prevObject('movie')"></span>
-      <app-card class="uk-animation-scale-up" *ngFor="let movie of moviesSliced" [element]="movie"></app-card>
-      <span class="uk-animation-slide-left uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-right;  ratio: 2;" (click)="nextObject('movie')"></span>
+      <ul class="uk-slideshow-items uk-animation-slide-top-medium">
+        <app-slideshow-item [movie]="movies[0]"></app-slideshow-item>
+        <app-slideshow-item [movie]="movies[1]"></app-slideshow-item>
+        <app-slideshow-item [movie]="movies[2]"></app-slideshow-item>
+        <app-slideshow-item [movie]="movies[3]"></app-slideshow-item>
+        <app-slideshow-item [movie]="movies[4]"></app-slideshow-item>
+        <app-slideshow-item [movie]="movies[5]"></app-slideshow-item>
+        <app-slideshow-item [movie]="movies[6]"></app-slideshow-item>
+        <app-slideshow-item [movie]="movies[7]"></app-slideshow-item>
+      </ul>
+      <a class="uk-position-center-left uk-position-small uk-hidden-hover navigation" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+      <a class="uk-position-center-right uk-position-small uk-hidden-hover navigation" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
     </div>
 
+    <!--Slideshow Header-->
+    <h2 class="uk-heading-line uk-text-right uk-light" ><span>Discover movies</span></h2>
+
+    <!--Slideshow container-->
+    <div class="uk-position-relative uk-visible-toggle uk-light " uk-slideshow="max-height: 20rem; animation: slide; velocity: 20; autoplay: true;" >
+
+      <!--Slideshow List-->
+      <ul class="uk-slideshow-items uk-height-max-large slideshow_box">
+        <li>
+          <!--Slideshow shown items-->
+          <div class="uk-card uk-cover uk-flex ">
+            <app-card class=" uk-flex-left uk-display-inline slideshow_item" [element]="moviesSliced[0]"></app-card>
+            <app-card class=" uk-flex-right uk-display-inline slideshow_item" [element]="moviesSliced[1]"></app-card>
+          </div>
+        </li>
+
+        <li>
+          <!--Slideshow next items-->
+          <div class="uk-card uk-cover uk-flex ">
+            <app-card class=" uk-flex-left uk-display-inline slideshow_item" [element]="moviesSliced[0]"></app-card>
+            <app-card class=" uk-flex-right uk-display-inline slideshow_item" [element]="moviesSliced[1]"></app-card>
+          </div>
+        </li>
+      </ul>
+
+      <!--Slideshow buttons-->
+      <a class="uk-position-center-left uk-position-small uk-hidden-hover"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('movie')"></a>
+      <a class="uk-position-center-right uk-position-small uk-hidden-hover" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('movie')"></a>
+    </div>
+
+    <!--Slideshow Header-->
     <h2 class="uk-heading-line uk-text-right uk-light"><span>Discover tv-series</span></h2>
-    <div class="uk-text-left uk-flex-center" uk-grid>
-      <span class="uk-animation-slide-right uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-left; ratio: 2;" (click)="prevObject('tv')"></span>
-      <app-card class="uk-animation-scale-up" *ngFor="let tv of tvSliced" [element]="tv"></app-card>
-      <span class="uk-animation-slide-left uk-flex uk-flex-middle navigation2" uk-icon="icon: chevron-right;  ratio: 2;" (click)="nextObject('tv')"></span>
+
+    <!--Slideshow container-->
+    <div class="uk-position-relative uk-visible-toggle uk-light " uk-slideshow="max-height: 20rem; animation: slide; velocity: 20; autoplay: true;" >
+
+      <!--Slideshow List-->
+      <ul class="uk-slideshow-items uk-height-max-large slideshow_box">
+        <li>
+          <!--Slideshow shown items-->
+          <div class="uk-card uk-cover uk-flex ">
+            <app-card class=" uk-flex-left uk-display-inline slideshow_item" [element]="tvSliced[0]"></app-card>
+            <app-card class=" uk-flex-right uk-display-inline slideshow_item" [element]="tvSliced[1]"></app-card>
+          </div>
+        </li>
+
+        <li>
+          <!--Slideshow next items-->
+          <div class="uk-card uk-cover uk-flex ">
+            <app-card class=" uk-flex-left uk-display-inline slideshow_item" [element]="tvSliced[0]"></app-card>
+            <app-card class=" uk-flex-right uk-display-inline slideshow_item" [element]="tvSliced[1]"></app-card>
+          </div>
+        </li>
+      </ul>
+
+      <!--Slideshow buttons-->
+      <a class="uk-position-center-left uk-position-small uk-hidden-hover"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('tv')"></a>
+      <a class="uk-position-center-right uk-position-small uk-hidden-hover" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('tv')"></a>
     </div>
 
   </div>

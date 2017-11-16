@@ -6,3 +6,12 @@
 .navigation2 {
   color: white;
 }
+
+.uk-slideshow-items{
+  height: 20rem;
+}
+
+.slideshow_item {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
