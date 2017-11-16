@@ -14,14 +14,14 @@
         <app-slideshow-item [movie]="movies[6]"></app-slideshow-item>
         <app-slideshow-item [movie]="movies[7]"></app-slideshow-item>
       </ul>
-      <a class="uk-position-center-left uk-position-small uk-hidden-hover navigation" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-      <a class="uk-position-center-right uk-position-small uk-hidden-hover navigation" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+      <a class="uk-position-center-left  uk-hidden-hover navigation" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+      <a class="uk-position-center-right  uk-hidden-hover navigation" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
     </div>
 
     <!--Discover movies-->
 
     <!--Slideshow Header-->
-    <div class="uk-flex uk-flex-middle uk-flex-center uk-margin-remove ">
+    <div class="uk-flex uk-flex-middle uk-flex-center uk-margin-remove uk-flex-wrap-stretch   ">
       <hr class="uk-divider-small uk-margin-remove">
       <h2 class="uk-light uk-margin-remove uk-padding-small">Discover movies</h2>
       <hr class="uk-divider-small uk-margin-remove">
@@ -29,7 +29,7 @@
 
     <!--Slideshow container-->
     <div class="uk-position-relative uk-visible-toggle uk-light "
-         uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 5500;" >
+         uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 7500;" >
 
       <!--Slideshow List-->
       <ul class="uk-slideshow-items uk-height-max-large slideshow_box">
@@ -51,8 +51,8 @@
       </ul>
 
       <!--Slideshow buttons-->
-      <a class="uk-position-center-left uk-position-small uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('movie')"></a>
-      <a class="uk-position-center-right uk-position-small uk-hidden-hover uk-animation-slide-righ" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('movie')"></a>
+      <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('movie')"></a>
+      <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('movie')"></a>
     </div>
 
     <!--Discover series-->
@@ -65,7 +65,7 @@
     </div>
     <!--Slideshow container-->
     <div class="uk-position-relative uk-visible-toggle uk-light "
-         uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true; pause-on-hover: true;" >
+         uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 9000;" >
 
       <!--Slideshow List-->
       <ul class="uk-slideshow-items uk-height-max-large slideshow_box">
@@ -87,8 +87,8 @@
       </ul>
 
       <!--Slideshow buttons-->
-      <a class="uk-position-center-left uk-position-small uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('tv')"></a>
-      <a class="uk-position-center-right uk-position-small uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('tv')"></a>
+      <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('tv')"></a>
+      <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('tv')"></a>
     </div>
 
   </div>
