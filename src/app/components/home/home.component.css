@@ -1,8 +1,21 @@
-.navigation {
-  color: white;
-  transform: scale(2);
+.uk-slideshow-items{
+  height: 20rem;
 }
 
-.navigation2 {
-  color: white;
+.slideshow_item {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.uk-divider-small::after{
+  max-width: 100%;
+  width: 30rem;
+  padding: 0;
+  overflow: auto;
+}
+
+.uk-h2, h2{
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
 }
