@@ -40,20 +40,20 @@
     </div>
     <!--Card Buttons-->
 
-    <div class="uk-card-footer uk-padding-remove">
+    <div class="uk-card-footer uk-padding-remove uk-position-bottom-right">
       <div class="uk-button-group ">
 
         <button (click) = "addToWatchlist(element.watchlist)"
-                class="uk-button uk-button-secondary uk-text-nowrap remove">
+                class="uk-button uk-text-nowrap remove button_add">
           <label *ngIf='element.watchlist' >Remove</label>
           <label *ngIf='!element.watchlist' >Add to <br>watchlist</label>
         </button>
 
-        <button (click) = "addToLibrary()" class="uk-button uk-button-secondary uk-padding-remove">
+        <button (click) = "addToLibrary()" class="uk-button uk-padding-remove button_remove">
           <label *ngIf='element.library' >Remove</label>
           <label *ngIf='!element.library' >Add to <br>library</label>
         </button>
-        
+
       </div>
     </div>
 

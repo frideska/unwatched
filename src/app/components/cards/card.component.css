@@ -29,14 +29,28 @@
 
 .img_size {
   height: 100%;
-  width: 100%
+  width: 100%;
 
 }
 .uk-button{
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   padding:0;
-  line-height:15px;
-  width: 100px;
+  line-height:10px;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  width: 100.5px;
+  background-color: #00d377;
+}
+
+.button_add{
+  background-color: #00d377;
+  color: white;
+}
+
+.button_remove{
+  background-color: #663399;
+  color: white;
+
 }
 
 .uk-card-footer>div>button{
