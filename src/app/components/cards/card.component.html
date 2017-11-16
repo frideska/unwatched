@@ -15,33 +15,49 @@
     <img src="{{ element.image }}" alt="" class="img_size" uk-cover>
     <div class="uk-position-bottom-right ">
       <a href="#card-movieID-{{ element.id }}" class="uk-icon-link" uk-toggle>
-      <img src="http://sachinchoolur.github.io/lightGallery/static/img/icons/zoom-w.png" alt="" style="height: 2.5rem; padding: 8px"/></a>
+        <img src="http://sachinchoolur.github.io/lightGallery/static/img/icons/zoom-w.png" alt="" style="height: 2.5rem; padding: 8px"/></a>
     </div>
     <!--<canvas width="100" height='300'></canvas>-->
   </div>
 
   <!--Card Body-->
-  <div class="uk-padding-small">
-    <div>
+  <div class="uk-padding-remove">
+    <!--Card Description-->
 
-      <!--Card Title-->
-      <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ element.title }} </h3>
-      <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
-      <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
-      <button (click) = "addToWatchlist(element.watchlist)">
-        <label *ngIf='element.watchlist' >Remove from watchlist!</label>
-        <label *ngIf='!element.watchlist' >Add to watchlist!</label>
-      </button>
-      <button (click) = "addToLibrary()">
-        <label *ngIf='element.library' >Remove from library!</label>
-        <label *ngIf='!element.library' >Add to library!</label>
-      </button>
-      <hr class="uk-divider-small uk-margin-remove" />
+    <div class="uk-padding-small">
+      <div>
 
-      <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
+        <!--Card Title-->
+        <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ element.title }} </h3>
+        <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
+        <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
 
+        <hr class="uk-divider-small uk-margin-remove" />
+
+        <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
+
+      </div>
+    </div>
+    <!--Card Buttons-->
+
+    <div class="uk-card-footer uk-padding-remove">
+      <div class="uk-button-group ">
+
+        <button (click) = "addToWatchlist(element.watchlist)"
+                class="uk-button uk-button-secondary uk-text-nowrap remove">
+          <label *ngIf='element.watchlist' >Remove</label>
+          <label *ngIf='!element.watchlist' >Add to <br>watchlist</label>
+        </button>
+
+        <button (click) = "addToLibrary()" class="uk-button uk-button-secondary uk-padding-remove">
+          <label *ngIf='element.library' >Remove</label>
+          <label *ngIf='!element.library' >Add to <br>library</label>
+        </button>
+        
+      </div>
     </div>
 
   </div>
+
 
 </div>
