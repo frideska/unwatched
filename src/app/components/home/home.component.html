@@ -2,7 +2,7 @@
   <div class="uk-container">
 
     <!-- Top slideshow-->
-    <div class="uk-position-relative"
+    <div class="uk-position-relative uk-light"
          uk-slideshow="ratio: 7:3; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 4000;">
       <ul class="uk-slideshow-items uk-animation-slide-top-medium">
         <app-slideshow-item [movie]="movies[0]"></app-slideshow-item>
@@ -51,8 +51,8 @@
       </ul>
 
       <!--Slideshow buttons-->
-      <a class="uk-position-center-left uk-position-small uk-hidden-hover"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('movie')"></a>
-      <a class="uk-position-center-right uk-position-small uk-hidden-hover" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('movie')"></a>
+      <a class="uk-position-center-left uk-position-small uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('movie')"></a>
+      <a class="uk-position-center-right uk-position-small uk-hidden-hover uk-animation-slide-righ" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('movie')"></a>
     </div>
 
     <!--Discover series-->
@@ -87,8 +87,8 @@
       </ul>
 
       <!--Slideshow buttons-->
-      <a class="uk-position-center-left uk-position-small uk-hidden-hover"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('tv')"></a>
-      <a class="uk-position-center-right uk-position-small uk-hidden-hover" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('tv')"></a>
+      <a class="uk-position-center-left uk-position-small uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('tv')"></a>
+      <a class="uk-position-center-right uk-position-small uk-hidden-hover uk-animation-slide-righ" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('tv')"></a>
     </div>
 
   </div>
