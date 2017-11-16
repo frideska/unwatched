@@ -39,7 +39,7 @@ img {
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: #222222;
-
+  box-shadow: 0 14px 25px rgba(0,0,0,.16);
 }
 
 .uk-list-divider>li:nth-child(n+2){
@@ -102,5 +102,12 @@ h1{
   max-height: 1.85rem;
 }
 
+.uk-card-hover:not(.uk-card-default):not(.uk-open):not(.uk-card-primary):not(.uk-card-secondary):hover {
+  background-color: #444444;
+}
+
+.uk-card-hover:not(.uk-card-default):not(.uk-card-primary):not(.uk-card-secondary):hover {
+  background-color: #222222;
+}
 
 
