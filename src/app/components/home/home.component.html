@@ -2,7 +2,7 @@
   <div class="uk-container">
     <h2 class="uk-light">Discover movies and tv-series</h2>
 
-    <div class="uk-position-relative" uk-slideshow="ratio: 7:3">
+    <div class="uk-position-relative" uk-slideshow="ratio: 7:3; autoplay: true;">
       <ul class="uk-slideshow-items uk-animation-slide-top-medium">
         <app-slideshow-item [movie]="movies[0]"></app-slideshow-item>
         <app-slideshow-item [movie]="movies[1]"></app-slideshow-item>
@@ -18,10 +18,14 @@
     </div>
 
     <!--Slideshow Header-->
-    <h2 class="uk-heading-line uk-text-right uk-light" ><span>Discover movies</span></h2>
+    <div class="uk-flex uk-flex-middle uk-flex-center uk-margin-remove ">
+      <hr class="uk-divider-small uk-margin-remove">
+      <h2 class="uk-light uk-margin-remove uk-padding-small">Discover movies</h2>
+      <hr class="uk-divider-small uk-margin-remove">
+    </div>
 
     <!--Slideshow container-->
-    <div class="uk-position-relative uk-visible-toggle uk-light " uk-slideshow="max-height: 20rem; animation: slide; velocity: 20; autoplay: true;" >
+    <div class="uk-position-relative uk-visible-toggle uk-light " uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true;" >
 
       <!--Slideshow List-->
       <ul class="uk-slideshow-items uk-height-max-large slideshow_box">
@@ -48,10 +52,14 @@
     </div>
 
     <!--Slideshow Header-->
-    <h2 class="uk-heading-line uk-text-right uk-light"><span>Discover tv-series</span></h2>
-
+    <!--Slideshow Header-->
+    <div class="uk-flex uk-flex-middle uk-flex-center uk-margin-remove ">
+      <hr class="uk-divider-small uk-margin-remove">
+      <h2 class="uk-light uk-margin-remove uk-padding-small">Discover tv-series</h2>
+      <hr class="uk-divider-small uk-margin-remove">
+    </div>
     <!--Slideshow container-->
-    <div class="uk-position-relative uk-visible-toggle uk-light " uk-slideshow="max-height: 20rem; animation: slide; velocity: 20; autoplay: true;" >
+    <div class="uk-position-relative uk-visible-toggle uk-light " uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true;" >
 
       <!--Slideshow List-->
       <ul class="uk-slideshow-items uk-height-max-large slideshow_box">

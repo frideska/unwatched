@@ -15,3 +15,16 @@
   padding-right: 1rem;
   padding-left: 1rem;
 }
+
+.uk-divider-small::after{
+  max-width: 100%;
+  width: 30rem;
+  padding: 0;
+  overflow: auto;
+}
+
+.uk-h2, h2{
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
+}
