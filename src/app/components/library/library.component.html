@@ -41,10 +41,10 @@
         <h1> No movies in library </h1>
       </div>
       <!--ListView-->
-      <ul uk-accordion="collapsible: false" class=" uk-padding-small uk-list uk-list-divider">
+      <ul uk-accordion="collapsible: false" class=" uk-padding-small uk-list uk-list-divider ">
 
         <!--ListElement-->
-        <li *ngFor="let card of libraryService.libraryMovie" class="list_elements" >
+        <li *ngFor="let card of libraryService.libraryMovie" class="list_elements uk-card-hover" >
 
           <!--Title-->
           <h3 class="uk-accordion-title title_content title_text uk-display-inline">{{card.title}}</h3>
