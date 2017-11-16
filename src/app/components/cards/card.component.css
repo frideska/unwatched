@@ -39,7 +39,6 @@
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
   width: 100.5px;
-  background-color: #00d377;
 }
 
 .button_add{
@@ -51,7 +50,4 @@
   background-color: #663399;
   color: white;
 
-}
-
-.uk-card-footer>div>button{
 }
