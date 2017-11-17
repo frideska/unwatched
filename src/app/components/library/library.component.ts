@@ -18,7 +18,6 @@ export class LibraryComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.libraryService.getLibrary()
     this.sub = this.route.queryParams.subscribe(params => {
-        // Defaults to 0 if no query param provided.
         this.type = params['type'] || 'movie'
       })
   }
