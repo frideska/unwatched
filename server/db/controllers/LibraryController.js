@@ -92,26 +92,26 @@ let removeMovieForUser = async (movieID, user) => {
  * @returns {Promise.<boolean>}
  */
 let newTv = async (tvID, user) => {
-  let movie = await UserTv.findOne({tv_id: tvID, user_id: user._id})
+  let tv = await UserTv.findOne({tv_id: tvID, user_id: user._id})
   //Checks if the tv-show is in watchlist, if so remove it
-  let tvWatchlist = await WatchlistUserTv.findOne({movie_id: movieID, user_id: user._id})
+  let tvWatchlist = await WatchlistUserTv.findOne({tv_id: tvID, user_id: user._id})
   if(tvWatchlist)
     try {
-      await WatchlistUserTv.remove({movie_id: movieID, user_id: user._id})
+      await WatchlistUserTv.remove({tv_id: tvID, user_id: user._id})
     } catch (err) {
       console.log(err)
       return false
     }
-  if(!movie){
+  if(!tv){
     try {
       let userTv = new UserTv()
-      userTv.movie_id = movieID
+      userTv.tv_id = tvID
       userTv.user_id = user._id
       userTv.save()
       return true
     }
     catch(err) {
-      console.error(error)
+      console.error(err)
       return false
     }
   }

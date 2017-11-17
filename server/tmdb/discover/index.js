@@ -34,6 +34,11 @@
  * with_release_type
  * with_original_language
  */
+
+
+
+const GenreController = require('../../db/controllers/GenreController')
+
 const movie = async () => {
     try {
         const results = await tmdb.discover.movie(
@@ -58,11 +63,11 @@ const movie = async () => {
                 with_original_language: ''
             }
         )
-      return await results.results.map(result => {
-        return {
+      return await Promise.all(results.results.map(async result => {
+        return await {
           'id': result.id,
           'title': result.title,
-          'genres': result.genre_ids,
+          'genres': await GenreController.getGenreMovie(result.genre_ids),
           'overview': result.overview,
           'backdrop_path': result.backdrop_path,
           'poster_path': result.poster_path,
@@ -72,7 +77,7 @@ const movie = async () => {
           'library': false,
           'media_type': 'movie'
         }
-      })
+      }))
 
     } catch (err) {
         console.error(err)

@@ -12,36 +12,86 @@
 
   <!--Card Image-->
   <div class="uk-card-media-left uk-cover-container">
-    <img src="{{ element.poster }}" alt="" class="img_size" uk-cover>
+    <img src="{{ element.image }}" alt="" class="img_size" uk-cover>
     <div class="uk-position-bottom-right ">
       <a href="#card-movieID-{{ element.id }}" class="uk-icon-link" uk-toggle>
-      <img src="http://sachinchoolur.github.io/lightGallery/static/img/icons/zoom-w.png" alt="" style="height: 2.5rem; padding: 8px"/></a>
+        <img src="http://sachinchoolur.github.io/lightGallery/static/img/icons/zoom-w.png" alt="" style="height: 2.5rem; padding: 8px"/></a>
     </div>
     <!--<canvas width="100" height='300'></canvas>-->
   </div>
 
   <!--Card Body-->
-  <div class="uk-padding-small">
-    <div>
+  <div class="uk-padding-remove">
+    <!--Card Description-->
 
-      <!--Card Title-->
-      <h3 class="uk-margin-remove-bottom title_text"> {{ element.title }} </h3>
-      <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
-      <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
-      <button (click) = "addToWatchlist(element.watchlist)">
-        <label *ngIf='element.watchlist' >Remove from watchlist!</label>
-        <label *ngIf='!element.watchlist' >Add to watchlist!</label>
-      </button>
-      <button (click) = "addToLibrary()">
-        <label *ngIf='element.library' >Remove from library!</label>
-        <label *ngIf='!element.library' >Add to library!</label>
-      </button>
-      <hr class="uk-divider-small uk-margin-remove" />
+    <div class="uk-padding-small">
+      <div>
 
-      <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
+        <!--Card Title-->
+        <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ element.title }} </h3>
+        <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
+        <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
+        <hr class="uk-divider-small uk-margin-remove" />
+        <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
 
+      </div>
+    </div>
+
+
+    <!--Card Buttons-->
+    <div class="uk-card-footer uk-padding-remove uk-position-bottom-right">
+      <div class="uk-button-group  ">
+
+        <!--Watchlist buttons-->
+
+        <!--Add to watchlist-->
+        <button *ngIf='!element.watchlist; else removeWatchList'
+                onclick="UIkit.notification({
+                message: '<span uk-icon=\'icon: check\'></span> Successfully added to watchlist!',
+                pos: 'bottom-center', status:'success', timeout: '2500'})"
+                (click)="addToWatchlist()"
+                class="uk-button uk-text-nowrap button_add" >
+          <label>Add to <br>watchlist</label>
+        </button>
+
+        <!--Remove from watchlist-->
+        <ng-template #removeWatchList>
+          <button (click)="addToWatchlist()"
+                  onclick="UIkit.notification({
+                  message: '<span uk-icon=\'icon: trash\'></span> Deleted from watchlist!',
+                  pos: 'bottom-center', status:'danger', timeout: '2500'})"
+                  class="uk-button uk-text-nowrap button_remove">
+            <label>Remove</label>
+          </button>
+        </ng-template>
+
+        <!--Library buttons-->
+
+        <!--Add to library-->
+        <button *ngIf='!element.library; else removeLibrary'
+                onclick="UIkit.notification({
+                message: '<span uk-icon=\'icon: check\'></span> Successfully added to library!',
+                pos: 'bottom-center', status:'success', timeout: '2500'})"
+                (click)="addToLibrary()"
+                class="uk-button uk-text-nowrap button_add">
+          <label>Add to <br>library</label>
+        </button>
+
+        <!--Remove from library-->
+        <ng-template #removeLibrary>
+          <button (click)="addToLibrary()"
+                  onclick="UIkit.notification({
+                  message: '<span uk-icon=\'icon: trash\'></span> Deleted from library!',
+                  pos: 'bottom-center', status:'danger', timeout: '2500'})"
+                  class="uk-button uk-text-nowrap button_remove">
+            <label>Remove</label>
+          </button>
+        </ng-template>
+
+      </div>
     </div>
 
   </div>
+
 
 </div>

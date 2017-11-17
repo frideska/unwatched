@@ -1,16 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { AgWordCloudData, AgWordCloudDirective } from 'angular4-word-cloud'
 
+import {WordCloudComponent} from '../word-cloud/word-cloud.component'
 import { LibraryService } from 'services/library.service'
-
+import { WatchlistService} from '../../services/watchlist.service'
 
 @Component({
-  selector: 'app-word-cloud',
-  templateUrl: './word-cloud.component.html',
-  styleUrls: ['./word-cloud.component.css']
+  selector: 'app-word-cloud-wish',
+  templateUrl: '../word-cloud/word-cloud.component.html',
+  styleUrls: ['../word-cloud/word-cloud.component.css']
 })
 
-export class WordCloudComponent implements OnInit {
+export class WordCloudWishComponent implements OnInit {
 
   // WordCloudDirective
   @ViewChild('word_cloud_chart') wordCloudChart: AgWordCloudDirective
@@ -39,18 +40,15 @@ export class WordCloudComponent implements OnInit {
     {size: 2, text: 'LIBRARY'},
     {size: 1, text: ' '},
     {size: 2, text: 'EMPTY'}
-    ]
+  ]
 
   addMore = [
     {size: 2, text: 'LIBRARY NEEDS'},
     {size: 1, text: ' '},
     {size: 2, text: 'MORE CONTENT'}
-    ]
+  ]
 
-
-  constructor(public libraryService: LibraryService) {
-
-  }
+  constructor(public libraryService: LibraryService, public watchlistService: WatchlistService) { }
 
   async ngOnInit() {
     /**
@@ -67,12 +65,20 @@ export class WordCloudComponent implements OnInit {
     let libraryTV = this.libraryService.libraryTv
     let tvs = libraryTV.map(movie => movie.genres)
     let movs = libraryMov.map(movie => movie.genres)
-    let genres = tvs.concat(movs)
+    let libraryGens = tvs.concat(movs)
 
-    // Generate cloud data and update cloud.
+    // Fetch movies and TV shows from Watchlist.
+    await this.watchlistService.getWatchlist()
+    let watchlist = this.watchlistService.watchlistMovie
+    let watchGens = watchlist.map(movie => movie.genres)
+
+    // Slap them together as one array.
+    let genres = watchGens.concat(libraryGens)
+
+    // Generate cloud data update cloud.
     this.generateCloudWords(genres)
     this.wordCloudChart.update()
-    }
+  }
 
   private generateCloudWords(genres) {
     /**
@@ -104,8 +110,8 @@ export class WordCloudComponent implements OnInit {
      */
     var arr = genres.reduce((a, b) => a.concat(b), [])
     let counted = this.countEm(arr, String)
-      for (var key in counted) {
-        this.wordData.push({size: counted[key], text: key})
+    for (var key in counted) {
+      this.wordData.push({size: counted[key], text: key})
     }
   }
 
@@ -123,4 +129,5 @@ export class WordCloudComponent implements OnInit {
       return counter
     }, {})
   }
+
 }

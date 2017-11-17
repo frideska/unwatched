@@ -6,7 +6,7 @@
 }
 
 .title_text {
-  font-size: 1.6vw;
+  font-size: 1.5rem;
   padding-top: 5px;
 }
 
@@ -29,6 +29,25 @@
 
 .img_size {
   height: 100%;
-  width: 100%
+  width: 100%;
+
+}
+.uk-button{
+  font-size: 0.6rem;
+  padding:0;
+  line-height:10px;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  width: 100.5px;
+}
+
+.button_add{
+  background-color: #00d377;
+  color: white;
+}
+
+.button_remove{
+  background-color: #663399;
+  color: white;
 
 }

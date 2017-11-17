@@ -7,6 +7,18 @@
  * Make sure node version supports async/await.
  * If not, the program will fail with error suggesting async syntax is wrong.
  */
+
+const project = '██╗   ██╗███╗   ██╗██╗    ██╗ █████╗ ████████╗ ██████╗██╗  ██╗███████╗██████╗ \n' +
+                '██║   ██║████╗  ██║██║    ██║██╔══██╗╚══██╔══╝██╔════╝██║  ██║██╔════╝██╔══██╗\n' +
+                '██║   ██║██╔██╗ ██║██║ █╗ ██║███████║   ██║   ██║     ███████║█████╗  ██║  ██║\n' +
+                '██║   ██║██║╚██╗██║██║███╗██║██╔══██║   ██║   ██║     ██╔══██║██╔══╝  ██║  ██║\n' +
+                '╚██████╔╝██║ ╚████║╚███╔███╔╝██║  ██║   ██║   ╚██████╗██║  ██║███████╗██████╔╝\n' +
+                ' ╚═════╝ ╚═╝  ╚═══╝ ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ \n' +
+                '                                                                              '
+
+console.log(project)
+
+
 const NODE_VERSION = process.versions.node
 const SUPPORTED_NODE_VERSION = '8.9.0'
 
@@ -38,6 +50,7 @@ const tmdb = require('tmdbapi')
 const misc = require('./misc')
 const db = require('./db')
 const routes = require('./routes')
+const genre = require('./tmdb').genre
 
 /**
  * Define constants from environment
@@ -87,5 +100,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/', routes)
+
+genre.movie()
+genre.tv()
 
 let server = app.listen(PORT, HOST, () => console.log(`Project server running on: ${HOST}:${PORT}`))
