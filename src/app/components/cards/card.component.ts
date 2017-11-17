@@ -19,9 +19,9 @@ export class CardComponent implements OnInit {
 
   addToWatchlist() {
     if (this.element.watchlist) {
-      this.watchlistService.removeMovieFromWatchlist(this.element.id)
+      this.watchlistService.removeFromWatchlist(this.element)
     } else  {
-      this.watchlistService.addMovieToWatchlist(this.element.id)
+      this.watchlistService.addToWatchlist(this.element)
     }
   }
   addToLibrary() {
