@@ -7,7 +7,7 @@ const findController = require('../../../../db/controllers/FindController')
  */
 route.get('/', async (req, res) => {
   let response = await tmdbWrapper.search.multi(req.query.q)
-  if(req.user){
+  if (req.user) {
     response = await Promise.all(response.map(async movie => {
       const watchlist = await findController.movieInWatchlist(movie.id, req.user)
       const library = await findController.movieInLibrary(movie.id, req.user)
