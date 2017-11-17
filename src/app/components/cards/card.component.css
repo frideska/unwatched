@@ -18,7 +18,7 @@
   font-size: 0.8rem;
 }
 
-.uk-label {
+.uk-label[_ngcontent-c4] {
   font-size: 0.45rem;
 }
 
@@ -46,8 +46,38 @@
   color: white;
 }
 
+.button_add:hover{
+  background-color: #00a85f;
+  color: white;
+}
+
 .button_remove{
   background-color: #663399;
   color: white;
+}
 
+.button_remove:hover{
+  background-color: #4f2778;
+  color: white;
+}
+
+.uk-modal-full .uk-modal-dialog, .uk-modal-footer, .uk-modal-header{
+ background-color: #222222;
+}
+.uk-modal-close-full{
+  background-color: transparent;
+}
+
+.uk-h1, .uk-close:focus, .uk-close:hover, h1{
+  color: white;
+}
+
+.uk-modal-full .uk-modal-dialog .uk-label {
+  font-size: 1rem;
+  background-color: white;
+  color: #666666;
+}
+
+.button_padding{
+  padding: 1rem;
 }

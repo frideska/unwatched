@@ -3,7 +3,7 @@
 
 
   <!--Poster Modal-->
-  <div id="card-movieID-{{ element.id }}"  uk-modal>
+  <div id="card-movieID-{{ element.id }}"  uk-modal >
     <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
       <button class="uk-modal-close-outside" type="button" uk-close></button>
       <img src="{{ element.poster }}" alt="" style="height: 45vw">
@@ -22,22 +22,25 @@
 
   <!--Card Body-->
   <div class="uk-padding-remove">
-    <!--Card Description-->
 
-    <div class="uk-padding-small">
-      <div>
+    <!--Modal toggle-->
+    <a href="#item_modal-{{ element.id }}" class="uk-link-reset" uk-toggle>
 
-        <!--Card Title-->
-        <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ element.title }} </h3>
-        <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
-        <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
-        <hr class="uk-divider-small uk-margin-remove" />
-        <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
+      <!--Card Description-->
+      <div class="uk-padding-small">
+        <div>
 
+          <!--Card Title-->
+          <h3 class="title_text uk-display-inline "> {{ element.title }} </h3>
+          <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
+          <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
+          <hr class="uk-divider-small uk-margin-remove" />
+          <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
+
+        </div>
       </div>
-    </div>
-
-
+    </a>
+    
     <!--Card Buttons-->
     <div class="uk-card-footer uk-padding-remove uk-position-bottom-right">
       <div class="uk-button-group  ">
@@ -94,4 +97,60 @@
   </div>
 
 
+
+</div>
+
+<!-- Modal-->
+<div id="item_modal-{{ element.id }}" class="uk-modal-full" uk-modal>
+  <div class="uk-modal-dialog back">
+    <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+    <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-top uk-text-left" uk-grid>
+      <div class="uk-background-cover" [ngStyle]="{ 'background-image': 'url(' +  element.poster  + ')'}" uk-height-viewport></div>
+      <div class="uk-padding-small padding-top-large ">
+
+        <!--Modal Header-->
+        <div class="uk-modal-header">
+          <h1 class="uk-margin-remove uk-display-inline">{{ element.title }}</h1>
+          <h1 class=" uk-display-inline uk-text-muted uk-text-muted"> ({{ element.date.getFullYear() }})</h1>
+          <h3 class="uk-margin-remove genere_modal"><span class="uk-label">{{ element.genres }}</span> </h3>
+        </div>
+
+        <!--Modal body-->
+        <div class="uk-modal-body uk-text-muted" >
+          <p>{{ element.overview2 }}</p>
+          <div class="uk-width-auto">
+            <iframe src="https://www.youtube.com/embed/3dr2zW9DRnE?rel=0&amp;controls=0&amp;showinfo=0"
+                    frameborder="0" allowfullscreen width="560" height="315"
+                    uk-responsive uk-video="automute: true; autoplay: false;"></iframe>
+          </div>
+
+        </div>
+
+        <!--Modal footer-->
+        <div class="uk-modal-footer">
+
+          <!--Card Buttons-->
+            <div class="uk-position-bottom-right">
+              <div class="uk-button-group button_padding">
+
+                <!--Add to watchlist-->
+                <button (click) = "addToWatchlist(element.watchlist)"
+                        class="uk-button uk-text-nowrap remove button_add uk-modal-close">
+                  <label *ngIf='element.watchlist' >Remove</label>
+                  <label *ngIf='!element.watchlist' >Add to <br>watchlist</label>
+                </button>
+
+                <!--Add to library-->
+                <button (click) = "addToLibrary()" class="uk-button uk-padding-remove button_remove uk-modal-close">
+                  <label *ngIf='element.library' >Remove</label>
+                  <label *ngIf='!element.library' >Add to <br>library</label>
+                </button>
+
+              </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
