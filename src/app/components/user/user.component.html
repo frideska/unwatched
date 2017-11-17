@@ -24,8 +24,50 @@
       </div>
     </div>
 
+    <!--Average library rating-->
+    <div class="uk-card uk-card-secondary usercard statistics_container">
+      <div class="uk-card-header">
+        <div class="uk-grid-small" uk-grid>
+          <div>
+            <h4 class="uk-card-title uk-margin-remove-bottom">Library rating</h4>
+          </div>
+        </div>
+      </div>
+      <div class="cloud_container">
+        <app-average-rating></app-average-rating>
+      </div>
+    </div>
+
+    <!--Library cloud-->
+    <div class="uk-card uk-card-secondary usercard statistics_container">
+      <div class="uk-card-header">
+        <div class="uk-grid-small" uk-grid>
+          <div>
+            <h4 class="uk-card-title uk-margin-remove-bottom">Favourites</h4>
+          </div>
+        </div>
+      </div>
+      <div class="cloud_container">
+        <app-word-cloud></app-word-cloud>
+      </div>
+    </div>
+
+    <!--Overall cloud-->
+    <div class="uk-card uk-card-secondary usercard statistics_container">
+      <div class="uk-card-header">
+        <div class="uk-grid-small" uk-grid>
+          <div>
+            <h4 class="uk-card-title uk-margin-remove-bottom">Desires</h4>
+          </div>
+        </div>
+      </div>
+      <div class="cloud_container">
+        <app-word-cloud-wish></app-word-cloud-wish>
+      </div>
+    </div>
+
     <!--User Search History-->
-    <div class="uk-card uk-card-secondary usercard">
+    <div class="uk-card uk-card-secondary usercard uk-width-expand@m">
       <div class="uk-card-header">
         <div class="uk-grid-small uk-flex-middle" uk-grid>
           <div class="uk-width-expand">
@@ -41,33 +83,6 @@
           <li>search query4</li>
           <li>search query5</li>
         </ul>
-      </div>
-    </div>
-
-    <!--User Statistics-->
-      <div class="uk-card uk-card-secondary usercard statistics_container">
-        <div class="uk-card-header">
-          <div class="uk-grid-small" uk-grid>
-            <div>
-              <h4 class="uk-card-title uk-margin-remove-bottom">Favourites</h4>
-            </div>
-          </div>
-        </div>
-        <div class="cloud_container">
-          <app-word-cloud></app-word-cloud>
-        </div>
-      </div>
-
-    <div class="uk-card uk-card-secondary usercard statistics_container">
-      <div class="uk-card-header">
-        <div class="uk-grid-small" uk-grid>
-          <div>
-            <h4 class="uk-card-title uk-margin-remove-bottom">Desires</h4>
-          </div>
-        </div>
-      </div>
-      <div class="cloud_container">
-        <app-word-cloud-wish></app-word-cloud-wish>
       </div>
     </div>
 
