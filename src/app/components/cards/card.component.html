@@ -3,7 +3,7 @@
 
 
   <!--Poster Modal-->
-  <div id="card-movieID-{{ element.id }}"  uk-modal>
+  <div id="card-movieID-{{ element.id }}"  uk-modal >
     <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
       <button class="uk-modal-close-outside" type="button" uk-close></button>
       <img src="{{ element.poster }}" alt="" style="height: 45vw">
@@ -31,7 +31,7 @@
         <div>
 
           <!--Card Title-->
-          <h3 class="uk-margin-remove-bottom title_text uk-display-inline"> {{ element.title }} </h3>
+          <h3 class="title_text uk-display-inline "> {{ element.title }} </h3>
           <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
           <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
 
@@ -79,8 +79,9 @@
 
         <!--Modal Header-->
         <div class="uk-modal-header">
-          <h1>{{ element.title }}</h1>
-          <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
+          <h1 class="uk-margin-remove uk-display-inline">{{ element.title }}</h1>
+          <h1 class=" uk-display-inline uk-text-muted uk-text-muted"> ({{ element.date.getFullYear() }})</h1>
+          <h3 class="uk-margin-remove genere_modal"><span class="uk-label">{{ element.genres }}</span> </h3>
         </div>
 
         <!--Modal body-->
@@ -99,13 +100,13 @@
 
                 <!--Add to watchlist-->
                 <button (click) = "addToWatchlist(element.watchlist)"
-                        class="uk-button uk-text-nowrap remove button_add">
+                        class="uk-button uk-text-nowrap remove button_add uk-modal-close">
                   <label *ngIf='element.watchlist' >Remove</label>
                   <label *ngIf='!element.watchlist' >Add to <br>watchlist</label>
                 </button>
 
                 <!--Add to library-->
-                <button (click) = "addToLibrary()" class="uk-button uk-padding-remove button_remove">
+                <button (click) = "addToLibrary()" class="uk-button uk-padding-remove button_remove uk-modal-close">
                   <label *ngIf='element.library' >Remove</label>
                   <label *ngIf='!element.library' >Add to <br>library</label>
                 </button>
