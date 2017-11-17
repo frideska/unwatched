@@ -13,11 +13,9 @@
             <p class="uk-text-meta uk-margin-remove-top">{{ userService.user.email }}</p>
           </div>
         </div>
-
       </div>
       <div class="uk-card-body">
         <p>Updated: {{ userService.user.updated }}</p>
-
       </div>
       <div class="uk-card-footer">
         <a class="uk-button uk-button-danger" (click)="userService.delete()">Delete me</a>
@@ -30,12 +28,12 @@
         <div class="uk-grid-small uk-flex-middle" uk-grid>
           <div class="uk-width-expand">
             <h3 class="uk-card-title uk-margin-remove-bottom">Your search history</h3>
-          </div *ngFor="let history of historyService.history" [element]="title"></div>
+          </div>
         </div>
       </div>
       <div>
         <ul>
-          <div
+          <div *ngFor="let history of historyService.history" [element]="title"></div>
         </ul>
       </div>
     </div>
@@ -66,7 +64,6 @@
         <app-word-cloud-wish></app-word-cloud-wish>
       </div>
     </div>
-
 
   </div>
 </div>
