@@ -1,29 +1,13 @@
 <!--Card Container-->
 <div class="uk-card uk-card-small uk-card-hover uk-card-secondary uk-child-width-1-2  card_container"  style="min-width: 400px; max-width: 400px;"  uk-grid>
 
-
-  <!--Poster Modal-->
-  <div id="card-movieID-{{ element.id }}"  uk-modal >
-    <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
-      <button class="uk-modal-close-outside" type="button" uk-close></button>
-      <img src="{{ element.poster }}" alt="" style="height: 45vw">
-    </div>
-  </div>
-
   <!--Card Image-->
   <div class="uk-card-media-left uk-cover-container">
     <img src="{{ element.image }}" alt="" class="img_size" uk-cover>
-    <div class="uk-position-bottom-right ">
-      <a href="#card-movieID-{{ element.id }}" class="uk-icon-link" uk-toggle>
-        <img src="http://sachinchoolur.github.io/lightGallery/static/img/icons/zoom-w.png" alt="" style="height: 2.5rem; padding: 8px"/></a>
-    </div>
-    <!--<canvas width="100" height='300'></canvas>-->
   </div>
 
   <!--Card Body-->
   <div class="uk-padding-remove">
-
-    <!--Modal toggle-->
 
       <!--Card Description-->
       <div class="uk-padding-small">
@@ -54,7 +38,5 @@
     </div>
 
   </div>
-
-
 
 </div>
