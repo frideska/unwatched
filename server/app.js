@@ -18,19 +18,18 @@ const project = '██╗   ██╗███╗   ██╗██╗    █�
 
 console.log(project)
 
-
 const NODE_VERSION = process.versions.node
 const SUPPORTED_NODE_VERSION = '8.9.0'
 
 if (NODE_VERSION.charAt(0) < SUPPORTED_NODE_VERSION.charAt(0)) {
-    console.log(`
+  console.log(`
         You are running an outdated version of Nodejs!
         Nodejs version ${NODE_VERSION} is NOT supported.
         Please upgrade to at least version ${SUPPORTED_NODE_VERSION}!
     `)
-    process.exit(1)
+  process.exit(1)
 } else {
-    console.log(`Running with Nodejs version ${NODE_VERSION}`)
+  console.log(`Running with Nodejs version ${NODE_VERSION}`)
 }
 
 /**
@@ -69,19 +68,19 @@ const mongoose = db.init()
 const app = express()
 
 var sess = {
-    secret: SECRET,
-    cookie: {},
-    resave: true,
-    saveUninitialized: true
+  secret: SECRET,
+  cookie: {},
+  resave: true,
+  saveUninitialized: true
 }
 
 if (ENV === 'production') {
-    app.set('trust proxy', 1) // trust first proxy
-    sess.cookie.secure = true // serve secure cookies
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
 }
 
 global.tmdb = new tmdb({
-    apiv3: TMDB_TOKEN
+  apiv3: TMDB_TOKEN
 })
 
 app.use(session(sess))
