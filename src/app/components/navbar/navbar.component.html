@@ -10,13 +10,19 @@
       <li>
         <a>library</a>
           <div uk-drop="animation: uk-animation-slide-top-small; duration: 100">
-            <div class="uk-card-small uk-card-body uk-card-secondary uk-margin-remove hover_style" ><span uk-icon="icon : lock; ratio: 0.9" class="icon_center"></span>You are not logged in</div>
+            <div class="uk-card-small uk-card-body uk-card-secondary uk-margin-remove hover_style" >
+              <span uk-icon="icon : lock; ratio: 0.9" class="icon_center"></span>
+              You are not logged in
+            </div>
           </div>
       </li>
       <li>
         <a>Watchlist</a>
         <div uk-drop="animation: uk-animation-slide-top-small; duration: 100">
-          <div class="uk-card-small uk-card-body uk-card-secondary uk-margin-remove hover_style" ><span uk-icon="icon : lock; ratio: 0.9" class="icon_center"></span>You are not logged in</div>
+          <div class="uk-card-small uk-card-body uk-card-secondary uk-margin-remove hover_style" >
+            <span uk-icon="icon : lock; ratio: 0.9" class="icon_center"></span>
+            You are not logged in
+          </div>
         </div>
       </li>
     </ul>
@@ -39,7 +45,7 @@
   </div>
 
   <!--Search toggle button-->
-  <div class="nav-overlay uk-navbar-right navbar_search">
+  <div *ngIf="userService.loggedIn" class="nav-overlay uk-navbar-right navbar_search">
     <div id="search_text" class="uk-navbar-toggle" id="search_text" uk-toggle="target: .nav-overlay; animation: uk-animation-fade">Search <span uk-icon="icon : search;" id="search_icon"></span></div>
   </div>
 
@@ -100,4 +106,3 @@
     </div>
   </div>
 </ng-template>
-
