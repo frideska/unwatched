@@ -80,21 +80,28 @@ h1{
   color: white;
 }
 
+.button_add:hover{
+  background-color: #00a85f;
+  color: white;
+}
+
 .button_remove{
   background-color: #663399;
   color: white;
+}
 
+.button_remove:hover{
+  background-color: #4f2778;
+  color: white;
 }
 
 .flex_box{
   flex-direction: column;
-
 }
 
 .uk-accordion-title::after{
   background-color: black;
   max-height: 1.85rem;
-
 }
 
 .uk-open>.uk-accordion-title::after{
