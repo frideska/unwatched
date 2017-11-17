@@ -1,11 +1,11 @@
 const GenreTv = require('../db/models/GenreTv')
 const GenreMovie = require('../db/models/GenreMovie')
 
-const movie = async (id, source) => {
+const movie = async () => {
   try {
     let genres = await tmdb.genres.movie()
-    genres.genres.map(async genre => {
-      let result = await GenreMovie.findOne({ id: id })
+    genres.genres.map(async (genre) => {
+      let result = await GenreMovie.findOne({ id: genre.id })
       if (!result) {
         GenreMovie.create(genre)
       }
@@ -14,14 +14,15 @@ const movie = async (id, source) => {
     console.error(err)
   }
 }
-const tv = async (id, source) => {
+const tv = async () => {
   try {
     let genres = await tmdb.genres.tv()
-    genres.genres.map(async genre => {
-      let result = await GenreTv.findOne({ id: id })
+    genres.genres.map(async (genre) => {
+      let result = await GenreTv.findOne({ id: genre.id })
       if (!result) {
         GenreTv.create(genre)
-      }})
+      }
+    })
   } catch (err) {
     console.error(err)
   }

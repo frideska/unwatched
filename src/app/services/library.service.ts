@@ -13,8 +13,7 @@ export class LibraryService {
   libraryMovie: any
   libraryTv: any
 
-  constructor(private http: Http) {
-  }
+  constructor(private http: Http) { }
 
   public async addToLibrary(element: CardElement) {
     const type = element.type
@@ -63,27 +62,22 @@ export class LibraryService {
         break
     }
   }
-  public isEmpty(type): boolean{
+  public isEmpty(type): boolean {
     switch (type) {
       case 'movie': {
-        if ( isNullOrUndefined(this.libraryMovie) ) return true
-        if (this.libraryMovie.length == 0) return true
-        else false
-
+        if (!this.libraryMovie) { return true }
+        if (!this.libraryMovie.length) { return true }
+        return false
       }
       case 'tv': {
-
-        if ( isNullOrUndefined(this.libraryTv) ) return true
-        if (this.libraryTv.length == 0) return true
-        else false
-
+        if (!this.libraryTv) { return true }
+        if (!this.libraryTv.length) { return true }
+        return false
       }
-
       default: {
         return false
       }
     }
-
   }
 
   private toggleListView() {
