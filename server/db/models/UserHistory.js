@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const User = require('User') // eslint-disable-line
+const User = require('./User') // eslint-disable-line
 
 let Schema = mongoose.Schema
 
@@ -12,6 +12,6 @@ let UserHistory = new Schema({
   date: { type: Date, default: Date.now }
 })
 
-const UH = mongoose.model('UserHsitory', UserHistory)
+const UH = mongoose.model('UserHistory', UserHistory)
 
 module.exports = UH

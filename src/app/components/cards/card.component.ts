@@ -13,7 +13,11 @@ import { CardElement } from '../../classes/CardElement'
 export class CardComponent implements OnInit {
   @Input() element: CardElement
 
-  constructor(private watchlistService: WatchlistService, private libraryService: LibraryService, private historyService: HistoryService) { }
+  constructor(
+    private watchlistService: WatchlistService,
+    private libraryService: LibraryService,
+    private historyService: HistoryService
+  ) { }
 
   ngOnInit() {
   }
@@ -33,7 +37,7 @@ export class CardComponent implements OnInit {
     }
   }
 
-  addToHistory(){
-    this.historyService.addToHistory(this.element)
+  addToHistory() {
+    this.historyService.addToHistory(this.element.title)
   }
 }

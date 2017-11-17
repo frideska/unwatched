@@ -6,7 +6,7 @@ const UserHistory = require('../../../db/models/UserHistory')
  * Route for getting the 10 latest history Objects attriuted to the logged in user.
  */
 router.get('/', async (req, res) => {
-  let history = await UserHistory.find({ user_id: req.user._id }).limit(10).exec()
+  let history = await UserHistory.find({ user_id: req.user._id }).sort({date: 'descending'}).limit(10).exec()
   res.json(history)
 })
 
