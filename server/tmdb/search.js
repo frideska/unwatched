@@ -1,6 +1,5 @@
 const GenreController = require('../db/controllers/GenreController')
 
-
 const multi = async (query) => {
   try {
     let response = await tmdb.search.multi({
@@ -11,7 +10,7 @@ const multi = async (query) => {
     response.results = response.results.filter((result) => {
       return result.media_type === 'movie' || result.media_type === 'tv'
     })
-    response =  await Promise.all(response.results.map(async (result) => {
+    response = await Promise.all(response.results.map(async (result) => {
       if (result.media_type == 'tv') {
         return await {
           'id': result.id,
@@ -26,9 +25,8 @@ const multi = async (query) => {
           'library': false,
           'media_type': 'tv'
         }
-      }
-      else if (result.media_type == 'movie') {
-        return await{
+      } else if (result.media_type == 'movie') {
+        return await {
           'id': result.id,
           'title': result.title,
           'genres': await GenreController.getGenreMovie(result.genre_ids),

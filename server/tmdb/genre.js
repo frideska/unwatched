@@ -21,7 +21,8 @@ const tv = async (id, source) => {
       let result = await GenreTv.findOne({ id: id })
       if (!result) {
         GenreTv.create(genre)
-      }})
+      }
+    })
   } catch (err) {
     console.error(err)
   }
