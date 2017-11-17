@@ -1,6 +1,5 @@
 const express = require('express')
 const path = require('path')
-const passport = require('passport')
 
 const api = require('./api')
 const auth = require('./auth')

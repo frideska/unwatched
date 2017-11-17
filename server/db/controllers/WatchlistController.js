@@ -23,7 +23,7 @@ let newMovie = async (movieID, user) => {
       userMovie.save()
       return true
     } catch (err) {
-      console.error(error)
+      console.error(err)
       return false
     }
   }
@@ -52,7 +52,7 @@ let findMovieForUser = async (user) => {
     return clean(await Promise.all(userMovies.map(async (movie) => {
       const watchlist = true
       const library = false
-      return await tmdbWrapper.details.movie(movie.movie_id, watchlist, library)
+      return tmdbWrapper.details.movie(movie.movie_id, watchlist, library)
     })))
   } catch (err) {
     console.log(err)
@@ -93,7 +93,7 @@ let newTv = async (tvID, user) => {
       userTv.save()
       return true
     } catch (err) {
-      console.error(error)
+      console.error(err)
       return false
     }
   }

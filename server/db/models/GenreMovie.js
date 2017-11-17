@@ -10,6 +10,6 @@ let GenreSchema = new Schema({
   name: { type: String }
 })
 
-GenreMovie = mongoose.model('GenreMovie', GenreSchema)
+const GenreMovie = mongoose.model('GenreMovie', GenreSchema)
 
 module.exports = GenreMovie

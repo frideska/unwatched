@@ -12,8 +12,8 @@ const getGenreMovie = async (ids) => {
       }
     }))
   } catch (err) {
+    console.error(err)
     return null
-    console.log(err)
   }
 }
 const getGenreTv = async (ids) => {
@@ -27,8 +27,8 @@ const getGenreTv = async (ids) => {
       }
     }))
   } catch (err) {
+    console.error(err)
     return null
-    console.log(err)
   }
 }
 module.exports = {
