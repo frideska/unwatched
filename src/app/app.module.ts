@@ -69,7 +69,7 @@ const routes: Routes = [
     NotFoundComponent,
     FilterComponent,
     WordCloudComponent,
-    FooterComponent
+    FooterComponent,
     ListViewComponent,
     CardComponent,
     WordCloudWishComponent
