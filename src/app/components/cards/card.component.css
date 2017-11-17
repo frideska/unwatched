@@ -18,7 +18,7 @@
   font-size: 0.8rem;
 }
 
-.uk-label {
+.uk-label[_ngcontent-c4] {
   font-size: 0.45rem;
 }
 
@@ -70,8 +70,11 @@
   color: white;
 }
 
-.genere_modal>label {
-  font-size: 2rem;
+.uk-modal-full .uk-modal-dialog .uk-label {
+  font-size: 1rem;
+  background-color: white;
+  color: #666666;
+
 }
 
 
