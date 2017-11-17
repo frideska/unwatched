@@ -62,8 +62,11 @@
   color: white;
 }
 
-.uk-modal-full .uk-modal-dialog, .uk-modal-footer, .uk-modal-close-full, .uk-modal-header{
+.uk-modal-full .uk-modal-dialog, .uk-modal-footer, .uk-modal-header{
  background-color: #222222;
+}
+.uk-modal-close-full{
+  background-color: transparent;
 }
 
 .uk-h1, .uk-close:focus, .uk-close:hover, h1{
