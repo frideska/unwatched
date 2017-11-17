@@ -75,14 +75,9 @@
       </div>
       <div>
         <ul>
-          <li>search query1</li>
-          <li>search query2</li>
-          <li>search query3</li>
-          <li>search query4</li>
-          <li>search query5</li>
+          <div *ngFor="let history of historyService.history" [element]="title"></div>
         </ul>
       </div>
     </div>
-
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 
 import { UserService } from 'services/user.service'
+import { HistoryService } from 'services/history.service'
 
 @Component({
   selector: 'app-user',
@@ -9,7 +10,7 @@ import { UserService } from 'services/user.service'
 })
 export class UserComponent implements OnInit {
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService, private historyService: HistoryService) { }
 
     async ngOnInit(): Promise<void> {
         await this.userService.getUser()
