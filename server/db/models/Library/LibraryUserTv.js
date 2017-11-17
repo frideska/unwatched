@@ -8,7 +8,7 @@ let Schema = mongoose.Schema
  * many to many relation for move and users
  */
 let userTvSchema = new Schema({
-  tv_id: { type: String, required: true },
+  tv_id: { type: Schema.Types.ObjectId, ref: 'Tv', required: true },
   user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   date: { type: Date, default: Date.now }
 })
