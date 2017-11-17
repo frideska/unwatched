@@ -1,8 +1,8 @@
-<div class="uk-container uk-width-auto ">
-  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center uk-child-width-1-1@s uk-child-width-1-2@m" uk-grid>
+<div class="uk-container uk-container-small">
+  <div class="uk-margin-remove uk-animation-slide-bottom-small uk-flex-center uk-child-width-1-2@m" uk-grid>
 
     <!--User info-->
-    <div class="uk-card uk-card-secondary usercard ">
+    <div class="uk-card uk-card-secondary">
       <div class="uk-card-header">
         <div class="uk-grid-small uk-flex-middle" uk-grid>
           <div class="uk-width-auto">
@@ -13,11 +13,9 @@
             <p class="uk-text-meta uk-margin-remove-top">{{ userService.user.email }}</p>
           </div>
         </div>
-
       </div>
       <div class="uk-card-body">
         <p>Updated: {{ userService.user.updated }}</p>
-
       </div>
       <div class="uk-card-footer">
         <a class="uk-button uk-button-danger" (click)="userService.delete()">Delete me</a>
@@ -85,7 +83,6 @@
         </ul>
       </div>
     </div>
-
 
   </div>
 </div>

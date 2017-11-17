@@ -17,3 +17,7 @@ button {
 .cloud_wrapper {
   margin-bottom: 2rem;
 }
+
+.cloud {
+  transform: scale(0.9);
+}
