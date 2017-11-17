@@ -1,14 +1,25 @@
 <nav class="uk-navbar-container bg_style navbar_position uk-navbar-sticky" uk-sticky="bottom: #top"  uk-navbar>
 
-  <div class="uk-navbar-left  nav-overlay">
+  <div class="uk-navbar-left">
 
     <!--Menu items-->
-    <ul class="uk-navbar-nav ">
-      <li [routerLinkActive]="['active']">
-        <a [routerLink]="['home']">Movies</a>
+    <ul class="uk-navbar-nav"  >
+
+      <li *ngIf="!libraryService.listView; else cardView_icon">
+        <a (click)="libraryService.toggleListView()"><span uk-icon="icon : list"></span></a>
       </li>
+      <ng-template #cardView_icon>
+        <li>
+          <a (click)="libraryService.toggleListView()"><span uk-icon="icon : grid"></span></a>
+        </li>
+      </ng-template>
+
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']">Series</a>
+        <a [routerLink]="[url]" [queryParams]="{type: 'movie'}" (click)="setType('movie')">Movies</a>
+      </li>
+
+      <li [routerLinkActive]="['active']">
+        <a [routerLink]="[url]" [queryParams]="{type: 'tv'}" (click)="setType('tv')">series</a>
       </li>
 
       <li><div class="list_elements uk-navbar-item">|</div></li>
@@ -18,17 +29,25 @@
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']">Name<span uk-icon="icon : arrow-up"></span></a>
+        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'name'} ">Name<span uk-icon="icon : arrow-up"></span></a>
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']">Rating<span uk-icon="icon : arrow-up"></span></a>
+        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'rating'} "> Rating<span uk-icon="icon : arrow-up"></span></a>
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']">Date<span uk-icon="icon : arrow-down"></span></a>
+        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'date'} ">Date<span uk-icon="icon : arrow-down"></span></a>
       </li>
     </ul>
 
   </div>
+
+  <div class="uk-navbar-right">
+  <form class="uk-search uk-search uk-border-rounded">
+    <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+    <input class="uk-search-input" type="search" placeholder="Search library...">
+  </form>
+  </div>
+
 </nav>

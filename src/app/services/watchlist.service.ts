@@ -7,27 +7,25 @@ import { CardElement } from 'classes/CardElement'
 @Injectable()
 export class WatchlistService {
   private URL = '/api/watchlist'
-  watchlist: any
+  watchlistMovie: any
+  watchlistTv: any
 
   constructor(private http: Http) {}
 
-  public async addMovieToWatchlist(id: string) {
+  public async addToWatchlist(element: CardElement) {
+    const type = element.type
+    const id = element.id
     try {
-      const response = await this.http.post(this.URL + '/movie/', {id: id}).toPromise()
+      const response = await this.http.post(this.URL + '/' + type, {id: id}).toPromise()
     } catch (err) {
       console.error(err)
     }
   }
-  public async addTvToWatchlist(id: string) {
+  public async removeFromWatchlist(element: CardElement) {
+    const type = element.type
+    const id = element.id
     try {
-      const response = await this.http.post(this.URL + '/tv/', {id: id}).toPromise()
-    } catch (err) {
-      console.error(err)
-    }
-  }
-  public async removeMovieFromWatchlist(id: string) {
-    try {
-      const response = await this.http.get(this.URL + '/movie/remove/' + id ).toPromise()
+      const response = await this.http.get(this.URL + '/' + type + '/remove/' + id).toPromise()
     } catch (err) {
       console.error(err)
     }
@@ -36,15 +34,29 @@ export class WatchlistService {
     try {
       const response = await this.http.get(this.URL + '/movie/').toPromise()
       if (response.status === 200) {
-        this.reconfigure(response.json())
+        this.reconfigure(response.json(), 'movie')
+      }
+    }catch (err) {
+      console.error(err)
+    }
+    try {
+      const response = await this.http.get(this.URL + '/tv/').toPromise()
+      if (response.status === 200) {
+        this.reconfigure(response.json(), 'tv')
       }
     }catch (err) {
       console.error(err)
     }
   }
 
-  private reconfigure(json) {
-    console.log(json)
-    this.watchlist = json.map((result) => new CardElement(result))
+  private reconfigure(json, type) {
+    switch (type) {
+      case('movie'):
+        this.watchlistMovie = json.map((result) => new CardElement(result))
+        break
+      case('tv'):
+        this.watchlistTv = json.map((result) => new CardElement(result))
+        break
+    }
   }
 }

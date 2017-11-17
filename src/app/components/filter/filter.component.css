@@ -18,3 +18,24 @@
   text-transform: uppercase;
   color: #777;
 }
+
+.uk-icon{
+  padding-right: 0.5rem;
+}
+
+.uk-search-input{
+  background-color: #444444;
+  padding-left: 0.5rem;
+  padding-right: 1.8rem;
+
+}
+
+.uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
+  height: auto;
+}
+
+.uk-navbar-nav>li:hover>a, .uk-navbar-nav>li>a.uk-open, .uk-navbar-nav>li>a:focus{
+  color: #00d377;
+
+}
+

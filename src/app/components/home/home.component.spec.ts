@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { HomeComponent } from './home.component'
+import { SlideshowItemComponent } from './SlideshowItem/slideshow-item.component'
+import { CardComponent} from '../cards/card.component'
+import { DiscoverService } from '../../services/discover.service'
+import { HttpModule } from '@angular/http'
 
 describe('HomeComponent', () => {
     let component: HomeComponent
@@ -8,7 +12,14 @@ describe('HomeComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ HomeComponent ]
+            imports: [
+              HttpModule], declarations: [
+              HomeComponent,
+              SlideshowItemComponent,
+              CardComponent
+            ], providers: [
+              DiscoverService
+          ]
         })
         .compileComponents()
     }))
