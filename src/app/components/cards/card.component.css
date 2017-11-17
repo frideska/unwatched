@@ -55,14 +55,24 @@
 .button_remove{
   background-color: #663399;
   color: white;
-
 }
 
 .button_remove:hover{
   background-color: #4f2778;
   color: white;
-
 }
 
-.uk-card-footer>div>button{
+.uk-modal-full .uk-modal-dialog, .uk-modal-footer, .uk-modal-close-full, .uk-modal-header{
+ background-color: #222222;
 }
+
+.uk-h1, .uk-close:focus, .uk-close:hover, h1{
+  color: white;
+}
+
+.genere_modal>label {
+  font-size: 2rem;
+}
+
+
+
