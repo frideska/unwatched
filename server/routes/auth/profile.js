@@ -10,6 +10,7 @@ router.delete('/', async (req, res) => {
   try {
     let user = await User.findById(req.user._id)
     await user.remove()
+    res.send()
   } catch (err) {
     console.error(err)
   }
