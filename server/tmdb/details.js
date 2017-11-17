@@ -1,18 +1,28 @@
 const Movie = require('../db/models/Movie')
+const Tv = require('../db/models/Tv')
 
 const tv = async (id, watchlist, library) => {
   try {
-    let tv = await tmdb.tv.details({
-      tv_id: id || ''
-    })
-    return await {
-      id: tv.id,
-      title: tv.name,
-      genres: tv.genres.map((genre) => genre.name),
+    let tv = await Tv.findOne({ tv_id: id })
+    if (!tv) {
+      tv = await tmdb.tv.details({
+        tv_id: id || ''
+      })
+      tv.genres = tv.genres.map((genre) => genre.name)
+      tv.tv_id = tv.id
+      tv.title = tv.name
+      tv.release_date = tv.first_air_date
+      await Tv.create(tv)
+    }
+
+    return {
+      id: tv.tv_id,
+      title: tv.title,
+      genres: tv.genres,
       overview: tv.overview,
       backdrop_path: tv.backdrop_path,
       poster_path: tv.poster_path,
-      release_date: tv.first_air_date,
+      release_date: tv.release_date,
       vote_average: tv.vote_average,
       watchlist: watchlist,
       library: library,
@@ -32,7 +42,7 @@ const movie = async (id, watchlist, library) => {
       movie.movie_id = movie.id
       await Movie.create(movie)
     }
-    return await {
+    return {
       id: movie.movie_id,
       title: movie.title,
       genres: movie.genres ,
