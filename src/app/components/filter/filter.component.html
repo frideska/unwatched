@@ -15,11 +15,11 @@
       </ng-template>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['/library']" [queryParams]="{type: 'movie'}">Movies</a>
+        <a [routerLink]="[url]" [queryParams]="{type: 'movie'}" (click)="setType('movie')">Movies</a>
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['/library']" [queryParams]="{type: 'tv'}">series</a>
+        <a [routerLink]="[url]" [queryParams]="{type: 'tv'}" (click)="setType('tv')">series</a>
       </li>
 
       <li><div class="list_elements uk-navbar-item">|</div></li>
@@ -29,17 +29,16 @@
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']">Name<span uk-icon="icon : arrow-up"></span></a>
+        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'name'} ">Name<span uk-icon="icon : arrow-up"></span></a>
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']">Rating<span uk-icon="icon : arrow-up"></span></a>
+        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'rating'} "> Rating<span uk-icon="icon : arrow-up"></span></a>
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="['library']">Date<span uk-icon="icon : arrow-down"></span></a>
+        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'date'} ">Date<span uk-icon="icon : arrow-down"></span></a>
       </li>
-
     </ul>
 
   </div>

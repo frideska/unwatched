@@ -10,22 +10,18 @@ const movie = async (id, source) => {
         GenreMovie.create(genre)
       }
     })
-    return 'updated'
   } catch (err) {
     console.error(err)
   }
 }
 const tv = async (id, source) => {
   try {
-
     let genres = await tmdb.genres.tv()
     genres.genres.map(async genre => {
-        let result = await GenreTv.findOne({ id: id })
-        if (!result) {
-          GenreTv.create(genre)
-        }
-  })
-  return 'updated'
+      let result = await GenreTv.findOne({ id: id })
+      if (!result) {
+        GenreTv.create(genre)
+      }})
   } catch (err) {
     console.error(err)
   }
