@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 
 import { DiscoverService } from 'services/discover.service'
 import { CardElement } from 'classes/CardElement'
+import { UserService } from 'services/user.service'
+
 
 @Component({
   selector: 'app-home',
@@ -19,7 +21,9 @@ export class HomeComponent implements OnInit {
   public movieCard: any
   public tvCard: any
 
-  constructor(private discover: DiscoverService) {
+  constructor(
+    private userService: UserService,
+    private discover: DiscoverService) {
   }
 
   async ngOnInit() {

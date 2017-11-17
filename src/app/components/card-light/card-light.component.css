@@ -1,0 +1,83 @@
+.card_container {
+  height: 300px;
+  margin: 1px;
+  margin-top: 1rem;
+  overflow:hidden;
+}
+
+.title_text {
+  font-size: 1.5rem;
+  padding-top: 5px;
+}
+
+.subtitle_text {
+  font-size: 0.6rem;
+}
+
+.desc_text {
+  font-size: 0.8rem;
+}
+
+.uk-label {
+  font-size: 0.45rem;
+}
+
+.uk-divider-small::after{
+  width: 100%;
+  margin-top: 10px;
+}
+
+.img_size {
+  height: 100%;
+  width: 100%;
+
+}
+.uk-button{
+  font-size: 0.6rem;
+  padding:0;
+  line-height:10px;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  width: 100.5px;
+}
+
+.button_add{
+  background-color: #00d377;
+  color: white;
+}
+
+.button_add:hover{
+  background-color: #00a85f;
+  color: white;
+}
+
+.button_remove{
+  background-color: #663399;
+  color: white;
+}
+
+.button_remove:hover{
+  background-color: #4f2778;
+  color: white;
+}
+
+.uk-modal-full .uk-modal-dialog, .uk-modal-footer, .uk-modal-header{
+  background-color: #222222;
+}
+.uk-modal-close-full{
+  background-color: transparent;
+}
+
+.uk-h1, .uk-close:focus, .uk-close:hover, h1{
+  color: white;
+}
+
+.uk-modal-full .uk-modal-dialog .uk-label {
+  font-size: 1rem;
+  background-color: white;
+  color: #666666;
+}
+
+.button_padding{
+  padding: 1rem;
+}
