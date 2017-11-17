@@ -47,8 +47,19 @@
   color: white;
 }
 
+.button_add:hover{
+  background-color: #00a85f;
+  color: white;
+}
+
 .button_remove{
   background-color: #663399;
+  color: white;
+
+}
+
+.button_remove:hover{
+  background-color: #4f2778;
   color: white;
 
 }
