@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core'
 
 import { WatchlistService} from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
+import { HistoryService } from 'services/history.service'
 import { CardElement } from '../../classes/CardElement'
 
 @Component({
@@ -12,7 +13,7 @@ import { CardElement } from '../../classes/CardElement'
 export class CardComponent implements OnInit {
   @Input() element: CardElement
 
-  constructor(private watchlistService: WatchlistService, private libraryService: LibraryService) { }
+  constructor(private watchlistService: WatchlistService, private libraryService: LibraryService, private historyService: HistoryService) { }
 
   ngOnInit() {
   }
@@ -30,5 +31,9 @@ export class CardComponent implements OnInit {
     } else  {
       this.libraryService.addToLibrary(this.element)
     }
+  }
+
+  addToHistory(){
+    this.historyService.addToHistory(this.element)
   }
 }
