@@ -29,8 +29,6 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
     this.movies = await this.discover.getDiscoveryMovie()
     this.tv = await this.discover.getDiscoveryTV()
-    console.log(this.movies)
-    console.log(this.tv)
     this.value1 = 0
     this.value2 = 2
     this.showMovies(this.value1, this.value2)
