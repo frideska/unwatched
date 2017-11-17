@@ -51,6 +51,12 @@
 
 .uk-button-secondary{
   background-color: rebeccapurple;
+  color: white;
+}
+
+.uk-button-secondary:hover{
+  background-color: #4f2778;
+  color: white;
 }
 
 .uk-navbar-nav>li>a {
