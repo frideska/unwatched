@@ -23,6 +23,7 @@ import { FilterComponent } from 'components/filter/filter.component'
 import { WordCloudComponent } from 'components/word-cloud/word-cloud.component'
 import { WordCloudWishComponent } from './components/word-cloud-wish/word-cloud-wish.component'
 import { ListViewComponent } from 'components/list-view/list-view.component'
+import { AverageRatingComponent } from 'components/average-rating/average-rating.component'
 
 /**
  * Import Services
@@ -32,8 +33,8 @@ import { DiscoverService } from 'services/discover.service'
 import { SearchService } from 'services/search.service'
 import { WatchlistService } from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
-import { AuthGuard } from 'services/auth-guard.service';
-import { CardLightComponent } from './components/card-light/card-light.component'
+import { AuthGuard } from 'services/auth-guard.service'
+import { CardLightComponent } from 'components/card-light/card-light.component'
 
 export const initUserServiceFactory = (userService: UserService): Function => {
   return () => userService.getUser()
@@ -74,7 +75,9 @@ const routes: Routes = [
     ListViewComponent,
     CardComponent,
     WordCloudWishComponent,
-    CardLightComponent
+    CardLightComponent,
+    AverageRatingComponent
+
   ],
   imports: [
     BrowserModule,
