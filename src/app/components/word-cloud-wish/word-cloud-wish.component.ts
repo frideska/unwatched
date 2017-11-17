@@ -69,7 +69,7 @@ export class WordCloudWishComponent implements OnInit {
 
     // Fetch movies and TV shows from Watchlist.
     await this.watchlistService.getWatchlist()
-    let watchlist = this.watchlistService.watchlist
+    let watchlist = this.watchlistService.watchlistMovie
     let watchGens = watchlist.map(movie => movie.genres)
 
     // Slap them together as one array.
