@@ -10,9 +10,13 @@ import { HistoryService } from 'services/history.service'
 })
 export class UserComponent implements OnInit {
 
-    constructor(private userService: UserService, private historyService: HistoryService) { }
+  constructor(
+    private userService: UserService,
+    private historyService: HistoryService
+  ) { }
 
-    async ngOnInit(): Promise<void> {
-        await this.userService.getUser()
-    }
+  async ngOnInit(): Promise<void> {
+    await this.userService.getUser()
+    await this.historyService.getHistory()
+  }
 }

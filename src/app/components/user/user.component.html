@@ -75,7 +75,9 @@
       </div>
       <div>
         <ul>
-          <div *ngFor="let history of historyService.history" [element]="title"></div>
+          <div *ngFor="let history of historyService.history">
+            {{ history.content }}
+          </div>
         </ul>
       </div>
     </div>

@@ -33,7 +33,8 @@ import { DiscoverService } from 'services/discover.service'
 import { SearchService } from 'services/search.service'
 import { WatchlistService } from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
-import { AuthGuard } from 'services/auth-guard.service';
+import { AuthGuard } from 'services/auth-guard.service'
+import { HistoryService } from 'services/history.service'
 
 export const initUserServiceFactory = (userService: UserService): Function => {
   return () => userService.getUser()
@@ -90,6 +91,7 @@ const routes: Routes = [
     UserService,
     LibraryService,
     AuthGuard,
+    HistoryService,
     USER_INIT
   ],
   bootstrap: [AppComponent]
