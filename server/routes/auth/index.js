@@ -6,20 +6,20 @@ const profile = require('./profile')
 router.use('/profile', profile)
 
 router.get('/logout', (req, res) => {
-    req.logout()
-    res.redirect('/')
+  req.logout()
+  res.redirect('/')
 })
 
 router.get(
-    '/google',
-    passport.authenticate('google', {
-        scope : ['profile', 'email']
-    })
+  '/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email']
+  })
 )
 
 router.get('/google-callback', passport.authenticate('google', {
-    successRedirect : '/user/',
-    failureRedirect : '/'
+  successRedirect: '/user/',
+  failureRedirect: '/'
 }))
 
 module.exports = router
