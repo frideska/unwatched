@@ -1,7 +1,24 @@
 .app_body {
-  background-color: #444444;
-  height: 100%;
-  padding-bottom: 5rem;
-
+  min-height: 100%;
+  width: 100%;
+  margin-bottom: - 100px;
+  display: table;
 }
 
+app-navbar,
+router-outlet,
+app-footer{
+  display: table-row;
+}
+
+app-navbar {
+  height: 55px;
+}
+
+router-outlet {
+  position: absolute;
+}
+
+app-footer {
+  height: 2rem;
+}
