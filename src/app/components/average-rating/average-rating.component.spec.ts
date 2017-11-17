@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { ListViewComponent } from './list-view.component'
+import { AverageRatingComponent } from './average-rating.component'
 
-describe('ListViewComponent', () => {
-  let component: ListViewComponent
-  let fixture: ComponentFixture<ListViewComponent>
+describe('AverageRatingComponent', () => {
+  let component: AverageRatingComponent
+  let fixture: ComponentFixture<AverageRatingComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListViewComponent ]
+      declarations: [ AverageRatingComponent ]
     })
     .compileComponents()
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListViewComponent)
+    fixture = TestBed.createComponent(AverageRatingComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

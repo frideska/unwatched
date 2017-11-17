@@ -1,8 +1,8 @@
-<div class="uk-container uk-width-auto ">
-  <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center uk-child-width-1-1@s uk-child-width-1-2@m" uk-grid>
+<div class="uk-container uk-container-small">
+  <div class="uk-margin-remove uk-animation-slide-bottom-small uk-flex-center uk-child-width-1-2@m" uk-grid>
 
     <!--User info-->
-    <div class="uk-card uk-card-secondary usercard ">
+    <div class="uk-card uk-card-secondary">
       <div class="uk-card-header">
         <div class="uk-grid-small uk-flex-middle" uk-grid>
           <div class="uk-width-auto">
@@ -22,36 +22,35 @@
       </div>
     </div>
 
-    <!--User Search History-->
-    <div class="uk-card uk-card-secondary usercard">
+    <!--Average library rating-->
+    <div class="uk-card uk-card-secondary usercard statistics_container">
       <div class="uk-card-header">
-        <div class="uk-grid-small uk-flex-middle" uk-grid>
-          <div class="uk-width-expand">
-            <h3 class="uk-card-title uk-margin-remove-bottom">Your search history</h3>
+        <div class="uk-grid-small" uk-grid>
+          <div>
+            <h4 class="uk-card-title uk-margin-remove-bottom">Library rating</h4>
           </div>
         </div>
       </div>
-      <div>
-        <ul>
-          <div *ngFor="let history of historyService.history" [element]="title"></div>
-        </ul>
+      <div class="cloud_container">
+        <app-average-rating></app-average-rating>
       </div>
     </div>
 
-    <!--User Statistics-->
-      <div class="uk-card uk-card-secondary usercard statistics_container">
-        <div class="uk-card-header">
-          <div class="uk-grid-small" uk-grid>
-            <div>
-              <h4 class="uk-card-title uk-margin-remove-bottom">Favourites</h4>
-            </div>
+    <!--Library cloud-->
+    <div class="uk-card uk-card-secondary usercard statistics_container">
+      <div class="uk-card-header">
+        <div class="uk-grid-small" uk-grid>
+          <div>
+            <h4 class="uk-card-title uk-margin-remove-bottom">Favourites</h4>
           </div>
         </div>
-        <div class="cloud_container">
-          <app-word-cloud></app-word-cloud>
-        </div>
       </div>
+      <div class="cloud_container">
+        <app-word-cloud></app-word-cloud>
+      </div>
+    </div>
 
+    <!--Overall cloud-->
     <div class="uk-card uk-card-secondary usercard statistics_container">
       <div class="uk-card-header">
         <div class="uk-grid-small" uk-grid>
@@ -65,5 +64,20 @@
       </div>
     </div>
 
+    <!--User Search History-->
+    <div class="uk-card uk-card-secondary usercard uk-width-expand@m">
+      <div class="uk-card-header">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+          <div class="uk-width-expand">
+            <h3 class="uk-card-title uk-margin-remove-bottom">Your search history</h3>
+          </div>
+        </div>
+      </div>
+      <div>
+        <ul>
+          <div *ngFor="let history of historyService.history" [element]="title"></div>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

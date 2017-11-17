@@ -63,11 +63,11 @@ export class WordCloudComponent implements OnInit {
 
     // Fetch movies and TV shows from Library.
     await this.libraryService.getLibrary()
-    let libraryMov = this.libraryService.libraryMovie
-    let libraryTV = this.libraryService.libraryTv
-    let tvs = libraryTV.map(movie => movie.genres)
-    let movs = libraryMov.map(movie => movie.genres)
-    let genres = tvs.concat(movs)
+    const libraryMov = this.libraryService.libraryMovie
+    const libraryTV = this.libraryService.libraryTv
+    const tvs = libraryTV.map(movie => movie.genres)
+    const movs = libraryMov.map(movie => movie.genres)
+    const genres = tvs.concat(movs)
 
     // Generate cloud data and update cloud.
     this.generateCloudWords(genres)
@@ -82,7 +82,7 @@ export class WordCloudComponent implements OnInit {
      * This will make the cloud generate in 99.99 % of instances.
      * @param {genres} Array<Array> Genres list of lists.
      */
-    if (genres.length == 0) {
+    if (!genres.length) {
       this.wordData = this.emptyLib
     } else if (genres.length < 5) {
       this.wordData = this.addMore
@@ -102,10 +102,12 @@ export class WordCloudComponent implements OnInit {
      * {size: counted_number, text: genre}, into the wordData.
      * @param {genres} Array<Array> Genres list of lists.
      */
-    var arr = genres.reduce((a, b) => a.concat(b), [])
-    let counted = this.countEm(arr, String)
-      for (var key in counted) {
+    const arr = genres.reduce((a, b) => a.concat(b), [])
+    const counted = this.countEm(arr, String)
+    for (const key in counted) {
+      if (key) {
         this.wordData.push({size: counted[key], text: key})
+      }
     }
   }
 
@@ -116,9 +118,9 @@ export class WordCloudComponent implements OnInit {
      * @param {ary} Array<String> Array to count.
      * @param {classifier} Type Classifier.
      */
-    classifier = classifier || String;
+    classifier = classifier || String
     return ary.reduce(function (counter, item) {
-      var p = classifier(item)
+      const p = classifier(item)
       counter[p] = counter.hasOwnProperty(p) ? counter[p] + 1 : 1
       return counter
     }, {})

@@ -10,12 +10,11 @@ let controller = require('../../../db/controllers/WatchlistController')
  * the movie is then added to the UserMovie collection
  */
 router.post('/movie', (req, res) => {
-    if(controller.newMovie(req.body.id, req.user)) {
-      res.sendStatus(200)
-    }
-    else {
-      //if something goes wrong we send 400
-      res.sendStatus(400)
+  if (controller.newMovie(req.body.id, req.user)) {
+    res.sendStatus(200)
+  } else {
+    // if something goes wrong we send 400
+    res.sendStatus(400)
   }
 })
 
@@ -24,10 +23,10 @@ router.post('/movie', (req, res) => {
  */
 router.get('/movie', async (req, res) => {
   let movies = await controller.findMovieForUser(req.user)
-  if(movies) {
+  if (movies) {
     res.send(movies)
   } else {
-    //If something goes wrong the server respond with a 400
+    // If something goes wrong the server respond with a 400
     res.sendStatus(400)
   }
 })
@@ -36,12 +35,11 @@ router.get('/movie', async (req, res) => {
  * removing movies from UserMovie for the current user, and a given movie_id
  */
 router.get('/movie/remove/:id', async (req, res) => {
-  if(await controller.removeMovieForUser(req.params.id, req.user)) {
-    //Letting the server know it went OK
+  if (await controller.removeMovieForUser(req.params.id, req.user)) {
+    // Letting the server know it went OK
     res.sendStatus(200)
-  }
-  else{
-    //If something goes wrong the server respond with a 400
+  } else {
+    // If something goes wrong the server respond with a 400
     res.sendStatus(400)
   }
 })
@@ -51,25 +49,23 @@ router.get('/movie/remove/:id', async (req, res) => {
  * the movie is then added to the UserMovie collection
  */
 router.post('/tv', (req, res) => {
-  if(controller.newTv(req.body.id, req.user)) {
+  if (controller.newTv(req.body.id, req.user)) {
     res.sendStatus(200)
-  }
-  else {
-    //if something goes wrong we send 400
+  } else {
+    // if something goes wrong we send 400
     res.sendStatus(400)
   }
 })
-
 
 /**
  * Returnes all the tv-shows a user have in his/heras watchlist
  */
 router.get('/tv', async (req, res) => {
   let movies = await controller.findTvForUser(req.user)
-  if(movies) {
+  if (movies) {
     res.send(movies)
   } else {
-    //If something goes wrong the server respond with a 400
+    // If something goes wrong the server respond with a 400
     res.send(400)
   }
 })
@@ -78,15 +74,13 @@ router.get('/tv', async (req, res) => {
  * removing movies from UserTv for the current user, and a given movie_id
  */
 router.get('/tv/remove/:id', async (req, res) => {
-  if(await controller.removeTvForUser(req.params.id, req.user)) {
-    //Letting the server know it went OK
+  if (await controller.removeTvForUser(req.params.id, req.user)) {
+    // Letting the server know it went OK
     res.sendStatus(200)
-  }
-  else{
-    //If something goes wrong the server respond with a 400
+  } else {
+    // If something goes wrong the server respond with a 400
     res.sendStatus(400)
   }
 })
-
 
 module.exports = router

@@ -14,14 +14,14 @@ const failure = `
 `
 
 const init = async () => {
-    try {
-        const connection = await mongoose.connect(DB_URL, {useMongoClient: true})
-        console.log(success)
-        return connection
-    } catch (err) {
-        console.error(failure)
+  try {
+    const connection = await mongoose.connect(DB_URL, {useMongoClient: true})
+    console.log(success)
+    return connection
+  } catch (err) {
+    console.error(failure)
     process.exit(1)
-    }
+  }
 }
 
 module.exports = { init }

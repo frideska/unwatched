@@ -3,34 +3,35 @@
  * Server root file for Project 4
  */
 
+const project = `
+  ██╗   ██╗███╗   ██╗██╗    ██╗ █████╗ ████████╗ ██████╗██╗  ██╗███████╗██████╗
+  ██║   ██║████╗  ██║██║    ██║██╔══██╗╚══██╔══╝██╔════╝██║  ██║██╔════╝██╔══██╗
+  ██║   ██║██╔██╗ ██║██║ █╗ ██║███████║   ██║   ██║     ███████║█████╗  ██║  ██║
+  ██║   ██║██║╚██╗██║██║███╗██║██╔══██║   ██║   ██║     ██╔══██║██╔══╝  ██║  ██║
+  ╚██████╔╝██║ ╚████║╚███╔███╔╝██║  ██║   ██║   ╚██████╗██║  ██║███████╗██████╔╝
+   ╚═════╝ ╚═╝  ╚═══╝ ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ 
+                                                                                
+`
+
+console.log(project)
+
 /**
  * Make sure node version supports async/await.
  * If not, the program will fail with error suggesting async syntax is wrong.
  */
 
-const project = '██╗   ██╗███╗   ██╗██╗    ██╗ █████╗ ████████╗ ██████╗██╗  ██╗███████╗██████╗ \n' +
-                '██║   ██║████╗  ██║██║    ██║██╔══██╗╚══██╔══╝██╔════╝██║  ██║██╔════╝██╔══██╗\n' +
-                '██║   ██║██╔██╗ ██║██║ █╗ ██║███████║   ██║   ██║     ███████║█████╗  ██║  ██║\n' +
-                '██║   ██║██║╚██╗██║██║███╗██║██╔══██║   ██║   ██║     ██╔══██║██╔══╝  ██║  ██║\n' +
-                '╚██████╔╝██║ ╚████║╚███╔███╔╝██║  ██║   ██║   ╚██████╗██║  ██║███████╗██████╔╝\n' +
-                ' ╚═════╝ ╚═╝  ╚═══╝ ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ \n' +
-                '                                                                              '
-
-console.log(project)
-
-
 const NODE_VERSION = process.versions.node
 const SUPPORTED_NODE_VERSION = '8.9.0'
 
 if (NODE_VERSION.charAt(0) < SUPPORTED_NODE_VERSION.charAt(0)) {
-    console.log(`
+  console.log(`
         You are running an outdated version of Nodejs!
         Nodejs version ${NODE_VERSION} is NOT supported.
         Please upgrade to at least version ${SUPPORTED_NODE_VERSION}!
     `)
-    process.exit(1)
+  process.exit(1)
 } else {
-    console.log(`Running with Nodejs version ${NODE_VERSION}`)
+  console.log(`Running with Nodejs version ${NODE_VERSION}`)
 }
 
 /**
@@ -42,7 +43,7 @@ const cookieparser = require('cookie-parser')
 const session = require('express-session')
 const path = require('path')
 const passport = require('passport')
-const tmdb = require('tmdbapi')
+const TMDb = require('tmdbapi')
 
 /**
  * Get local dependencies
@@ -57,7 +58,6 @@ const genre = require('./tmdb').genre
  */
 const PORT = process.env.P4_PORT || 8000
 const HOST = process.env.P4_HOST || '0.0.0.0'
-const LOG_LEVEL = process.env.P4_LOG_LEVEL || 'debug'
 const ENV = process.env.P4_ENV || 'development'
 const SECRET = process.env.P4_SECRET || 'MagicalNarwhalsAndPinkOrcasDancingTogetherInImaginationLand'
 const TMDB_TOKEN = process.env.P4_TMDB_TOKEN ? process.env.P4_TMDB_TOKEN : misc.missing('P4_TMDB_TOKEN')
@@ -65,23 +65,23 @@ const TMDB_TOKEN = process.env.P4_TMDB_TOKEN ? process.env.P4_TMDB_TOKEN : misc.
 /**
  * Initial server setup
  */
-const mongoose = db.init()
+db.init()
 const app = express()
 
 var sess = {
-    secret: SECRET,
-    cookie: {},
-    resave: true,
-    saveUninitialized: true
+  secret: SECRET,
+  cookie: {},
+  resave: true,
+  saveUninitialized: true
 }
 
 if (ENV === 'production') {
-    app.set('trust proxy', 1) // trust first proxy
-    sess.cookie.secure = true // serve secure cookies
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
 }
 
-global.tmdb = new tmdb({
-    apiv3: TMDB_TOKEN
+global.tmdb = new TMDb({
+  apiv3: TMDB_TOKEN
 })
 
 app.use(session(sess))
@@ -104,4 +104,4 @@ app.use('/', routes)
 genre.movie()
 genre.tv()
 
-let server = app.listen(PORT, HOST, () => console.log(`Project server running on: ${HOST}:${PORT}`))
+app.listen(PORT, HOST, () => console.log(`Project server running on: ${HOST}:${PORT}`))
