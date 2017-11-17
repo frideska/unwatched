@@ -3,6 +3,52 @@ const WatchlistUserMovie = require('../models/Watchlist/WatchlistUserMovie')
 const WatchlistUserTv = require('../models/Watchlist/WatchlistUserTv')
 const UserTv = require('../models/Library/LibraryUserTv')
 const tmdbWrapper = require('../../tmdb/')
+const Movie = require('../models/Movie')
+
+/**
+ * Retunes a movie element for a given movieID
+ * @param moiveID
+ * @param user
+ * @returns {Promise.<*>}
+ */
+let getMovieForUser = async(movieID, user, type) => {
+  let movieKey = await Movie.findOne({movie_id: movieID})
+  if(movieKey){
+    if(type==='library') {
+      let userMovie = await UserMovie.findOne({movie_id: movieKey, user_id: user._id})
+      return userMovie ? userMovie: false
+    }
+    else if(type==='watchlist') {
+      let userMovie = await WatchlistUserMovie.findOne({movie_id: movieKey, user_id: user._id})
+      return userMovie ? userMovie: false
+    }
+  }
+  return false
+}
+
+/**
+ * Findes the _id for a given movie_id
+ * @param moiveID
+ * @returns {Promise.<*>}
+ */
+let getMovieKey = async(movieID) => {
+  const movieKey = await Movie.findOne({movie_id: movieID})
+  if(!movieKey) {
+    const addMovie = await tmdbWrapper.details.movie(movieID, false, false)
+    if(addMovie) {
+      const result = await Movie.findOne({movie_id: movieID})
+      return result._id
+    }
+    return false
+  }
+  let id =  movieKey._id
+  return id
+}
+let getMovieId = async(movieKey) => {
+  result =  await Movie.findOne({_id: movieKey})
+  let id = result.movie_id
+  return id
+}
 
 /**
  * Creates a new entry in the UserMovie collection
@@ -12,21 +58,22 @@ const tmdbWrapper = require('../../tmdb/')
  * @returns {Promise.<boolean>}
  */
 let newMovie = async (movieID, user) => {
-  let movie = await UserMovie.findOne({movie_id: movieID, user_id: user._id})
+  let movieLibrary = await getMovieForUser(movieID, user, 'library')
   // Checks if the move is in watchlist, if so remove it
-  let movieWatchlist = await WatchlistUserMovie.findOne({movie_id: movieID, user_id: user._id})
-  if (movieWatchlist) {
+  let movieWatchlist = await getMovieForUser(movieID, user, 'watchlist')
+  let movieKey = await getMovieKey(movieID)
+  if (movieWatchlist && movieKey) {
     try {
-      await WatchlistUserMovie.remove({movie_id: movieID, user_id: user._id})
+      await WatchlistUserMovie.remove({movie_id: movieKey, user_id: user._id})
     } catch (err) {
-      console.log(err)
+      console.error(err)
       return false
     }
   }
-  if (!movie) {
+  if (!movieLibrary && movieKey) {
     try {
       let userMovie = new UserMovie()
-      userMovie.movie_id = movieID
+      userMovie.movie_id = movieKey
       userMovie.user_id = user._id
       userMovie.save()
       return true
@@ -58,9 +105,10 @@ let findMovieForUser = async (user) => {
   // promise all to make sure that the array is not returned while pending
   try {
     return clean(await Promise.all(userMovies.map(async (movie) => {
+      const movieID = await getMovieId(movie.movie_id)
       const watchlist = false
       const library = true
-      return tmdbWrapper.details.movie(movie.movie_id, watchlist, library)
+      return tmdbWrapper.details.movie(movieID, watchlist, library)
     })))
   } catch (err) {
     console.log(err)
@@ -75,7 +123,8 @@ let findMovieForUser = async (user) => {
  */
 let removeMovieForUser = async (movieID, user) => {
   try {
-    await UserMovie.remove({movie_id: movieID, user_id: user._id})
+    const movieKey = await getMovieKey(movieID)
+    await UserMovie.remove({movie_id: movieKey, user_id: user._id})
   } catch (err) {
     console.log(err)
     return false

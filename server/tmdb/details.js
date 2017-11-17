@@ -26,15 +26,16 @@ const tv = async (id, watchlist, library) => {
 const movie = async (id, watchlist, library) => {
   try {
     let movie = await Movie.findOne({ movie_id: id })
-    if (!movie) {
+    if (!movie){
       movie = await tmdb.movie.details({ movie_id: id || '' })
+      movie.genres = movie.genres.map((genre) => genre.name)
       movie.movie_id = movie.id
-      movie = Movie.create(movie)
+      await Movie.create(movie)
     }
     return await {
       id: movie.movie_id,
       title: movie.title,
-      genres: movie.genres.map((genre) => genre.name),
+      genres: movie.genres ,
       overview: movie.overview,
       backdrop_path: movie.backdrop_path,
       poster_path: movie.poster_path,

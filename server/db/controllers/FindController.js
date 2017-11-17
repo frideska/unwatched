@@ -2,7 +2,7 @@ const LibraryTv = require('../models/Library/LibraryUserTv')
 const WatchlistTv = require('../models/Watchlist/WatchlistUserTv')
 const LibraryMovie = require('../models/Library/LibraryUserMovie')
 const WatchlistMovie = require('../models/Watchlist/WatchlistUserMovie')
-
+const Movie = require('../models/Movie')
 /**
  * Checks if a give tv-show is in library for a given user
  * @param movieID
@@ -36,9 +36,12 @@ const tvInWatchlist = async (tvID, user) => {
  * @returns {Promise.<boolean>}
  */
 const movieInLibrary = async (movieID, user) => {
-  let movie = await LibraryMovie.findOne({movie_id: movieID, user_id: user._id})
-  if (movie) {
-    return true
+  let movieKey = await Movie.findOne({movie_id: movieID})
+  if(movieKey){
+    let userMovie = await LibraryMovie.findOne({movie_id: movieKey._id, user_id: user._id})
+    if (userMovie) {
+      return true
+    }
   }
   return false
 }
@@ -49,9 +52,12 @@ const movieInLibrary = async (movieID, user) => {
  * @returns {Promise.<boolean>}
  */
 const movieInWatchlist = async (movieID, user) => {
-  let movie = await WatchlistMovie.findOne({movie_id: movieID, user_id: user._id})
-  if (movie) {
-    return true
+  let movieKey = await Movie.findOne({movie_id: movieID})
+  if(movieKey){
+    let userMovie = await WatchlistMovie.findOne({movie_id: movieKey._id, user_id: user._id})
+    if (userMovie) {
+      return true
+    }
   }
   return false
 }
