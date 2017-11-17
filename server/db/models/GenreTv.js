@@ -6,7 +6,7 @@ let Schema = mongoose.Schema
  * Define Shema for Movie
  */
 let GenreSchema = new Schema({
-  tv_id: { type: Number, required: true },
+  id: { type: Number, required: true, unique: true },
   name: { type: String }
 })
 

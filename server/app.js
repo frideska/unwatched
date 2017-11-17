@@ -3,11 +3,6 @@
  * Server root file for Project 4
  */
 
-/**
- * Make sure node version supports async/await.
- * If not, the program will fail with error suggesting async syntax is wrong.
- */
-
 const project = `
   ██╗   ██╗███╗   ██╗██╗    ██╗ █████╗ ████████╗ ██████╗██╗  ██╗███████╗██████╗
   ██║   ██║████╗  ██║██║    ██║██╔══██╗╚══██╔══╝██╔════╝██║  ██║██╔════╝██╔══██╗
@@ -19,6 +14,11 @@ const project = `
 `
 
 console.log(project)
+
+/**
+ * Make sure node version supports async/await.
+ * If not, the program will fail with error suggesting async syntax is wrong.
+ */
 
 const NODE_VERSION = process.versions.node
 const SUPPORTED_NODE_VERSION = '8.9.0'
