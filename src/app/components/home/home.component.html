@@ -27,6 +27,7 @@
       <hr class="uk-divider-small uk-margin-remove">
     </div>
 
+    <!--Not logged in users-->
     <!--Slideshow container-->
     <div *ngIf="!userService.loggedIn; else mSlideshowNotLoggedIn" class="uk-position-relative uk-visible-toggle uk-light "
          uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 7500;" >
@@ -55,6 +56,7 @@
       <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('movie')"></a>
     </div>
 
+    <!--Logged in users-->
     <!--Slideshow container-->
     <ng-template #mSlideshowNotLoggedIn>
     <div class="uk-position-relative uk-visible-toggle uk-light "
@@ -84,6 +86,7 @@
       <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('movie')"></a>
     </div>
     </ng-template>
+
     <!--Discover series-->
 
     <!--Slideshow Header-->
@@ -96,29 +99,65 @@
     <div class="uk-position-relative uk-visible-toggle uk-light "
          uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 9000;" >
 
-      <!--Slideshow List-->
-      <ul class="uk-slideshow-items uk-height-max-large slideshow_box">
-        <li>
-          <!--Slideshow shown items-->
-          <div class="uk-card uk-cover uk-flex ">
-            <app-card class=" uk-flex-left uk-display-inline slideshow_item" [element]="tvSliced[0]"></app-card>
-            <app-card class=" uk-flex-right uk-display-inline slideshow_item" [element]="tvSliced[1]"></app-card>
-          </div>
-        </li>
+      <!--Not logged in users-->
+      <!--Slideshow container-->
+      <div *ngIf="!userService.loggedIn; else mSlideshowNotLoggedIn" class="uk-position-relative uk-visible-toggle uk-light "
+           uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 7500;" >
 
-        <li>
-          <!--Slideshow next items-->
-          <div class="uk-card uk-cover uk-flex ">
-            <app-card class=" uk-flex-left uk-display-inline slideshow_item" [element]="tvSliced[0]"></app-card>
-            <app-card class=" uk-flex-right uk-display-inline slideshow_item" [element]="tvSliced[1]"></app-card>
-          </div>
-        </li>
-      </ul>
+        <!--Slideshow List-->
+        <ul class="uk-slideshow-items uk-height-max-large slideshow_box">
+          <li>
+            <!--Slideshow shown items-->
+            <div class="uk-card uk-cover uk-flex ">
+              <app-card-light class=" uk-flex-left uk-display-inline slideshow_item" [element]="tvSliced[0]"></app-card-light>
+              <app-card-light class=" uk-flex-right uk-display-inline slideshow_item" [element]="tvSliced[1]"></app-card-light>
+            </div>
+          </li>
 
-      <!--Slideshow buttons-->
-      <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('tv')"></a>
-      <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('tv')"></a>
-    </div>
+          <li>
+            <!--Slideshow next items-->
+            <div class="uk-card uk-cover uk-flex ">
+              <app-card-light class=" uk-flex-left uk-display-inline slideshow_item" [element]="tvSliced[0]"></app-card-light>
+              <app-card-light class=" uk-flex-right uk-display-inline slideshow_item" [element]="tvSliced[1]"></app-card-light>
+            </div>
+          </li>
+        </ul>
+
+        <!--Slideshow buttons-->
+        <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('movie')"></a>
+        <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('movie')"></a>
+      </div>
+
+      <!--Logged in users-->
+      <!--Slideshow container-->
+      <ng-template #mSlideshowNotLoggedIn>
+        <div class="uk-position-relative uk-visible-toggle uk-light "
+             uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 7500;" >
+
+          <!--Slideshow List-->
+          <ul class="uk-slideshow-items uk-height-max-large slideshow_box">
+            <li>
+              <!--Slideshow shown items-->
+              <div class="uk-card uk-cover uk-flex ">
+                <app-card class=" uk-flex-left uk-display-inline slideshow_item" [element]="tvSliced[0]"></app-card>
+                <app-card class=" uk-flex-right uk-display-inline slideshow_item" [element]="tvSliced[1]"></app-card>
+              </div>
+            </li>
+
+            <li>
+              <!--Slideshow next items-->
+              <div class="uk-card uk-cover uk-flex ">
+                <app-card class=" uk-flex-left uk-display-inline slideshow_item" [element]="tvSliced[0]"></app-card>
+                <app-card class=" uk-flex-right uk-display-inline slideshow_item" [element]="tvSliced[1]"></app-card>
+              </div>
+            </li>
+          </ul>
+
+          <!--Slideshow buttons-->
+          <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('tv')"></a>
+          <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('tv')"></a>
+        </div>
+      </ng-template>
 
   </div>
 </div>
