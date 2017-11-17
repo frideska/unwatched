@@ -49,14 +49,14 @@
                 onclick="UIkit.notification({
                 message: '<span uk-icon=\'icon: check\'></span> Successfully added to watchlist!',
                 pos: 'bottom-center', status:'success', timeout: '2500'})"
-                (click)="addToWatchlist(element.watchlist)"
+                (click)="addToWatchlist()"
                 class="uk-button uk-text-nowrap button_add" >
           <label>Add to <br>watchlist</label>
         </button>
 
         <!--Remove from watchlist-->
         <ng-template #removeWatchList>
-          <button (click)="addToWatchlist(element.watchlist)"
+          <button (click)="addToWatchlist()"
                   onclick="UIkit.notification({
                   message: '<span uk-icon=\'icon: trash\'></span> Deleted from watchlist!',
                   pos: 'bottom-center', status:'danger', timeout: '2500'})"
@@ -72,14 +72,14 @@
                 onclick="UIkit.notification({
                 message: '<span uk-icon=\'icon: check\'></span> Successfully added to library!',
                 pos: 'bottom-center', status:'success', timeout: '2500'})"
-                (click)="addToWatchlist(element.library)"
+                (click)="addToLibrary()"
                 class="uk-button uk-text-nowrap button_add">
           <label>Add to <br>library</label>
         </button>
 
         <!--Remove from library-->
         <ng-template #removeLibrary>
-          <button (click)="addToWatchlist(element.library)"
+          <button (click)="addToLibrary()"
                   onclick="UIkit.notification({
                   message: '<span uk-icon=\'icon: trash\'></span> Deleted from library!',
                   pos: 'bottom-center', status:'danger', timeout: '2500'})"
