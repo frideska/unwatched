@@ -20,8 +20,6 @@ const tv = async () => {
     genres.genres.map(async (genre) => {
       let result = await GenreTv.findOne({ id: genre.id })
       if (!result) {
-        genre.tv_id = genre.id
-        delete genre.id
         GenreTv.create(genre)
       }
     })
