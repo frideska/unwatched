@@ -20,6 +20,7 @@ export class LibraryService {
     const id = element.id
     try {
       const response = await this.http.post(this.URL + '/' + type, {id: id}).toPromise()
+      console.log(`[Service|Library](addToLibrary) Got response`)
     } catch (err) {
       console.error(err)
     }
@@ -29,6 +30,7 @@ export class LibraryService {
     const id = element.id
     try {
       const response = await this.http.get(this.URL + '/' + type + '/remove/' + id).toPromise()
+      console.log(`[Service|Library](removeFromLibrary) Got response`)
     } catch (err) {
       console.error(err)
     }
@@ -39,6 +41,7 @@ export class LibraryService {
       if (response.status === 200) {
         this.reconfigure(response.json(), 'movie')
       }
+      console.log(`[Service|Library](getLibrary) Got library, movies: ${this.libraryMovie.length}`)
     } catch (err) {
       console.error(err)
     }
@@ -48,6 +51,7 @@ export class LibraryService {
       if (response.status === 200) {
         this.reconfigure(response.json(), 'tv')
       }
+      console.log(`[Service|Library](getLibrary) Got library, tv: ${this.libraryTv.length}`)
     } catch (err) {
       console.error(err)
     }
