@@ -41,4 +41,9 @@ export class NavbarComponent implements OnInit {
     this.searchService.setQuery('')
     this.router.navigate([this.previous || '/'])
   }
+
+  public async logout() {
+    await this.userService.logout()
+    this.router.navigate(['/'])
+  }
 }
