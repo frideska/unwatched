@@ -13,6 +13,7 @@ import { HomeComponent } from 'components/home/home.component'
 import { UserComponent } from 'components/user/user.component'
 import { CardComponent } from 'components/cards/card.component'
 import { NavbarComponent } from 'components/navbar/navbar.component'
+import { FooterComponent } from 'components/footer/footer.component'
 import { LibraryComponent } from 'components/library/library.component'
 import { SearchComponent } from 'components/search/search.component'
 import { WatchlistComponent } from 'components/watchlist/watchlist.component'
@@ -68,6 +69,7 @@ const routes: Routes = [
     NotFoundComponent,
     FilterComponent,
     WordCloudComponent,
+    FooterComponent
     ListViewComponent,
     CardComponent,
     WordCloudWishComponent

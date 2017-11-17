@@ -1,0 +1,18 @@
+/**
+ * Footer Styles
+ */
+.footer_bg{
+  background-color: #1c1c1c;
+  padding: 1rem;
+  margin: 0rem;
+}
+
+.text{
+  color: white;
+}
+
+img{
+  height: 40px;
+  width: 40px;
+  margin-left: 1rem;
+}
