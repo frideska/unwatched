@@ -41,7 +41,7 @@ const cookieparser = require('cookie-parser')
 const session = require('express-session')
 const path = require('path')
 const passport = require('passport')
-const tmdb = require('tmdbapi')
+const TMDb = require('tmdbapi')
 
 /**
  * Get local dependencies
@@ -56,7 +56,6 @@ const genre = require('./tmdb').genre
  */
 const PORT = process.env.P4_PORT || 8000
 const HOST = process.env.P4_HOST || '0.0.0.0'
-const LOG_LEVEL = process.env.P4_LOG_LEVEL || 'debug'
 const ENV = process.env.P4_ENV || 'development'
 const SECRET = process.env.P4_SECRET || 'MagicalNarwhalsAndPinkOrcasDancingTogetherInImaginationLand'
 const TMDB_TOKEN = process.env.P4_TMDB_TOKEN ? process.env.P4_TMDB_TOKEN : misc.missing('P4_TMDB_TOKEN')
@@ -64,7 +63,7 @@ const TMDB_TOKEN = process.env.P4_TMDB_TOKEN ? process.env.P4_TMDB_TOKEN : misc.
 /**
  * Initial server setup
  */
-const mongoose = db.init()
+db.init()
 const app = express()
 
 var sess = {
@@ -79,7 +78,7 @@ if (ENV === 'production') {
   sess.cookie.secure = true // serve secure cookies
 }
 
-global.tmdb = new tmdb({
+global.tmdb = new TMDb({
   apiv3: TMDB_TOKEN
 })
 
@@ -103,4 +102,4 @@ app.use('/', routes)
 genre.movie()
 genre.tv()
 
-let server = app.listen(PORT, HOST, () => console.log(`Project server running on: ${HOST}:${PORT}`))
+app.listen(PORT, HOST, () => console.log(`Project server running on: ${HOST}:${PORT}`))

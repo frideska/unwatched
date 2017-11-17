@@ -7,7 +7,7 @@ const User = require('../models/User')
  */
 const getByGoogle = async (id) => {
   try {
-    return await User.findOne({ 'google.id': id})
+    return await User.findOne({ 'google.id': id })
   } catch (err) {
     console.error(err)
   }
