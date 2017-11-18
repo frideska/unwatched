@@ -32,7 +32,7 @@ router.post('/movie', (req, res) => {
  * Returnes all the movie a user have in his/heras watchlist
  */
 router.get('/movie', async (req, res) => {
-  let movies = await controller.findMovieForUser(req.user)
+  let movies = await controller.findMovieForUser(req.user, req.query.sort_by)
   if (movies) {
     res.send(movies)
   } else {

@@ -29,15 +29,39 @@
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'name'} ">Name<span uk-icon="icon : arrow-up"></span></a>
+        <a (click) = "toggleNameSort()"[routerLink]="[url]" [queryParams]="{type: type , sort_by: nameSort} ">
+          Name
+          <div *ngIf = "nameArrow === 'up'; else nameDown">
+            <span uk-icon="icon : arrow-up"></span>
+          </div>
+          <div #nameDown *ngIf = "nameArrow === 'down'">
+            <span uk-icon="icon : arrow-down"></span>
+          </div>
+        </a>
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'rating'} "> Rating<span uk-icon="icon : arrow-up"></span></a>
+        <a (click) = "toggleRatingSort()" [routerLink]="[url]" [queryParams]="{type: type , sort_by: ratingSort} ">
+          Rating
+          <div *ngIf = "ratingArrow === 'up'; else ratingDown">
+            <span uk-icon="icon : arrow-up"></span>
+          </div>
+          <div #ratingDown *ngIf = "ratingArrow === 'down'">
+            <span uk-icon="icon : arrow-down"></span>
+          </div>
+        </a>
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'date'} ">Date<span uk-icon="icon : arrow-down"></span></a>
+        <a  (click) = "toggleDateSort()" [routerLink]="[url]" [queryParams]="{type: type , sort_by: dateSort} ">
+          Date
+          <div *ngIf = "dateArrow === 'up'; else dateDown">
+            <span uk-icon="icon : arrow-up"></span>
+          </div>
+          <div #dateDown *ngIf = "dateArrow === 'down'">
+            <span uk-icon="icon : arrow-down"></span>
+          </div>
+        </a>
       </li>
     </ul>
 
