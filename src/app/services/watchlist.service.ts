@@ -52,7 +52,7 @@ export class WatchlistService {
   private reconfigure(json, type) {
     switch (type) {
       case('movie'):
-        this.watchlistMovie = json.map((result) => new CardElement(result))
+        this.watchlistMovie = json.docs.map((result) => new CardElement(result))
         break
       case('tv'):
         this.watchlistTv = json.map((result) => new CardElement(result))

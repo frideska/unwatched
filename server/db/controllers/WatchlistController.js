@@ -136,16 +136,16 @@ let clean = (watchlist) => {
   let returnList = watchlist.filter((movie) => movie)
   return returnList
 }
-let response = (database, type) => {
+let response = (databaseEntry, type) => {
   return {
-      id: database.movie_id || database.tv_id,
-      title: database.title,
-      genres: database.genres ,
-      overview: database.overview,
-      backdrop_path: database.backdrop_path,
-      poster_path: database.poster_path,
-      release_date: database.release_date,
-      vote_average: database.vote_average,
+      id: databaseEntry.movie_id || databaseEntry.tv_id,
+      title: databaseEntry.title,
+      genres: databaseEntry.genres ,
+      overview: databaseEntry.overview,
+      backdrop_path: databaseEntry.backdrop_path,
+      poster_path: databaseEntry.poster_path,
+      release_date: databaseEntry.release_date,
+      vote_average: databaseEntry.vote_average,
       watchlist: true,
       library: false,
       media_type: type
@@ -160,9 +160,16 @@ let response = (database, type) => {
 let findMovieForUser = async (user) => {
   try {
   // Findes all the movies, that are in the watchlist of the current user
-  let userMovies = await UserMovie.find({user_id: user._id}).populate('movie_id')
+    var query   = {user_id: user._id}
+    var options = {
+      populate: 'movie_id',
+      lean:     true,
+      offset:   0,
+      limit:    10
+    }
+  let userMovies = await UserMovie.paginate(query, options)
   if (userMovies) {
-    userMovies = userMovies.map( (movie) => {
+    userMovies.docs = userMovies.docs.map( (movie) => {
       return response(movie.movie_id,'movie')
     })
     return userMovies
