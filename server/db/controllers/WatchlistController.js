@@ -60,11 +60,16 @@ let response = (databaseEntry, type) => {
  * @param user
  * @returns {Promise.<*[]>}
  */
-let findMovieForUser = async (user, sortType) => {
+let findMovieForUser = async (user, sortType, search) => {
   try {
+    console.log(search)
   // Findes all the movies, that are in the watchlist of the current user
-    var query   = {user_id: user._id}
-    var options = {
+    let query   = {user_id: user._id}
+    if(search){
+      query.title = {'$regex': search, '$options': 'i'}
+    }
+
+    let options = {
       lean:     true,
       offset:   0,
       limit:    10
@@ -130,10 +135,14 @@ let newTv = async (tvID, user) => {
  * @param user
  * @returns {Promise.<*[]>}
  */
-let findTvForUser = async (user, sortType) => {
+let findTvForUser = async (user, sortType, search) => {
   // Findes all the movies, that are in the watchlist of the current user
-  var query   = {user_id: user._id}
-  var options = {
+  let query   = {user_id: user._id}
+  if(search){
+    query.title = {'$regex': search, '$options': 'i'}
+  }
+
+  let options = {
     lean:     true,
     offset:   0,
     limit:    10
