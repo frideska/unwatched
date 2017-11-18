@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+import { Component, OnInit, Input } from '@angular/core'
+import { Router, ActivatedRoute } from '@angular/router'
 import { LibraryService } from 'services/library.service'
 
 @Component({
@@ -8,6 +8,8 @@ import { LibraryService } from 'services/library.service'
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
+  @Input ()
+  searchPlaceholder: string
   url: string
   type: string
   nameSort: string
@@ -16,17 +18,21 @@ export class FilterComponent implements OnInit {
   ratingArrow: string
   dateSort: string
   dateArrow: string
+  searchValue: string
+  currentSort: string
 
   constructor(
     private libraryService: LibraryService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute
+
   ) {
     this.type = 'movie'
     }
 
   ngOnInit() {
     this.url = this.router.url
-    console.log(this.url)
     this.dateSort = 'release_date'
     this.ratingSort = 'vote_average'
     this.nameSort = 'title'
@@ -44,6 +50,8 @@ export class FilterComponent implements OnInit {
     this.ratingArrow = ''
     this.dateSort = 'release_date'
     this.dateArrow = ''
+    this.searchValue = ''
+    this.setQueryParms()
   }
 
   /**
@@ -59,6 +67,8 @@ export class FilterComponent implements OnInit {
       this.nameSort = 'title'
       this.nameArrow = 'up'
     }
+    this.currentSort = this.nameSort
+    this.setQueryParms()
   }
 
   /**
@@ -74,6 +84,8 @@ export class FilterComponent implements OnInit {
       this.ratingSort = 'vote_average'
       this.ratingArrow = 'up'
     }
+    this.currentSort = this.ratingSort
+    this.setQueryParms()
   }
   /**
    * Toggeels the date button
@@ -88,5 +100,18 @@ export class FilterComponent implements OnInit {
       this.dateSort = 'release_date'
       this.dateArrow = 'up'
     }
+    this.currentSort = this.dateSort
+    this.setQueryParms()
+  }
+  onSearchChange(event) {
+    this.searchValue = event
+    this.setQueryParms()
+  }
+  setQueryParms() {
+    const queryParams = Object.assign({}, this.activatedRoute.snapshot.queryParams)
+    queryParams['type'] = this.type
+    queryParams['sort_by'] = this.currentSort
+    queryParams['search'] = this.searchValue
+    this.router.navigate([this.url], { queryParams: queryParams })
   }
 }
