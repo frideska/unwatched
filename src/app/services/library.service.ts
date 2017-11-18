@@ -61,7 +61,7 @@ export class LibraryService {
   private reconfigure(json, type) {
     switch (type) {
       case('movie'):
-        this.libraryMovie = json.map((result) => new CardElement(result))
+        this.libraryMovie = json.docs.map((result) => new CardElement(result))
         break
       case('tv'):
         this.libraryTv = json.map((result) => new CardElement(result))
