@@ -24,7 +24,7 @@
   <div class="uk-padding-remove">
 
     <!--Modal toggle-->
-    <a href="#item_modal-{{ element.id }}" class="uk-link-reset" uk-toggle>
+    <a (click)="addToHistory()" href="#item_modal-{{ element.id }}" class="uk-link-reset" uk-toggle>
 
       <!--Card Description-->
       <div class="uk-padding-small">
@@ -40,7 +40,7 @@
         </div>
       </div>
     </a>
-    
+
     <!--Card Buttons-->
     <div class="uk-card-footer uk-padding-remove uk-position-bottom-right">
       <div class="uk-button-group  ">
