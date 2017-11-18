@@ -3,7 +3,8 @@ import {Component, Input, OnInit} from '@angular/core'
 import { WatchlistService} from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
 import { HistoryService } from 'services/history.service'
-import { CardElement } from '../../classes/CardElement'
+import { SearchService } from 'services/search.service'
+import { CardElement } from 'classes/CardElement'
 
 @Component({
   selector: 'app-card',
@@ -16,25 +17,40 @@ export class CardComponent implements OnInit {
   constructor(
     private watchlistService: WatchlistService,
     private libraryService: LibraryService,
-    private historyService: HistoryService
+    private historyService: HistoryService,
+    private searchService: SearchService
   ) { }
 
   ngOnInit() {
   }
 
-  addToWatchlist() {
-    if (this.element.watchlist) {
-      this.watchlistService.removeFromWatchlist(this.element)
-    } else  {
-      this.watchlistService.addToWatchlist(this.element)
-    }
+  private async reload() {
+    console.log(`[Component|Card](reload) Reload started`)
+    await this.watchlistService.getWatchlist()
+    await this.libraryService.getLibrary()
+    // await this.searchService.search()
+    console.log(`[Component|Card](reload) Reload ended`)
   }
-  addToLibrary() {
-    if (this.element.library) {
-      this.libraryService.removeFromLibrary(this.element)
+
+  async addToWatchlist () {
+    console.log(`[Component|Card](addToWatchlist) Clicked add to watchlist`)
+    if (this.element.watchlist) {
+      await this.watchlistService.removeFromWatchlist(this.element)
     } else  {
-      this.libraryService.addToLibrary(this.element)
+      await this.watchlistService.addToWatchlist(this.element)
     }
+    await this.reload()
+    console.log(`[Component|Card](addToWatchlist) Add to library completed`)
+  }
+  async addToLibrary() {
+    console.log(`[Component|Card](addToLibrary) Clicked add to library`)
+    if (this.element.library) {
+      await this.libraryService.removeFromLibrary(this.element)
+    } else  {
+      await this.libraryService.addToLibrary(this.element)
+    }
+    await this.reload()
+    console.log(`[Component|Card](addToLibrary) Add to library completed`)
   }
 
   addToHistory() {
