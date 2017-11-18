@@ -101,9 +101,13 @@ router.post('/tv', (req, res) => {
  * Returnes all the tv-shows a user have in his/heras library
  */
 router.get('/tv', async (req, res) => {
-  let movies = await controller.findTvForUser(req.user)
-  if (movies) {
-    res.send(movies)
+  let sortBy = 'standard'
+  if(req.query.sort_by){
+    sortBy = req.query.sort_by
+  }
+  let tv = await controller.findTvForUser(req.user, sortBy)
+  if (tv) {
+    res.send(tv)
   } else {
     const response = {
       errors: [

@@ -44,7 +44,7 @@ export class WatchlistService {
       console.error(err)
     }
     try {
-      const response = await this.http.get(this.URL + '/tv/').toPromise()
+      const response = await this.http.get(this.URL + '/tv', {params: {sort_by: sortBy}}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'tv')
       }
@@ -60,7 +60,7 @@ export class WatchlistService {
         this.watchlistMovie = json.docs.map((result) => new CardElement(result))
         break
       case('tv'):
-        this.watchlistTv = json.map((result) => new CardElement(result))
+        this.watchlistTv = json.docs.map((result) => new CardElement(result))
         break
     }
   }
