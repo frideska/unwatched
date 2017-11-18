@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core'
 
 import { WatchlistService} from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
+import { HistoryService } from 'services/history.service'
 import { SearchService } from 'services/search.service'
 import { CardElement } from 'classes/CardElement'
 
@@ -16,6 +17,7 @@ export class CardComponent implements OnInit {
   constructor(
     private watchlistService: WatchlistService,
     private libraryService: LibraryService,
+    private historyService: HistoryService,
     private searchService: SearchService
   ) { }
 
@@ -49,5 +51,9 @@ export class CardComponent implements OnInit {
     }
     await this.reload()
     console.log(`[Component|Card](addToLibrary) Add to library completed`)
+  }
+
+  addToHistory() {
+    this.historyService.addToHistory(this.element.title)
   }
 }
