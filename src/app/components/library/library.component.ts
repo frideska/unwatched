@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 export class LibraryComponent implements OnInit, OnDestroy {
 
   type: string
+  sortBy: string
   private sub: any
   constructor(public libraryService: LibraryService, private route: ActivatedRoute, private router: Router) {}
 
@@ -19,6 +20,8 @@ export class LibraryComponent implements OnInit, OnDestroy {
     this.libraryService.getLibrary()
     this.sub = this.route.queryParams.subscribe(params => {
         this.type = params['type'] || 'movie'
+        this.sortBy = params['sort_by'] || 'standard'
+        this.libraryService.getLibrary(this.sortBy)
       })
   }
   ngOnDestroy() {

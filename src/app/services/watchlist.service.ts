@@ -35,7 +35,6 @@ export class WatchlistService {
   }
   public async getWatchlist(sortBy= 'standard') {
     try {
-      console.log(sortBy)
       const response = await this.http.get(this.URL + '/movie', {params: {sort_by: sortBy}}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'movie')
