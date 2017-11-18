@@ -11,10 +11,20 @@ let controller = require('../../../db/controllers/WatchlistController')
  */
 router.post('/movie', (req, res) => {
   if (controller.newMovie(req.body.id, req.user)) {
-    res.sendStatus(200)
+    //send status code 201 a new enry have been created
+    res.sendStatus(201)
   } else {
-    // if something goes wrong we send 400
-    res.sendStatus(400)
+    const response = {
+      errors: [
+        {
+          userMessage: 'Sorry, the movie could not be added',
+          code: 400
+        }
+      ]
+    }
+    // if something goes wrong we send the response
+    res.status = 400;
+    res.send(response)
   }
 })
 
@@ -26,21 +36,39 @@ router.get('/movie', async (req, res) => {
   if (movies) {
     res.send(movies)
   } else {
-    // If something goes wrong the server respond with a 400
-    res.sendStatus(400)
+    const response = {
+      errors: [
+        {
+          userMessage: 'Sorry, something went wrong',
+          code: 400
+        }
+      ]
+    }
+    // if something goes wrong we send the response
+    res.status = 400;
+    res.send(response)
   }
 })
 
 /**
  * removing movies from UserMovie for the current user, and a given movie_id
  */
-router.get('/movie/remove/:id', async (req, res) => {
+router.delete('/movie/remove/:id', async (req, res) => {
   if (await controller.removeMovieForUser(req.params.id, req.user)) {
-    // Letting the server know it went OK
-    res.sendStatus(200)
+    // Letting the client know the delete was sucsessfull
+    res.sendStatus(204)
   } else {
-    // If something goes wrong the server respond with a 400
-    res.sendStatus(400)
+    const response = {
+      errors: [
+        {
+          userMessage: 'Sorry, we were unable to delete that elemeent',
+          code: 400
+        }
+      ]
+    }
+    // if something goes wrong we send the response
+    res.status = 400;
+    res.send(response)
   }
 })
 
@@ -52,8 +80,17 @@ router.post('/tv', (req, res) => {
   if (controller.newTv(req.body.id, req.user)) {
     res.sendStatus(200)
   } else {
-    // if something goes wrong we send 400
-    res.sendStatus(400)
+    const response = {
+      errors: [
+        {
+          userMessage: 'Sorry, the tv-show could not be added',
+          code: 400
+        }
+      ]
+    }
+    // if something goes wrong we send the response
+    res.status = 400;
+    res.send(response)
   }
 })
 
@@ -65,21 +102,39 @@ router.get('/tv', async (req, res) => {
   if (movies) {
     res.send(movies)
   } else {
-    // If something goes wrong the server respond with a 400
-    res.send(400)
+    const response = {
+      errors: [
+        {
+          userMessage: 'Sorry, something went wrong',
+          code: 400
+        }
+      ]
+    }
+    // if something goes wrong we send the response
+    res.status = 400;
+    res.send(response)
   }
 })
 
 /**
  * removing movies from UserTv for the current user, and a given movie_id
  */
-router.get('/tv/remove/:id', async (req, res) => {
+router.delete('/tv/remove/:id', async (req, res) => {
   if (await controller.removeTvForUser(req.params.id, req.user)) {
     // Letting the server know it went OK
-    res.sendStatus(200)
+    res.sendStatus(204)
   } else {
-    // If something goes wrong the server respond with a 400
-    res.sendStatus(400)
+    const response = {
+      errors: [
+        {
+          userMessage: 'Sorry, we were unable to delete that elemeent',
+          code: 400
+        }
+      ]
+    }
+    // if something goes wrong we send the response
+    res.status = 400;
+    res.send(response)
   }
 })
 
