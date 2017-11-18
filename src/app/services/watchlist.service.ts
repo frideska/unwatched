@@ -33,9 +33,9 @@ export class WatchlistService {
       console.error(err)
     }
   }
-  public async getWatchlist(sortBy= 'standard') {
+  public async getWatchlist(sortBy= 'standard', search = '') {
     try {
-      const response = await this.http.get(this.URL + '/movie', {params: {sort_by: sortBy}}).toPromise()
+      const response = await this.http.get(this.URL + '/movie', {params: {sort_by: sortBy, search: search}}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'movie')
       }
@@ -44,7 +44,7 @@ export class WatchlistService {
       console.error(err)
     }
     try {
-      const response = await this.http.get(this.URL + '/tv', {params: {sort_by: sortBy}}).toPromise()
+      const response = await this.http.get(this.URL + '/tv', {params: {sort_by: sortBy, search: search}}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'tv')
       }

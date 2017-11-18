@@ -62,7 +62,6 @@ let response = (databaseEntry, type) => {
  */
 let findMovieForUser = async (user, sortType, search) => {
   try {
-    console.log(search)
   // Findes all the movies, that are in the watchlist of the current user
     let query   = {user_id: user._id}
     if(search){
@@ -114,7 +113,6 @@ let removeMovieForUser = async (movieID, user) => {
 let newTv = async (tvID, user) => {
   let tvLibrary = await LibraryUserTv.findOne({tv_id: tvID, user_id: user._id})
   let tvWatchlist = await UserTv.findOne({tv_id: tvID, user_id: user._id})
-  console.log((!tvWatchlist && !tvLibrary))
   if (!tvWatchlist && !tvLibrary) {
     try {
       let userTv = await tmdbWrapper.details.tv(tvID, false, false)

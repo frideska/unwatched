@@ -12,8 +12,11 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
   type: string
   sortBy: string
+  search: string
   private sub: any
-  constructor(public libraryService: LibraryService, private route: ActivatedRoute, private router: Router) {}
+  constructor(public libraryService: LibraryService,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
 
   async ngOnInit() {
@@ -21,7 +24,8 @@ export class LibraryComponent implements OnInit, OnDestroy {
     this.sub = this.route.queryParams.subscribe(params => {
         this.type = params['type'] || 'movie'
         this.sortBy = params['sort_by'] || 'standard'
-        this.libraryService.getLibrary(this.sortBy)
+        this.search = params['search'] || ''
+        this.libraryService.getLibrary(this.sortBy, this.search)
       })
   }
   ngOnDestroy() {

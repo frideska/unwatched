@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 export class WatchlistComponent implements OnInit, OnDestroy {
   type: string
   sortBy: string
+  search: string
   private sub: any
 
   constructor(public watchlistService: WatchlistService, private route: ActivatedRoute, private router: Router) {}
@@ -19,9 +20,10 @@ export class WatchlistComponent implements OnInit, OnDestroy {
     this.sub = this.route.queryParams.subscribe(params => {
       this.type = params['type'] || 'movie'
       this.sortBy = params['sort_by'] || 'standard'
-      this.watchlistService.getWatchlist(this.sortBy)
+      this.search = params['search'] || ''
+      this.watchlistService.getWatchlist(this.sortBy, this.search)
     })
-    this.watchlistService.getWatchlist(this.sortBy)
+    this.watchlistService.getWatchlist(this.sortBy, this.search)
   }
   ngOnDestroy() {
     this.sub.unsubscribe()
