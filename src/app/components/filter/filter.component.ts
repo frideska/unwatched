@@ -10,6 +10,12 @@ import { LibraryService } from 'services/library.service'
 export class FilterComponent implements OnInit {
   url: string
   type: string
+  nameSort: string
+  nameArrow: string
+  ratingSort: string
+  ratingArrow: string
+  dateSort: string
+  dateArrow: string
 
   constructor(
     private libraryService: LibraryService,
@@ -21,10 +27,69 @@ export class FilterComponent implements OnInit {
   ngOnInit() {
     this.url = this.router.url
     console.log(this.url)
+    this.dateSort = 'release_date'
+    this.ratingSort = 'vote_average'
+    this.nameSort = 'title'
   }
 
+  /**
+   * Sets the stype, move or tv.
+   * @param type
+   */
   setType(type) {
     this.type = type
+    this.nameSort = 'title'
+    this.nameArrow = ''
+    this.ratingSort = 'vote_average'
+    this.ratingArrow = ''
+    this.dateSort = 'release_date'
+    this.dateArrow = ''
   }
 
+  /**
+   * Toggeels the name button
+   * Mark that because angular is rendering ratingArrow before the value is changed it down is up
+   */
+  toggleNameSort() {
+    this.dateArrow = ''
+    this.ratingArrow = ''
+    if (this.nameSort === 'title') {
+      this.nameArrow = 'up'
+      this.nameSort = '-title'
+    } else {
+      this.nameSort = 'title'
+      this.nameArrow = 'down'
+    }
+  }
+
+  /**
+   * Toggeels the rating button
+   * Mark that because angular is rendering ratingArrow before the value is changed it down is up
+   */
+  toggleRatingSort() {
+    this.nameArrow = ''
+    this.dateArrow = ''
+    if (this.ratingSort === 'vote_average') {
+      this.ratingSort = '-vote_average'
+      this.ratingArrow = 'up'
+    } else {
+      this.ratingSort = 'vote_average'
+      this.ratingArrow = 'down'
+    }
+  }
+  /**
+   * Toggeels the date button
+   * Mark that because angular is rendering ratingArrow before the value is changed it down is up
+   */
+  toggleDateSort() {
+    this.dateArrow = ''
+    this.ratingArrow = ''
+    if (this.dateSort === 'release_date') {
+      this.dateSort = '-release_date'
+      this.dateArrow = 'up'
+    } else {
+      this.dateSort = 'release_date'
+      this.dateArrow = 'down'
+    }
+  }
 }

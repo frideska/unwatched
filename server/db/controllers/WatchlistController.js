@@ -157,7 +157,7 @@ let response = (databaseEntry, type) => {
  * @param user
  * @returns {Promise.<*[]>}
  */
-let findMovieForUser = async (user) => {
+let findMovieForUser = async (user, sortType='standard') => {
   try {
   // Findes all the movies, that are in the watchlist of the current user
     var query   = {user_id: user._id}
@@ -166,6 +166,9 @@ let findMovieForUser = async (user) => {
       lean:     true,
       offset:   0,
       limit:    10
+    }
+    if(sortType !== 'standard') {
+      options.sort = sortType
     }
   let userMovies = await UserMovie.paginate(query, options)
   if (userMovies) {
