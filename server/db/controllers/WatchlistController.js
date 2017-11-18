@@ -136,6 +136,21 @@ let clean = (watchlist) => {
   let returnList = watchlist.filter((movie) => movie)
   return returnList
 }
+let response = (database, type) => {
+  return {
+      id: database.movie_id || database.tv_id,
+      title: database.title,
+      genres: database.genres ,
+      overview: database.overview,
+      backdrop_path: database.backdrop_path,
+      poster_path: database.poster_path,
+      release_date: database.release_date,
+      vote_average: database.vote_average,
+      watchlist: true,
+      library: false,
+      media_type: type
+  }
+}
 
 /**
  * Findes all the movies the given user have in his/hers watchlist
@@ -143,21 +158,20 @@ let clean = (watchlist) => {
  * @returns {Promise.<*[]>}
  */
 let findMovieForUser = async (user) => {
-  // Findes all the movies, that are in the watchlist of the current user
-  let userMovies = await UserMovie.find({user_id: user._id})
-  // For each id in the UserMovie database, we return all the informasjon about the movie, we use
-  // promise all to make sure that the array is not returned while pending
   try {
-    return clean(await Promise.all(userMovies.map(async (movie) => {
-      let movieID = await getMovieId(movie.movie_id)
-      const watchlist = true
-      const library = false
-      return tmdbWrapper.details.movie(movieID, watchlist, library)
-    })))
-  } catch (err) {
-    console.log(err)
+  // Findes all the movies, that are in the watchlist of the current user
+  let userMovies = await UserMovie.find({user_id: user._id}).populate('movie_id')
+  if (userMovies) {
+    userMovies = userMovies.map( (movie) => {
+      return response(movie.movie_id,'movie')
+    })
+    return userMovies
+  }
+  } catch(err) {
+    console.error(err)
   }
 }
+
 
 /**
  * Removes all movies with the given MovieID and user
