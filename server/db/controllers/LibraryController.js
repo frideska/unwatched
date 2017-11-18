@@ -70,7 +70,7 @@ let response = (databaseEntry, type) => {
  * @param user
  * @returns {Promise.<*[]>}
  */
-let findMovieForUser = async (user, sortType='standard') => {
+let findMovieForUser = async (user, sortType) => {
   try {
     // Findes all the movies, that are in the library of the current user
     var query   = {user_id: user._id}

@@ -79,7 +79,7 @@ export class FilterComponent implements OnInit {
    * Toggeels the date button
    */
   toggleDateSort() {
-    this.dateArrow = ''
+    this.nameArrow = ''
     this.ratingArrow = ''
     if (this.dateSort === 'release_date') {
       this.dateSort = '-release_date'
