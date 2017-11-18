@@ -28,7 +28,7 @@ export class LibraryService {
     const type = element.type
     const id = element.id
     try {
-      const response = await this.http.get(this.URL + '/' + type + '/remove/' + id).toPromise()
+      const response = await this.http.delete(this.URL + '/' + type + '/remove/' + id).toPromise()
     } catch (err) {
       console.error(err)
     }
