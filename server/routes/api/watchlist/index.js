@@ -33,10 +33,14 @@ router.post('/movie', (req, res) => {
  */
 router.get('/movie', async (req, res) => {
   let sortBy = 'standard'
+  let search = ''
+  if(req.query.search){
+    search = req.query.search
+  }
   if(req.query.sort_by){
     sortBy = req.query.sort_by
   }
-  let movies = await controller.findMovieForUser(req.user, sortBy)
+  let movies = await controller.findMovieForUser(req.user, sortBy, search)
   if (movies) {
     res.send(movies)
   } else {
@@ -103,10 +107,14 @@ router.post('/tv', (req, res) => {
  */
 router.get('/tv', async (req, res) => {
   let sortBy = 'standard'
+  let search = ''
   if(req.query.sort_by){
     sortBy = req.query.sort_by
   }
-  let tvs = await controller.findTvForUser(req.user, sortBy)
+  if(req.query.search){
+    search = req.query.search
+  }
+  let tvs = await controller.findTvForUser(req.user, sortBy, search)
   if (tvs) {
     res.send(tvs)
   } else {
