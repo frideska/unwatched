@@ -48,48 +48,45 @@ export class FilterComponent implements OnInit {
 
   /**
    * Toggeels the name button
-   * Mark that because angular is rendering ratingArrow before the value is changed it down is up
    */
   toggleNameSort() {
     this.dateArrow = ''
     this.ratingArrow = ''
     if (this.nameSort === 'title') {
-      this.nameArrow = 'up'
+      this.nameArrow = 'down'
       this.nameSort = '-title'
     } else {
       this.nameSort = 'title'
-      this.nameArrow = 'down'
+      this.nameArrow = 'up'
     }
   }
 
   /**
    * Toggeels the rating button
-   * Mark that because angular is rendering ratingArrow before the value is changed it down is up
    */
   toggleRatingSort() {
     this.nameArrow = ''
     this.dateArrow = ''
     if (this.ratingSort === 'vote_average') {
       this.ratingSort = '-vote_average'
-      this.ratingArrow = 'up'
+      this.ratingArrow = 'down'
     } else {
       this.ratingSort = 'vote_average'
-      this.ratingArrow = 'down'
+      this.ratingArrow = 'up'
     }
   }
   /**
    * Toggeels the date button
-   * Mark that because angular is rendering ratingArrow before the value is changed it down is up
    */
   toggleDateSort() {
     this.dateArrow = ''
     this.ratingArrow = ''
     if (this.dateSort === 'release_date') {
       this.dateSort = '-release_date'
-      this.dateArrow = 'up'
+      this.dateArrow = 'down'
     } else {
       this.dateSort = 'release_date'
-      this.dateArrow = 'down'
+      this.dateArrow = 'up'
     }
   }
 }
