@@ -130,14 +130,25 @@ let newTv = async (tvID, user) => {
  * @param user
  * @returns {Promise.<*[]>}
  */
-let findTvForUser = async (user) => {
+let findTvForUser = async (user, sortType) => {
   // Findes all the movies, that are in the watchlist of the current user
-  let userTv = await UserTv.find({user_id: user._id})
+  var query   = {user_id: user._id}
+  var options = {
+    lean:     true,
+    offset:   0,
+    limit:    10
+  }
+  if(sortType !== 'standard') {
+    options.sort = sortType
+  }
+
+  // Findes all the movies, that are in the watchlist of the current user
+  let userTv = await UserTv.paginate(query, options)
   // For each id in the tvMovie database, we return all the informasjon about the movie, we use
   // promise all to make sure that the array is not returned while pending
   try {
     if (userTv) {
-      userTv = userTv.map( (tv) => {
+      userTv.docs = userTv.docs.map( (tv) => {
         return response(tv,'tv')
       })
       return userTv

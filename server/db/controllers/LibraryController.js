@@ -148,12 +148,23 @@ let newTv = async (tvID, user) => {
  * @param user
  * @returns {Promise.<*[]>}
  */
-let findTvForUser = async (user) => {
+let findTvForUser = async (user, sortType) => {
   // Findes all the movies, that are in the library of the current user
-  let userTv = await UserTv.find({user_id: user._id})
+  var query   = {user_id: user._id}
+  var options = {
+    lean:     true,
+    offset:   0,
+    limit:    10
+  }
+  if(sortType !== 'standard') {
+    options.sort = sortType
+  }
+
+  // Findes all the movies, that are in the library of the current user
+  let userTv = await UserTv.paginate(query, options)
   try {
     if (userTv) {
-      userTv = userTv.map((tv) => {
+      userTv.docs = userTv.docs.map((tv) => {
         return response(tv, 'tv')
       })
       return userTv
