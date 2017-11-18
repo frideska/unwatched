@@ -17,6 +17,7 @@ export class WatchlistService {
     const id = element.id
     try {
       const response = await this.http.post(this.URL + '/' + type, {id: id}).toPromise()
+      console.log(`[Service|WatchList](addToWatchList) Got response`)
     } catch (err) {
       console.error(err)
     }
@@ -26,6 +27,8 @@ export class WatchlistService {
     const id = element.id
     try {
       const response = await this.http.delete(this.URL + '/' + type + '/remove/' + id).toPromise()
+      console.log(`[Service|WatchList](removeFromWatchList) Got response`)
+
     } catch (err) {
       console.error(err)
     }
@@ -36,7 +39,8 @@ export class WatchlistService {
       if (response.status === 200) {
         this.reconfigure(response.json(), 'movie')
       }
-    }catch (err) {
+      console.log(`[Service|WatchList](getWatchList) Got watchlist, movies: ${this.watchlistMovie.length}`)
+    } catch (err) {
       console.error(err)
     }
     try {
@@ -44,7 +48,8 @@ export class WatchlistService {
       if (response.status === 200) {
         this.reconfigure(response.json(), 'tv')
       }
-    }catch (err) {
+      console.log(`[Service|WatchList](getWatchList) Got watchlist, tv: ${this.watchlistTv.length}`)
+    } catch (err) {
       console.error(err)
     }
   }
