@@ -2,135 +2,63 @@
  * Main exporter for the Discover Feature.
  */
 
-/**
- * Optionals:
- * region
- * sort_by
- * certification_country
- * certification
- * certification.lte
- * include_adult
- * include_video
- * page
- * primary_release_year
- * primary_release_date.gte
- * primary_release_date.lte
- * release_date.gte
- * release_date.lte
- * vote_count.gte
- * vote_count.lte
- * vote_average.gte
- * vote_average.lte
- * with_cast
- * with_crew
- * with_companies
- * with_genres
- * with_keywords
- * with_people
- * year
- * without_genres
- * with_runtime.gte
- * with_runtime.lte
- * with_release_type
- * with_original_language
- */
-
+const fetch = require('node-fetch')
+const queryString = require('query-string')
 const GenreController = require('../../db/controllers/GenreController')
 
 const movie = async () => {
   try {
-    const results = await tmdb.discover.movie(
-      {
-        region: '',
-        sort_by: '',
-        certification_country: '',
-        certification: '',
-        include_adult: '',
-        include_video: '',
-        page: '',
-        primary_release_year: '',
-        with_cast: '',
-        with_crew: '',
-        with_companies: '',
-        with_genres: '',
-        with_keywords: '',
-        with_people: '',
-        year: '',
-        without_genres: '',
-        with_release_type: '',
-        with_original_language: ''
-      }
-    )
-    return await Promise.all(results.results.map(async result => {
-      return {
-        id: result.id,
-        title: result.title,
-        genres: await GenreController.getGenreMovie(result.genre_ids),
-        overview: result.overview,
-        backdrop_path: result.backdrop_path,
-        poster_path: result.poster_path,
-        release_date: result.release_date,
-        vote_average: result.vote_average,
-        watchlist: false,
-        library: false,
-        media_type: 'movie'
-      }
+    const response = await tmdb.discover.movie()
+    let results = response.results
+
+    await Promise.all(results.map(async (movie) => {
+      movie.genres = await GenreController.getGenreMovie(movie.genre_ids),
+      movie.watchlist = false,
+      movie.library = false,
+      movie.media_type = 'movie'
+      return movie
     }))
+
+    return results
   } catch (err) {
     console.error(err)
   }
 }
 
 /**
- * Optionals:
- * sort_by
- * air_date.gte
- * air_date.lte
- * first_air_date.gte
- * first_air_date.lte
- * first_air_date_year
- * page
- * timezone
- * vote_average.gte
- * vote_count.gte
- * with_genres
- * with_networks
- * without_genres
- * with_runtime.gte
- * with_runtime.lte
- * include_null_first_air_dates
- * with_original_language
+ * Define constants for Discover TV
+ */
+const API_ENDPOINT = 'https://api.themoviedb.org/3'
+const FEATURE_URL = '/discover/tv'
+const API_KEY = process.env.P4_TMDB_TOKEN
+const PARAMETERS = {
+  api_key: API_KEY,
+  sort_by: 'popularity.desc',
+  page: 1,
+  include_null_first_air_dates: false
+}
+
+/**
+ * Discover TV is a method of the TMDB API, but it was not correctly implemented in the API wrapper we are using.
+ * Therefore we have implemented out own wrapper method for the Discover TV functionality.
  */
 const tv = async () => {
   try {
-    const results = await tmdb.discover.tv(
-      {
-        sort_by: '',
-        first_air_date_year: '',
-        page: '',
-        timezone: '',
-        with_genres: '',
-        with_networks: '',
-        without_genres: '',
-        include_null_first_air_dates: '',
-        with_original_language: ''
-      }
-    )
-    return await results.results.map(result => {
-      return {
-        id: result.id,
-        title: result.title,
-        genres: result.genre_ids,
-        overview: result.overview,
-        backdrop_path: result.backdrop_path,
-        poster_path: result.poster_path,
-        release_date: result.release_date,
-        vote_average: result.vote_average,
-        watchlist: false,
-        library: false,
-        media_type: result.media_type
-      }
-    })
+    reqUrl = `${API_ENDPOINT}${FEATURE_URL}?${queryString.stringify(PARAMETERS)}`
+    let response = await fetch(reqUrl)
+    response = await response.json()
+    let results = response.results
+
+    await Promise.all(results.map(async (series) => {
+        series.title = series.name
+        series.genres = await GenreController.getGenreTv(series.genre_ids)
+        series.watchlist = false
+        series.library = false
+        media_type = 'tv'
+        return series
+    }))
+
+    return results
   } catch (err) {
     console.error(err)
   }
