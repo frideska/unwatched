@@ -22,7 +22,7 @@ router.post('/movie', (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })
@@ -33,10 +33,10 @@ router.post('/movie', (req, res) => {
 router.get('/movie', async (req, res) => {
   let sortBy = 'standard'
   let search = ''
-  if(req.query.sort_by){
+  if (req.query.sort_by) {
     sortBy = req.query.sort_by
   }
-  if(req.query.search){
+  if (req.query.search) {
     search = req.query.search
   }
   let movies = await controller.findMovieForUser(req.user, sortBy, search)
@@ -52,7 +52,7 @@ router.get('/movie', async (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })
@@ -74,7 +74,7 @@ router.delete('/movie/remove/:id', async (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })
@@ -96,7 +96,7 @@ router.post('/tv', (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })
@@ -106,11 +106,11 @@ router.post('/tv', (req, res) => {
  */
 router.get('/tv', async (req, res) => {
   let sortBy = 'standard'
-  search = ''
-  if(req.query.sort_by){
+  let search = ''
+  if (req.query.sort_by) {
     sortBy = req.query.sort_by
   }
-  if(req.query.search){
+  if (req.query.search) {
     search = req.query.search
   }
   let tv = await controller.findTvForUser(req.user, sortBy, search)
@@ -126,7 +126,7 @@ router.get('/tv', async (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })
@@ -148,7 +148,7 @@ router.delete('/tv/remove/:id', async (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })

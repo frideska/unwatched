@@ -4,8 +4,6 @@ const WatchlistUserTv = require('../models/Watchlist/WatchlistUserTv')
 const UserTv = require('../models/Library/LibraryUserTv')
 const tmdbWrapper = require('../../tmdb/')
 
-
-
 /**
  * Creates a new entry in the UserMovie collection
  * with a given movie_id and user._id
@@ -27,7 +25,7 @@ let newMovie = async (movieID, user) => {
   if (!movieLibrary) {
     try {
       let movieDetails = await tmdbWrapper.details.movie(movieID, false, false)
-      if(movieDetails) {
+      if (movieDetails) {
         movieDetails.movie_id = movieDetails.id
         movieDetails.user_id = user._id
         await UserMovie.create(movieDetails)
@@ -53,7 +51,7 @@ let response = (databaseEntry, type) => {
   return {
     id: databaseEntry.movie_id || databaseEntry.tv_id,
     title: databaseEntry.title,
-    genres: databaseEntry.genres ,
+    genres: databaseEntry.genres,
     overview: databaseEntry.overview,
     backdrop_path: databaseEntry.backdrop_path,
     poster_path: databaseEntry.poster_path,
@@ -72,30 +70,29 @@ let response = (databaseEntry, type) => {
  */
 let findMovieForUser = async (user, sortType, search) => {
   try {
-    let query   = {user_id: user._id}
-    if(search){
+    let query = {user_id: user._id}
+    if (search) {
       query.title = {'$regex': search, '$options': 'i'}
     }
     let options = {
-      lean:     true,
-      offset:   0,
-      limit:    10
+      lean: true,
+      offset: 0,
+      limit: 10
     }
-    if(sortType !== 'standard') {
+    if (sortType !== 'standard') {
       options.sort = sortType
     }
     let userMovies = await UserMovie.paginate(query, options)
     if (userMovies) {
-      userMovies.docs = userMovies.docs.map( (movie) => {
-        return response(movie,'movie')
+      userMovies.docs = userMovies.docs.map((movie) => {
+        return response(movie, 'movie')
       })
       return userMovies
     }
-  } catch(err) {
+  } catch (err) {
     console.error(err)
   }
 }
-
 
 /**
  * Removes all movies with the given MovieID and user
@@ -152,16 +149,16 @@ let newTv = async (tvID, user) => {
  */
 let findTvForUser = async (user, sortType, search) => {
   // Findes all the movies, that are in the library of the current user
-  let query   = {user_id: user._id}
-  if(search){
+  let query = {user_id: user._id}
+  if (search) {
     query.title = {'$regex': search, '$options': 'i'}
   }
   let options = {
-    lean:     true,
-    offset:   0,
-    limit:    10
+    lean: true,
+    offset: 0,
+    limit: 10
   }
-  if(sortType !== 'standard') {
+  if (sortType !== 'standard') {
     options.sort = sortType
   }
 
