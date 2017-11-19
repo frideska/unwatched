@@ -62,7 +62,7 @@ const movie = async () => {
       }
     )
     return await Promise.all(results.results.map(async result => {
-      return {
+      return await {
         id: result.id,
         title: result.title,
         genres: await GenreController.getGenreMovie(result.genre_ids),

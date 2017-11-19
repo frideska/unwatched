@@ -36,8 +36,8 @@ const tvInWatchlist = async (tvID, user) => {
  * @returns {Promise.<boolean>}
  */
 const movieInLibrary = async (movieID, user) => {
-  let movie = await LibraryMovie.findOne({movie_id: movieID, user_id: user._id})
-  if (movie) {
+  let userMovie = await LibraryMovie.findOne({movie_id: movieID, user_id: user._id})
+  if (userMovie) {
     return true
   }
   return false
@@ -49,10 +49,11 @@ const movieInLibrary = async (movieID, user) => {
  * @returns {Promise.<boolean>}
  */
 const movieInWatchlist = async (movieID, user) => {
-  let movie = await WatchlistMovie.findOne({movie_id: movieID, user_id: user._id})
-  if (movie) {
+  let userMovie = await WatchlistMovie.findOne({movie_id: movieID, user_id: user._id})
+  if (userMovie) {
     return true
   }
+
   return false
 }
 

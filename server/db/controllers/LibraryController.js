@@ -4,6 +4,8 @@ const WatchlistUserTv = require('../models/Watchlist/WatchlistUserTv')
 const UserTv = require('../models/Library/LibraryUserTv')
 const tmdbWrapper = require('../../tmdb/')
 
+
+
 /**
  * Creates a new entry in the UserMovie collection
  * with a given movie_id and user._id
@@ -12,24 +14,25 @@ const tmdbWrapper = require('../../tmdb/')
  * @returns {Promise.<boolean>}
  */
 let newMovie = async (movieID, user) => {
-  let movie = await UserMovie.findOne({movie_id: movieID, user_id: user._id})
-  // Checks if the move is in watchlist, if so remove it
   let movieWatchlist = await WatchlistUserMovie.findOne({movie_id: movieID, user_id: user._id})
+  let movieLibrary = await UserMovie.findOne({movie_id: movieID, user_id: user._id})
   if (movieWatchlist) {
     try {
       await WatchlistUserMovie.remove({movie_id: movieID, user_id: user._id})
     } catch (err) {
-      console.log(err)
+      console.error(err)
       return false
     }
   }
-  if (!movie) {
+  if (!movieLibrary) {
     try {
-      let userMovie = new UserMovie()
-      userMovie.movie_id = movieID
-      userMovie.user_id = user._id
-      userMovie.save()
-      return true
+      let movieDetails = await tmdbWrapper.details.movie(movieID, false, false)
+      if(movieDetails) {
+        movieDetails.movie_id = movieDetails.id
+        movieDetails.user_id = user._id
+        await UserMovie.create(movieDetails)
+        return true
+      }
     } catch (err) {
       console.error(err)
       return false
@@ -46,26 +49,53 @@ let clean = (librarylist) => {
   return returnList
 }
 
+let response = (databaseEntry, type) => {
+  return {
+    id: databaseEntry.movie_id || databaseEntry.tv_id,
+    title: databaseEntry.title,
+    genres: databaseEntry.genres ,
+    overview: databaseEntry.overview,
+    backdrop_path: databaseEntry.backdrop_path,
+    poster_path: databaseEntry.poster_path,
+    release_date: databaseEntry.release_date,
+    vote_average: databaseEntry.vote_average,
+    watchlist: false,
+    library: true,
+    media_type: type
+  }
+}
+
 /**
  * Findes all the movies the given user have in his/hers library
  * @param user
  * @returns {Promise.<*[]>}
  */
-let findMovieForUser = async (user) => {
-  // Findes all the movies, that are in the library of the current user
-  let userMovies = await UserMovie.find({user_id: user._id})
-  // For each id in the UserMovie database, we return all the informasjon about the movie, we use
-  // promise all to make sure that the array is not returned while pending
+let findMovieForUser = async (user, sortType, search) => {
   try {
-    return clean(await Promise.all(userMovies.map(async (movie) => {
-      const watchlist = false
-      const library = true
-      return tmdbWrapper.details.movie(movie.movie_id, watchlist, library)
-    })))
-  } catch (err) {
-    console.log(err)
+    let query   = {user_id: user._id}
+    if(search){
+      query.title = {'$regex': search, '$options': 'i'}
+    }
+    let options = {
+      lean:     true,
+      offset:   0,
+      limit:    10
+    }
+    if(sortType !== 'standard') {
+      options.sort = sortType
+    }
+    let userMovies = await UserMovie.paginate(query, options)
+    if (userMovies) {
+      userMovies.docs = userMovies.docs.map( (movie) => {
+        return response(movie,'movie')
+      })
+      return userMovies
+    }
+  } catch(err) {
+    console.error(err)
   }
 }
+
 
 /**
  * Removes all movies with the given MovieID and user
@@ -90,23 +120,22 @@ let removeMovieForUser = async (movieID, user) => {
  * @returns {Promise.<boolean>}
  */
 let newTv = async (tvID, user) => {
-  let tv = await UserTv.findOne({tv_id: tvID, user_id: user._id})
-  // Checks if the tv-show is in watchlist, if so remove it
   let tvWatchlist = await WatchlistUserTv.findOne({tv_id: tvID, user_id: user._id})
+  let tvLibrary = await UserTv.findOne({tv_id: tvID, user_id: user._id})
   if (tvWatchlist) {
     try {
       await WatchlistUserTv.remove({tv_id: tvID, user_id: user._id})
     } catch (err) {
-      console.log(err)
+      console.error(err)
       return false
     }
   }
-  if (!tv) {
+  if (!tvLibrary) {
     try {
-      let userTv = new UserTv()
-      userTv.tv_id = tvID
+      let userTv = await tmdbWrapper.details.tv(tvID, false, false)
+      userTv.tv_id = userTv.id
       userTv.user_id = user._id
-      userTv.save()
+      await UserTv.create(userTv)
       return true
     } catch (err) {
       console.error(err)
@@ -121,18 +150,30 @@ let newTv = async (tvID, user) => {
  * @param user
  * @returns {Promise.<*[]>}
  */
-let findTvForUser = async (user) => {
+let findTvForUser = async (user, sortType, search) => {
   // Findes all the movies, that are in the library of the current user
-  let userTv = await UserTv.find({user_id: user._id})
-  // For each id in the tvMovie database, we return all the informasjon about the movie, we use
-  // promise all to make sure that the array is not returned while pending
+  let query   = {user_id: user._id}
+  if(search){
+    query.title = {'$regex': search, '$options': 'i'}
+  }
+  let options = {
+    lean:     true,
+    offset:   0,
+    limit:    10
+  }
+  if(sortType !== 'standard') {
+    options.sort = sortType
+  }
+
+  // Findes all the movies, that are in the library of the current user
+  let userTv = await UserTv.paginate(query, options)
   try {
-    return clean(await Promise.all(userTv.map(async (tv) => {
-      const watchlist = false
-      const library = true
-      const details = await tmdbWrapper.details.tv(tv.tv_id, watchlist, library)
-      return details
-    })))
+    if (userTv) {
+      userTv.docs = userTv.docs.map((tv) => {
+        return response(tv, 'tv')
+      })
+      return userTv
+    }
   } catch (err) {
     console.log(err)
   }

@@ -29,15 +29,17 @@ export class LibraryService {
     const type = element.type
     const id = element.id
     try {
-      const response = await this.http.get(this.URL + '/' + type + '/remove/' + id).toPromise()
+
+      const response = await this.http.delete(this.URL + '/' + type + '/remove/' + id).toPromise()
       console.log(`[Service|Library](removeFromLibrary) Got response`)
+
     } catch (err) {
       console.error(err)
     }
   }
-  public async getLibrary() {
+  public async getLibrary(sortBy= 'standard', search = '') {
     try {
-      const response = await this.http.get(this.URL + '/movie/').toPromise()
+      const response = await this.http.get(this.URL + '/movie', {params: {sort_by: sortBy, search: search}}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'movie')
       }
@@ -47,7 +49,7 @@ export class LibraryService {
     }
 
     try {
-      const response = await this.http.get(this.URL + '/tv/').toPromise()
+      const response = await this.http.get(this.URL + '/tv' , {params: {sort_by: sortBy, search: search}}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'tv')
       }
@@ -59,10 +61,10 @@ export class LibraryService {
   private reconfigure(json, type) {
     switch (type) {
       case('movie'):
-        this.libraryMovie = json.map((result) => new CardElement(result))
+        this.libraryMovie = json.docs.map((result) => new CardElement(result))
         break
       case('tv'):
-        this.libraryTv = json.map((result) => new CardElement(result))
+        this.libraryTv = json.docs.map((result) => new CardElement(result))
         break
     }
   }
