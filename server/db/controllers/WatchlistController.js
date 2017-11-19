@@ -169,7 +169,7 @@ let findTvForUser = async (user, sortType, search) => {
  * Removes all movies with the given MovieID and user
  * @param movieID
  * @param user
- * @returns {Promise.<boolean>
+ * @returns {Promise.<boolean>}
  */
 let removeTvForUser = async (tvID, user) => {
   try {
