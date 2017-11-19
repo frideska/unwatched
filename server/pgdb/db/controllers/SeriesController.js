@@ -1,6 +1,6 @@
-// Controller for Movie model
+// Controller for Series model
 
-const Movie = require('../models/index').Movie
+const Series = require('../models/index').Series
 
 module.exports = {
 
@@ -9,23 +9,23 @@ module.exports = {
    * @param message
    * @returns {Promise.<Message>}
    */
-  async create (movie) {
-    const dbMovie = await Movie.findOne({where: {id: movie.id}})
-    if (!dbMovie) {
-      console.log(`Creating Movie '${movie.title}'`)
-      return Movie.create(movie)
+  async create (series) {
+    const dbSeries = await Series.findOne({where: {id: series.id}})
+    if (!dbSeries) {
+      console.log(`Creating Series '${series.title}'`)
+      return Series.create(series)
     }
-    console.log(`Movie '${dbMovie.title}' already created`)
-    return dbMovie
+    console.log(`Series '${dbSeries.title}' already created`)
+    return dbSeries
   },
 
   /**
    * @description Delete an existing Message by the unique ID using model.destroy()
-   * @param movie
+   * @param series
    * @returns {Promise}
    */
-  deleteMovie (movie) {
-    return movie.destroy()
+  deleteSeries (series) {
+    return series.destroy()
   },
 
   /**
@@ -34,7 +34,7 @@ module.exports = {
    * @returns {Promise.<Message>}
    */
   getAllToUser (user) {
-    return Movie.findAll({
+    return Series.findAll({
       where: {
         UserId: user.id
       }
@@ -46,6 +46,6 @@ module.exports = {
    * @returns {Promise.<Message>}
    */
   getAll () {
-    return Movie.findAll()
+    return Series.findAll()
   }
 }

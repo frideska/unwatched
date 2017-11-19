@@ -1,7 +1,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   let Movie = sequelize.define('Movie', {
-    movie_id: { type: DataTypes.INTEGER },
+    id: { type: DataTypes.INTEGER, primaryKey: true },
     title: DataTypes.STRING,
     genres: { type: DataTypes.ARRAY(DataTypes.STRING) },
     overview: { type: DataTypes.TEXT },
@@ -13,11 +13,20 @@ module.exports = function (sequelize, DataTypes) {
     date: { type: DataTypes.DATE, defaultValue: new Date() }
   })
   Movie.associate = (models) => {
-    Movie.belongsToMany(models.User, {
-      through: 'Watchlist'
+    Movie.hasMany(models.WatchlistMovie, {
+      foreignKey: {
+        allowNull: true
+      }
     })
-    Movie.belongsToMany(models.User, {
-      through: 'Library'
+    Movie.hasMany(models.LibraryMovie, {
+      foreignKey: {
+        allowNull: true
+      }
+    })
+    Movie.hasMany(models.UserHistory, {
+      foreignKey: {
+        allowNull: true
+      }
     })
   }
   return Movie

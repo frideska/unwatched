@@ -6,6 +6,9 @@ const findController = require('../../../../db/controllers/FindController')
 const Movie = require('../../../../pgdb/db/models').Movie
 const Series = require('../../../../pgdb/db/models').Series
 
+const MovieController = require('../../../../pgdb/db/controllers/MovieController')
+const SeriesController = require('../../../../pgdb/db/controllers/SeriesController')
+
 /**
  * @param req.query.q API search string
  */
@@ -14,9 +17,10 @@ route.get('/', async (req, res) => {
     let response = await tmdbWrapper.search.multi(req.query.q)
     response.forEach((result) => {
       if (result.media_type === 'movie') {
-        Movie.create(result)
+        MovieController.create(result)
       } else if (result.media_type === 'tv') {
-        Series.create(result)
+        console.log(result.title)
+        SeriesController.create(result)
       } else {
         throw new Error('TMDB API media_type is not defined')
       }

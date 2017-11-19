@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
 import { CardElement } from 'classes/CardElement'
+import { HistoryElement } from 'classes/HistoryElement'
 
 @Injectable()
 export class HistoryService {
   private URL = '/api/history'
-  history: any
+  history: HistoryElement[]
 
   constructor(private http: Http) { }
 
@@ -21,11 +22,11 @@ export class HistoryService {
    * Get the history.
    */
   public async getHistory(): Promise<void> {
-    let history = await this.http.get(this.URL).toPromise()
-    history = history.json()
+    const response = await this.http.get(this.URL).toPromise()
+    const history = response.json()
     console.log(`[Service|History](getHistory)`)
     console.log(history)
-    this.history = history
+    this.history = history.map((h) => new HistoryElement(h))
   }
 
   /*public async deleteFromHistory(history: string): Promise<void> {

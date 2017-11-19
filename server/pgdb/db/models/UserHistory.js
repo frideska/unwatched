@@ -4,12 +4,12 @@ module.exports = (sequelize, DataTypes) => {
     date: { type: DataTypes.DATE, defaultValue: new Date() }
   })
   UserHistory.associate = (models) => {
-    UserHistory.hasMany(models.Series, {
+    UserHistory.belongsTo(models.Series, {
       foreignKey: {
         allowNull: true
       }
     })
-    UserHistory.hasMany(models.Movie, {
+    UserHistory.belongsTo(models.Movie, {
       foreignKey: {
         allowNull: true
       }

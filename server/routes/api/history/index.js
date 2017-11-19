@@ -1,13 +1,28 @@
 const router = require('express').Router()
 
-const UserHistory = require('../../../pgdb/db/models').UserHistory
+const models = require('../../../pgdb/db/models')
+const UserHistory = models.UserHistory
 
 /**
  * Route for getting the 10 latest history Objects attriuted to the logged in user.
  */
 router.get('/', async (req, res) => {
   try {
-    let history = await UserHistory.find({ where: { UserId: req.user.id } })
+    const size = 10
+    const page = req.query.page || 1
+    const offset = ((page - 1) * size)
+    let history = await UserHistory.findAll({
+      where: {
+        UserId: req.user.id
+      },
+      include: ['Series', 'Movie'],
+      order: [
+        [models.Movie, 'title', 'ASC'],
+        [models.Series, 'title', 'ASC']
+      ],
+      limit: size,
+      offset: offset
+    })
     res.json(history)
   } catch (err) {
     console.error(err)
@@ -20,12 +35,17 @@ router.get('/', async (req, res) => {
  */
 router.post('/', async (req, res) => {
   try {
-    console.log(req.body.history)
-    await UserHistory.create({
-      UserId: req.user.id,
-      MovieId: req.body.history.id,
-      SeriesId: req.body.history.id
-    })
+    let history = { UserId: req.user.id }
+
+    if (req.body.history.type === 'movie') {
+      history.MovieId = req.body.history.id
+    } else if (req.body.history.type === 'tv') {
+      history.SeriesId = req.body.history.id
+    } else {
+      throw new Error('TMDB API media_type not valid')
+    }
+
+    await UserHistory.create(history)
     res.send()
   } catch (err) {
     console.error(err)
