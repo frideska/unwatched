@@ -15,11 +15,11 @@
       </ng-template>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="[url]" [queryParams]="{type: 'movie'}" (click)="setType('movie')">Movies</a>
+        <a (click)="setType('movie')">Movies</a>
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="[url]" [queryParams]="{type: 'tv'}" (click)="setType('tv')">series</a>
+        <a (click)="setType('tv')">series</a>
       </li>
 
       <li><div class="list_elements uk-navbar-item">|</div></li>
@@ -29,15 +29,39 @@
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'name'} ">Name<span uk-icon="icon : arrow-up"></span></a>
+        <a (click) = "toggleNameSort()">
+          Name
+          <div *ngIf = "nameArrow === 'up'; else nameDown">
+            <span uk-icon="icon : arrow-up"></span>
+          </div>
+          <div #nameDown *ngIf = "nameArrow === 'down'">
+            <span uk-icon="icon : arrow-down"></span>
+          </div>
+        </a>
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'rating'} "> Rating<span uk-icon="icon : arrow-up"></span></a>
+        <a (click) = "toggleRatingSort()">
+          Rating
+          <div *ngIf = "ratingArrow === 'up'; else ratingDown">
+            <span uk-icon="icon : arrow-up"></span>
+          </div>
+          <div #ratingDown *ngIf = "ratingArrow === 'down'">
+            <span uk-icon="icon : arrow-down"></span>
+          </div>
+        </a>
       </li>
 
       <li [routerLinkActive]="['active']">
-        <a [routerLink]="[url]" [queryParams]="{type: type , sort_by: 'date'} ">Date<span uk-icon="icon : arrow-down"></span></a>
+        <a (click) = "toggleDateSort()">
+          Date
+          <div *ngIf = "dateArrow === 'up'; else dateDown">
+            <span uk-icon="icon : arrow-up"></span>
+          </div>
+          <div #dateDown *ngIf = "dateArrow === 'down'">
+            <span uk-icon="icon : arrow-down"></span>
+          </div>
+        </a>
       </li>
     </ul>
 
@@ -46,7 +70,15 @@
   <div class="uk-navbar-right">
   <form class="uk-search uk-search uk-border-rounded">
     <a href="" class="uk-search-icon-flip" uk-search-icon></a>
-    <input class="uk-search-input" type="search" placeholder="Search library...">
+    <input
+      class="uk-search-input"
+      type="search"
+      placeholder="{{searchPlaceholder}}"
+      value="{{searchValue}}"
+      [(ngModel)]="search"
+      (ngModelChange)="onSearchChange($event)"
+      [ngModelOptions]="{standalone: true}"
+    >
   </form>
   </div>
 
