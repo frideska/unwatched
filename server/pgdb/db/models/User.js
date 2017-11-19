@@ -13,23 +13,31 @@ module.exports = (sequelize, DataTypes) => {
   })
   User.associate = (models) => {
     /**
-     * Define User relations to Watchlist
+     * Define User relations to Library
      */
-    User.belongsToMany(models.Movie, {
-      through: 'Watchlist'
+    User.hasMany(models.LibraryMovie, {
+      foreignKey: {
+        allowNull: true
+      }
     })
-    User.belongsToMany(models.Series, {
-      through: 'Watchlist'
+    User.hasMany(models.LibrarySeries, {
+      foreignKey: {
+        allowNull: true
+      }
     })
 
     /**
-     * Define User relations to Library
+     * Define User relations to Watchlist
      */
-    User.belongsToMany(models.Movie, {
-      through: 'Library'
+    User.hasMany(models.WatchlistMovie, {
+      foreignKey: {
+        allowNull: true
+      }
     })
-    User.belongsToMany(models.Series, {
-      through: 'Library'
+    User.hasMany(models.WatchlistSeries, {
+      foreignKey: {
+        allowNull: true
+      }
     })
 
     /**

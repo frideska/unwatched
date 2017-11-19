@@ -3,25 +3,26 @@ const express = require('../../../express')
 
 router.use(express.loggedIn)
 
-let controller = require('../../../db/controllers/LibraryController')
+let LibraryController = require('../../../pgdb/db/controllers/LibraryController')
 
 /**
  * Allows the user to add a movie to library,
  * the movie is then added to the UserMovie collection
  */
 router.post('/movie', (req, res) => {
-  if (controller.newMovie(req.body.id, req.user)) {
+  if (LibraryController.addMovieToUser(req.body.id, req.user)) {
     res.sendStatus(200)
   } else {
     const response = {
-      errors: [
-        {
-          userMessage: 'Sorry, the movie could not be added',
-          code: 400
-        }
-      ]
+      errors: [{
+        userMessage: 'Sorry, the movie could not be added',
+        code: 400
+      }]
     }
+<<<<<<< HEAD
     // if something goes wrong we send the response
+=======
+>>>>>>> Making progress
     res.status = 400
     res.send(response)
   }

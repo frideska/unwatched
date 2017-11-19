@@ -1,7 +1,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   let Series = sequelize.define('Series', {
-    tv_id: { type: DataTypes.INTEGER },
+    id: { type: DataTypes.INTEGER, primaryKey: true },
     title: DataTypes.STRING,
     genres: { type: DataTypes.ARRAY(DataTypes.STRING) },
     overview: { type: DataTypes.TEXT },
@@ -13,11 +13,20 @@ module.exports = function (sequelize, DataTypes) {
     date: { type: DataTypes.DATE, defaultValue: new Date() }
   })
   Series.associate = (models) => {
-    Series.belongsToMany(models.User, {
-      through: 'Watchlist'
+    Series.hasMany(models.WatchlistSeries, {
+      foreignKey: {
+        allowNull: true
+      }
     })
-    Series.belongsToMany(models.User, {
-      through: 'Library'
+    Series.hasMany(models.LibrarySeries, {
+      foreignKey: {
+        allowNull: true
+      }
+    })
+    Series.hasMany(models.UserHistory, {
+      foreignKey: {
+        allowNull: true
+      }
     })
   }
   return Series
