@@ -26,15 +26,16 @@ export class WatchlistService {
     const type = element.type
     const id = element.id
     try {
-      const response = await this.http.get(this.URL + '/' + type + '/remove/' + id).toPromise()
+      const response = await this.http.delete(this.URL + '/' + type + '/remove/' + id).toPromise()
       console.log(`[Service|WatchList](removeFromWatchList) Got response`)
+
     } catch (err) {
       console.error(err)
     }
   }
-  public async getWatchlist() {
+  public async getWatchlist(sortBy= 'standard', search = '') {
     try {
-      const response = await this.http.get(this.URL + '/movie/').toPromise()
+      const response = await this.http.get(this.URL + '/movie', {params: {sort_by: sortBy, search: search}}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'movie')
       }
@@ -43,7 +44,7 @@ export class WatchlistService {
       console.error(err)
     }
     try {
-      const response = await this.http.get(this.URL + '/tv/').toPromise()
+      const response = await this.http.get(this.URL + '/tv', {params: {sort_by: sortBy, search: search}}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'tv')
       }
@@ -56,10 +57,10 @@ export class WatchlistService {
   private reconfigure(json, type) {
     switch (type) {
       case('movie'):
-        this.watchlistMovie = json.map((result) => new CardElement(result))
+        this.watchlistMovie = json.docs.map((result) => new CardElement(result))
         break
       case('tv'):
-        this.watchlistTv = json.map((result) => new CardElement(result))
+        this.watchlistTv = json.docs.map((result) => new CardElement(result))
         break
     }
   }
