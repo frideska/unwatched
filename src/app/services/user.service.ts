@@ -30,7 +30,9 @@ export class UserService {
       this.user = null
     }
     this.loggedIn = this.isLoggedIn()
-    this.user ? console.log(`[Service|User](getUser) Got user: ${this.user.name}`) : null
+    this.user
+      ? console.log(`[Service|User](getUser) Got user: ${this.user.name}`)
+      : console.log(`[Service|User](getUser) Not logged in... `)
   }
 
   /**
