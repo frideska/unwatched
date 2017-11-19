@@ -3,7 +3,7 @@
 
     <!-- Top slideshow-->
     <div class="uk-position-relative uk-light"
-         uk-slideshow="ratio: 7:3; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 4000;">
+         uk-slideshow="ratio: 9:4; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 4000;">
       <ul class="uk-slideshow-items uk-animation-slide-top-medium">
         <app-slideshow-item [movie]="movies[0]"></app-slideshow-item>
         <app-slideshow-item [movie]="movies[1]"></app-slideshow-item>
@@ -52,8 +52,8 @@
       </ul>
 
       <!--Slideshow buttons-->
-      <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('movie')"></a>
-      <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('movie')"></a>
+      <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevMovie()"></a>
+      <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextMovie()"></a>
     </div>
 
     <!--Logged in users-->
@@ -82,8 +82,8 @@
         </ul>
 
         <!--Slideshow buttons-->
-        <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('movie')"></a>
-        <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('movie')"></a>
+        <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevMovie()"></a>
+        <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextMovie()"></a>
       </div>
     </ng-template>
 
@@ -124,8 +124,8 @@
         </ul>
 
         <!--Slideshow buttons-->
-        <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('movie')"></a>
-        <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('movie')"></a>
+        <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevTv()"></a>
+        <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextTv()"></a>
       </div>
 
       <!--Logged in users-->
@@ -154,8 +154,8 @@
           </ul>
 
           <!--Slideshow buttons-->
-          <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevObject('tv')"></a>
-          <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextObject('tv')"></a>
+          <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevTv()"></a>
+          <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextTv()"></a>
         </div>
       </ng-template>
 
