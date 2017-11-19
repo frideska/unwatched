@@ -1,39 +1,45 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt-nodejs')
 
-let Schema = mongoose.Schema
+module.exports = (sequelize, DataTypes) => {
+  let User = sequelize.define('User', {
+    id: { type: DataTypes.STRING, primaryKey: true },
+    token: DataTypes.STRING,
+    name: DataTypes.STRING,
+    image: DataTypes.STRING,
+    email: DataTypes.STRING,
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    admin: { type: DataTypes.BOOLEAN, defaultValue: false },
+    date: { type: DataTypes.DATE, defaultValue: new Date() }
+  })
+  User.associate = (models) => {
+    /**
+     * Define User relations to Watchlist
+     */
+    User.belongsToMany(models.Movie, {
+      through: 'Watchlist'
+    })
+    User.belongsToMany(models.Series, {
+      through: 'Watchlist'
+    })
 
-/**
- * Define Shema for User
- */
-let User = new Schema({
-  google: {
-    id: { type: String, required: true, unique: true },
-    token: { type: String, required: true, unique: true },
-    name: { type: String, required: true },
-    image: { type: String },
-    email: { type: String },
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true }
-  },
-  admin: { type: Boolean, default: false },
-  fullname: { type: String },
-  updated: { type: Date, default: Date.now },
-  date: { type: Date, default: Date.now }
-})
+    /**
+     * Define User relations to Library
+     */
+    User.belongsToMany(models.Movie, {
+      through: 'Library'
+    })
+    User.belongsToMany(models.Series, {
+      through: 'Library'
+    })
 
-User.methods.generateHash = function (password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
+    /**
+     * Define User relations to History
+     */
+    User.hasMany(models.UserHistory, {
+      foreignKey: {
+        allowNull: true
+      }
+    })
+  }
+  return User
 }
-
-User.methods.validPassword = function (password) {
-  return bcrypt.compareSync(password, this.local.password)
-}
-
-User.statics.generateHash = function (password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
-}
-
-User = mongoose.model('User', User)
-
-module.exports = User

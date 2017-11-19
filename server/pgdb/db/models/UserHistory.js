@@ -1,17 +1,24 @@
-const mongoose = require('mongoose')
-const User = require('./User') // eslint-disable-line
 
-let Schema = mongoose.Schema
-
-/**
- * Define Schema contianing user history.
- */
-let UserHistory = new Schema({
-  content: { type: String, required: true },
-  user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  date: { type: Date, default: Date.now }
-})
-
-const UH = mongoose.model('UserHistory', UserHistory)
-
-module.exports = UH
+module.exports = (sequelize, DataTypes) => {
+  let UserHistory = sequelize.define('UserHistory', {
+    date: { type: DataTypes.DATE, defaultValue: new Date() }
+  })
+  UserHistory.associate = (models) => {
+    UserHistory.hasMany(models.Series, {
+      foreignKey: {
+        allowNull: true
+      }
+    })
+    UserHistory.hasMany(models.Movie, {
+      foreignKey: {
+        allowNull: true
+      }
+    })
+    UserHistory.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: true
+      }
+    })
+  }
+  return UserHistory
+}

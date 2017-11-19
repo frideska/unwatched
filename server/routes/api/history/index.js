@@ -1,13 +1,17 @@
 const router = require('express').Router()
 
-const UserHistory = require('../../../db/models/UserHistory')
+const UserHistory = require('../../../pgdb/db/models').UserHistory
 
 /**
  * Route for getting the 10 latest history Objects attriuted to the logged in user.
  */
 router.get('/', async (req, res) => {
-  let history = await UserHistory.find({ user_id: req.user._id }).sort({date: 'descending'}).limit(10).exec()
-  res.json(history)
+  try {
+    let history = await UserHistory.find({ where: { UserId: req.user.id } })
+    res.json(history)
+  } catch (err) {
+    console.error(err)
+  }
 })
 
 /**
@@ -15,11 +19,17 @@ router.get('/', async (req, res) => {
  * @param req.body.history String of the history Object to be created.
  */
 router.post('/', async (req, res) => {
-  await UserHistory.create({
-    user_id: req.user._id,
-    content: req.body.history
-  })
-  res.send()
+  try {
+    console.log(req.body.history)
+    await UserHistory.create({
+      UserId: req.user.id,
+      MovieId: req.body.history.id,
+      SeriesId: req.body.history.id
+    })
+    res.send()
+  } catch (err) {
+    console.error(err)
+  }
 })
 
 /**

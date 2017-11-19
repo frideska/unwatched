@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
+import { CardElement } from 'classes/CardElement'
+
 @Injectable()
 export class HistoryService {
   private URL = '/api/history'
@@ -11,7 +13,7 @@ export class HistoryService {
   /**
    * Add to history.
    */
-  public async addToHistory(history: string): Promise<void> {
+  public async addToHistory(history: CardElement): Promise<void> {
     await this.http.post(this.URL, { history }).toPromise()
   }
 

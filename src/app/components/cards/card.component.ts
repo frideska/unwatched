@@ -54,6 +54,6 @@ export class CardComponent implements OnInit {
   }
 
   addToHistory() {
-    this.historyService.addToHistory(this.element.title)
+    this.historyService.addToHistory(this.element)
   }
 }
