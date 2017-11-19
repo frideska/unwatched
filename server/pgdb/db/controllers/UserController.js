@@ -1,47 +1,140 @@
-const User = require('../models/User')
+
+const User = require('../models/index').User
+
+console.log()
 
 /**
- * Controller function for finding a User by its Google ID.
- * @param {String} id Google ID.
- * @returns {User} A single User object.
+ * @description Creates and returns a Promise for that user
+ * @param user
+ * @returns {Promise.<User, created>}
  */
-const getByGoogle = async (id) => {
+let createUser = async (user) => {
   try {
-    return await User.findOne({ 'google.id': id })
+    const u = await User.create(user)
+    return u
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+let setWatchlist = (user, movie) => {
+  user.setMovies(movie)
+}
+
+/**
+ * @description Gets a user by UserId and returns a Promise for that user
+ * @param UserId
+ * @returns {Promise.<User>}
+ */
+let getById = async (id) => {
+  try {
+    const u = await User.find({
+      where: {
+        id: id
+      },
+      raw: true
+    })
+    return u
   } catch (err) {
     console.error(err)
   }
 }
 
 /**
- * Controller function for retrieving a User by its '_id' from the database.
- * @param {ObjectId} id User _id (created by database).
- * @returns {User} A single User object.
+ * @description Gets all users
+ * @returns {Promise.<Array.<User>>}
  */
-const getOne = async (id) => {
-  try {
-    return await User.findById(id)
-  } catch (err) {
-    console.error(err)
-  }
+let getAllUsers = () => {
+  return User.findAll({include: ['Movies']})
 }
 
 /**
- * Controller function for saving a User.
- * @param {User} user A single User object.
- * @returns {User} The updated User object.
+ * @description Gets all watchlist objects related to the user
+ * @param user
+ * @returns {Promise.<Array.<Lecture>>}
  */
-const save = async (user) => {
-  try {
-    user.updated = Date.now()
-    return await user.save()
-  } catch (err) {
-    console.error(err)
-  }
+let getMovieWatchlistForUser = (user) => {
+  return user.getWatchlist()
+}
+
+/**
+ * @description Gets all watchlist objects related to the user
+ * @param user
+ * @returns {Promise.<Array.<Lecture>>}
+ */
+let getSeriesWatchlistForUser = (user) => {
+  return user.getWatchlist()
+}
+
+/**
+ * @description Gets all watchlist objects related to the user
+ * @param user
+ * @returns {Promise.<Array.<Lecture>>}
+ */
+let getMovieLibraryForUser = (user) => {
+  return user.getLibrary()
+}
+
+/**
+ * @description Gets all watchlist objects related to the user
+ * @param user
+ * @returns {Promise.<Array.<Lecture>>}
+ */
+let getSeriesLibraryForUser = (user) => {
+  return user.getLibrary()
+}
+
+/**
+ * @description Adds user to a lecture
+ * @param user
+ * @param lecture
+ * @returns {Promise}
+ */
+let addMovieToWatchlist = (user, watchlist) => {
+  return user.addwatchlist(watchlist)
+}
+
+/**
+ * @description Adds user to a lecture
+ * @param user
+ * @param lecture
+ * @returns {Promise}
+ */
+let addSeriesToWatchlist = (user, watchlist) => {
+  return user.addwatchlist(watchlist)
+}
+
+/**
+ * @description Adds user to a lecture
+ * @param user
+ * @param lecture
+ * @returns {Promise}
+ */
+let addMovieToLibrary = (user, library) => {
+  return user.addLibrary(library)
+}
+
+/**
+ * @description Adds user to a lecture
+ * @param user
+ * @param lecture
+ * @returns {Promise}
+ */
+let addSeriesToLibrary = (user, library) => {
+  return user.addLibrary(library)
 }
 
 module.exports = {
-  getByGoogle,
-  getOne,
-  save
+  setWatchlist,
+  createUser,
+  getById,
+  getAllUsers,
+  getMovieLibraryForUser,
+  getSeriesLibraryForUser,
+  getMovieWatchlistForUser,
+  getSeriesWatchlistForUser,
+  addMovieToLibrary,
+  addMovieToWatchlist,
+  addSeriesToLibrary,
+  addSeriesToWatchlist
 }

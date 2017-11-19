@@ -49,13 +49,16 @@ const multi = async (query) => {
 
 const movie = async (query) => {
   try {
-    return await tmdb.search.movie({
+    const results = await tmdb.search.movie({
       query: query,
       include_adult: '',
       region: '',
       year: '',
       primary_release_year: ''
     })
+    console.log(`Searching for: ${query}`)
+    // console.log(results)
+    return results
   } catch (err) {
     console.error(err)
   }
