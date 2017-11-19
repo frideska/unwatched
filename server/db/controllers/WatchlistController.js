@@ -4,7 +4,6 @@ const LibraryUserMovie = require('../models/Library/LibraryUserMovie')
 const LibraryUserTv = require('../models/Library/LibraryUserTv')
 const tmdbWrapper = require('../../tmdb/')
 
-
 /**
  * Creates a new entry in the UserMovie collection
  * with a given movie_id and user._id
@@ -13,7 +12,7 @@ const tmdbWrapper = require('../../tmdb/')
  * @returns {Promise.<boolean>}
  */
 let newMovie = async (movieID, user) => {
-  //Looks for a given movie in watchlist and library
+  // Looks for a given movie in watchlist and library
   let movieLibrary = await LibraryUserMovie.findOne({movie_id: movieID, user_id: user._id})
   let movieWatchlist = await UserMovie.findOne({movie_id: movieID, user_id: user._id})
   // to add a movie it can not be in library or watchlist
@@ -41,17 +40,17 @@ let clean = (watchlist) => {
 }
 let response = (databaseEntry, type) => {
   return {
-      id: databaseEntry.movie_id || databaseEntry.tv_id,
-      title: databaseEntry.title,
-      genres: databaseEntry.genres ,
-      overview: databaseEntry.overview,
-      backdrop_path: databaseEntry.backdrop_path,
-      poster_path: databaseEntry.poster_path,
-      release_date: databaseEntry.release_date,
-      vote_average: databaseEntry.vote_average,
-      watchlist: true,
-      library: false,
-      media_type: type
+    id: databaseEntry.movie_id || databaseEntry.tv_id,
+    title: databaseEntry.title,
+    genres: databaseEntry.genres,
+    overview: databaseEntry.overview,
+    backdrop_path: databaseEntry.backdrop_path,
+    poster_path: databaseEntry.poster_path,
+    release_date: databaseEntry.release_date,
+    vote_average: databaseEntry.vote_average,
+    watchlist: true,
+    library: false,
+    media_type: type
   }
 }
 
@@ -63,27 +62,27 @@ let response = (databaseEntry, type) => {
 let findMovieForUser = async (user, sortType, search) => {
   try {
   // Findes all the movies, that are in the watchlist of the current user
-    let query   = {user_id: user._id}
-    if(search){
+    let query = {user_id: user._id}
+    if (search) {
       query.title = {'$regex': search, '$options': 'i'}
     }
 
     let options = {
-      lean:     true,
-      offset:   0,
-      limit:    10
+      lean: true,
+      offset: 0,
+      limit: 10
     }
-    if(sortType !== 'standard') {
+    if (sortType !== 'standard') {
       options.sort = sortType
     }
-  let userMovies = await UserMovie.paginate(query, options)
-  if (userMovies) {
-    userMovies.docs = userMovies.docs.map( (movie) => {
-      return response(movie,'movie')
-    })
-    return userMovies
-  }
-  } catch(err) {
+    let userMovies = await UserMovie.paginate(query, options)
+    if (userMovies) {
+      userMovies.docs = userMovies.docs.map((movie) => {
+        return response(movie, 'movie')
+      })
+      return userMovies
+    }
+  } catch (err) {
     console.error(err)
   }
 }
@@ -135,17 +134,17 @@ let newTv = async (tvID, user) => {
  */
 let findTvForUser = async (user, sortType, search) => {
   // Findes all the movies, that are in the watchlist of the current user
-  let query   = {user_id: user._id}
-  if(search){
+  let query = {user_id: user._id}
+  if (search) {
     query.title = {'$regex': search, '$options': 'i'}
   }
 
   let options = {
-    lean:     true,
-    offset:   0,
-    limit:    10
+    lean: true,
+    offset: 0,
+    limit: 10
   }
-  if(sortType !== 'standard') {
+  if (sortType !== 'standard') {
     options.sort = sortType
   }
 
@@ -155,8 +154,8 @@ let findTvForUser = async (user, sortType, search) => {
   // promise all to make sure that the array is not returned while pending
   try {
     if (userTv) {
-      userTv.docs = userTv.docs.map( (tv) => {
-        return response(tv,'tv')
+      userTv.docs = userTv.docs.map((tv) => {
+        return response(tv, 'tv')
       })
       return userTv
     }
