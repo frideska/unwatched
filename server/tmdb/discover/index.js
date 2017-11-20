@@ -51,6 +51,7 @@ const tv = async () => {
 
     await Promise.all(results.map(async (series) => {
       series.title = series.name
+      series.release_date = series.first_air_date
       series.genres = await GenreController.getGenreTv(series.genre_ids)
       series.watchlist = false
       series.library = false

@@ -26,7 +26,7 @@ export class WatchlistService {
     const type = element.type
     const id = element.id
     try {
-      const response = await this.http.delete(this.URL + '/' + type + '/remove/' + id).toPromise()
+      const response = await this.http.delete(this.URL + '/' + type, { body: {id: id} }).toPromise()
       console.log(`[Service|WatchList](removeFromWatchList) Got response`)
 
     } catch (err) {
@@ -57,10 +57,18 @@ export class WatchlistService {
   private reconfigure(json, type) {
     switch (type) {
       case('movie'):
-        this.watchlistMovie = json.docs.map((result) => new CardElement(result))
+        this.watchlistMovie = json.docs.map((result) => {
+          result.media_type = 'movie'
+          result.library = true
+          return new CardElement(result)
+        })
         break
       case('tv'):
-        this.watchlistTv = json.docs.map((result) => new CardElement(result))
+        this.watchlistTv = json.docs.map((result) => {
+          result.media_type = 'tv'
+          result.library = true
+          return new CardElement(result)
+        })
         break
     }
   }
