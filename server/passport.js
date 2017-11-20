@@ -50,17 +50,16 @@ const login = async (token, refreshToken, profile, done) => {
 
 module.exports = (passport) => {
   /**
-     * Passport function for serializing user.
-     */
+   * Passport function for serializing user.
+   */
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
   /**
-     * Passport function for deserializing user.
-     */
+   * Passport function for deserializing user.
+   */
   passport.deserializeUser(async (id, done) => {
     try {
-      console.log(id)
       let user = await UserController.getById(id)
       done(null, user)
     } catch (err) {
@@ -68,7 +67,7 @@ module.exports = (passport) => {
     }
   })
   /**
-     * Configure Passport to use Google OAuth2 Strategy.
-     */
+   * Configure Passport to use Google OAuth2 Strategy.
+   */
   passport.use(new GoogleStrategy(config, login))
 }

@@ -10,7 +10,7 @@ let LibraryController = require('../../../pgdb/db/controllers/LibraryController'
  * the movie is then added to the UserMovie collection
  */
 router.post('/movie', (req, res) => {
-  if (LibraryController.addMovieToUser(req.body.id, req.user)) {
+  if (LibraryController.addMovieToUser(req.body.id, req.user.id)) {
     res.sendStatus(200)
   } else {
     const response = {
@@ -30,27 +30,32 @@ router.post('/movie', (req, res) => {
 
 /**
  * Returnes all the movie a user have in his/heras library
+ * @param req.params.order
+ * @param req.params.sortBy
+ * @param req.params.search
+ * @param req.params.page
  */
 router.get('/movie', async (req, res) => {
-  let sortBy = 'standard'
-  let search = ''
-  if (req.query.sort_by) {
-    sortBy = req.query.sort_by
+  const options = {
+    order: req.params.order || 'ASC',
+    orderBy: req.params.sortBy || 'date',
+    query: req.params.search || '',
+    page: req.params.page || 1,
+    size: 10
   }
-  if (req.query.search) {
-    search = req.query.search
-  }
-  let movies = await controller.findMovieForUser(req.user, sortBy, search)
+  let movies = await LibraryController.getAllMoviesForUser(req.user.id, options)
   if (movies) {
-    res.send(movies)
+    res.json({
+      docs: movies,
+      page: options.page,
+      size: options.size
+    })
   } else {
     const response = {
-      errors: [
-        {
-          userMessage: 'Sorry, something went wrong',
-          code: 400
-        }
-      ]
+      errors: [{
+        userMessage: 'Sorry, something went wrong',
+        code: 400
+      }]
     }
     // if something goes wrong we send the response
     res.status = 400
