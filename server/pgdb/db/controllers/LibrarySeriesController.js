@@ -57,5 +57,15 @@ module.exports = {
     } catch (err) {
       console.error(err)
     }
+  },
+
+  async seriesInLibrary (SeriesId, UserId) {
+    const series = await Library.findOne({
+      where: { SeriesId: SeriesId, UserId: UserId }
+    })
+    if (series) {
+      return true
+    }
+    return false
   }
 }
