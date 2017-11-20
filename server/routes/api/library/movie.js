@@ -63,14 +63,12 @@ router.get('/', async (req, res) => {
  */
 router.delete('/', async (req, res) => {
   try {
-    console.log(req.body)
-    console.log(req.params)
     if (await LibraryMovieController.removeMovieFromUser(req.body.id, req.user.id)) {
       res.sendStatus(204)
     } else {
       const response = {
         errors: [{
-          userMessage: 'Sorry, we were unable to delete that elemeent',
+          userMessage: 'Sorry, we were unable to delete that element',
           code: 400
         }]
       }

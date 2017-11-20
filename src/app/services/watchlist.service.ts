@@ -59,14 +59,14 @@ export class WatchlistService {
       case('movie'):
         this.watchlistMovie = json.docs.map((result) => {
           result.media_type = 'movie'
-          result.library = true
+          result.watchlist = true
           return new CardElement(result)
         })
         break
       case('tv'):
         this.watchlistTv = json.docs.map((result) => {
           result.media_type = 'tv'
-          result.library = true
+          result.watchlist = true
           return new CardElement(result)
         })
         break

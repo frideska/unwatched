@@ -61,17 +61,21 @@ router.get('/', async (req, res) => {
  * @param req.body.id
  */
 router.delete('/', async (req, res) => {
-  if (await LibrarySeriesController.removeSeriesFromUser(req.body.id, req.user.id)) {
-    res.sendStatus(204)
-  } else {
-    const response = {
-      errors: [{
-        userMessage: 'Sorry, we were unable to delete that elemeent',
-        code: 400
-      }]
+  try {
+    if (await LibrarySeriesController.removeSeriesFromUser(req.body.id, req.user.id)) {
+      res.sendStatus(204)
+    } else {
+      const response = {
+        errors: [{
+          userMessage: 'Sorry, we were unable to delete that elemeent',
+          code: 400
+        }]
+      }
+      res.status = 400
+      res.send(response)
     }
-    res.status = 400
-    res.send(response)
+  } catch (err) {
+    console.error(err)
   }
 })
 
