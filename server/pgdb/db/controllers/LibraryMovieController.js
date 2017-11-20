@@ -58,7 +58,7 @@ module.exports = {
       console.error(err)
     }
   },
-  
+
   async movieInLibrary (MovieId, UserId) {
     const movie = await Library.findOne({
       where: { MovieId: MovieId, UserId: UserId }

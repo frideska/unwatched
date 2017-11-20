@@ -1,37 +1,53 @@
-const GenreMovie = require('../models/GenreMovie')
-const GenreTv = require('../models/GenreTv')
+const GenreMovie = require('../models').GenreMovie
+const GenreTv = require('../models').GenreTv
+const Op = require('./models').Op
 
-const getGenreMovie = async (ids) => {
-  try {
-    return await Promise.all(ids.map(async id => {
-      try {
-        let genre = await GenreMovie.findOne({id: id})
-        return genre.name
-      } catch (err) {
-        return null
-      }
-    }))
-  } catch (err) {
-    console.error(err)
-    return null
-  }
-}
-const getGenreTv = async (ids) => {
-  try {
-    return await Promise.all(ids.map(async id => {
-      try {
-        let genre = await GenreTv.findOne({id: id})
-        return genre.name
-      } catch (err) {
-        return null
-      }
-    }))
-  } catch (err) {
-    console.error(err)
-    return null
-  }
-}
 module.exports = {
-  getGenreTv,
-  getGenreMovie
+  async createGenreMovie (genre) {
+    try {
+      const dbGenre = await GenreMovie.create(genre)
+      return dbGenre
+    } catch (err) {
+      console.error(err)
+    }
+  },
+
+  async createGenreTv (genre) {
+    try {
+      const dbGenre = await GenreTv.create(genre)
+      return dbGenre
+    } catch (err) {
+      console.error(err)
+    }
+  },
+
+  async getGenreMovie (ids) {
+    try {
+      const genres = GenreMovie.findAll({
+        where: {id: { [Op.or]: ids }}
+      })
+      if (genres) {
+        console.log(genres.map((g) => g.name))
+        return genres.map((g) => g.name)
+      }
+      return false
+    } catch (err) {
+      console.error(err)
+    }
+  },
+
+  async getGenreTv (ids) {
+    try {
+      const genres = GenreTv.findAll({
+        where: {id: { [Op.or]: ids }}
+      })
+      if (genres) {
+        console.log(genres.map((g) => g.name))
+        return genres.map((g) => g.name)
+      }
+      return false
+    } catch (err) {
+      console.error(err)
+    }
+  }
 }

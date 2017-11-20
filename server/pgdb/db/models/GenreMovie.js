@@ -1,7 +1,7 @@
 
 module.exports = (sequelize, DataTypes) => {
   let GenreMovie = sequelize.define('GenreMovie', {
-    genre_id: DataTypes.INTEGER,
+    id: { type: DataTypes.INTEGER, primarykey: true },
     name: DataTypes.STRING
   }, {
     classMethods: {
