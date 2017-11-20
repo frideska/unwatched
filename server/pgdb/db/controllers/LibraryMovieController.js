@@ -35,11 +35,25 @@ module.exports = {
         offset: ((options.page - 1) * options.size)
       })
       if (dbLibraryMovie) {
-        console.log(dbLibraryMovie)
         return dbLibraryMovie.map((movie) => movie.Movie)
       } else {
         return []
       }
+    } catch (err) {
+      console.error(err)
+    }
+  },
+
+  async removeMovieFromUser (MovieId, UserId) {
+    try {
+      const dbLibraryMovie = await Library.findOne({
+        where: { MovieId: MovieId, UserId: UserId }
+      })
+      if (dbLibraryMovie) {
+        await dbLibraryMovie.destroy()
+        return true
+      }
+      return false
     } catch (err) {
       console.error(err)
     }
