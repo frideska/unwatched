@@ -6,7 +6,10 @@ const getGenreMovie = async (ids) => {
     return await Promise.all(ids.map(async id => {
       try {
         let genre = await GenreMovie.findOne({id: id})
-        return genre.name
+        if (genre) {
+          return genre.name
+        }
+        return null
       } catch (err) {
         return null
       }
@@ -21,7 +24,10 @@ const getGenreTv = async (ids) => {
     return await Promise.all(ids.map(async id => {
       try {
         let genre = await GenreTv.findOne({id: id})
-        return genre.name
+        if (genre) {
+          return genre.name
+        }
+        return null
       } catch (err) {
         return null
       }
