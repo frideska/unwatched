@@ -19,7 +19,7 @@ export class AverageRatingComponent implements OnInit {
     const libraryMov = this.libraryService.libraryMovie.map(movie => movie.rating)
     const libraryTV = this.libraryService.libraryTv.map(show => show.rating)
     const library = libraryMov.concat(libraryTV)
-    if (library.length == 0) {
+    if (library.length === 0) {
       this.rating = 'N/A'
       this.interval = 'empty'
     } else {
