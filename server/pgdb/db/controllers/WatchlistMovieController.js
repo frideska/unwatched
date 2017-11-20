@@ -54,5 +54,15 @@ module.exports = {
     } catch (err) {
       console.error(err)
     }
+  },
+
+  async movieInWatchList (MovieId, UserId) {
+    const movie = await Watchlist.findOne({
+      where: { MovieId: MovieId, UserId: UserId }
+    })
+    if (movie) {
+      return true
+    }
+    return false
   }
 }
