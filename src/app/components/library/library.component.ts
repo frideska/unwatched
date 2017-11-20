@@ -9,11 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router'
   styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit, OnDestroy {
-
   type: string
   sortBy: string
   search: string
   private sub: any
+  getListElements: Function
+
   constructor(public libraryService: LibraryService,
               private route: ActivatedRoute,
               private router: Router) {}
@@ -27,9 +28,16 @@ export class LibraryComponent implements OnInit, OnDestroy {
         this.search = params['search'] || ''
         this.libraryService.getLibrary(this.sortBy, this.search)
       })
+    this.getListElements = this.getList.bind(this)
   }
   ngOnDestroy() {
     this.sub.unsubscribe()
   }
-
+  getList() {
+    if (this.type === 'movie') {
+      return this.libraryService.libraryMovie
+    } else if (this.type === 'tv') {
+      return this.libraryService.libraryTv
+    }
+  }
 }
