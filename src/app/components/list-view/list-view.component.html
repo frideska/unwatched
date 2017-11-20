@@ -1,0 +1,100 @@
+<div *ngIf="service.listView">
+
+  <!------------Render Movies------------>
+  <!--List View Container-->
+  <div  class=" uk-text-left uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " style="  padding-left: 2rem;">
+    <!--If Movies is empty-->
+    <div *ngIf="service.isEmpty(type)" class="uk-flex uk-flex-center uk-padding-large empty_text">
+      <h1>No {{type}} in {{childOf}} </h1>
+    </div>
+    <!--ListView-->
+    <ul uk-accordion="collapsible: false" class=" uk-padding-small uk-list uk-list-divider ">
+
+      <!--ListElement-->
+      <li *ngFor="let card of getList()" class="list_elements uk-card-hover" >
+
+        <!--Title-->
+        <h3 class="uk-accordion-title title_content title_text uk-display-inline">{{card.title}}</h3>
+        <!--Year-->
+        <p class="title_content uk-text-muted subtitle_text uk-display-inline">{{ card.date.getFullYear() }}</p>
+
+        <!--Genres-->
+        <h3 class="title_content subtitle_text uk-display-inline"><span class="uk-label uk-text-muted">{{ card.genres }}</span> </h3>
+
+        <!--Card Buttons-->
+        <div class="uk-button-group uk-float-right ">
+
+          <!--Watchlist buttons-->
+          <!--Add to watchlist-->
+          <button *ngIf='!card.watchlist; else removeWatchList'
+                  onclick="UIkit.notification({
+                message: '<span uk-icon=\'icon: check\'></span> Successfully added to watchlist!',
+                pos: 'bottom-center', status:'success', timeout: '2500'})"
+                  (click)="addToWatchlist(card)"
+                  class="uk-button uk-text-nowrap button_add" >
+            <label>Add to <br>watchlist</label>
+          </button>
+
+          <!--Remove from watchlist-->
+          <ng-template #removeWatchList>
+            <button (click)="addToWatchlist(card)"
+                    onclick="UIkit.notification({
+                  message: '<span uk-icon=\'icon: trash\'></span> Deleted from watchlist!',
+                  pos: 'bottom-center', status:'danger', timeout: '2500'})"
+                    class="uk-button uk-text-nowrap button_remove">
+              <label>Remove</label>
+            </button>
+          </ng-template>
+
+          <!--Library buttons-->
+
+          <!--Add to library-->
+          <button *ngIf='!card.library; else removeLibrary'
+                  onclick="UIkit.notification({
+                message: '<span uk-icon=\'icon: check\'></span> Successfully added to library!',
+                pos: 'bottom-center', status:'success', timeout: '2500'})"
+                  (click)="addToLibrary(card)"
+                  class="uk-button uk-text-nowrap button_add">
+            <label>Add to <br>library</label>
+          </button>
+
+          <!--Remove from library-->
+          <ng-template #removeLibrary>
+            <button (click)="addToLibrary(card)"
+                    onclick="UIkit.notification({
+                  message: '<span uk-icon=\'icon: trash\'></span> Deleted from library!',
+                  pos: 'bottom-center', status:'danger', timeout: '2500'})"
+                    class="uk-button uk-text-nowrap button_remove">
+              <label>Remove</label>
+            </button>
+          </ng-template>
+
+        </div>
+
+        <!--Content-->
+        <div class="uk-accordion-content desc_container" >
+
+          <!--Image-->
+          <div>
+            <img src="{{ card.image }}" alt="" class="uk-display-inline ">
+          </div>
+
+          <div class="flex_box">
+            <!--Description-->
+            <div class=" uk-container-small uk-display-inline" >
+              <p class="uk-display-inline ">
+                {{ card.overview2 }}
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+
+
+</div>
+
+
