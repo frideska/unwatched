@@ -56,7 +56,7 @@ module.exports = {
     }
   },
 
-  async seriesInWatchList (SeriesId, UserId) {
+  async seriesInWatchlist (SeriesId, UserId) {
     const series = await Watchlist.findOne({
       where: { SeriesId: SeriesId, UserId: UserId }
     })

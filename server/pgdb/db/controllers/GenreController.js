@@ -1,11 +1,14 @@
 const GenreMovie = require('../models').GenreMovie
 const GenreTv = require('../models').GenreTv
-const Op = require('./models').Op
+const Op = require('../models').Sequelize.Op
 
 module.exports = {
   async createGenreMovie (genre) {
     try {
-      const dbGenre = await GenreMovie.create(genre)
+      let dbGenre = await GenreMovie.findOne({ where: { id: genre.id } })
+      if (!dbGenre) {
+        dbGenre = await GenreMovie.create(genre)
+      }
       return dbGenre
     } catch (err) {
       console.error(err)
@@ -14,7 +17,10 @@ module.exports = {
 
   async createGenreTv (genre) {
     try {
-      const dbGenre = await GenreTv.create(genre)
+      let dbGenre = await GenreTv.findOne({ where: { id: genre.id } })
+      if (!dbGenre) {
+        dbGenre = await GenreTv.create(genre)
+      }
       return dbGenre
     } catch (err) {
       console.error(err)
@@ -27,8 +33,7 @@ module.exports = {
         where: {id: { [Op.or]: ids }}
       })
       if (genres) {
-        console.log(genres.map((g) => g.name))
-        return genres.map((g) => g.name)
+        return await genres.map((g) => g.name)
       }
       return false
     } catch (err) {
@@ -42,8 +47,7 @@ module.exports = {
         where: {id: { [Op.or]: ids }}
       })
       if (genres) {
-        console.log(genres.map((g) => g.name))
-        return genres.map((g) => g.name)
+        return await genres.map((g) => g.name)
       }
       return false
     } catch (err) {
