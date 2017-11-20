@@ -44,18 +44,18 @@ const PARAMETERS = {
  */
 const tv = async () => {
   try {
-    reqUrl = `${API_ENDPOINT}${FEATURE_URL}?${queryString.stringify(PARAMETERS)}`
+    const reqUrl = `${API_ENDPOINT}${FEATURE_URL}?${queryString.stringify(PARAMETERS)}`
     let response = await fetch(reqUrl)
     response = await response.json()
     let results = response.results
 
     await Promise.all(results.map(async (series) => {
-        series.title = series.name
-        series.genres = await GenreController.getGenreTv(series.genre_ids)
-        series.watchlist = false
-        series.library = false
-        media_type = 'tv'
-        return series
+      series.title = series.name
+      series.genres = await GenreController.getGenreTv(series.genre_ids)
+      series.watchlist = false
+      series.library = false
+      media_type = 'tv'
+      return series
     }))
 
     return results
