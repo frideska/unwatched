@@ -30,58 +30,12 @@ try {
 
   Object.keys(db).forEach(function (modelName) {
     if (db[modelName].associate) {
-      console.log(modelName)
       db[modelName].associate(db)
     }
   })
 } catch (err) {
   console.error(err)
 }
-
-/*const User = sequelize.import('./User')
-const Movie = sequelize.import('./Movie')
-const Series = sequelize.import('./Series')
-const UserHistory = sequelize.import('./UserHistory')*/
-
-/*User.belongsToMany(Movie, {
-  through: 'Watchlist'
-})
-User.belongsToMany(Series, {
-  through: 'Watchlist'
-})
-UserHistory.hasMany(Series, {
-  foreignKey: {
-    allowNull: true
-  }
-})
-UserHistory.hasMany(Movie, {
-  foreignKey: {
-    allowNull: true
-  }
-})
-User.belongsToMany(Movie, {
-  through: 'Library'
-})
-User.belongsToMany(Series, {
-  through: 'Library'
-})
-Movie.belongsToMany(User, {
-  through: 'Watchlist'
-})
-Movie.belongsToMany(User, {
-  through: 'Library'
-})
-Series.belongsToMany(User, {
-  through: 'Watchlist'
-})
-Series.belongsToMany(User, {
-  through: 'Library'
-})*/
-
-/*db.User = User
-db.Movie = Movie
-db.UserHistory = UserHistory
-db.Series = Series*/
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
