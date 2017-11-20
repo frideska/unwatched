@@ -15,10 +15,13 @@
         </div>
       </div>
       <div class="uk-card-body">
-        <p>Updated: {{ userService.user.updated }}</p>
+
+        <p>You joined Unwatched: <br> <i>{{getUpdated()}}</i></p>
+        <p>Last time your profile was updated: <br><i>{{ getDate()}}</i></p>
+
       </div>
       <div class="uk-card-footer">
-        <a class="uk-button uk-button-danger" (click)="delete()">Delete me</a>
+        <a class="uk-button uk-button-danger" (click)="delete()">Delete my UnWatched profile</a>
       </div>
     </div>
 
