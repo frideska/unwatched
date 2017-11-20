@@ -8,6 +8,9 @@ module.exports = {
       let dbGenre = await GenreMovie.findOne({ where: { id: genre.id } })
       if (!dbGenre) {
         dbGenre = await GenreMovie.create(genre)
+        console.log(`Created genre ${dbGenre.name}`)
+      } else {
+        console.log(`Genre ${genre.name} exists`)
       }
       return dbGenre
     } catch (err) {
@@ -20,6 +23,9 @@ module.exports = {
       let dbGenre = await GenreTv.findOne({ where: { id: genre.id } })
       if (!dbGenre) {
         dbGenre = await GenreTv.create(genre)
+        console.log(`Created genre ${dbGenre.name}`)
+      } else {
+        console.log(`Genre ${genre.name} exists`)
       }
       return dbGenre
     } catch (err) {
@@ -29,12 +35,18 @@ module.exports = {
 
   async getGenreMovie (ids) {
     try {
-      const genres = GenreMovie.findAll({
-        where: {id: { [Op.or]: ids }}
+      console.log(ids)
+      let genres = await GenreMovie.findAll({
+        where: {id: { [Op.or]: ids }}, raw: true
       })
+      console.log(genres.length)
       if (genres) {
-        return await genres.map((g) => g.name)
+        console.log('Before genres map')
+        genres = await genres.map((g) => g.name)
+        console.log(genres)
+        return genres
       }
+      console.log('No genres found')
       return false
     } catch (err) {
       console.error(err)
@@ -43,12 +55,17 @@ module.exports = {
 
   async getGenreTv (ids) {
     try {
-      const genres = GenreTv.findAll({
-        where: {id: { [Op.or]: ids }}
+      let genres = await GenreTv.findAll({
+        where: {id: { [Op.or]: ids }}, raw: true
       })
+      console.log(genres.length)
       if (genres) {
-        return await genres.map((g) => g.name)
+        console.log('Before genres map')
+        genres = await genres.map((g) => g.name)
+        console.log(genres)
+        return genres
       }
+      console.log('No genres found')
       return false
     } catch (err) {
       console.error(err)

@@ -10,37 +10,19 @@ const multi = async (query) => {
     response.results = response.results.filter((result) => {
       return result.media_type === 'movie' || result.media_type === 'tv'
     })
+    console.log(`Searching for ${query}, got ${response.results.length} objects`)
     response = await Promise.all(response.results.map(async (result) => {
+      console.log(`MediaType: ${result.media_type}`)
       if (result.media_type === 'tv') {
-        return {
-          id: result.id,
-          title: result.name,
-          genres: await GenreController.getGenreTv(result.genre_ids),
-          overview: result.overview,
-          backdrop_path: result.backdrop_path,
-          poster_path: result.poster_path,
-          release_date: result.release_date,
-          vote_average: result.vote_average,
-          watchlist: false,
-          library: false,
-          media_type: 'tv'
-        }
+        result.watchlist = false
+        result.library = false
       } else if (result.media_type === 'movie') {
-        return {
-          id: result.id,
-          title: result.title,
-          genres: await GenreController.getGenreMovie(result.genre_ids),
-          overview: result.overview,
-          backdrop_path: result.backdrop_path,
-          poster_path: result.poster_path,
-          release_date: result.release_date,
-          vote_average: result.vote_average,
-          watchlist: false,
-          library: false,
-          media_type: 'movie'
-        }
+        result.watchlist = false
+        result.library = false
       }
+      return result
     }))
+    console.log(`After map`)
     return response
   } catch (err) {
     console.error(err)

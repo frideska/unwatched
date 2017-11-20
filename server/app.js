@@ -101,7 +101,15 @@ app.use(passport.session())
 
 app.use('/', routes)
 
-genre.movie()
-genre.tv()
+const getGenres = async () => {
+  try {
+    await genre.movie()
+    await genre.tv()
+  } catch (err) {
+    console.error()
+  }
+}
+
+getGenres()
 
 app.listen(PORT, HOST, () => console.log(`Project server running on: ${HOST}:${PORT}`))
