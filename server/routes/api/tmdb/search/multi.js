@@ -20,7 +20,6 @@ route.get('/', async (req, res) => {
       if (result.media_type === 'movie') {
         MovieController.create(result)
       } else if (result.media_type === 'tv') {
-        console.log(result.title)
         SeriesController.create(result)
       } else {
         throw new Error('TMDB API media_type is not defined')

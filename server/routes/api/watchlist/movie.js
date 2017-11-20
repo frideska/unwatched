@@ -60,10 +60,10 @@ router.get('/', async (req, res) => {
 
 /**
  * removing movies from UserMovie for the current user, and a given movie_id
- * @param req.params.id
+ * @param req.body.id
  */
 router.delete('/', async (req, res) => {
-  if (await WatchlistMovieController.removeMovieFromUser(req.params.id, req.user.id)) {
+  if (await WatchlistMovieController.removeMovieFromUser(req.body.id, req.user.id)) {
     res.sendStatus(204)
   } else {
     const response = {

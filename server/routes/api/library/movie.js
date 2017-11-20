@@ -59,20 +59,26 @@ router.get('/', async (req, res) => {
 
 /**
  * removing movies from UserMovie for the current user, and a given movie_id
- * @param req.params.id
+ * @param req.body.id
  */
 router.delete('/', async (req, res) => {
-  if (await LibraryMovieController.removeMovieFromUser(req.params.id, req.user.id)) {
-    res.sendStatus(204)
-  } else {
-    const response = {
-      errors: [{
-        userMessage: 'Sorry, we were unable to delete that elemeent',
-        code: 400
-      }]
+  try {
+    console.log(req.body)
+    console.log(req.params)
+    if (await LibraryMovieController.removeMovieFromUser(req.body.id, req.user.id)) {
+      res.sendStatus(204)
+    } else {
+      const response = {
+        errors: [{
+          userMessage: 'Sorry, we were unable to delete that elemeent',
+          code: 400
+        }]
+      }
+      res.status = 400
+      res.send(response)
     }
-    res.status = 400
-    res.send(response)
+  } catch (err) {
+    console.error(err)
   }
 })
 

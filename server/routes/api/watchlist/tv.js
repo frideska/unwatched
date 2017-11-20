@@ -58,10 +58,10 @@ router.get('/', async (req, res) => {
 
 /**
  * Removing Series from Watchlist for the current User, and a given SerieId
- * @param req.params.id
+ * @param req.body.id
  */
 router.delete('/', async (req, res) => {
-  if (await WatchlistSeriesController.removeSeriesFromUser(req.params.id, req.user.id)) {
+  if (await WatchlistSeriesController.removeSeriesFromUser(req.body.id, req.user.id)) {
     res.sendStatus(204)
   } else {
     const response = {

@@ -1,3 +1,4 @@
+
 const GenreController = require('../db/controllers/GenreController')
 
 const multi = async (query) => {
@@ -10,10 +11,10 @@ const multi = async (query) => {
     response.results = response.results.filter((result) => {
       return result.media_type === 'movie' || result.media_type === 'tv'
     })
-    console.log(`Searching for ${query}, got ${response.results.length} objects`)
     response = await Promise.all(response.results.map(async (result) => {
-      console.log(`MediaType: ${result.media_type}`)
       if (result.media_type === 'tv') {
+        result.release_date = result.first_air_date
+        result.title = result.name
         result.watchlist = false
         result.library = false
       } else if (result.media_type === 'movie') {
@@ -22,7 +23,6 @@ const multi = async (query) => {
       }
       return result
     }))
-    console.log(`After map`)
     return response
   } catch (err) {
     console.error(err)
