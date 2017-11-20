@@ -56,7 +56,7 @@ module.exports = {
     }
   },
 
-  async movieInWatchList (MovieId, UserId) {
+  async movieInWatchlist (MovieId, UserId) {
     const movie = await Watchlist.findOne({
       where: { MovieId: MovieId, UserId: UserId }
     })

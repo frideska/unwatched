@@ -4,7 +4,7 @@
 
 const fetch = require('node-fetch')
 const queryString = require('query-string')
-const GenreController = require('../../db/controllers/GenreController')
+const GenreController = require('../../pgdb/db/controllers/GenreController')
 
 const movie = async () => {
   try {
@@ -54,7 +54,7 @@ const tv = async () => {
       series.genres = await GenreController.getGenreTv(series.genre_ids)
       series.watchlist = false
       series.library = false
-      media_type = 'tv'
+      series.media_type = 'tv'
       return series
     }))
 
