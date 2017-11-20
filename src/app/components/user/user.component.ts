@@ -10,6 +10,7 @@ import { HistoryService } from 'services/history.service'
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+
   constructor(
     private userService: UserService,
     private historyService: HistoryService,
@@ -27,4 +28,19 @@ export class UserComponent implements OnInit {
     this.router.navigate(['/'])
     console.log(`[Component|User](delete) Finished delete()`)
   }
+
+  getUpdated() {
+    const day = this.userService.user.updated.getDate()
+    const month = this.userService.user.updated.getMonth() + 1
+    const year = this.userService.user.updated.getFullYear()
+    return day.toString() + '.' + month.toString() + '.' + year.toString()
+  }
+
+  getDate() {
+    const day = this.userService.user.date.getDate()
+    const month = this.userService.user.date.getMonth() + 1
+    const year = this.userService.user.date.getFullYear()
+    return day.toString() + '.' + month.toString() + '.' + year.toString()
+  }
+
 }
