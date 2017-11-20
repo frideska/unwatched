@@ -3,14 +3,14 @@ const express = require('../../../express')
 
 router.use(express.loggedIn)
 
-let LibraryController = require('../../../pgdb/db/controllers/LibraryController')
+let LibraryMovieController = require('../../../pgdb/db/controllers/LibraryMovieController')
 
 /**
  * Allows the user to add a movie to library,
  * the movie is then added to the UserMovie collection
  */
 router.post('/movie', (req, res) => {
-  if (LibraryController.addMovieToUser(req.body.id, req.user.id)) {
+  if (LibraryMovieController.addMovieToUser(req.body.id, req.user.id)) {
     res.sendStatus(200)
   } else {
     const response = {
@@ -19,10 +19,6 @@ router.post('/movie', (req, res) => {
         code: 400
       }]
     }
-<<<<<<< HEAD
-    // if something goes wrong we send the response
-=======
->>>>>>> Making progress
     res.status = 400
     res.send(response)
   }
@@ -43,7 +39,7 @@ router.get('/movie', async (req, res) => {
     page: req.params.page || 1,
     size: 10
   }
-  let movies = await LibraryController.getAllMoviesForUser(req.user.id, options)
+  let movies = await LibraryMovieController.getAllMoviesForUser(req.user.id, options)
   if (movies) {
     res.json({
       docs: movies,
@@ -67,19 +63,19 @@ router.get('/movie', async (req, res) => {
  * removing movies from UserMovie for the current user, and a given movie_id
  */
 router.delete('/movie/remove/:id', async (req, res) => {
-  if (await controller.removeMovieForUser(req.params.id, req.user)) {
-    // Letting the server know it went OK
+  if (await LibraryMovieController.removeMovieFromUser(req.params.id, req.user.id)) {
     res.sendStatus(204)
   } else {
     const response = {
-      errors: [
-        {
-          userMessage: 'Sorry, we were unable to delete that elemeent',
-          code: 400
-        }
-      ]
+      errors: [{
+        userMessage: 'Sorry, we were unable to delete that elemeent',
+        code: 400
+      }]
     }
+<<<<<<< HEAD
     // if something goes wrong we send the response
+=======
+>>>>>>> Patching up library features for Movie in API
     res.status = 400
     res.send(response)
   }
