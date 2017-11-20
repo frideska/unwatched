@@ -65,7 +65,7 @@ const TMDB_TOKEN = process.env.P4_TMDB_TOKEN ? process.env.P4_TMDB_TOKEN : misc.
 /**
  * Initial server setup
  */
-db.init()
+// db.init()
 const app = express()
 
 var sess = {

@@ -3,20 +3,14 @@ services:
 
   postgres:
     image: postgres:10.1
-    container_name: it2810-g22-p4-postgres
-    ports:
-        - "5432:5432"
+    logging:
+      driver: none
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: it2810-g22
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: it2810-g22-p4-dev
     tty: true
     stdin_open: true
-
-  mongodb:
-    image: mongo
-    logging:
-      driver: none
 
   api:
     build: .
@@ -27,6 +21,7 @@ services:
       - P4_AUTH_GOOGLE_SECRET
       - P4_AUTH_GOOGLE_CALLBACK
       - P4_DB_HOST=mongodb
+      - P4_PGDB_HOST=postgres
       - P4_TMDB_TOKEN
     volumes:
       - .:/srv/app
@@ -40,5 +35,3 @@ services:
       - NODE_ENV=development
     volumes:
       - .:/srv/app
-    ports:
-      - "4200:4200"

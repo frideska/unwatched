@@ -12,9 +12,14 @@ const basename = path.basename(module.filename)
 // Dictionary to store references to the models
 let db = {}
 
-const dbUrl = 'postgres://postgres:postgres@127.0.0.1:5432/dev2'
+const DB_USER = process.env.P4_PGDB_USER || 'postgres'
+const DB_PASSWORD = process.env.P4_PGDB_PASSWORD || 'postgres'
+const DB_HOST = process.env.P4_PGDB_HOST || '127.0.0.1'
+const DB_PORT = process.env.P4_PGDB_PORT || '5432'
+const DB_NAME = process.env.P4_PGDB_NAME || 'it2810-g22-p4-dev'
+const DB_URL = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
 
-var sequelize = new Sequelize(dbUrl, { logging: false })
+var sequelize = new Sequelize(DB_URL, { logging: false })
 
 // Adds all models to the database dictionary, "db"
 try {
