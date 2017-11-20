@@ -1,6 +1,7 @@
 .rating_wrapper {
-  font-size: 6rem;
   padding-bottom: 2rem;
+  padding-top: 2rem;
+  font-size: 6rem;
 }
 
 .rating_bad {
@@ -13,4 +14,8 @@
 
 .rating_good {
   color: #00D377;
+}
+
+.rating_empty {
+  color: #663399;
 }
