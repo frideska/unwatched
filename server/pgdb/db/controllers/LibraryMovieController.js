@@ -2,6 +2,8 @@
 const Library = require('../models').LibraryMovie
 const Watchlist = require('../models').WatchlistMovie
 
+const Op = require('../models').Sequelize.Op
+
 module.exports = {
   async addMovieToUser (MovieId, UserId) {
     try {
@@ -30,7 +32,10 @@ module.exports = {
     try {
       const dbLibraryMovie = await Library.findAll({
         where: { UserId: UserId },
-        include: ['Movie'],
+        include: [{
+          association: 'Movie',
+          where: { title: { [Op.iLike]: `%${options.query}%` } }
+        }],
         limit: options.size,
         offset: ((options.page - 1) * options.size)
       })

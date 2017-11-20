@@ -2,6 +2,8 @@
 const Watchlist = require('../models').WatchlistSeries
 const Library = require('../models').LibrarySeries
 
+const Op = require('../models').Sequelize.Op
+
 module.exports = {
   async addSeriesToUser (SeriesId, UserId) {
     try {
@@ -27,7 +29,10 @@ module.exports = {
     try {
       const dbWatchlistSeries = await Watchlist.findAll({
         where: { UserId: UserId },
-        include: ['Series'],
+        include: [{
+          association: 'Series',
+          where: { title: { [Op.iLike]: `%${options.query}%` } }
+        }],
         limit: options.size,
         offset: ((options.page - 1) * options.size)
       })

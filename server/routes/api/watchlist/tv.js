@@ -24,17 +24,17 @@ router.post('/', (req, res) => {
 
 /**
  * Returnes all the Series a user have in their Watchlist
- * @param req.params.order
- * @param req.params.sortBy
- * @param req.params.search
- * @param req.params.page
+ * @param req.query.order
+ * @param req.query.sortBy
+ * @param req.query.search
+ * @param req.query.page
  */
 router.get('/', async (req, res) => {
   const options = {
-    order: req.params.order || 'ASC',
-    orderBy: req.params.sortBy || 'date',
-    query: req.params.search || '',
-    page: req.params.page || 1,
+    order: req.query.order || 'ASC',
+    orderBy: req.query.sortBy || 'date',
+    query: req.query.search || '',
+    page: req.query.page || 1,
     size: 10
   }
   let series = await WatchlistSeriesController.getAllSeriesForUser(req.user.id, options)
