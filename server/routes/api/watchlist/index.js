@@ -11,7 +11,7 @@ let controller = require('../../../db/controllers/WatchlistController')
  */
 router.post('/movie', (req, res) => {
   if (controller.newMovie(req.body.id, req.user)) {
-    //send status code 201 a new enry have been created
+    // send status code 201 a new enry have been created
     res.sendStatus(201)
   } else {
     const response = {
@@ -23,7 +23,7 @@ router.post('/movie', (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })
@@ -34,10 +34,10 @@ router.post('/movie', (req, res) => {
 router.get('/movie', async (req, res) => {
   let sortBy = 'standard'
   let search = ''
-  if(req.query.search){
+  if (req.query.search) {
     search = req.query.search
   }
-  if(req.query.sort_by){
+  if (req.query.sort_by) {
     sortBy = req.query.sort_by
   }
   let movies = await controller.findMovieForUser(req.user, sortBy, search)
@@ -53,7 +53,7 @@ router.get('/movie', async (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })
@@ -75,7 +75,7 @@ router.delete('/movie/remove/:id', async (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })
@@ -97,7 +97,7 @@ router.post('/tv', (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })
@@ -108,10 +108,10 @@ router.post('/tv', (req, res) => {
 router.get('/tv', async (req, res) => {
   let sortBy = 'standard'
   let search = ''
-  if(req.query.sort_by){
+  if (req.query.sort_by) {
     sortBy = req.query.sort_by
   }
-  if(req.query.search){
+  if (req.query.search) {
     search = req.query.search
   }
   let tvs = await controller.findTvForUser(req.user, sortBy, search)
@@ -127,7 +127,7 @@ router.get('/tv', async (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })
@@ -149,7 +149,7 @@ router.delete('/tv/remove/:id', async (req, res) => {
       ]
     }
     // if something goes wrong we send the response
-    res.status = 400;
+    res.status = 400
     res.send(response)
   }
 })

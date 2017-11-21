@@ -9,7 +9,7 @@ route.get('/', async (req, res) => {
   let response = await tmdbWrapper.search.multi(req.query.q)
   if (req.user) {
     response = await Promise.all(response.map(async element => {
-      if(element.media_type==='movie') {
+      if (element.media_type === 'movie') {
         element.watchlist = await findController.movieInWatchlist(element.id, req.user)
         element.library = await findController.movieInLibrary(element.id, req.user)
       } else {

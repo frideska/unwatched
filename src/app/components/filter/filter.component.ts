@@ -1,15 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { LibraryService } from 'services/library.service'
-
+import { WatchlistService } from 'services/watchlist.service'
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  @Input ()
-  searchPlaceholder: string
+  @Input() childOf: any
+  service: any
   url: string
   type: string
   nameSort: string
@@ -21,8 +21,10 @@ export class FilterComponent implements OnInit {
   searchValue: string
   currentSort: string
 
+
   constructor(
     private libraryService: LibraryService,
+    private watchlistService: WatchlistService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private route: ActivatedRoute
@@ -36,6 +38,12 @@ export class FilterComponent implements OnInit {
     this.dateSort = 'release_date'
     this.ratingSort = 'vote_average'
     this.nameSort = 'title'
+
+    if (this.childOf === 'library') {
+      this.service = this.libraryService
+    } else if (this.childOf === 'watchlist') {
+      this.service = this.watchlistService
+    }
   }
 
   /**
