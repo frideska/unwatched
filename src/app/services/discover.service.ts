@@ -10,6 +10,9 @@ export class DiscoverService {
 
   constructor(private http: Http) {}
 
+  /**
+   * Fetches the discovery for movies and maps them in the CardElement.
+   */
   public async getDiscoveryMovie(): Promise<any> {
     try {
       const response = await this.http.get(this.discoveryURLmovie).toPromise()
@@ -19,6 +22,9 @@ export class DiscoverService {
     }
   }
 
+  /**
+   * Fetches the discovery for tv-series and maps them in the CardElement.
+   */
   public async getDiscoveryTV(): Promise<any> {
     try {
       const response = await this.http.get(this.discoveryURLtv).toPromise()
