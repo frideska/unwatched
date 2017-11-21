@@ -31,16 +31,9 @@ export class HistoryService {
   /**
    * Checks if the history list is empty.
    */
-  public isEmpty(type): boolean {
-    switch (type) {
-      case 'movie': {
-        if (!this.history) { return true }
-        if (!this.history.length) { return true }
-        return false
-      }
-      default: {
-        return false
-      }
-    }
+  public isEmpty(): boolean {
+    if (!this.history) { return true }
+    if (!this.history.length) { return true }
+    return false
   }
 }

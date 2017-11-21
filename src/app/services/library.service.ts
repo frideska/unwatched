@@ -68,6 +68,10 @@ export class LibraryService {
         break
     }
   }
+
+  /**
+   * Checks if the library lists are empty.
+   */
   public isEmpty(type): boolean {
     switch (type) {
       case 'movie': {
