@@ -24,6 +24,7 @@ import { WordCloudComponent } from 'components/word-cloud/word-cloud.component'
 import { WordCloudWishComponent } from './components/word-cloud-wish/word-cloud-wish.component'
 import { ListViewComponent } from 'components/list-view/list-view.component'
 import { AverageRatingComponent } from 'components/average-rating/average-rating.component'
+import { DocumentationComponent } from 'components/documentation/documentation.component'
 
 /**
  * Import Services
@@ -35,8 +36,6 @@ import { WatchlistService } from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
 import { AuthGuard } from 'services/auth-guard.service'
 import { HistoryService } from 'services/history.service'
-import { DocumentationComponent } from './documentation/documentation.component'
-
 
 export const initUserServiceFactory = (userService: UserService): Function => {
   return () => userService.getUser()
