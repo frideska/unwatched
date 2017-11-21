@@ -11,15 +11,15 @@ export class GoogleUser {
     lastName: string
 
     constructor(user) {
-        this.image = user.google.image
-        this.name = user.google.name
+        this.image = user.image
+        this.name = user.name
         this.admin = user.admin
-        this.id = user.google.id
+        this.id = user.id
         this.date = new Date(user.date)
         this.updated = new Date(user.updated)
-        this.email = user.google.email
-        this.token = user.google.token
-        this.firstName = user.google.firstName
-        this.lastName = user.google.lastName
+        this.email = user.email
+        this.token = user.token
+        this.firstName = user.firstName
+        this.lastName = user.lastName
     }
 }

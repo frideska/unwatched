@@ -32,7 +32,7 @@ export class WatchlistService {
     const type = element.type
     const id = element.id
     try {
-      const response = await this.http.delete(this.URL + '/' + type + '/remove/' + id).toPromise()
+      const response = await this.http.delete(this.URL + '/' + type, { body: {id: id} }).toPromise()
       console.log(`[Service|WatchList](removeFromWatchList) Got response`)
 
     } catch (err) {
@@ -40,13 +40,13 @@ export class WatchlistService {
     }
   }
 
-  /**
-   * Gets the movies and the tv-series for the watchlist as json objects and then
-   * maps them as CardElements.
-   */
-  public async getWatchlist(sortBy= 'standard', search = '') {
+  public async getWatchlist(order = '', orderBy = '', search = '') {
     try {
-      const response = await this.http.get(this.URL + '/movie', {params: {sort_by: sortBy, search: search}}).toPromise()
+      const response = await this.http.get(this.URL + '/movie', { params: {
+        order: order,
+        orderBy: orderBy,
+        search: search
+      }}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'movie')
       }
@@ -55,7 +55,11 @@ export class WatchlistService {
       console.error(err)
     }
     try {
-      const response = await this.http.get(this.URL + '/tv', {params: {sort_by: sortBy, search: search}}).toPromise()
+      const response = await this.http.get(this.URL + '/tv', { params: {
+        order: order,
+        orderBy: orderBy,
+        search: search
+      }}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'tv')
       }
@@ -68,10 +72,18 @@ export class WatchlistService {
   private reconfigure(json, type) {
     switch (type) {
       case('movie'):
-        this.watchlistMovie = json.docs.map((result) => new CardElement(result))
+        this.watchlistMovie = json.docs.map((result) => {
+          result.media_type = 'movie'
+          result.watchlist = true
+          return new CardElement(result)
+        })
         break
       case('tv'):
-        this.watchlistTv = json.docs.map((result) => new CardElement(result))
+        this.watchlistTv = json.docs.map((result) => {
+          result.media_type = 'tv'
+          result.watchlist = true
+          return new CardElement(result)
+        })
         break
     }
   }
