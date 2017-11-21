@@ -35,9 +35,13 @@ export class LibraryService {
       console.error(err)
     }
   }
-  public async getLibrary(sortBy= '', search = '') {
+  public async getLibrary(order = '', orderBy = '', search = '') {
     try {
-      const response = await this.http.get(this.URL + '/movie', {params: {sortBy: sortBy, search: search}}).toPromise()
+      const response = await this.http.get(this.URL + '/movie', { params: {
+        order: order,
+        orderBy: orderBy,
+        search: search
+      }}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'movie')
       }
@@ -47,7 +51,11 @@ export class LibraryService {
     }
 
     try {
-      const response = await this.http.get(this.URL + '/tv' , {params: {sortBy: sortBy, search: search}}).toPromise()
+      const response = await this.http.get(this.URL + '/tv' , { params: {
+        order: order,
+        orderBy: orderBy,
+        search: search
+      }}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'tv')
       }
