@@ -35,14 +35,24 @@ export class HomeComponent implements OnInit {
     this.showTV(this.value1, this.value2)
   }
 
+  /**
+   * Showes movies from a sliced list with two elements
+   */
   showMovies(value1, value2) {
     this.moviesSliced = this.movies.slice(value1, value2)
   }
 
+  /**
+   * Showes tv-series from a sliced list with two elemets.
+   */
   showTV(value1, value2) {
     this.tvSliced = this.tv.slice(value1, value2)
   }
 
+  /**
+   * Next and previous functions for updating slideshow with new movies and tv-series.
+   * The value, for the slices list, is updated when the next and prev buttons are clicked.
+   */
   nextMovie() {
     this.value1 < this.movies.length - 3 ? this.value1 += 2 : this.value1 = 0
     this.value2 < this.movies.length - 1 ? this.value2 += 2 : this.value2 = 2
