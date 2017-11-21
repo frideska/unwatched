@@ -32,6 +32,10 @@ export class ListViewComponent implements OnInit {
     await this.libraryService.getLibrary()
   }
 
+  /**
+   * Adds the element to the watchlist if its not allready there.
+   * If its in the list it removes the element from the watchlist.
+   */
   async addToWatchlist (element) {
     if (element.watchlist) {
       await this.watchlistService.removeFromWatchlist(element)
@@ -40,6 +44,11 @@ export class ListViewComponent implements OnInit {
     }
     await this.reload()
   }
+
+  /**
+   * Adds the element to the library if its not allready there.
+   * If its in the list it removes the element from the library.
+   */
   async addToLibrary(element) {
     if (element.library) {
       await this.libraryService.removeFromLibrary(element)

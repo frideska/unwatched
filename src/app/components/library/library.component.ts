@@ -33,6 +33,10 @@ export class LibraryComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub.unsubscribe()
   }
+
+  /**
+   * Gets list with movies and tv from libraryService.
+   */
   getList() {
     if (this.type === 'movie') {
       return this.libraryService.libraryMovie
