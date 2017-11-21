@@ -48,7 +48,7 @@
         <!--Watchlist buttons-->
 
         <!--Add to watchlist-->
-        <button *ngIf='!element.watchlist; else removeWatchList'
+        <button *ngIf="userService.loggedIn && !element.watchlist; else removeWatchList"
                 onclick="UIkit.notification({
                 message: '<span uk-icon=\'icon: check\'></span> Successfully added to watchlist!',
                 pos: 'bottom-center', status:'success', timeout: '2500'})"
@@ -59,7 +59,7 @@
 
         <!--Remove from watchlist-->
         <ng-template #removeWatchList>
-          <button (click)="addToWatchlist()"
+          <button *ngIf="userService.loggedIn" (click)="addToWatchlist()"
                   onclick="UIkit.notification({
                   message: '<span uk-icon=\'icon: trash\'></span> Deleted from watchlist!',
                   pos: 'bottom-center', status:'danger', timeout: '2500'})"
@@ -71,7 +71,7 @@
         <!--Library buttons-->
 
         <!--Add to library-->
-        <button *ngIf='!element.library; else removeLibrary'
+        <button *ngIf="userService.loggedIn && !element.library; else removeLibrary"
                 onclick="UIkit.notification({
                 message: '<span uk-icon=\'icon: check\'></span> Successfully added to library!',
                 pos: 'bottom-center', status:'success', timeout: '2500'})"
@@ -82,7 +82,7 @@
 
         <!--Remove from library-->
         <ng-template #removeLibrary>
-          <button (click)="addToLibrary()"
+          <button *ngIf="userService.loggedIn" (click)="addToLibrary()"
                   onclick="UIkit.notification({
                   message: '<span uk-icon=\'icon: trash\'></span> Deleted from library!',
                   pos: 'bottom-center', status:'danger', timeout: '2500'})"
@@ -131,8 +131,7 @@
 
           <!--Card Buttons-->
             <div  class="uk-position-bottom-right">
-              <div  class="uk-button-group button_padding">
-                <div *ngIf="userService.loggedIn">
+              <div  *ngIf="userService.loggedIn" class="uk-button-group button_padding">
                 <!--Add to watchlist-->
                 <button (click) = "addToWatchlist(element.watchlist)"
                         class="uk-button uk-text-nowrap remove button_add uk-modal-close">
@@ -146,9 +145,7 @@
                   <label *ngIf='!element.library' >Add to <br>library</label>
                 </button>
                 </div>
-              </div>
             </div>
-
         </div>
       </div>
     </div>
