@@ -22,6 +22,10 @@ export class UserComponent implements OnInit {
     await this.historyService.getHistory()
   }
 
+  /**
+   * Deletes the user profile when clicking the delete-button and navigates
+   * the user back to the discover page.
+   */
   public async delete() {
     console.log(`[Component|User](delete) Triggered delete()`)
     await this.userService.delete()
@@ -29,6 +33,9 @@ export class UserComponent implements OnInit {
     console.log(`[Component|User](delete) Finished delete()`)
   }
 
+  /**
+   * Gets the updates date for displaying on profile-page.
+   */
   getUpdated() {
     const day = this.userService.user.updated.getDate()
     const month = this.userService.user.updated.getMonth() + 1
@@ -36,6 +43,9 @@ export class UserComponent implements OnInit {
     return day.toString() + '.' + month.toString() + '.' + year.toString()
   }
 
+  /**
+   * Gets the date when the user-profile was made.
+   */
   getDate() {
     const day = this.userService.user.date.getDate()
     const month = this.userService.user.date.getMonth() + 1

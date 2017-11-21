@@ -31,6 +31,9 @@ export class WatchlistComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe()
   }
 
+  /**
+   * Gets the lists with movie and tv-series from WatchlistService.
+   */
   public getList() {
     if (this.type === 'movie') {
       return this.watchlistService.watchlistMovie
