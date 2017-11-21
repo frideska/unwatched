@@ -21,8 +21,6 @@ export class HistoryService {
   public async getHistory(): Promise<void> {
     let history = await this.http.get(this.URL).toPromise()
     history = history.json()
-    console.log(`[Service|History](getHistory)`)
-    console.log(history)
     this.history = history
   }
 
