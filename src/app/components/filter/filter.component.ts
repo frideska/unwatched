@@ -20,7 +20,7 @@ export class FilterComponent implements OnInit {
   dateArrow: string
   searchValue: string
   currentSort: string
-
+  highlightedDiv: number
 
   constructor(
     private libraryService: LibraryService,
@@ -38,6 +38,7 @@ export class FilterComponent implements OnInit {
     this.dateSort = 'release_date'
     this.ratingSort = 'vote_average'
     this.nameSort = 'title'
+    this.highlightedDiv = 1
 
     if (this.childOf === 'library') {
       this.service = this.libraryService
@@ -121,5 +122,13 @@ export class FilterComponent implements OnInit {
     queryParams['sort_by'] = this.currentSort
     queryParams['search'] = this.searchValue
     this.router.navigate([this.url], { queryParams: queryParams })
+  }
+  toggleHighlight(newValue: number) {
+    if (this.highlightedDiv === newValue) {
+      this.highlightedDiv = 0
+    }
+    else {
+      this.highlightedDiv = newValue
+    }
   }
 }
