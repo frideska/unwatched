@@ -14,12 +14,12 @@
         </li>
       </ng-template>
 
-      <li [routerLinkActive]="['active']">
-        <a (click)="setType('movie')">Movies</a>
+      <li (click)="toggleHighlight(1)">
+        <a [ngClass]="{'activeClass': highlightedDiv === 1 }" (click)="setType('movie')">Movies</a>
       </li>
 
-      <li [routerLinkActive]="['active']">
-        <a (click)="setType('tv')">series</a>
+      <li  (click)="toggleHighlight(2)" >
+        <a [ngClass]="{'activeClass': highlightedDiv === 2 }" (click)="setType('tv')">series</a>
       </li>
 
       <li><div class="list_elements uk-navbar-item">|</div></li>
