@@ -16,15 +16,6 @@ const LibrarySeriesController = require('../../../../pgdb/db/controllers/Library
 route.get('/', async (req, res) => {
   try {
     let response = await tmdbWrapper.search.multi(req.query.q)
-    response.forEach((result) => {
-      if (result.media_type === 'movie') {
-        MovieController.create(result)
-      } else if (result.media_type === 'tv') {
-        SeriesController.create(result)
-      } else {
-        throw new Error('TMDB API media_type is not defined')
-      }
-    })
     if (req.user) {
       response = await Promise.all(response.map(async element => {
         if (element.media_type === 'movie') {

@@ -1,24 +1,32 @@
 const router = require('express').Router()
 
-let WatchlistMovieController = require('../../../pgdb/db/controllers/WatchlistMovieController')
+const WatchlistMovieController = require('../../../pgdb/db/controllers/WatchlistMovieController')
+const MovieController = require('../../../pgdb/db/controllers/MovieController')
+const tmdbWrapper = require('../../../tmdb/')
 
 /**
  * Allows the user to add a movie to Watchlist,
  * the movie is then added to the UserMovie collection
  * @param req.body.id
  */
-router.post('/', (req, res) => {
-  if (WatchlistMovieController.addMovieToUser(req.body.id, req.user.id)) {
-    res.sendStatus(200)
-  } else {
-    const response = {
-      errors: [{
-        userMessage: 'Sorry, the movie could not be added',
-        code: 400
-      }]
+router.post('/', async (req, res) => {
+  try {
+    const movie = await tmdbWrapper.details.movie(req.body.id)
+    const dbMovie = await MovieController.create(movie)
+    if (await WatchlistMovieController.addMovieToUser(dbMovie.id, req.user.id)) {
+      res.sendStatus(200)
+    } else {
+      const response = {
+        errors: [{
+          userMessage: 'Sorry, the movie could not be added',
+          code: 400
+        }]
+      }
+      res.status = 400
+      res.send(response)
     }
-    res.status = 400
-    res.send(response)
+  } catch (err) {
+    console.error(err)
   }
 })
 

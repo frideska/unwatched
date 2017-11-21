@@ -16,7 +16,7 @@ module.exports = {
       return Movie.create(movie)
     }
     //console.log(`Movie '${dbMovie.title}' already created`)
-    return dbMovie
+    return dbMovie || movie
   },
 
   /**
