@@ -36,15 +36,15 @@ export class WordCloudComponent implements OnInit {
   colors = ['#653399', '#982d84', '#b5d83c', '#e3d83f', '#00D377']
 
   emptyLib = [
-    {size: 2, text: 'LIBRARY'},
-    {size: 1, text: ' '},
-    {size: 2, text: 'EMPTY'}
+    {size: 1, text: 'LIBRARY'},
+    {size: 2, text: ' '},
+    {size: 1, text: 'EMPTY'}
     ]
 
   addMore = [
-    {size: 2, text: 'LIBRARY NEEDS'},
-    {size: 1, text: ' '},
-    {size: 2, text: 'MORE CONTENT'}
+    {size: 1, text: 'LIBRARY NEEDS'},
+    {size: 2, text: ' '},
+    {size: 1, text: 'MORE CONTENT'}
     ]
 
 
