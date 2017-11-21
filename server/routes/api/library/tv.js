@@ -1,24 +1,32 @@
 const router = require('express').Router()
 
-let LibrarySeriesController = require('../../../pgdb/db/controllers/LibrarySeriesController')
+const LibrarySeriesController = require('../../../pgdb/db/controllers/LibrarySeriesController')
+const SeriesController = require('../../../pgdb/db/controllers/SeriesController')
+const tmdbWrapper = require('../../../tmdb/')
 
 /**
  * Allows the user to add a Series to library,
  * the Series is then added to the Library collection
  * @param req.body.id
  */
-router.post('/', (req, res) => {
-  if (LibrarySeriesController.addSeriesToUser(req.body.id, req.user.id)) {
-    res.sendStatus(200)
-  } else {
-    const response = {
-      errors: [{
-        userMessage: 'Sorry, the series could not be added',
-        code: 400
-      }]
+router.post('/', async (req, res) => {
+  try {
+    const series = await tmdbWrapper.details.tv(req.body.id)
+    const dbSeries = await SeriesController.create(series)
+    if (await LibrarySeriesController.addSeriesToUser(dbSeries.id, req.user.id)) {
+      res.sendStatus(200)
+    } else {
+      const response = {
+        errors: [{
+          userMessage: 'Sorry, the series could not be added',
+          code: 400
+        }]
+      }
+      res.status = 400
+      res.send(response)
     }
-    res.status = 400
-    res.send(response)
+  } catch (err) {
+    console.error(err)
   }
 })
 
