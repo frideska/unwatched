@@ -2,6 +2,9 @@ const router = require('express').Router()
 
 const models = require('../../../pgdb/db/models')
 const UserHistory = models.UserHistory
+const SeriesController = require('../../../pgdb/db/controllers/SeriesController')
+const MovieController = require('../../../pgdb/db/controllers/MovieController')
+const tmdbWrapper = require('../../../tmdb/')
 
 /**
  * Route for getting the 10 latest history Objects attriuted to the logged in user.
@@ -38,9 +41,13 @@ router.post('/', async (req, res) => {
     let history = { UserId: req.user.id }
 
     if (req.body.history.type === 'movie') {
-      history.MovieId = req.body.history.id
+      const movie = await tmdbWrapper.details.movie(req.body.history.id)
+      const dbMovie = await MovieController.create(movie)
+      history.MovieId = dbMovie.id
     } else if (req.body.history.type === 'tv') {
-      history.SeriesId = req.body.history.id
+      const series = await tmdbWrapper.details.tv(req.body.history.id)
+      const dbSeries = await SeriesController.create(series)
+      history.SeriesId = dbSeries.id
     } else {
       throw new Error('TMDB API media_type not valid')
     }
