@@ -12,10 +12,10 @@ module.exports = {
   async create (series) {
     const dbSeries = await Series.findOne({where: {id: series.id}})
     if (!dbSeries) {
-      console.log(`Creating Series '${series.title}'`)
+      //console.log(`Creating Series '${series.title}'`)
       return Series.create(series)
     }
-    console.log(`Series '${dbSeries.title}' already created`)
+    //console.log(`Series '${dbSeries.title}' already created`)
     return dbSeries
   },
 

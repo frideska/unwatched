@@ -12,10 +12,10 @@ module.exports = {
   async create (movie) {
     const dbMovie = await Movie.findOne({where: {id: movie.id}})
     if (!dbMovie) {
-      console.log(`Creating Movie '${movie.title}'`)
+      //console.log(`Creating Movie '${movie.title}'`)
       return Movie.create(movie)
     }
-    console.log(`Movie '${dbMovie.title}' already created`)
+    //console.log(`Movie '${dbMovie.title}' already created`)
     return dbMovie
   },
 
