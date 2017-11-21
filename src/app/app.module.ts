@@ -35,7 +35,6 @@ import { WatchlistService } from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
 import { AuthGuard } from 'services/auth-guard.service'
 import { HistoryService } from 'services/history.service'
-import { CardLightComponent } from 'components/card-light/card-light.component';
 import { DocumentationComponent } from './documentation/documentation.component'
 
 
@@ -79,7 +78,6 @@ const routes: Routes = [
     ListViewComponent,
     CardComponent,
     WordCloudWishComponent,
-    CardLightComponent,
     AverageRatingComponent,
     DocumentationComponent
 

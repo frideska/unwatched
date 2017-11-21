@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, Input } from '@angular/core'
 
 import { CardElement } from 'classes/CardElement'
 
@@ -6,10 +6,6 @@ import { CardElement } from 'classes/CardElement'
   selector: 'app-slideshow-item',
   templateUrl: './slideshow-item.component.html'
 })
-export class SlideshowItemComponent implements OnInit {
+export class SlideshowItemComponent {
   @Input() movie: CardElement
-
-  ngOnInit() {
-      console.log(this.movie)
-  }
 }
