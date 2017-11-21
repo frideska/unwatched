@@ -15,6 +15,9 @@ export class LibraryService {
 
   constructor(private http: Http) { }
 
+  /**
+   * Adds the choosen CardElement to the library.
+   */
   public async addToLibrary(element: CardElement) {
     const type = element.type
     const id = element.id
@@ -25,6 +28,10 @@ export class LibraryService {
       console.error(err)
     }
   }
+
+  /**
+   * Removes the choosen CardElement from the library.
+   */
   public async removeFromLibrary(element: CardElement) {
     const type = element.type
     const id = element.id
@@ -37,6 +44,11 @@ export class LibraryService {
       console.error(err)
     }
   }
+
+  /**
+   * Gets the movies and the tv-series for the library as json objects and then
+   * maps them as CardElements.
+   */
   public async getLibrary(sortBy= 'standard', search = '') {
     try {
       const response = await this.http.get(this.URL + '/movie', {params: {sort_by: sortBy, search: search}}).toPromise()
@@ -86,6 +98,9 @@ export class LibraryService {
     }
   }
 
+  /**
+   * Toggles between listView and gridView.
+   */
   private toggleListView() {
     this.listView = !this.listView
   }
