@@ -1,3 +1,12 @@
-<p>
-  (404) Page not found
-</p>
+<div class="cloud_wrapper">
+  <div class="cloud"
+       AgWordCloud
+       #word_cloud_chart=ag-word-cloud
+       [wordData]="wordData"
+       [options]="options">
+  </div>
+
+  <div class="buttonHolder">
+    <button (click)="word_cloud_chart.update()">Generate new cloud!</button>
+  </div>
+</div>
