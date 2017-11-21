@@ -1,3 +1,21 @@
 h1 {
-  color: white;
+  color: white
+}
+
+.doc_wrapper {
+  color: #999999;
+}
+
+.uw_title {
+  color: #00d474;
+  text-shadow: -1px 0 #444444, 0 1px black, 1px 0 black, 0 -1px #444444;
+  font-size: 1.1rem;
+}
+
+.li_item_title {
+  color: #CCCCCC;
+}
+
+.list_ul {
+  padding-left: 2rem;
 }
