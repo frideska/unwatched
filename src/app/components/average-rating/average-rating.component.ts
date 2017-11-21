@@ -24,12 +24,11 @@ export class AverageRatingComponent implements OnInit {
       this.interval = 'empty'
     } else {
       let zeros = 0
+      let sum = 0
       for (let i = 0; i < library.length; i++) {
-        library[i] === 0 ? zeros++ : null
+        if (library[i] === 0) { zeros++ }
+        sum += library[i]
       }
-      const sum = library.reduce(function (a, b) {
-        return a + b
-      })
       const r = (sum / (library.length - zeros)).toFixed(2)
       this.rating = r.toString()
       this.interval = this.roundToInterval(r)
