@@ -37,11 +37,17 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  /**
+   * Clears the search field when the field is crossed away.
+   */
   cleanSearchField() {
     this.searchService.setQuery('')
     this.router.navigate([this.previous || '/'])
   }
 
+  /**
+   *Loggs out the user when the user clicks the log-out button.
+   */
   public async logout() {
     await this.userService.logout()
     this.router.navigate(['/'])

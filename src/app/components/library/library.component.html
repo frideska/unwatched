@@ -1,7 +1,7 @@
 <app-filter [childOf]="'library'"></app-filter>
 <div class="uk-container uk-width-auto ">
 
-  <!------------GridView------------>
+  <!--GridView-->
   <div *ngIf="!libraryService.listView">
 
       <div *ngIf="!libraryService.listView" uk-grid class="uk-text-left uk-animation-slide-bottom-small uk-flex-center">
@@ -14,5 +14,3 @@
   </div>
   <app-list-view [childOf] = "'Library'" [type] = "type" [getList]="getListElements" ></app-list-view>
 </div>
-
-
