@@ -7,8 +7,10 @@ import { CardElement } from 'classes/CardElement'
 @Injectable()
 export class WatchlistService {
   private URL = '/api/watchlist'
+  public listView = false
   watchlistMovie: any
   watchlistTv: any
+
 
   constructor(private http: Http) {}
 
@@ -63,5 +65,25 @@ export class WatchlistService {
         this.watchlistTv = json.docs.map((result) => new CardElement(result))
         break
     }
+  }
+  public isEmpty(type): boolean {
+    switch (type) {
+      case 'movie': {
+        if (!this.watchlistMovie) { return true }
+        if (!this.watchlistMovie.length) { return true }
+        return false
+      }
+      case 'tv': {
+        if (!this.watchlistTv) { return true }
+        if (!this.watchlistTv.length) { return true }
+        return false
+      }
+      default: {
+        return false
+      }
+    }
+  }
+  private toggleListView() {
+    this.listView = !this.listView
   }
 }

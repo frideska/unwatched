@@ -35,6 +35,7 @@ import { WatchlistService } from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
 import { AuthGuard } from 'services/auth-guard.service'
 import { HistoryService } from 'services/history.service'
+import { DocumentationComponent } from './documentation/documentation.component'
 
 
 export const initUserServiceFactory = (userService: UserService): Function => {
@@ -56,6 +57,7 @@ const routes: Routes = [
   {path: 'search', component: SearchComponent},
   {path: 'library', component: LibraryComponent, canActivate: [AuthGuard]},
   {path: 'watchlist', component: WatchlistComponent, canActivate: [AuthGuard]},
+  {path: 'documentation', component: DocumentationComponent },
   {path: '**', component: NotFoundComponent}
 ]
 
@@ -76,7 +78,8 @@ const routes: Routes = [
     ListViewComponent,
     CardComponent,
     WordCloudWishComponent,
-    AverageRatingComponent
+    AverageRatingComponent,
+    DocumentationComponent
 
   ],
   imports: [

@@ -1,13 +1,13 @@
 
 const tv = async (id, watchlist, library) => {
   try {
-      let tv = await tmdb.tv.details({
-        tv_id: id || ''
-      })
-      tv.genres = tv.genres.map((genre) => genre.name)
-      tv.tv_id = tv.id
-      tv.title = tv.name
-      tv.release_date = tv.first_air_date
+    let tv = await tmdb.tv.details({
+      tv_id: id || ''
+    })
+    tv.genres = tv.genres.map((genre) => genre.name)
+    tv.tv_id = tv.id
+    tv.title = tv.name
+    tv.release_date = tv.first_air_date
 
     return {
       id: tv.tv_id,
@@ -33,11 +33,10 @@ const movie = async (id, watchlist, library) => {
     movie.genres = movie.genres.map((genre) => genre.name)
     movie.movie_id = movie.id
 
-
     return {
       id: movie.movie_id,
       title: movie.title,
-      genres: movie.genres ,
+      genres: movie.genres,
       overview: movie.overview,
       backdrop_path: movie.backdrop_path,
       poster_path: movie.poster_path,
