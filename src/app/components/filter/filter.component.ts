@@ -126,8 +126,7 @@ export class FilterComponent implements OnInit {
   toggleHighlight(newValue: number) {
     if (this.highlightedDiv === newValue) {
       this.highlightedDiv = 0
-    }
-    else {
+    } else {
       this.highlightedDiv = newValue
     }
   }
