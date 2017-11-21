@@ -25,7 +25,6 @@ export class CardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
   }
 
   private async reload() {
