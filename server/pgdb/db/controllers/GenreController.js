@@ -9,10 +9,8 @@ module.exports = {
       if (!dbGenre) {
         dbGenre = await GenreMovie.create(genre)
         console.log(`Created genre ${dbGenre.name}`)
-      } else {
-        console.log(`Genre ${genre.name} exists`)
       }
-      return dbGenre
+      return dbGenre || genre
     } catch (err) {
       console.error(err)
     }
@@ -24,10 +22,8 @@ module.exports = {
       if (!dbGenre) {
         dbGenre = await GenreTv.create(genre)
         console.log(`Created genre ${dbGenre.name}`)
-      } else {
-        console.log(`Genre ${genre.name} exists`)
       }
-      return dbGenre
+      return dbGenre || genre
     } catch (err) {
       console.error(err)
     }
