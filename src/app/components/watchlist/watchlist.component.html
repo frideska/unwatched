@@ -4,7 +4,7 @@
   <div *ngIf="!watchlistService.listView" uk-grid class="uk-text-left uk-animation-slide-bottom-small uk-flex-center">
 
     <div *ngIf="watchlistService.isEmpty(type)" class="uk-flex uk-flex-center uk-padding-large empty_text">
-      <h1> No {{ type }} in Watchlist </h1>
+      <h1> No {{ type === 'movie' ? 'movies' : 'series' }} in Watchlist </h1>
     </div>
   <app-card *ngFor="let card of getList()" [element]="card"></app-card>
   </div>
