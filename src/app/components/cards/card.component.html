@@ -123,12 +123,15 @@
                     frameborder="0" allowfullscreen width="560" height="315"
                     uk-responsive uk-video="automute: true; autoplay: false;"></iframe>-->
           </div>
-
+          <div class="rating_container">
+            <p class="uk-text-center">
+              Ovarall TMDB rating:
+              <div class="rating_item uk-text-center">{{element.rating === 0 ? '- / 10' : element.rating.toString() + ' / 10'}}</div>
+          </div>
         </div>
 
         <!--Modal footer-->
         <div class="uk-modal-footer">
-
           <!--Card Buttons-->
             <div  class="uk-position-bottom-right">
               <div  *ngIf="userService.loggedIn" class="uk-button-group button_padding">
