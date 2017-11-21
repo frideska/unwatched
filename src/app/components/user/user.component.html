@@ -70,13 +70,16 @@
     <!--User Search History-->
     <div class="uk-card uk-card-secondary usercard uk-width-expand@m">
       <div class="uk-card-header">
-        <div class="uk-grid-small uk-flex-middle" uk-grid>
+        <div class="uk-grid-small" uk-grid>
           <div class="uk-width-expand">
             <h3 class="uk-card-title uk-margin-remove-bottom">Curiosity history</h3>
           </div>
         </div>
       </div>
       <div>
+        <div *ngIf="historyService.isEmpty()" class="uk-flex uk-flex-center uk-padding">
+          <h4 class="uk-text-muted"> You have to visit a movie or serie to get history. </h4>
+        </div>
         <ul>
           <div *ngFor="let history of historyService.history">
             {{ history.content }}
