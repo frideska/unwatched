@@ -10,6 +10,8 @@ export class SearchService {
   private searchType: SearchType
   public query: string
   public results: any
+  public counter = 0
+  public displayed = 0
 
   constructor(private http: Http) {
     this.query = ''
@@ -26,7 +28,8 @@ export class SearchService {
 
   public async search(): Promise<any> {
     try {
-      const url = `${this.searchURL}/${this.getSearchType()}?q=${this.query}`
+      const url = `${this.searchURL}/${this.getSearchType()}?q=${this.query}&counter=${this.counter}`
+      this.counter++
       const response = await this.http.get(url).toPromise()
       return this.reconfigure(response.json())
     } catch (err) {
@@ -39,13 +42,19 @@ export class SearchService {
   }
 
   private reconfigure(json) {
-    this.results = json.map((result) => {
-      switch (result.media_type) {
-        case 'movie': return new CardElement(result)
-        case 'tv': return new CardElement(result)
-      }
-    })
-
-    console.log(this.results)
+    const recieved = parseInt(json.counter, 10)
+    if (recieved > this.displayed) {
+      console.log(`Displayed ${this.displayed}, Recieved ${recieved} : Displaying`)
+      this.results = json.results.map((result) => {
+        switch (result.media_type) {
+          case 'movie': return new CardElement(result)
+          case 'tv': return new CardElement(result)
+        }
+      })
+      this.displayed = json.counter
+    } else {
+      console.log(`Displayed ${this.displayed}, Recieved ${recieved} : Discarding!`)
+    }
+    // console.log(this.results)
   }
 }
