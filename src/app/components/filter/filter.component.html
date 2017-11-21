@@ -5,21 +5,21 @@
     <!--Menu items-->
     <ul class="uk-navbar-nav"  >
 
-      <li *ngIf="!libraryService.listView; else cardView_icon">
-        <a (click)="libraryService.toggleListView()"><span uk-icon="icon : list"></span></a>
+      <li *ngIf="!service.listView; else cardView_icon">
+        <a (click)="service.toggleListView()"><span uk-icon="icon : list"></span></a>
       </li>
       <ng-template #cardView_icon>
         <li>
-          <a (click)="libraryService.toggleListView()"><span uk-icon="icon : grid"></span></a>
+          <a (click)="service.toggleListView()"><span uk-icon="icon : grid"></span></a>
         </li>
       </ng-template>
 
-      <li [routerLinkActive]="['active']">
-        <a (click)="setType('movie')">Movies</a>
+      <li (click)="toggleHighlight(1)">
+        <a [ngClass]="{'activeClass': highlightedDiv === 1 }" (click)="setType('movie')">Movies</a>
       </li>
 
-      <li [routerLinkActive]="['active']">
-        <a (click)="setType('tv')">series</a>
+      <li  (click)="toggleHighlight(2)" >
+        <a [ngClass]="{'activeClass': highlightedDiv === 2 }" (click)="setType('tv')">series</a>
       </li>
 
       <li><div class="list_elements uk-navbar-item">|</div></li>
@@ -73,7 +73,7 @@
     <input
       class="uk-search-input"
       type="search"
-      placeholder="{{searchPlaceholder}}"
+      placeholder="Search in {{childOf}}..."
       value="{{searchValue}}"
       [(ngModel)]="search"
       (ngModelChange)="onSearchChange($event)"

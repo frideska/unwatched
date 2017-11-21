@@ -19,12 +19,20 @@ export class AverageRatingComponent implements OnInit {
     const libraryMov = this.libraryService.libraryMovie.map(movie => movie.rating)
     const libraryTV = this.libraryService.libraryTv.map(show => show.rating)
     const library = libraryMov.concat(libraryTV)
-
-    const sum = library.reduce(function(a, b) { return a + b })
-    const r = (sum / library.length).toFixed(2)
-    this.rating = r.toString()
-    this.interval = this.roundToInterval(r)
-    console.log('inter', this.interval)
+    if (library.length === 0) {
+      this.rating = 'N/A'
+      this.interval = 'empty'
+    } else {
+      let zeros = 0
+      let sum = 0
+      for (let i = 0; i < library.length; i++) {
+        if (library[i] === 0) { zeros++ }
+        sum += library[i]
+      }
+      const r = (sum / (library.length - zeros)).toFixed(2)
+      this.rating = r.toString()
+      this.interval = this.roundToInterval(r)
+    }
   }
 
   private roundToInterval(number) {

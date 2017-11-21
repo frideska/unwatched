@@ -1,15 +1,14 @@
-<app-filter [searchPlaceholder]="'Search in watchlist...'"></app-filter>
+<app-filter [childOf]="'watchlist'"></app-filter>
+<div class="uk-container uk-width-auto ">
+  <!------------GridView------------>
+  <div *ngIf="!watchlistService.listView" uk-grid class="uk-text-left uk-animation-slide-bottom-small uk-flex-center">
 
-<div class="uk-container uk-width-auto uk-margin-remove">
-
-  <!--Grid Row Container-->
-
-  <div uk-grid *ngIf="type=='movie'" class="uk-text-left uk-animation-slide-bottom-small uk-flex-center">
-    <app-card *ngFor="let card of watchlistService.watchlistMovie" [element]="card"></app-card>
+    <div *ngIf="watchlistService.isEmpty(type)" class="uk-flex uk-flex-center uk-padding-large empty_text">
+      <h1> No {{ type === 'movie' ? 'movies' : 'series' }} in Watchlist </h1>
+    </div>
+  <app-card *ngFor="let card of getList()" [element]="card"></app-card>
   </div>
 
-  <div uk-grid *ngIf="type=='tv'" class="uk-text-left uk-animation-slide-bottom-small uk-flex-center">
-    <app-card *ngFor="let card of watchlistService.watchlistTv" [element]="card"></app-card>
-  </div>
-
+  <app-list-view [childOf] = "'Watchlist'" [type] = "type" [getList] = "getListElements" ></app-list-view>
 </div>
+

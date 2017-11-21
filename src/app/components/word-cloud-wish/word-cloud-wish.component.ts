@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { AgWordCloudData, AgWordCloudDirective } from 'angular4-word-cloud'
 
-import {WordCloudComponent} from '../word-cloud/word-cloud.component'
 import { LibraryService } from 'services/library.service'
 import { WatchlistService} from '../../services/watchlist.service'
 
@@ -36,16 +35,26 @@ export class WordCloudWishComponent implements OnInit {
   // Colors to use in cloud.
   colors = ['#653399', '#982d84', '#b5d83c', '#e3d83f', '#00D377']
 
-  emptyLib = [
-    {size: 2, text: 'LIBRARY'},
+  emptyLib: Array<AgWordCloudData> = [
+    {size: 3, text: 'LIBRARY'},
     {size: 1, text: ' '},
-    {size: 2, text: 'EMPTY'}
+    {size: 3, text: ' '},
+    {size: 1, text: ' '},
+    {size: 1, text: ' '},
+    {size: 1, text: ' '},
+    {size: 1, text: ' '},
+    {size: 3, text: 'EMPTY'}
   ]
 
-  addMore = [
-    {size: 2, text: 'LIBRARY NEEDS'},
+  addMore: Array<AgWordCloudData> = [
+    {size: 3, text: 'ADD MORE'},
     {size: 1, text: ' '},
-    {size: 2, text: 'MORE CONTENT'}
+    {size: 3, text: ' '},
+    {size: 1, text: ' '},
+    {size: 1, text: ' '},
+    {size: 1, text: ' '},
+    {size: 1, text: ' '},
+    {size: 3, text: 'TO LIBRARY'}
   ]
 
   constructor(public libraryService: LibraryService, public watchlistService: WatchlistService) { }
@@ -89,9 +98,9 @@ export class WordCloudWishComponent implements OnInit {
      * @param {genres} Array<Array> Genres list of lists.
      */
     if (!genres.length) {
-      this.wordData = this.emptyLib
+      this.pushCloud(this.emptyLib)
     } else if (genres.length < 5) {
-      this.wordData = this.addMore
+      this.pushCloud(this.addMore)
     } else {
       this.countGenres(genres)
       this.wordData.push({size: 1, text: ' '})
@@ -130,6 +139,17 @@ export class WordCloudWishComponent implements OnInit {
       counter[p] = counter.hasOwnProperty(p) ? counter[p] + 1 : 1
       return counter
     }, {})
+  }
+
+  private pushCloud(cloud) {
+    /**
+     * Pushes cloud data to wordData.
+     * @param {cloud} Array of AgWordCloudData
+     */
+    for (let i = 0; i < cloud.length; i++) {
+      const item = cloud[i]
+      this.wordData.push(item)
+    }
   }
 
 }

@@ -81,3 +81,8 @@
 .button_padding{
   padding: 1rem;
 }
+
+.rating_item {
+  color: #00d474;
+  font-size: 3rem;
+}

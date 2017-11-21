@@ -15,10 +15,13 @@
         </div>
       </div>
       <div class="uk-card-body">
-        <p>Updated: {{ userService.user.updated }}</p>
+
+        <p>You joined Unwatched: <br> <i>{{getDate()}}</i></p>
+        <p>Last time your profile was updated: <br><i>{{ getUpdated()}}</i></p>
+
       </div>
       <div class="uk-card-footer">
-        <a class="uk-button uk-button-danger" (click)="delete()">Delete me</a>
+        <a class="uk-button uk-button-danger" (click)="delete()">Delete my UnWatched profile</a>
       </div>
     </div>
 
@@ -67,13 +70,16 @@
     <!--User Search History-->
     <div class="uk-card uk-card-secondary usercard uk-width-expand@m">
       <div class="uk-card-header">
-        <div class="uk-grid-small uk-flex-middle" uk-grid>
+        <div class="uk-grid-small" uk-grid>
           <div class="uk-width-expand">
-            <h3 class="uk-card-title uk-margin-remove-bottom">Your search history</h3>
+            <h3 class="uk-card-title uk-margin-remove-bottom">Curiosity history</h3>
           </div>
         </div>
       </div>
       <div>
+        <div *ngIf="historyService.isEmpty()" class="uk-flex uk-flex-center uk-padding">
+          <h4 class="uk-text-muted"> You have to visit a movie or serie to get history. </h4>
+        </div>
         <ul>
           <div *ngFor="let history of historyService.history">
             {{ history.title }}

@@ -9,17 +9,17 @@ import { ActivatedRoute, Router } from '@angular/router'
   styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit, OnDestroy {
-
   type: string
   order: string
   orderBy: string
   search: string
   private sub: any
-  constructor(
-    public libraryService: LibraryService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  getListElements: Function
+
+  constructor(public libraryService: LibraryService,
+              private route: ActivatedRoute,
+              private router: Router
+              ) {}
 
   async ngOnInit() {
     this.libraryService.getLibrary()
@@ -29,9 +29,20 @@ export class LibraryComponent implements OnInit, OnDestroy {
         this.search = params['search'] || ''
         this.libraryService.getLibrary(this.order, this.orderBy, this.search)
       })
+    this.getListElements = this.getList.bind(this)
   }
   ngOnDestroy() {
     this.sub.unsubscribe()
   }
 
+  /**
+   * Gets list with movies and tv from libraryService.
+   */
+  getList() {
+    if (this.type === 'movie') {
+      return this.libraryService.libraryMovie
+    } else if (this.type === 'tv') {
+      return this.libraryService.libraryTv
+    }
+  }
 }

@@ -36,4 +36,5 @@ export class CardElement {
         this.date = new Date(release_date)
         this.type = media_type
     }
+
 }

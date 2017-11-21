@@ -13,6 +13,9 @@ export class LibraryService {
 
   constructor(private http: Http) { }
 
+  /**
+   * Adds the choosen CardElement to the library.
+   */
   public async addToLibrary(element: CardElement) {
     const type = element.type
     const id = element.id
@@ -23,6 +26,10 @@ export class LibraryService {
       console.error(err)
     }
   }
+
+  /**
+   * Removes the choosen CardElement from the library.
+   */
   public async removeFromLibrary(element: CardElement) {
     const type = element.type
     const id = element.id
@@ -35,7 +42,9 @@ export class LibraryService {
       console.error(err)
     }
   }
+  
   public async getLibrary(order = '', orderBy = '', search = '') {
+
     try {
       const response = await this.http.get(this.URL + '/movie', { params: {
         order: order,
@@ -82,6 +91,10 @@ export class LibraryService {
         break
     }
   }
+
+  /**
+   * Checks if the library lists are empty.
+   */
   public isEmpty(type): boolean {
     switch (type) {
       case 'movie': {
@@ -100,6 +113,9 @@ export class LibraryService {
     }
   }
 
+  /**
+   * Toggles between listView and gridView.
+   */
   private toggleListView() {
     this.listView = !this.listView
   }
