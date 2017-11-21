@@ -130,9 +130,9 @@
         <div class="uk-modal-footer">
 
           <!--Card Buttons-->
-            <div class="uk-position-bottom-right">
-              <div class="uk-button-group button_padding">
-
+            <div  class="uk-position-bottom-right">
+              <div  class="uk-button-group button_padding">
+                <div *ngIf="userService.loggedIn">
                 <!--Add to watchlist-->
                 <button (click) = "addToWatchlist(element.watchlist)"
                         class="uk-button uk-text-nowrap remove button_add uk-modal-close">
@@ -145,7 +145,7 @@
                   <label *ngIf='element.library' >Remove</label>
                   <label *ngIf='!element.library' >Add to <br>library</label>
                 </button>
-
+                </div>
               </div>
             </div>
 
