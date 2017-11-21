@@ -8,8 +8,8 @@ services:
     build: .
     command: bash -c "npm run prod"
     environment:
-      - NODE_ENV=production
-      - P4_ENV=production
+      - NODE_ENV=development
+      - P4_ENV=development
       - P4_AUTH_GOOGLE_KEY
       - P4_AUTH_GOOGLE_SECRET
       - P4_AUTH_GOOGLE_CALLBACK=http://it2810-22.idi.ntnu.no:8084/auth/google-callback

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-
 import { CardElement } from 'classes/CardElement'
 import { isNullOrUndefined } from 'util'
-
 
 @Injectable()
 export class LibraryService {
