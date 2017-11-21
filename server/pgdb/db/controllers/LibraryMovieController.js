@@ -36,6 +36,9 @@ module.exports = {
           association: 'Movie',
           where: { title: { [Op.iLike]: `%${options.query}%` } }
         }],
+        order: [
+          ['Movie', options.orderBy, options.order]
+        ],
         limit: options.size,
         offset: ((options.page - 1) * options.size)
       })

@@ -33,14 +33,20 @@ router.post('/', async (req, res) => {
 /**
  * Returnes all the Series a user have in their Watchlist
  * @param req.query.order
- * @param req.query.sortBy
+ * @param req.query.orderby
  * @param req.query.search
  * @param req.query.page
  */
 router.get('/', async (req, res) => {
+  let orderBy = req.query.orderBy
+  let order = 'ASC'
+  if (orderBy.charAt(0) === '-') {
+    orderBy = orderBy.substring(1)
+    order = 'DESC'
+  }
   const options = {
-    order: req.query.order || 'ASC',
-    orderBy: req.query.sortBy || 'date',
+    order: req.query.order || order,
+    orderBy: orderBy || 'title',
     query: req.query.search || '',
     page: req.query.page || 1,
     size: 10

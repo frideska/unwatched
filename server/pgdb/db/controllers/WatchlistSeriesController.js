@@ -33,6 +33,9 @@ module.exports = {
           association: 'Series',
           where: { title: { [Op.iLike]: `%${options.query}%` } }
         }],
+        order: [
+          ['Series', options.orderBy, options.order]
+        ],
         limit: options.size,
         offset: ((options.page - 1) * options.size)
       })
