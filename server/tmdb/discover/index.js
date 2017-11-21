@@ -54,7 +54,7 @@ const tv = async () => {
         series.genres = await GenreController.getGenreTv(series.genre_ids)
         series.watchlist = false
         series.library = false
-        media_type = 'tv'
+        series.media_type = 'tv'
         return series
     }))
 
