@@ -27,4 +27,13 @@ export class HistoryService {
   /*public async deleteFromHistory(history: string): Promise<void> {
     await this.http.delete(this.URL, { history }).toPromise()
   }*/
+
+  /**
+   * Checks if the history list is empty.
+   */
+  public isEmpty(): boolean {
+    if (!this.history) { return true }
+    if (!this.history.length) { return true }
+    return false
+  }
 }

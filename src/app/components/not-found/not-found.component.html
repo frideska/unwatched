@@ -1,12 +1,13 @@
-<div class="cloud_wrapper">
-  <div class="cloud"
-       AgWordCloud
-       #word_cloud_chart=ag-word-cloud
-       [wordData]="wordData"
-       [options]="options">
-  </div>
+<!--Not found page cloud-->
+<div class="cloud_wrapper uk-margin-remove uk-flex-center">
+  <div class="cloud uk-container"
+         AgWordCloud
+         #word_cloud_chart=ag-word-cloud
+         [wordData]="wordData"
+         [options]="options">
+    </div>
 
-  <div class="buttonHolder">
-    <button (click)="word_cloud_chart.update()">Generate new cloud!</button>
-  </div>
+    <div class="buttonHolder">
+      <button (click)="word_cloud_chart.update()">Generate new cloud!</button>
+    </div>
 </div>

@@ -27,6 +27,8 @@ To get access to the main functionality like *Library* and *Watchlist*, you have
   Press the "Generate cloud!" button to generate the cloud. If it is empty, it will show you; if it has less than five
   movies, it will ask you to add more to your library.
 
+Extended documentation can be found under the URL `/documentation`. Follow link in footer.
+
 
 ## Production setup
 

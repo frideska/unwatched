@@ -24,6 +24,10 @@ export class WatchlistService {
       console.error(err)
     }
   }
+
+  /**
+   * Removes the choosen CardElement from the watchlist.
+   */
   public async removeFromWatchlist(element: CardElement) {
     const type = element.type
     const id = element.id
@@ -35,6 +39,11 @@ export class WatchlistService {
       console.error(err)
     }
   }
+
+  /**
+   * Gets the movies and the tv-series for the watchlist as json objects and then
+   * maps them as CardElements.
+   */
   public async getWatchlist(sortBy= 'standard', search = '') {
     try {
       const response = await this.http.get(this.URL + '/movie', {params: {sort_by: sortBy, search: search}}).toPromise()
@@ -83,6 +92,10 @@ export class WatchlistService {
       }
     }
   }
+
+  /**
+   * Toggles between listView and gridView.
+   */
   private toggleListView() {
     this.listView = !this.listView
   }
