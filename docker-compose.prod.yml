@@ -23,6 +23,7 @@ services:
       - P4_AUTH_GOOGLE_CALLBACK=http://it2810-22.idi.ntnu.no:8084/auth/google-callback
       - P4_TMDB_TOKEN
       - P4_DB_HOST=mongodb
+      - P4_PGDB_HOST=postgres
     volumes:
       - .:/srv/app
     ports:
