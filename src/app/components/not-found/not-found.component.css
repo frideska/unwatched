@@ -26,3 +26,30 @@ button {
   height: 367px;
   justify-content: center;
 }
+
+.bg_not_found{
+  background-image: url("https://i.imgur.com/Hy5iopL.png");
+  background-repeat: no-repeat;
+  background-position-x: 55%;
+  background-size: 200vw;
+  width:100%;
+}
+
+.text_box{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+h1{
+  font-size: 4vw;
+  font-weight: bold;
+  color: white;
+}
+
+h2{
+  font-size: 3vw;
+  font-weight: lighter;
+  color: white;
+}
