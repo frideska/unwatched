@@ -5,7 +5,7 @@
   <div  class=" uk-text-left uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " style="  padding-left: 2rem;">
     <!--If Movies is empty-->
     <div *ngIf="service.isEmpty(type)" class="uk-flex uk-flex-center uk-padding-large empty_text">
-      <h1>No {{type}} in {{childOf}} </h1>
+      <h1>No {{ type === 'movie' ? 'movies' : 'series' }} in {{childOf}} </h1>
     </div>
     <!--ListView-->
     <ul uk-accordion="collapsible: false" class=" uk-padding-small uk-list uk-list-divider ">
