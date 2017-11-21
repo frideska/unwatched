@@ -2,9 +2,6 @@ const route = require('express').Router()
 
 const tmdbWrapper = require('../../../../tmdb')
 
-const MovieController = require('../../../../pgdb/db/controllers/MovieController')
-const SeriesController = require('../../../../pgdb/db/controllers/SeriesController')
-
 const WatchlistMovieController = require('../../../../pgdb/db/controllers/WatchlistMovieController')
 const WatchlistSeriesController = require('../../../../pgdb/db/controllers/WatchlistSeriesController')
 const LibraryMovieController = require('../../../../pgdb/db/controllers/LibraryMovieController')
@@ -12,6 +9,7 @@ const LibrarySeriesController = require('../../../../pgdb/db/controllers/Library
 
 /**
  * @param req.query.q API search string
+ * @param req.query.counter Counter to make sure async search results are showed correctly
  */
 route.get('/', async (req, res) => {
   try {
@@ -28,7 +26,7 @@ route.get('/', async (req, res) => {
         return element
       }))
     }
-    res.send(response)
+    res.json({results: response, counter: req.query.counter || 0})
   } catch (err) {
     console.error(err)
   }
