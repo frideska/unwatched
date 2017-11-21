@@ -14,6 +14,7 @@ import { UserService } from '../../services/user.service'
 })
 export class CardComponent implements OnInit {
   @Input() element: CardElement
+  @Input() interval: string
 
 
   constructor(
@@ -25,6 +26,7 @@ export class CardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.interval = this.roundToInterval(this.element.rating)
   }
 
   private async reload() {
@@ -60,9 +62,21 @@ export class CardComponent implements OnInit {
   }
 
   /**
-   * Adds the element to the history, when clicking on a card. 
+   * Adds the element to the history, when clicking on a card.
    */
   addToHistory() {
     this.historyService.addToHistory(this.element.title)
+  }
+
+  private roundToInterval(number) {
+    if ( number === 0) {
+      return 'null'
+    } else if ( number <= 5.0) {
+      return 'bad'
+    } else if ( number <= 7.0 ) {
+      return 'ok'
+    } else {
+      return 'good'
+    }
   }
 }

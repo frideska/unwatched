@@ -86,3 +86,27 @@
   color: #00d474;
   font-size: 3rem;
 }
+
+.interval_good {
+  color: #00D377;
+}
+
+.interval_ok {
+  color: #E3D83F;
+}
+
+.interval_bad {
+  color: #982D84;
+}
+
+.interval_null {
+  color: #666666;
+}
+
+.rating_wrapper > * {
+  padding-left: 0.5rem;
+}
+
+.of_ten {
+  margin-top: 2.12rem;
+}
