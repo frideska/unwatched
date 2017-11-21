@@ -13,6 +13,7 @@ export class WatchlistComponent implements OnInit, OnDestroy {
   orderBy: string
   search: string
   private sub: any
+  public getListElements: Function
 
   constructor(public watchlistService: WatchlistService, private route: ActivatedRoute, private router: Router) {}
 
@@ -25,8 +26,20 @@ export class WatchlistComponent implements OnInit, OnDestroy {
       this.watchlistService.getWatchlist(this.order, this.orderBy, this.search)
     })
     this.watchlistService.getWatchlist(this.order, this.orderBy, this.search)
+    this.getListElements = this.getList.bind(this)
   }
   ngOnDestroy() {
     this.sub.unsubscribe()
+  }
+
+  /**
+   * Gets the lists with movie and tv-series from WatchlistService.
+   */
+  public getList() {
+    if (this.type === 'movie') {
+      return this.watchlistService.watchlistMovie
+    } else if (this.type === 'tv') {
+      return this.watchlistService.watchlistTv
+    }
   }
 }

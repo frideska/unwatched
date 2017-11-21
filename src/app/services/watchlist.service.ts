@@ -7,8 +7,10 @@ import { CardElement } from 'classes/CardElement'
 @Injectable()
 export class WatchlistService {
   private URL = '/api/watchlist'
+  public listView = false
   watchlistMovie: any
   watchlistTv: any
+
 
   constructor(private http: Http) {}
 
@@ -22,6 +24,10 @@ export class WatchlistService {
       console.error(err)
     }
   }
+
+  /**
+   * Removes the choosen CardElement from the watchlist.
+   */
   public async removeFromWatchlist(element: CardElement) {
     const type = element.type
     const id = element.id
@@ -33,6 +39,7 @@ export class WatchlistService {
       console.error(err)
     }
   }
+
   public async getWatchlist(order = '', orderBy = '', search = '') {
     try {
       const response = await this.http.get(this.URL + '/movie', { params: {
@@ -79,5 +86,29 @@ export class WatchlistService {
         })
         break
     }
+  }
+  public isEmpty(type): boolean {
+    switch (type) {
+      case 'movie': {
+        if (!this.watchlistMovie) { return true }
+        if (!this.watchlistMovie.length) { return true }
+        return false
+      }
+      case 'tv': {
+        if (!this.watchlistTv) { return true }
+        if (!this.watchlistTv.length) { return true }
+        return false
+      }
+      default: {
+        return false
+      }
+    }
+  }
+
+  /**
+   * Toggles between listView and gridView.
+   */
+  private toggleListView() {
+    this.listView = !this.listView
   }
 }
