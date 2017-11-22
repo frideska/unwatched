@@ -5,7 +5,7 @@ const configureOrder = (order = 'ASC', orderBy = 'title') => {
     orderBy = orderBy.substring(1)
     order = 'DESC'
   }
-  return { order, orderBy }
+  return { order: order || 'ASC', orderBy: orderBy || 'title' }
 }
 
 const configureYears = (years) => {
@@ -24,7 +24,9 @@ const configureYears = (years) => {
       }
     }
   }
-  return { startYear, endYear }
+  startYear = startYear || 0
+  endYear = endYear || 9999
+  return { startYear: new Date(startYear), endYear: new Date(endYear) }
 }
 
 const configurePages = (page = 1, size = 10) => {
@@ -34,7 +36,7 @@ const configurePages = (page = 1, size = 10) => {
   if (size < 1) {
     size = 1
   }
-  return { page, size }
+  return { page: page || 1, size: size || 10 }
 }
 
 const configureRating = (ratings) => {
@@ -53,7 +55,7 @@ const configureRating = (ratings) => {
       }
     }
   }
-  return { min, max }
+  return { ratingMin: min || 0.0, ratingMax: max || 10.0 }
 }
 
 module.exports = {
@@ -73,7 +75,6 @@ module.exports = {
       ratingMin,
       ratingMax
     }
-    console.log(JSON.stringify(options))
-    return query
+    return options
   }
 }
