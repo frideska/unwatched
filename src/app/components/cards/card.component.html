@@ -1,12 +1,12 @@
 <!--Card Container-->
-<div class="uk-card uk-card-small uk-card-hover uk-card-secondary uk-child-width-1-2  card_container"  style="min-width: 400px; max-width: 400px;"  uk-grid>
+<div class="uk-card uk-card-small uk-card-hover uk-card-secondary uk-child-width-1-2  card_container card_size"  uk-grid>
 
 
   <!--Poster Modal-->
   <div id="card-movieID-{{ element.id }}"  uk-modal >
     <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
       <button class="uk-modal-close-outside" type="button" uk-close></button>
-      <img src="{{ element.poster }}" alt="" style="height: 45vw">
+      <img src="{{ element.poster }}" alt="" class="poster_size">
     </div>
   </div>
 
@@ -15,7 +15,7 @@
     <img src="{{ element.image }}" alt="" class="img_size" uk-cover>
     <div class="uk-position-bottom-right ">
       <a href="#card-movieID-{{ element.id }}" class="uk-icon-link" uk-toggle>
-        <img src="http://sachinchoolur.github.io/lightGallery/static/img/icons/zoom-w.png" alt="" style="height: 2.5rem; padding: 8px"/></a>
+        <img src="https://i.imgur.com/RzXUQER.png" alt="" class="zoom_icon"/></a>
     </div>
     <!--<canvas width="100" height='300'></canvas>-->
   </div>
@@ -33,9 +33,12 @@
           <!--Card Title-->
           <h3 class="title_text uk-display-inline "> {{ element.title }} </h3>
           <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p><br>
-          <h3 *ngFor="let genre of element.slicedGenres.entries()" class="uk-margin-remove subtitle_text uk-display-inline"><span class="uk-label">{{ genre[1] }}</span> </h3>
+          <h3 *ngFor="let genre of element.slicedGenres.entries()"
+              class="uk-margin-remove subtitle_text uk-display-inline">
+            <span class="uk-label">{{ genre[1] }}</span> </h3>
           <div class="rating_container">
-            <p class="uk-display-inline rating_text interval_{{interval}}">{{element.rating === 0 ? 'No rating' : element.rating.toFixed(1).toString()}}</p>
+            <p class="uk-display-inline rating_text interval_{{interval}}">
+              {{element.rating === 0 ? 'No rating' : element.rating.toFixed(1).toString()}}</p>
             <span class="interval_{{interval}} icon_padding" uk-icon="icon: star"></span>
           </div>
           <hr class="uk-divider-small uk-margin-remove" />
@@ -116,14 +119,16 @@
   <div class="uk-modal-dialog back">
     <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
     <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-top uk-text-left" uk-grid>
-      <div class="uk-background-cover" [ngStyle]="{ 'background-image': 'url(' +  element.poster  + ')'}" uk-height-viewport></div>
+      <div class="uk-background-cover" [ngStyle]="{ 'background-image': 'url(' +  element.poster  + ')'}"
+           uk-height-viewport></div>
       <div class="uk-padding-small padding-top-large ">
 
         <!--Modal Header-->
         <div class="uk-modal-header">
           <h1 class="uk-margin-remove uk-display-inline">{{ element.title }}</h1>
           <h1 class=" uk-display-inline uk-text-muted uk-text-muted"> ({{ element.date.getFullYear() }})</h1><br>
-          <h3 *ngFor="let genre of element.genres.entries()" class="uk-margin-remove genere_modal uk-display-inline"><span class="uk-label">{{ genre[1] }}</span> </h3>
+          <h3 *ngFor="let genre of element.genres.entries()" class="uk-margin-remove genere_modal uk-display-inline">
+            <span class="uk-label">{{ genre[1] }}</span> </h3>
 
         </div>
 
