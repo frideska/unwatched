@@ -1,11 +1,8 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 
 const misc = require('./misc')
-// let User = require('./db/models/User')
-// let UserController = require('./db/controllers/UserController')
 
 const UserController = require('./pgdb/db/controllers/UserController')
-const User = require('./pgdb/db/models').User
 
 /**
  * Google OAuth2 configuration options.
