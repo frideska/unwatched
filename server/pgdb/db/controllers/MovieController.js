@@ -12,11 +12,18 @@ module.exports = {
   async create (movie) {
     const dbMovie = await Movie.findOne({where: {id: movie.id}})
     if (!dbMovie) {
-      //console.log(`Creating Movie '${movie.title}'`)
       return Movie.create(movie)
     }
-    //console.log(`Movie '${dbMovie.title}' already created`)
     return dbMovie || movie
+  },
+
+  /**
+   * @description Find a single movie object in the database
+   * @param id
+   * @returns {Promise.<Message>}
+   */
+  async findOneRaw (id) {
+    return Movie.findOne({where: {id: id}, raw: true})
   },
 
   /**
