@@ -1,6 +1,7 @@
 import { TestBed, async } from '@angular/core/testing'
 import { AppComponent } from './app.component'
 import { NavbarComponent } from './components/navbar/navbar.component'
+import { FooterComponent } from './components/footer/footer.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FormsModule } from '@angular/forms'
 import { SearchService } from './services/search.service'
@@ -17,7 +18,8 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        FooterComponent
       ], providers: [
         SearchService,
         UserService

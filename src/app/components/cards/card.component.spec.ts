@@ -1,34 +1,38 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { ListViewComponent } from './list-view.component'
-import { CardComponent } from 'components/cards/card.component'
+import { CardComponent } from './card.component'
 import { WatchlistService } from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
-import { RouterTestingModule } from '@angular/router/testing'
+import { DetailsService } from 'services/details.service'
+import { HistoryService } from 'services/history.service'
+import { SearchService } from 'services/search.service'
+import { UserService } from 'services/user.service'
 import { HttpModule } from '@angular/http'
 
-describe('ListViewComponent', () => {
-  let component: ListViewComponent
-  let fixture: ComponentFixture<ListViewComponent>
+describe('CardComponent', () => {
+  let component: CardComponent
+  let fixture: ComponentFixture<CardComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         HttpModule
       ], declarations: [
-        ListViewComponent,
-        CardComponent
+        CardComponent,
       ], providers: [
+        WatchlistService,
         LibraryService,
-        WatchlistService
+        HistoryService,
+        SearchService,
+        UserService,
+        DetailsService
       ]
     })
     .compileComponents()
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListViewComponent)
+    fixture = TestBed.createComponent(CardComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

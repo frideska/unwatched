@@ -3,8 +3,12 @@ const GenreController = require('../pgdb/db/controllers/GenreController')
 
 const movie = async () => {
   try {
-    let genres = await tmdb.genres.movie()
-    genres.genres.map(async (genre) => {
+    let { genres } = await tmdb.genres.movie()
+    global.GenreMovies = {}
+    await genres.forEach((genre) => {
+      global.GenreMovies[genre.id] = genre.name
+    })
+    genres.map(async (genre) => {
       GenreController.createGenreMovie(genre)
     })
   } catch (err) {
@@ -13,8 +17,12 @@ const movie = async () => {
 }
 const tv = async () => {
   try {
-    let genres = await tmdb.genres.tv()
-    genres.genres.map(async (genre) => {
+    let { genres } = await tmdb.genres.tv()
+    global.GenreSeries = {}
+    await genres.forEach((genre) => {
+      global.GenreSeries[genre.id] = genre.name
+    })
+    genres.map(async (genre) => {
       GenreController.createGenreTv(genre)
     })
   } catch (err) {

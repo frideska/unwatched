@@ -72,16 +72,39 @@ export class WordCloudWishComponent implements OnInit {
     await this.libraryService.getLibrary()
     const libraryMov = this.libraryService.libraryMovie
     const libraryTV = this.libraryService.libraryTv
-    const tvs = libraryTV.map(movie => movie.genres)
-    const movs = libraryMov.map(movie => movie.genres)
-    const libraryGens = tvs.concat(movs)
+    let tvs: any
+    let movs: any
+    if (libraryTV != null) {
+      tvs = libraryTV.map(movie => movie.genres)
+    } else {
+      tvs = []
+    }
+    if (libraryMov != null) {
+      movs = libraryMov.map(movie => movie.genres)
+    } else {
+      movs = []
+    }
+    const libraryGens = movs.concat(tvs)
 
     // Fetch movies and TV shows from Watchlist.
     await this.watchlistService.getWatchlist()
-    const watchlist = this.watchlistService.watchlistMovie
-    const watchGens = watchlist.map(movie => movie.genres)
+    const watchMov = this.watchlistService.watchlistMovie
+    const watchTV = this.watchlistService.watchlistTv
+    let watchGensMov: any
+    let watchGensTV: any
+    if (watchMov != null) {
+      watchGensMov = watchMov.map(movie => movie.genres)
+    } else {
+      watchGensMov = []
+    }
+    if (watchTV != null) {
+      watchGensTV = watchTV.map(show => show.genres)
+    } else {
+      watchGensTV = []
+    }
 
     // Slap them together as one array.
+    const watchGens = watchGensTV.concat(watchGensMov)
     const genres = watchGens.concat(libraryGens)
 
     // Generate cloud data update cloud.

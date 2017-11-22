@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { WordCloudComponent } from './word-cloud.component'
+import { AgWordCloudModule } from 'angular4-word-cloud'
+import { LibraryService } from '../../services/library.service'
+import { HttpModule } from '@angular/http'
 
 describe('WordCloudComponent', () => {
   let component: WordCloudComponent
@@ -8,7 +11,16 @@ describe('WordCloudComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WordCloudComponent ]
+      imports: [
+        AgWordCloudModule,
+        HttpModule
+      ],
+      declarations: [
+        WordCloudComponent
+      ],
+      providers: [
+        LibraryService
+      ]
     })
     .compileComponents()
   }))
