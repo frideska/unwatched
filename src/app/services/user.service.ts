@@ -38,7 +38,6 @@ export class UserService {
    * Returns if there is currently a user logged in to the application frontend.
    */
   isLoggedIn(): boolean {
-    console.log(`[Service|User](isLoggedIn) Triggered isLoggedIn(): ${this.user ? true : false}`)
     return this.user ? true : false
   }
 
