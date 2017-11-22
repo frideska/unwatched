@@ -14,12 +14,12 @@ export class NotFoundComponent implements OnInit {
 
   // Main word cloud.
   wordData: Array<AgWordCloudData> = [
-    {size: 2, text: 'NOT FOUND'},
+    {size: 3, text: 'NOT FOUND'},
     {size: 1, text: ' '},
     {size: 1, text: ' '},
-    {size: 3, text: ' '},
+    {size: 2, text: this.router.url},
     {size: 3, text: '404'}
-  ]
+    ]
 
   options = {
     settings: {
@@ -41,9 +41,7 @@ export class NotFoundComponent implements OnInit {
   constructor( private router: Router ) { }
 
   ngOnInit() {
-    this.wordData.push({size: 2, text: this.router.url})
     this.wordCloudChart.color = this.colors
-    this.wordCloudChart.update()
   }
 
 }
