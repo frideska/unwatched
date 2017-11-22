@@ -31,9 +31,9 @@
         <div>
 
           <!--Card Title-->
-          <h3 class="title_text uk-display-inline "> {{ element.title }} </h3>
+          <h3 class="title_text uk-display-inline "> {{ element.slicedTitle }} </h3>
           <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
-          <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
+          <h2 class="uk-margin-remove subtitle_text">{{ element.slicedGenres }}</h2>
           <span class="uk-margin-small-right interval_{{interval}}" uk-icon="icon: star"></span>
           <hr class="uk-divider-small uk-margin-remove" />
           <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
