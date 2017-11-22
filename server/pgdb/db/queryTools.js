@@ -9,24 +9,24 @@ const configureOrder = (order = 'ASC', orderBy = 'title') => {
 }
 
 const configureYears = (years) => {
-  let startYear = 0
-  let endYear = 9999
+  let startYear = 1900
+  let endYear = 2099
   if (years) {
     years = years.split('-')
     const y1 = parseInt(years[0], 10)
     const y2 = parseInt(years[1], 10)
     if (y1 < y2) {
-      if (y1 > 0 && y1 < 9999) {
+      if (y1 > 1900 && y1 < 2099) {
         startYear = y1
       }
-      if (y1 > 0 && y1 < 9999) {
+      if (y1 > 1900 && y1 < 2099) {
         endYear = y2
       }
     }
   }
-  startYear = startYear || 0
-  endYear = endYear || 9999
-  return { startYear: new Date(startYear), endYear: new Date(endYear) }
+  startYear = startYear || 1900
+  endYear = endYear || 2099
+  return { startYear: new Date().setFullYear(startYear), endYear: new Date().setFullYear(endYear) }
 }
 
 const configurePages = (page = 1, size = 10) => {
@@ -51,7 +51,7 @@ const configureRating = (ratings) => {
         min = start
       }
       if (end > 0.0 && end < 10.0) {
-        min = end
+        max = end
       }
     }
   }
