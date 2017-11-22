@@ -12,6 +12,7 @@ export class SearchService {
   public results: any
   public counter = 0
   public displayed = 0
+  public overload = false
 
   constructor(private http: Http) {
     this.query = ''
@@ -43,8 +44,11 @@ export class SearchService {
 
   private reconfigure(json) {
     const recieved = parseInt(json.counter, 10)
-    if (recieved > this.displayed) {
+    if (parseInt(json.error, 10) === 429) {
+      this.overload = true
+    } else if (recieved > this.displayed) {
       console.log(`Displayed ${this.displayed}, Recieved ${recieved} : Displaying`)
+      this.overload = false
       this.results = json.results.map((result) => {
         switch (result.media_type) {
           case 'movie': return new CardElement(result)
@@ -53,8 +57,8 @@ export class SearchService {
       })
       this.displayed = json.counter
     } else {
+      this.overload = false
       console.log(`Displayed ${this.displayed}, Recieved ${recieved} : Discarding!`)
     }
-    // console.log(this.results)
   }
 }
