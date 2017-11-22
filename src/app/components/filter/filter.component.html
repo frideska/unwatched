@@ -3,7 +3,7 @@
   <div class="uk-navbar-left">
 
     <!--Menu items-->
-    <ul class="uk-navbar-nav"  >
+    <ul class="uk-navbar-nav" >
 
       <li *ngIf="!service.listView; else cardView_icon">
         <a (click)="service.toggleListView()"><span uk-icon="icon : list"></span></a>
@@ -25,7 +25,7 @@
       <li><div class="list_elements uk-navbar-item">|</div></li>
 
       <li>
-        <div class="list_elements uk-navbar-item">Sort by:</div>
+        <div class="list_elements uk-navbar-item no_link_item">Sort by:</div>
       </li>
 
       <li [routerLinkActive]="['active']">

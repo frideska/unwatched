@@ -2,7 +2,7 @@
 
   <!------------Render Movies------------>
   <!--List View Container-->
-  <div  class=" uk-text-left uk-flex-center uk-animation-slide-bottom-small uk-margin-remove " style="  padding-left: 2rem;">
+  <div  class=" uk-text-left uk-flex-center uk-margin-remove " style="  padding-left: 2rem;">
     <!--If Movies is empty-->
     <div *ngIf="service.isEmpty(type)" class="uk-flex uk-flex-center uk-padding-large empty_text">
       <h1>No {{ type === 'movie' ? 'movies' : 'series' }} in {{childOf}} </h1>
@@ -23,7 +23,8 @@
         <p class="uk-display-inline rating_text interval_{{ roundToInterval(card.rating) }}">{{card.rating === 0 ? 'No rating' : card.rating.toFixed(1).toString()}}</p>
 
         <!--Genres-->
-        <h3 *ngFor="let genre of card.slicedGenres" class="title_content subtitle_text uk-display-inline"><span class="uk-label">{{ genre }}</span> </h3>
+        <h3 *ngFor="let genre of card.slicedGenres" class="title_content subtitle_text uk-display-inline">
+          <span class="uk-label">{{ genre }}</span> </h3>
 
         <!--Card Buttons-->
         <div class="uk-button-group uk-float-right ">
