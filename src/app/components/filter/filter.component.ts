@@ -119,7 +119,7 @@ export class FilterComponent implements OnInit {
   setQueryParms() {
     const queryParams = Object.assign({}, this.activatedRoute.snapshot.queryParams)
     queryParams['type'] = this.type
-    queryParams['sort_by'] = this.currentSort
+    queryParams['orderBy'] = this.currentSort
     queryParams['search'] = this.searchValue
     this.router.navigate([this.url], { queryParams: queryParams })
   }

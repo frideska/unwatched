@@ -4,7 +4,7 @@
 
 const fetch = require('node-fetch')
 const queryString = require('query-string')
-const GenreController = require('../../db/controllers/GenreController')
+const GenreController = require('../../pgdb/db/controllers/GenreController')
 
 const movie = async () => {
   try {
@@ -12,9 +12,9 @@ const movie = async () => {
     let results = response.results
 
     await Promise.all(results.map(async (movie) => {
-      movie.genres = await GenreController.getGenreMovie(movie.genre_ids),
-      movie.watchlist = false,
-      movie.library = false,
+      movie.genres = await GenreController.getGenreMovie(movie.genre_ids)
+      movie.watchlist = false
+      movie.library = false
       movie.media_type = 'movie'
       return movie
     }))
@@ -44,18 +44,19 @@ const PARAMETERS = {
  */
 const tv = async () => {
   try {
-    reqUrl = `${API_ENDPOINT}${FEATURE_URL}?${queryString.stringify(PARAMETERS)}`
+    const reqUrl = `${API_ENDPOINT}${FEATURE_URL}?${queryString.stringify(PARAMETERS)}`
     let response = await fetch(reqUrl)
     response = await response.json()
     let results = response.results
 
     await Promise.all(results.map(async (series) => {
-        series.title = series.name
-        series.genres = await GenreController.getGenreTv(series.genre_ids)
-        series.watchlist = false
-        series.library = false
-        series.media_type = 'tv'
-        return series
+      series.title = series.name
+      series.release_date = series.first_air_date
+      series.genres = await GenreController.getGenreTv(series.genre_ids)
+      series.watchlist = false
+      series.library = false
+      series.media_type = 'tv'
+      return series
     }))
 
     return results

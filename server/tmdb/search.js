@@ -1,4 +1,5 @@
-const GenreController = require('../db/controllers/GenreController')
+
+const GenreController = require('../pgdb/db/controllers/GenreController')
 
 const multi = async (query) => {
   try {
@@ -12,50 +13,39 @@ const multi = async (query) => {
     })
     response = await Promise.all(response.results.map(async (result) => {
       if (result.media_type === 'tv') {
-        return {
-          id: result.id,
-          title: result.name,
-          genres: await GenreController.getGenreTv(result.genre_ids),
-          overview: result.overview,
-          backdrop_path: result.backdrop_path,
-          poster_path: result.poster_path,
-          release_date: result.release_date,
-          vote_average: result.vote_average,
-          watchlist: false,
-          library: false,
-          media_type: 'tv'
-        }
+        result.release_date = result.first_air_date
+        result.genres = await GenreController.getGenreTv(result.genre_ids)
+        result.title = result.name
+        result.watchlist = false
+        result.library = false
       } else if (result.media_type === 'movie') {
-        return {
-          id: result.id,
-          title: result.title,
-          genres: await GenreController.getGenreMovie(result.genre_ids),
-          overview: result.overview,
-          backdrop_path: result.backdrop_path,
-          poster_path: result.poster_path,
-          release_date: result.release_date,
-          vote_average: result.vote_average,
-          watchlist: false,
-          library: false,
-          media_type: 'movie'
-        }
+        result.genres = await GenreController.getGenreMovie(result.genre_ids)
+        result.watchlist = false
+        result.library = false
       }
+      return result
     }))
     return response
   } catch (err) {
+    if (err && err.statusCode === 429) {
+      return { error: err.statusCode }
+    }
     console.error(err)
   }
 }
 
 const movie = async (query) => {
   try {
-    return await tmdb.search.movie({
+    const results = await tmdb.search.movie({
       query: query,
       include_adult: '',
       region: '',
       year: '',
       primary_release_year: ''
     })
+    console.log(`Searching for: ${query}`)
+    // console.log(results)
+    return results
   } catch (err) {
     console.error(err)
   }

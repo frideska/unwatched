@@ -1,14 +1,11 @@
-const GenreTv = require('../db/models/GenreTv')
-const GenreMovie = require('../db/models/GenreMovie')
+
+const GenreController = require('../pgdb/db/controllers/GenreController')
 
 const movie = async () => {
   try {
     let genres = await tmdb.genres.movie()
     genres.genres.map(async (genre) => {
-      let result = await GenreMovie.findOne({ id: genre.id })
-      if (!result) {
-        GenreMovie.create(genre)
-      }
+      GenreController.createGenreMovie(genre)
     })
   } catch (err) {
     console.error(err)
@@ -18,10 +15,7 @@ const tv = async () => {
   try {
     let genres = await tmdb.genres.tv()
     genres.genres.map(async (genre) => {
-      let result = await GenreTv.findOne({ id: genre.id })
-      if (!result) {
-        GenreTv.create(genre)
-      }
+      GenreController.createGenreTv(genre)
     })
   } catch (err) {
     console.error(err)
