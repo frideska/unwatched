@@ -37,7 +37,7 @@ describe('UserComponent', () => {
         WordCloudWishComponent,
       ],
       providers: [
-        {provide: LibraryService, useValue: userService },
+        {provide: UserService, useValue: userService },
         HistoryService,
         LibraryService,
         WatchlistService
@@ -46,7 +46,7 @@ describe('UserComponent', () => {
     .compileComponents()
   }))
 
-  beforeEach(async () => {
+  beforeEach( () => {
     fixture = TestBed.createComponent(UserComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
