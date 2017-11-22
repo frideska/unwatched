@@ -25,7 +25,7 @@ export class WatchlistComponent implements OnInit, OnDestroy {
       this.search = params['search'] || ''
       this.watchlistService.getWatchlist(this.order, this.orderBy, this.search)
     })
-    this.watchlistService.getWatchlist(this.order, this.orderBy, this.search)
+    this.watchlistService.getWatchlist(this.order, this.orderBy, this.search, true)
     this.getListElements = this.getList.bind(this)
   }
   ngOnDestroy() {
@@ -41,5 +41,9 @@ export class WatchlistComponent implements OnInit, OnDestroy {
     } else if (this.type === 'tv') {
       return this.watchlistService.watchlistTv
     }
+  }
+
+  appendWatchlist() {
+    this.watchlistService.getNext(this.order, this.orderBy, this.search)
   }
 }
