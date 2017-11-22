@@ -1,7 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+
 import { FilterComponent } from './filter.component'
 import { RouterTestingModule } from '@angular/router/testing'
-import { LibraryService } from '../../services/library.service'
+import { LibraryService } from 'services/library.service'
+import { WatchlistService } from 'services/watchlist.service'
+import { FormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 
 describe('FilterComponent', () => {
@@ -12,10 +15,13 @@ describe('FilterComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        FormsModule,
         HttpModule
-      ], declarations: [ FilterComponent ],
-      providers: [
-        LibraryService
+      ], declarations: [
+         FilterComponent
+       ], providers: [
+        LibraryService,
+        WatchlistService
       ]
     })
     .compileComponents()

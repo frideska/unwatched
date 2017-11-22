@@ -18,8 +18,12 @@
         <!--Year-->
         <p class="title_content uk-text-muted subtitle_text uk-display-inline">{{ card.date.getFullYear() }}</p>
 
+        <!--Rating-->
+        <span class="interval_{{ roundToInterval(card.rating) }} icon_padding" uk-icon="icon: star"></span>
+        <p class="uk-display-inline rating_text interval_{{ roundToInterval(card.rating) }}">{{card.rating === 0 ? 'No rating' : card.rating.toFixed(1).toString()}}</p>
+
         <!--Genres-->
-        <h3 class="title_content subtitle_text uk-display-inline"><span class="uk-label uk-text-muted">{{ card.genres }}</span> </h3>
+        <h3 *ngFor="let genre of card.slicedGenres.entries()" class="title_content subtitle_text uk-display-inline"><span class="uk-label">{{ genre[1] }}</span> </h3>
 
         <!--Card Buttons-->
         <div class="uk-button-group uk-float-right ">
@@ -31,7 +35,8 @@
                 message: '<span uk-icon=\'icon: check\'></span> Successfully added to watchlist!',
                 pos: 'bottom-center', status:'success', timeout: '2500'})"
                   (click)="addToWatchlist(card)"
-                  class="uk-button uk-text-nowrap button_add" >
+                  class="uk-button uk-text-nowrap"
+                  [ngClass]="card.library ? 'watchlist_button_disabled': 'button_add'" >
             <label>Add to <br>watchlist</label>
           </button>
 
@@ -76,7 +81,7 @@
 
           <!--Image-->
           <div>
-            <img src="{{ card.image }}" alt="" class="uk-display-inline ">
+            <img src="{{ card.image }}" alt="" class="uk-display-inline uk-width-auto">
           </div>
 
           <div class="flex_box">

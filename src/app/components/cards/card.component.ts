@@ -8,7 +8,6 @@ import { CardElement } from 'classes/CardElement'
 import { UserService } from 'services/user.service'
 import { DetailsService } from 'services/details.service'
 
-
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',

@@ -5,13 +5,40 @@
   overflow:hidden;
 }
 
+.card_size{
+  min-width: 400px;
+  max-width: 400px;
+}
+
+.zoom_icon{
+  height: 2.5rem;
+  padding: 8px
+}
+
+.poster_size{
+  height: 45vw;
+}
+
 .title_text {
-  font-size: 1.5rem;
-  padding-top: 5px;
+  font-size: 1.2rem;
 }
 
 .subtitle_text {
   font-size: 0.6rem;
+}
+
+.rating_text{
+  font-size: 1rem;
+  margin:0;
+
+}
+
+.rating_container{
+  padding-top: 0.2rem;
+  padding-bottom: -0.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .desc_text {
@@ -19,7 +46,13 @@
 }
 
 .uk-label {
-  font-size: 0.45rem;
+  background-color: rebeccapurple;
+}
+
+.uk-card-secondary>:not([class*=uk-card-media]) .uk-label{
+  background-color: white;
+  color: black;
+  font-size: 0.65rem;
 }
 
 .uk-divider-small::after{
@@ -44,6 +77,8 @@
 .button_add{
   background-color: #00d377;
   color: white;
+  box-shadow: 2px -10px 5px #222222;
+  z-index: 100;
 }
 
 .button_add:hover{
@@ -51,9 +86,29 @@
   color: white;
 }
 
+.button_disabled{
+  background-color: #777777;
+  color: white;
+  box-shadow: 2px -10px 5px #222222;
+  z-index: 100;
+  width: 200px;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  line-height:10px;
+}
+
+.watchlist_button_disabled{
+  background-color: #777777;
+  pointer-events: none;
+  color: white;
+}
+
 .button_remove{
   background-color: #663399;
   color: white;
+  box-shadow: 3px -10px 5px #222222;
+  z-index: 100;
+
 }
 
 .button_remove:hover{
@@ -75,7 +130,7 @@
 .uk-modal-full .uk-modal-dialog .uk-label {
   font-size: 1rem;
   background-color: white;
-  color: #666666;
+  color: black;
 }
 
 .button_padding{
@@ -99,7 +154,12 @@
 }
 
 .interval_null {
-  color: #666666;
+  color: #909090;
+  font-size: 0.6rem;
+}
+
+.rating_wrapper{
+  padding-left: 2rem;
 }
 
 .rating_wrapper > * {
@@ -108,4 +168,9 @@
 
 .of_ten {
   margin-top: 2.12rem;
+}
+
+.icon_padding{
+  padding-right: 0.3rem;
+  padding-left: 0.3rem;
 }

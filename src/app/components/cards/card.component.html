@@ -1,12 +1,12 @@
 <!--Card Container-->
-<div class="uk-card uk-card-small uk-card-hover uk-card-secondary uk-child-width-1-2  card_container"  style="min-width: 400px; max-width: 400px;"  uk-grid>
+<div class="uk-card uk-card-small uk-card-hover uk-card-secondary uk-child-width-1-2  card_container card_size"  uk-grid>
 
 
   <!--Poster Modal-->
   <div id="card-movieID-{{ element.id }}"  uk-modal >
     <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
       <button class="uk-modal-close-outside" type="button" uk-close></button>
-      <img src="{{ element.poster }}" alt="" style="height: 45vw">
+      <img src="{{ element.poster }}" alt="" class="poster_size">
     </div>
   </div>
 
@@ -15,7 +15,7 @@
     <img src="{{ element.image }}" alt="" class="img_size" uk-cover>
     <div class="uk-position-bottom-right ">
       <a href="#card-movieID-{{ element.id }}" class="uk-icon-link" uk-toggle>
-        <img src="http://sachinchoolur.github.io/lightGallery/static/img/icons/zoom-w.png" alt="" style="height: 2.5rem; padding: 8px"/></a>
+        <img src="https://i.imgur.com/RzXUQER.png" alt="" class="zoom_icon"/></a>
     </div>
     <!--<canvas width="100" height='300'></canvas>-->
   </div>
@@ -32,9 +32,15 @@
 
           <!--Card Title-->
           <h3 class="title_text uk-display-inline "> {{ element.title }} </h3>
-          <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
-          <h2 class="uk-margin-remove subtitle_text">{{ element.slicedGenres }}</h2>
-          <span class="uk-margin-small-right interval_{{interval}}" uk-icon="icon: star"></span>
+          <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p><br>
+          <h3 *ngFor="let genre of element.slicedGenres.entries()"
+              class="uk-margin-remove subtitle_text uk-display-inline">
+            <span class="uk-label">{{ genre[1] }}</span> </h3>
+          <div class="rating_container">
+            <p class="uk-display-inline rating_text interval_{{interval}}">
+              {{element.rating === 0 ? 'No rating' : element.rating.toFixed(1).toString()}}</p>
+            <span class="interval_{{interval}} icon_padding" uk-icon="icon: star"></span>
+          </div>
           <hr class="uk-divider-small uk-margin-remove" />
           <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
 
@@ -44,55 +50,62 @@
 
     <!--Card Buttons-->
     <div class="uk-card-footer uk-padding-remove uk-position-bottom-right">
-      <div class="uk-button-group  ">
+      <div *ngIf="userService.loggedIn; else notLoggedIn">
+        <div class="uk-button-group  ">
 
-        <!--Watchlist buttons-->
-
-        <!--Add to watchlist-->
-        <button *ngIf="userService.loggedIn && !element.watchlist; else removeWatchList"
-                onclick="UIkit.notification({
+          <!--Watchlist buttons-->
+          <!--Add to watchlist-->
+          <button *ngIf="!element.watchlist; else removeWatchList"
+                  onclick="UIkit.notification({
                 message: '<span uk-icon=\'icon: check\'></span> Successfully added to watchlist!',
                 pos: 'bottom-center', status:'success', timeout: '2500'})"
-                (click)="addToWatchlist()"
-                class="uk-button uk-text-nowrap button_add" >
-          <label>Add to <br>watchlist</label>
-        </button>
+                  (click)="addToWatchlist()"
+                  class="uk-button uk-text-nowrap"
+                  [ngClass]="element.library ? 'watchlist_button_disabled': 'button_add'">
+            <label>Add to <br>watchlist</label>
+          </button>
 
-        <!--Remove from watchlist-->
-        <ng-template #removeWatchList>
-          <button *ngIf="userService.loggedIn" (click)="addToWatchlist()"
-                  onclick="UIkit.notification({
+          <!--Remove from watchlist-->
+          <ng-template #removeWatchList>
+            <button *ngIf="userService.loggedIn" (click)="addToWatchlist()"
+                    onclick="UIkit.notification({
                   message: '<span uk-icon=\'icon: trash\'></span> Deleted from watchlist!',
                   pos: 'bottom-center', status:'danger', timeout: '2500'})"
-                  class="uk-button uk-text-nowrap button_remove">
-            <label>Remove</label>
-          </button>
-        </ng-template>
+                    class="uk-button uk-text-nowrap button_remove">
+              <label>Remove</label>
+            </button>
+          </ng-template>
 
-        <!--Library buttons-->
+          <!--Library buttons-->
 
-        <!--Add to library-->
-        <button *ngIf="userService.loggedIn && !element.library; else removeLibrary"
-                onclick="UIkit.notification({
+          <!--Add to library-->
+          <button *ngIf="userService.loggedIn && !element.library; else removeLibrary"
+                  onclick="UIkit.notification({
                 message: '<span uk-icon=\'icon: check\'></span> Successfully added to library!',
                 pos: 'bottom-center', status:'success', timeout: '2500'})"
-                (click)="addToLibrary()"
-                class="uk-button uk-text-nowrap button_add">
-          <label>Add to <br>library</label>
-        </button>
+                  (click)="addToLibrary()"
+                  class="uk-button uk-text-nowrap button_add">
+            <label>Add to <br>library</label>
+          </button>
 
-        <!--Remove from library-->
-        <ng-template #removeLibrary>
-          <button *ngIf="userService.loggedIn" (click)="addToLibrary()"
-                  onclick="UIkit.notification({
+          <!--Remove from library-->
+          <ng-template #removeLibrary>
+            <button *ngIf="userService.loggedIn" (click)="addToLibrary()"
+                    onclick="UIkit.notification({
                   message: '<span uk-icon=\'icon: trash\'></span> Deleted from library!',
                   pos: 'bottom-center', status:'danger', timeout: '2500'})"
-                  class="uk-button uk-text-nowrap button_remove">
-            <label>Remove</label>
-          </button>
-        </ng-template>
+                    class="uk-button uk-text-nowrap button_remove">
+              <label>Remove</label>
+            </button>
+          </ng-template>
 
+        </div>
       </div>
+
+      <!--Disabled button when not logged in-->
+      <ng-template #notLoggedIn>
+        <button class="button_disabled uk-button uk-disabled">Not logged in</button>
+      </ng-template>
     </div>
 
   </div>
@@ -106,14 +119,17 @@
   <div class="uk-modal-dialog back">
     <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
     <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-top uk-text-left" uk-grid>
-      <div class="uk-background-cover" [ngStyle]="{ 'background-image': 'url(' +  element.poster  + ')'}" uk-height-viewport></div>
+      <div class="uk-background-cover" [ngStyle]="{ 'background-image': 'url(' +  element.poster  + ')'}"
+           uk-height-viewport></div>
       <div class="uk-padding-small padding-top-large ">
 
         <!--Modal Header-->
         <div class="uk-modal-header">
           <h1 class="uk-margin-remove uk-display-inline">{{ element.title }}</h1>
-          <h1 class=" uk-display-inline uk-text-muted uk-text-muted"> ({{ element.date.getFullYear() }})</h1>
-          <h3 class="uk-margin-remove genere_modal"><span class="uk-label">{{ element.genres }}</span> </h3>
+          <h1 class=" uk-display-inline uk-text-muted uk-text-muted"> ({{ element.date.getFullYear() }})</h1><br>
+          <h3 *ngFor="let genre of element.genres.entries()" class="uk-margin-remove genere_modal uk-display-inline">
+            <span class="uk-label">{{ genre[1] }}</span> </h3>
+
         </div>
 
         <!--Modal body-->
@@ -124,37 +140,72 @@
                     frameborder="0" allowfullscreen width="560" height="315"
                     uk-responsive uk-video="automute: true; autoplay: false;"></iframe>-->
           </div>
-          <div class="rating_container">
-            <p class="uk-text-center">
-              Ovarall TMDB rating:
+          <p class="uk-text-center">
+            Ovarall TMDB rating:
             <div class="rating_wrapper uk-flex-center uk-grid">
               <div class="rating_item interval_{{interval}}">
-                {{element.rating === 0 ? '-' : element.rating.toFixed(1).toString()}}
+                {{element.rating === 0 ? 'No rating' : element.rating.toFixed(1).toString()}}
               </div>
-              <div class="of_ten">/ 10</div>
-          </div>
-          </div>
+              <div class="of_ten">
+          <p> / 10</p>
         </div>
+      </div>
+    </div>
 
-        <!--Modal footer-->
-        <div class="uk-modal-footer">
-          <!--Card Buttons-->
-            <div  class="uk-position-bottom-right">
-              <div  *ngIf="userService.loggedIn" class="uk-button-group button_padding">
-                <!--Add to watchlist-->
-                <button (click) = "addToWatchlist(element.watchlist)"
-                        class="uk-button uk-text-nowrap remove button_add uk-modal-close">
-                  <label *ngIf='element.watchlist' >Remove</label>
-                  <label *ngIf='!element.watchlist' >Add to <br>watchlist</label>
-                </button>
+    <!--Modal footer-->
+    <div class="uk-modal-footer">
 
-                <!--Add to library-->
-                <button (click) = "addToLibrary()" class="uk-button uk-padding-remove button_remove uk-modal-close">
-                  <label *ngIf='element.library' >Remove</label>
-                  <label *ngIf='!element.library' >Add to <br>library</label>
-                </button>
-                </div>
-            </div>
+      <!--Card Buttons-->
+      <div class="uk-position-bottom-right">
+        <div *ngIf="userService.loggedIn" class="uk-button-group button_padding">
+
+
+          <!--Watchlist buttons-->
+          <!--Add to watchlist-->
+          <button *ngIf="!element.watchlist; else removeWatchList_modal"
+                  onclick="UIkit.notification({
+                message: '<span uk-icon=\'icon: check\'></span> Successfully added to watchlist!',
+                pos: 'bottom-center', status:'success', timeout: '2500'})"
+                  (click)="addToWatchlist()"
+                  class="uk-button uk-modal-close"
+                  [ngClass]="element.library ? 'watchlist_button_disabled': 'button_add'">
+            <label>Add to <br>watchlist</label>
+          </button>
+
+          <!--Remove from watchlist-->
+          <ng-template #removeWatchList_modal>
+            <button *ngIf="userService.loggedIn" (click)="addToWatchlist()"
+                    onclick="UIkit.notification({
+                  message: '<span uk-icon=\'icon: trash\'></span> Deleted from watchlist!',
+                  pos: 'bottom-center', status:'danger', timeout: '2500'})"
+                    class="uk-button button_remove uk-modal-close">
+              <label>Remove</label>
+            </button>
+          </ng-template>
+
+          <!--Library buttons-->
+
+          <!--Add to library-->
+          <button *ngIf="userService.loggedIn && !element.library; else removeLibrary_modal"
+                  onclick="UIkit.notification({
+                message: '<span uk-icon=\'icon: check\'></span> Successfully added to library!',
+                pos: 'bottom-center', status:'success', timeout: '2500'})"
+                  (click)="addToLibrary()"
+                  class="uk-button button_add uk-modal-close">
+            <label>Add to <br>library</label>
+          </button>
+
+          <!--Remove from library-->
+          <ng-template #removeLibrary_modal>
+            <button *ngIf="userService.loggedIn" (click)="addToLibrary()"
+                    onclick="UIkit.notification({
+                  message: '<span uk-icon=\'icon: trash\'></span> Deleted from library!',
+                  pos: 'bottom-center', status:'danger', timeout: '2500'})"
+                    class="uk-button button_remove uk-modal-close">
+              <label>Remove</label>
+            </button>
+          </ng-template>
+
         </div>
       </div>
     </div>

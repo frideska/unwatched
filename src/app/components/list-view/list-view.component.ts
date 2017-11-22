@@ -19,7 +19,6 @@ export class ListViewComponent implements OnInit {
     private watchlistService: WatchlistService,
     private libraryService: LibraryService) { }
 
-
   ngOnInit() {
     if (this.childOf === 'Library') {
       this.service = this.libraryService
@@ -53,5 +52,18 @@ export class ListViewComponent implements OnInit {
       await this.watchlistService.getWatchlist()
     }
     await this.libraryService.getLibrary()
+  }
+
+  public roundToInterval(number): string {
+    console.log(number)
+    if ( number === 0) {
+      return 'null'
+    } else if ( number <= 5.0) {
+      return 'bad'
+    } else if ( number <= 7.0 ) {
+      return 'ok'
+    } else {
+      return 'good'
+    }
   }
 }
