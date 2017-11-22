@@ -154,6 +154,18 @@ export class LibraryService {
       console.error(err)
     }
   }
+
+  /**
+   * Gets the library tv from server
+   * @param {string} order
+   * @param {string} orderBy
+   * @param {string} search
+   * @param {number} page
+   * @param {string} ratings
+   * @param {string} years
+   * @param {boolean} append
+   * @returns {Promise<void>}
+   */
   private async getLibraryServerTv(order = '', orderBy = '', search = '', page = 1, ratings = '', years= '', append = false ) {
     try {
       const response = await this.http.get(this.URL + '/tv', { params: {
@@ -172,6 +184,12 @@ export class LibraryService {
     }
   }
 
+  /**
+   * creates cardelements from the given data
+   * @param json
+   * @param type
+   * @param {boolean} append
+   */
   private reconfigure(json, type, append = false) {
     switch (type) {
       case('movie'):
@@ -226,16 +244,26 @@ export class LibraryService {
     }
   }
 
-  public async getNext(type, order = '', orderBy = '', search = '', ratings = '', years= '',) {
+  /**
+   * loads next page
+   * @param type
+   * @param {string} order
+   * @param {string} orderBy
+   * @param {string} search
+   * @param {string} ratings
+   * @param {string} years
+   * @returns {Promise<void>}
+   */
+  public async getNext(type, order = '', orderBy = '', search = '', ratings = '', years= '') {
     if ( type === 'movie') {
       this.moviePageID++
       this.currentMoviePageID++
-      await this.getLibraryServerMovie(order, orderBy, search, this.moviePageID , ratings, years,  true )
+      await this.getLibraryServerMovie(order, orderBy, search, this.moviePageID , ratings, years, true )
       this.loadButton =  this.currentMoviePageID < this.movieMaxPageID
     } else {
       this.tvPageID++
       this.currentTvPageID++
-      await this.getLibraryServerTv(order, orderBy, search, this.tvPageID , ratings, years,true )
+      await this.getLibraryServerTv(order, orderBy, search, this.tvPageID , ratings , years, true )
       this.loadButton =  this.currentTvPageID < this.tvMaxPageID
     }
   }

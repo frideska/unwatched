@@ -55,6 +55,6 @@ export class LibraryComponent implements OnInit, OnDestroy {
     }
   }
   async appendLibrary() {
-    await this.libraryService.getNext(this.type, this.order, this.orderBy, this.ratings, this.years, this.search)
+    await this.libraryService.getNext(this.type, this.order, this.orderBy, this.search, this.ratings, this.years)
   }
 }
