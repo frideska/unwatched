@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { WordCloudComponent } from './word-cloud.component'
 import { AgWordCloudModule } from 'angular4-word-cloud'
-import { LibraryService } from '../../services/library.service'
+import { LibraryService } from '../../services/library/library.service'
 import { HttpModule } from '@angular/http'
 
 describe('WordCloudComponent', () => {

@@ -2,8 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { WordCloudWishComponent } from './word-cloud-wish.component'
 import { AgWordCloudModule } from 'angular4-word-cloud'
-import { LibraryService } from '../../services/library.service'
-import { WatchlistService } from '../../services/watchlist.service'
+import { LibraryService } from '../../services/library/library.service'
+import { WatchlistService } from '../../services/watchlist/watchlist.service'
 import { HttpModule } from '@angular/http'
 
 describe('WordCloudWishComponent', () => {

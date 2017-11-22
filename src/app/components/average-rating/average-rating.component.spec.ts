@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { AverageRatingComponent } from './average-rating.component'
-import { LibraryService } from '../../services/library.service'
+import { LibraryService } from '../../services/library/library.service'
 import { HttpModule } from '@angular/http'
 
 describe('AverageRatingComponent', () => {

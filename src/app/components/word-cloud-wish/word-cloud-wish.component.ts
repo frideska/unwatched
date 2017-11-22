@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { AgWordCloudData, AgWordCloudDirective } from 'angular4-word-cloud'
 
-import { LibraryService } from 'services/library.service'
-import { WatchlistService} from '../../services/watchlist.service'
+import { LibraryService } from 'services/library/library.service'
+import { WatchlistService} from '../../services/watchlist/watchlist.service'
 
 @Component({
   selector: 'app-word-cloud-wish',

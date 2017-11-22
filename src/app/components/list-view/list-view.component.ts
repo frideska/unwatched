@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core'
 
-import { WatchlistService} from 'services/watchlist.service'
-import { LibraryService } from 'services/library.service'
+import { WatchlistService} from 'services/watchlist/watchlist.service'
+import { LibraryService } from 'services/library/library.service'
 import { CardElement } from '../../classes/CardElement'
 
 @Component({
