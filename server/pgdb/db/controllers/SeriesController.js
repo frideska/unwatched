@@ -18,6 +18,15 @@ module.exports = {
   },
 
   /**
+   * @description Find a single series object in the database
+   * @param id
+   * @returns {Promise.<Message>}
+   */
+  async findOneRaw (id) {
+    return Series.findOne({where: {id: id}, raw: true})
+  },
+
+  /**
    * @description Delete an existing Message by the unique ID using model.destroy()
    * @param series
    * @returns {Promise}
