@@ -18,7 +18,7 @@ export class ListViewComponent implements OnInit {
 
   constructor(
     private watchlistService: WatchlistService,
-    private libraryService: LibraryService
+    private libraryService: LibraryService,
     private detailsService: DetailsService) { }
 
 
