@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { LibraryComponent } from './library.component'
+import { LibraryService } from 'services/library.service'
+import { RouterTestingModule } from '@angular/router/testing'
+import { FilterComponent } from 'components/filter/filter.component'
+import { ListViewComponent } from 'components/list-view/list-view.component'
+import { HttpModule } from '@angular/http'
 
 describe('LibraryComponent', () => {
   let component: LibraryComponent
@@ -8,7 +13,17 @@ describe('LibraryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LibraryComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpModule
+      ],
+      declarations: [
+        LibraryComponent,
+        FilterComponent,
+        ListViewComponent
+      ], providers: [
+        LibraryService
+      ]
     })
     .compileComponents()
   }))

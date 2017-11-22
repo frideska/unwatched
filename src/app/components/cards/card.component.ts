@@ -5,7 +5,7 @@ import { LibraryService } from 'services/library.service'
 import { HistoryService } from 'services/history.service'
 import { SearchService } from 'services/search.service'
 import { CardElement } from 'classes/CardElement'
-import { UserService } from '../../services/user.service'
+import { UserService } from 'services/user.service'
 
 @Component({
   selector: 'app-card',
