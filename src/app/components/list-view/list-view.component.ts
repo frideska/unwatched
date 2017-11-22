@@ -3,7 +3,6 @@ import {Component, Input, OnInit} from '@angular/core'
 import { WatchlistService} from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
 import { CardElement } from '../../classes/CardElement'
-import {DetailsService} from 'services/details.service'
 
 @Component({
   selector: 'app-list-view',
@@ -18,8 +17,8 @@ export class ListViewComponent implements OnInit {
 
   constructor(
     private watchlistService: WatchlistService,
-    private libraryService: LibraryService,
-    private detailsService: DetailsService) { }
+    private libraryService: LibraryService
+  ) { }
 
 
   ngOnInit() {
@@ -31,8 +30,9 @@ export class ListViewComponent implements OnInit {
    }
 
   private async reload() {
-      this.element =  await this.detailsService.getDetails(this.element)
-    }
+    await this.watchlistService.getWatchlist()
+    await this.libraryService.getLibrary()
+  }
 
 
 
