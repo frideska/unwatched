@@ -10,6 +10,9 @@ import { HttpModule } from '@angular/http'
 const libraryService = {
   listview: true
 }
+const watchlistService = {
+  listview: true
+}
 
 describe('ListViewComponent', () => {
   let component: ListViewComponent
@@ -24,13 +27,14 @@ describe('ListViewComponent', () => {
         ListViewComponent,
         CardComponent
       ], providers: [
-        {provide: LibraryService, useValue: libraryService }
+        {provide: LibraryService, useValue: libraryService },
+        {provide: WatchlistService, useValue: watchlistService }
       ]
     })
     .compileComponents()
   }))
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(ListViewComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
