@@ -38,7 +38,7 @@
 .uk-card-secondary>:not([class*=uk-card-media]) .uk-label{
   background-color: white;
   color: black;
-  font-size: 0.6rem;
+  font-size: 0.65rem;
 }
 
 .uk-divider-small::after{
