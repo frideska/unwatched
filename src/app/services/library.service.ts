@@ -21,7 +21,6 @@ export class LibraryService {
     const id = element.id
     try {
       const response = await this.http.post(this.URL + '/' + type, {id: id}).toPromise()
-      console.log(`[Service|Library](addToLibrary) Got response`)
     } catch (err) {
       console.error(err)
     }
