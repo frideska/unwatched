@@ -25,6 +25,16 @@ module.exports = {
     }
   },
 
+  async getPageCount(UserId) {
+    try {
+      const movies = await Watchlist.findAll({ where: {UserId: UserId}})
+      return movies.length
+    } catch (err) {
+      console.error(err)
+      return -1
+    }
+  },
+
   async getAllMoviesForUser(UserId, options) {
     try {
       const dbWatchlistMovie = await Watchlist.findAll({
