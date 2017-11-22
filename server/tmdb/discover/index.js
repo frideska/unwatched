@@ -12,9 +12,9 @@ const movie = async () => {
     let results = response.results
 
     await Promise.all(results.map(async (movie) => {
-      movie.genres = await GenreController.getGenreMovie(movie.genre_ids),
-      movie.watchlist = false,
-      movie.library = false,
+      movie.genres = await GenreController.getGenreMovie(movie.genre_ids)
+      movie.watchlist = false
+      movie.library = false
       movie.media_type = 'movie'
       return movie
     }))
