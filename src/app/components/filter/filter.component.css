@@ -41,3 +41,11 @@
 .activeClass {
   color: #00d377;
 }
+
+.no_link_item{
+  min-width: 6rem;
+}
+
+span{
+  color: #00d377;
+}

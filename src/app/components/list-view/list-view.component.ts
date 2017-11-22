@@ -55,7 +55,6 @@ export class ListViewComponent implements OnInit {
   }
 
   public roundToInterval(number): string {
-    console.log(number)
     if ( number === 0) {
       return 'null'
     } else if ( number <= 5.0) {

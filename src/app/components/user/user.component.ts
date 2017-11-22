@@ -30,10 +30,8 @@ export class UserComponent implements OnInit {
    * the user back to the discover page.
    */
   public async delete() {
-    console.log(`[Component|User](delete) Triggered delete()`)
     await this.userService.delete()
     this.router.navigate(['/'])
-    console.log(`[Component|User](delete) Finished delete()`)
   }
 
   /**
