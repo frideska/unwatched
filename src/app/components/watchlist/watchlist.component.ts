@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core'
 import { WatchlistService } from 'services/watchlist.service'
 import { ActivatedRoute, Router } from '@angular/router'
 
+
 @Component({
   selector: 'app-watchlist',
   templateUrl: './watchlist.component.html',
@@ -13,22 +14,23 @@ export class WatchlistComponent implements OnInit, OnDestroy {
   orderBy: string
   search: string
   private sub: any
-  private loadButton: boolean
   public getListElements: Function
 
   constructor(public watchlistService: WatchlistService, private route: ActivatedRoute, private router: Router) {}
 
 
   async ngOnInit() {
-    this.sub = this.route.queryParams.subscribe(params => {
-      this.loadButton = true
+    this.sub = this.route.queryParams.subscribe(async (params) => {
       this.type = params['type'] || 'movie'
       this.orderBy = params['orderBy'] || 'title'
       this.search = params['search'] || ''
-      this.watchlistService.getWatchlist(this.order, this.orderBy, this.search, true)
+      if (this.type === 'movie') {
+        await this.watchlistService.getWatchlistMovie(this.order, this.orderBy, this.search, true)
+      } else {
+        await this.watchlistService.getWatchlistTv(this.order, this.orderBy, this.search, true)
+      }
     })
-    this.loadButton = true
-    this.watchlistService.getWatchlist(this.order, this.orderBy, this.search, true)
+    this.watchlistService.getWatchlistMovie(this.order, this.orderBy, this.search, true)
     this.getListElements = this.getList.bind(this)
   }
   ngOnDestroy() {
@@ -48,6 +50,6 @@ export class WatchlistComponent implements OnInit, OnDestroy {
   }
 
   async appendWatchlist() {
-    this.loadButton = await this.watchlistService.getNext(this.type, this.order, this.orderBy, this.search)
+    await this.watchlistService.getNext(this.type, this.order, this.orderBy, this.search)
   }
 }

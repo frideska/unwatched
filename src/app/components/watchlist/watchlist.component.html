@@ -12,7 +12,7 @@
   <app-list-view [childOf] = "'Watchlist'" [type] = "type" [getList] = "getListElements" ></app-list-view>
 
   <div class="buttonHolder">
-    <button *ngIf="loadButton" (click)="appendWatchlist()">Load more!</button>
+    <button *ngIf="watchlistService.loadButton" (click)="appendWatchlist()">Load more!</button>
   </div>
 
 </div>

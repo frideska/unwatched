@@ -25,9 +25,18 @@ module.exports = {
     }
   },
 
-  async getPageCount(UserId) {
+  async getPageCount(UserId, options) {
     try {
-      const movies = await Watchlist.findAll({ where: {UserId: UserId}})
+      const movies = await Watchlist.findAll({
+        where: {UserId: UserId},
+        include: [{
+          association: 'Movie',
+          where: {title: {[Op.iLike]: `%${options.query}%`}}
+        }],
+        order: [
+          ['Movie', options.orderBy, options.order]
+        ]
+      })
       return movies.length
     } catch (err) {
       console.error(err)
