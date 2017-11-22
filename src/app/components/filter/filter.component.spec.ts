@@ -2,8 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { FilterComponent } from './filter.component'
 import { RouterTestingModule } from '@angular/router/testing'
-import { LibraryService } from 'services/library.service'
-import { WatchlistService } from 'services/watchlist.service'
+import { LibraryService } from 'services/library/library.service'
+import { WatchlistService } from 'services/watchlist/watchlist.service'
 import { FormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 

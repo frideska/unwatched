@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 
-import { DiscoverService } from 'services/discover.service'
+import { DiscoverService } from 'services/discover/discover.service'
 import { CardElement } from 'classes/CardElement'
-import { UserService } from 'services/user.service'
+import { UserService } from 'services/user/user.service'
 
 
 @Component({

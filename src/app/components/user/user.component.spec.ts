@@ -5,12 +5,12 @@ import { AverageRatingComponent } from '../average-rating/average-rating.compone
 import { WordCloudComponent } from '../word-cloud/word-cloud.component'
 import { WordCloudWishComponent } from '../word-cloud-wish/word-cloud-wish.component'
 import { AgWordCloudModule } from 'angular4-word-cloud'
-import { UserService } from '../../services/user.service'
+import { UserService } from '../../services/user/user.service'
 import { HttpModule} from '@angular/http'
-import { HistoryService } from '../../services/history.service'
+import { HistoryService } from '../../services/history/history.service'
 import { RouterTestingModule } from '@angular/router/testing'
-import {LibraryService} from '../../services/library.service'
-import {WatchlistService} from '../../services/watchlist.service'
+import {LibraryService} from '../../services/library/library.service'
+import {WatchlistService} from '../../services/watchlist/watchlist.service'
 
 describe('UserComponent', () => {
   let component: UserComponent
