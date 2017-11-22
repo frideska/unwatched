@@ -32,11 +32,11 @@
 
           <!--Card Title-->
           <h3 class="title_text uk-display-inline "> {{ element.title }} </h3>
-          <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
+          <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p><br>
+            <h3 *ngFor="let genre of element.slicedGenres.entries()" class="uk-margin-remove subtitle_text uk-display-inline"><span class="uk-label">{{ genre[1] }}</span> </h3>
           <div class="rating_container">
             <p class="uk-display-inline rating_text interval_{{interval}}">{{element.rating === 0 ? 'No rating' : element.rating.toFixed(1).toString()}}</p>
             <span class="interval_{{interval}} icon_padding" uk-icon="icon: star"></span>
-            <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
           </div>
           <hr class="uk-divider-small uk-margin-remove" />
           <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
@@ -115,8 +115,9 @@
         <!--Modal Header-->
         <div class="uk-modal-header">
           <h1 class="uk-margin-remove uk-display-inline">{{ element.title }}</h1>
-          <h1 class=" uk-display-inline uk-text-muted uk-text-muted"> ({{ element.date.getFullYear() }})</h1>
-          <h3 class="uk-margin-remove genere_modal"><span class="uk-label">{{ element.genres }}</span> </h3>
+          <h1 class=" uk-display-inline uk-text-muted uk-text-muted"> ({{ element.date.getFullYear() }})</h1><br>
+          <h3 *ngFor="let genre of element.genres.entries()" class="uk-margin-remove genere_modal uk-display-inline"><span class="uk-label">{{ genre[1] }}</span> </h3>
+
         </div>
 
         <!--Modal body-->
