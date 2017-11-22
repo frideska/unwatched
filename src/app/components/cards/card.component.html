@@ -33,7 +33,7 @@
           <!--Card Title-->
           <h3 class="title_text uk-display-inline "> {{ element.title }} </h3>
           <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p><br>
-            <h3 *ngFor="let genre of element.slicedGenres.entries()" class="uk-margin-remove subtitle_text uk-display-inline"><span class="uk-label">{{ genre[1] }}</span> </h3>
+          <h3 *ngFor="let genre of element.slicedGenres.entries()" class="uk-margin-remove subtitle_text uk-display-inline"><span class="uk-label">{{ genre[1] }}</span> </h3>
           <div class="rating_container">
             <p class="uk-display-inline rating_text interval_{{interval}}">{{element.rating === 0 ? 'No rating' : element.rating.toFixed(1).toString()}}</p>
             <span class="interval_{{interval}} icon_padding" uk-icon="icon: star"></span>
@@ -47,55 +47,62 @@
 
     <!--Card Buttons-->
     <div class="uk-card-footer uk-padding-remove uk-position-bottom-right">
-      <div class="uk-button-group  ">
+      <div *ngIf="userService.loggedIn; else notLoggedIn">
+        <div class="uk-button-group  ">
 
-        <!--Watchlist buttons-->
-
-        <!--Add to watchlist-->
-        <button *ngIf="userService.loggedIn && !element.watchlist; else removeWatchList"
-                onclick="UIkit.notification({
+          <!--Watchlist buttons-->
+          <!--Add to watchlist-->
+          <button *ngIf="!element.watchlist; else removeWatchList"
+                  onclick="UIkit.notification({
                 message: '<span uk-icon=\'icon: check\'></span> Successfully added to watchlist!',
                 pos: 'bottom-center', status:'success', timeout: '2500'})"
-                (click)="addToWatchlist()"
-                class="uk-button uk-text-nowrap button_add" >
-          <label>Add to <br>watchlist</label>
-        </button>
+                  (click)="addToWatchlist()"
+                  class="uk-button uk-text-nowrap"
+                  [ngClass]="element.library ? 'watchlist_button_disabled': 'button_add'">
+            <label>Add to <br>watchlist</label>
+          </button>
 
-        <!--Remove from watchlist-->
-        <ng-template #removeWatchList>
-          <button *ngIf="userService.loggedIn" (click)="addToWatchlist()"
-                  onclick="UIkit.notification({
+          <!--Remove from watchlist-->
+          <ng-template #removeWatchList>
+            <button *ngIf="userService.loggedIn" (click)="addToWatchlist()"
+                    onclick="UIkit.notification({
                   message: '<span uk-icon=\'icon: trash\'></span> Deleted from watchlist!',
                   pos: 'bottom-center', status:'danger', timeout: '2500'})"
-                  class="uk-button uk-text-nowrap button_remove">
-            <label>Remove</label>
-          </button>
-        </ng-template>
+                    class="uk-button uk-text-nowrap button_remove">
+              <label>Remove</label>
+            </button>
+          </ng-template>
 
-        <!--Library buttons-->
+          <!--Library buttons-->
 
-        <!--Add to library-->
-        <button *ngIf="userService.loggedIn && !element.library; else removeLibrary"
-                onclick="UIkit.notification({
+          <!--Add to library-->
+          <button *ngIf="userService.loggedIn && !element.library; else removeLibrary"
+                  onclick="UIkit.notification({
                 message: '<span uk-icon=\'icon: check\'></span> Successfully added to library!',
                 pos: 'bottom-center', status:'success', timeout: '2500'})"
-                (click)="addToLibrary()"
-                class="uk-button uk-text-nowrap button_add">
-          <label>Add to <br>library</label>
-        </button>
+                  (click)="addToLibrary()"
+                  class="uk-button uk-text-nowrap button_add">
+            <label>Add to <br>library</label>
+          </button>
 
-        <!--Remove from library-->
-        <ng-template #removeLibrary>
-          <button *ngIf="userService.loggedIn" (click)="addToLibrary()"
-                  onclick="UIkit.notification({
+          <!--Remove from library-->
+          <ng-template #removeLibrary>
+            <button *ngIf="userService.loggedIn" (click)="addToLibrary()"
+                    onclick="UIkit.notification({
                   message: '<span uk-icon=\'icon: trash\'></span> Deleted from library!',
                   pos: 'bottom-center', status:'danger', timeout: '2500'})"
-                  class="uk-button uk-text-nowrap button_remove">
-            <label>Remove</label>
-          </button>
-        </ng-template>
+                    class="uk-button uk-text-nowrap button_remove">
+              <label>Remove</label>
+            </button>
+          </ng-template>
 
+        </div>
       </div>
+
+      <!--Disabled button when not logged in-->
+      <ng-template #notLoggedIn>
+        <button class="button_disabled uk-button uk-disabled">Not logged in</button>
+      </ng-template>
     </div>
 
   </div>
@@ -142,25 +149,60 @@
 
     <!--Modal footer-->
     <div class="uk-modal-footer">
+
       <!--Card Buttons-->
-      <div  class="uk-position-bottom-right">
-        <div  *ngIf="userService.loggedIn" class="uk-button-group button_padding">
+      <div class="uk-position-bottom-right">
+        <div *ngIf="userService.loggedIn" class="uk-button-group button_padding">
+
+
+          <!--Watchlist buttons-->
           <!--Add to watchlist-->
-          <button (click) = "addToWatchlist(element.watchlist)"
-                  class="uk-button uk-text-nowrap remove button_add uk-modal-close">
-            <label *ngIf='element.watchlist' >Remove</label>
-            <label *ngIf='!element.watchlist' >Add to <br>watchlist</label>
+          <button *ngIf="!element.watchlist; else removeWatchList_modal"
+                  onclick="UIkit.notification({
+                message: '<span uk-icon=\'icon: check\'></span> Successfully added to watchlist!',
+                pos: 'bottom-center', status:'success', timeout: '2500'})"
+                  (click)="addToWatchlist()"
+                  class="uk-button uk-modal-close"
+                  [ngClass]="element.library ? 'watchlist_button_disabled': 'button_add'">
+            <label>Add to <br>watchlist</label>
           </button>
 
+          <!--Remove from watchlist-->
+          <ng-template #removeWatchList_modal>
+            <button *ngIf="userService.loggedIn" (click)="addToWatchlist()"
+                    onclick="UIkit.notification({
+                  message: '<span uk-icon=\'icon: trash\'></span> Deleted from watchlist!',
+                  pos: 'bottom-center', status:'danger', timeout: '2500'})"
+                    class="uk-button button_remove uk-modal-close">
+              <label>Remove</label>
+            </button>
+          </ng-template>
+
+          <!--Library buttons-->
+
           <!--Add to library-->
-          <button (click) = "addToLibrary()" class="uk-button uk-padding-remove button_remove uk-modal-close">
-            <label *ngIf='element.library' >Remove</label>
-            <label *ngIf='!element.library' >Add to <br>library</label>
+          <button *ngIf="userService.loggedIn && !element.library; else removeLibrary_modal"
+                  onclick="UIkit.notification({
+                message: '<span uk-icon=\'icon: check\'></span> Successfully added to library!',
+                pos: 'bottom-center', status:'success', timeout: '2500'})"
+                  (click)="addToLibrary()"
+                  class="uk-button button_add uk-modal-close">
+            <label>Add to <br>library</label>
           </button>
+
+          <!--Remove from library-->
+          <ng-template #removeLibrary_modal>
+            <button *ngIf="userService.loggedIn" (click)="addToLibrary()"
+                    onclick="UIkit.notification({
+                  message: '<span uk-icon=\'icon: trash\'></span> Deleted from library!',
+                  pos: 'bottom-center', status:'danger', timeout: '2500'})"
+                    class="uk-button button_remove uk-modal-close">
+              <label>Remove</label>
+            </button>
+          </ng-template>
+
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 </div>
