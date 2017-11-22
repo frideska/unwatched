@@ -20,7 +20,6 @@ export class UserService {
    * Get the currently logged in user from the backend.
    */
   async getUser(): Promise<void> {
-    console.log(`[Service|User](getUser) Triggered getUser()`)
     const response = await this.http.get(URLS.profile).toPromise()
     const json = response.json()
     const user = json.user
@@ -39,7 +38,6 @@ export class UserService {
    * Returns if there is currently a user logged in to the application frontend.
    */
   isLoggedIn(): boolean {
-    console.log(`[Service|User](isLoggedIn) Triggered isLoggedIn(): ${this.user ? true : false}`)
     return this.user ? true : false
   }
 

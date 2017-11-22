@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core'
 
-import { LibraryService } from '../../services/library.service'
+import { LibraryService } from '../../services/library/library.service'
 
 @Component({
   selector: 'app-average-rating',

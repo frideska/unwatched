@@ -4,8 +4,8 @@ import * as moment from 'moment'
 import 'moment/locale/nb'
 moment.locale('nb')
 
-import { UserService } from 'services/user.service'
-import { HistoryService } from 'services/history.service'
+import { UserService } from 'services/user/user.service'
+import { HistoryService } from 'services/history/history.service'
 
 @Component({
   selector: 'app-user',
@@ -30,10 +30,8 @@ export class UserComponent implements OnInit {
    * the user back to the discover page.
    */
   public async delete() {
-    console.log(`[Component|User](delete) Triggered delete()`)
     await this.userService.delete()
     this.router.navigate(['/'])
-    console.log(`[Component|User](delete) Finished delete()`)
   }
 
   /**

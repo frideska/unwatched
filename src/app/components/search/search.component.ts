@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { NgModel } from '@angular/forms'
 
-import { SearchService } from 'services/search.service'
+import { SearchService } from 'services/search/search.service'
 
 @Component({
   selector: 'app-search',

@@ -28,7 +28,26 @@ module.exports = {
     }
   },
 
-  async getAllMoviesForUser (UserId, options) {
+  async getPageCount(UserId, options) {
+    try {
+      const movies = await Library.findAll({
+        where: {UserId: UserId},
+        include: [{
+          association: 'Movie',
+          where: {title: {[Op.iLike]: `%${options.query}%`}}
+        }],
+        order: [
+          ['Movie', options.orderBy, options.order]
+        ]
+      })
+      return movies.length
+    } catch (err) {
+      console.error(err)
+      return -1
+    }
+  },
+
+  async getAllMoviesForUser(UserId, options) {
     try {
       const dbLibraryMovie = await Library.findAll({
         where: {UserId: UserId},

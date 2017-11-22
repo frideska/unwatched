@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core'
 
-import { WatchlistService} from 'services/watchlist.service'
-import { LibraryService } from 'services/library.service'
+import { WatchlistService} from 'services/watchlist/watchlist.service'
+import { LibraryService } from 'services/library/library.service'
 import { CardElement } from '../../classes/CardElement'
 
 @Component({
@@ -55,7 +55,6 @@ export class ListViewComponent implements OnInit {
   }
 
   public roundToInterval(number): string {
-    console.log(number)
     if ( number === 0) {
       return 'null'
     } else if ( number <= 5.0) {
