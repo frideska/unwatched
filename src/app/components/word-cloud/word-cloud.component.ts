@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { AgWordCloudData, AgWordCloudDirective } from 'angular4-word-cloud'
 
-import { LibraryService } from 'services/library.service'
+import { LibraryService } from 'services/library/library.service'
 
 
 @Component({

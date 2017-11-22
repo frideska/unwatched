@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
-import { LibraryService } from 'services/library.service'
+import { LibraryService } from 'services/library/library.service'
 import { ActivatedRoute, Router } from '@angular/router'
 
 
@@ -23,12 +23,17 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.libraryService.getLibrary()
-    this.sub = this.route.queryParams.subscribe(params => {
+    this.sub = this.route.queryParams.subscribe(async (params) => {
         this.type = params['type'] || 'movie'
         this.orderBy = params['orderBy'] || 'title'
         this.search = params['search'] || ''
-        this.libraryService.getLibrary(this.order, this.orderBy, this.search)
+        if (this.type === 'movie') {
+          await this.libraryService.getLibraryMovie(this.order, this.orderBy, this.search, true)
+        } else {
+          await this.libraryService.getLibraryTv(this.order, this.orderBy, this.search, true)
+        }
       })
+    await this.libraryService.getLibraryMovie(this.order, this.orderBy, this.search, true)
     this.getListElements = this.getList.bind(this)
   }
   ngOnDestroy() {
@@ -44,5 +49,8 @@ export class LibraryComponent implements OnInit, OnDestroy {
     } else if (this.type === 'tv') {
       return this.libraryService.libraryTv
     }
+  }
+  async appendLibrary() {
+    await this.libraryService.getNext(this.type, this.order, this.orderBy, this.search)
   }
 }

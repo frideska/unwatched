@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
-import { WatchlistService } from 'services/watchlist.service'
+import { WatchlistService } from 'services/watchlist/watchlist.service'
 import { ActivatedRoute, Router } from '@angular/router'
 
 

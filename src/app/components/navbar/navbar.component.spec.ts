@@ -4,8 +4,8 @@ import { NavbarComponent } from './navbar.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { HttpModule } from '@angular/http'
 import { FormsModule } from '@angular/forms'
-import { SearchService } from 'services/search.service'
-import { UserService } from 'services/user.service'
+import { SearchService } from 'services/search/search.service'
+import { UserService } from 'services/user/user.service'
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent

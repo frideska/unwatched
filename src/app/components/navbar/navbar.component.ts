@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
-import { SearchService } from 'services/search.service'
-import { UserService } from 'services/user.service'
+import { SearchService } from 'services/search/search.service'
+import { UserService } from 'services/user/user.service'
 
 @Component({
   selector: 'app-navbar',
@@ -28,8 +28,7 @@ export class NavbarComponent implements OnInit {
     this.searchService.search()
     if (event.length) {
       if (this.router.url !== '/search') {
-        console.log(this.router.url)
-        this.previous = this.router.url
+        this.previous = this.router.url.split('?')[0]
       }
       this.router.navigate(['/search'])
     } else {

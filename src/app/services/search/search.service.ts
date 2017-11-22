@@ -47,7 +47,6 @@ export class SearchService {
     if (parseInt(json.error, 10) === 429) {
       this.overload = true
     } else if (recieved > this.displayed) {
-      console.log(`Displayed ${this.displayed}, Recieved ${recieved} : Displaying`)
       this.overload = false
       this.results = json.results.map((result) => {
         switch (result.media_type) {
@@ -58,7 +57,6 @@ export class SearchService {
       this.displayed = json.counter
     } else {
       this.overload = false
-      console.log(`Displayed ${this.displayed}, Recieved ${recieved} : Discarding!`)
     }
   }
 }

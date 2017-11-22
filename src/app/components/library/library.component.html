@@ -12,5 +12,14 @@
       </div>
 
   </div>
-  <app-list-view [childOf] = "'Library'" [type] = "type" [getList]="getListElements" ></app-list-view>
+
+  <app-list-view
+    [childOf] = "'Library'"
+    [type] = "type"
+    [getList]="getListElements">
+  </app-list-view>
+
+  <div class="buttonHolder">
+    <button *ngIf="libraryService.loadButton" (click)="appendLibrary()">Load more!</button>
+  </div>
 </div>
