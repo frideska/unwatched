@@ -20,12 +20,12 @@ route.get('/movie/:id', async (req, res) => {
   if (movie) {
     movie.watchlist = watchlist
     movie.library = library
-    console.log(movie.library === library)
   } else {
     movie = await tmdbWrapper.details.movie(req.params.id, watchlist, library)
   }
   res.send(movie)
 })
+
 route.get('/tv/:id', async (req, res) => {
   let watchlist = false
   let library = false
@@ -33,7 +33,14 @@ route.get('/tv/:id', async (req, res) => {
     watchlist = await WatchlistSeriesController.seriesInWatchlist(req.params.id, req.user.id)
     library = await LibrarySeriesController.seriesInLibrary(req.params.id, req.user.id)
   }
-  res.send(await tmdbWrapper.details.tv(req.params.id, watchlist, library))
+  let series = await SeriesController.findOneRaw(req.params.id)
+  if (series) {
+    series.watchlist = watchlist
+    series.library = library
+  } else {
+    series = await tmdbWrapper.details.tv(req.params.id, watchlist, library)
+  }
+  res.send(series)
 })
 
 module.exports = route
