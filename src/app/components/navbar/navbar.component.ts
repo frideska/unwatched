@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit {
     this.searchService.search()
     if (event.length) {
       if (this.router.url !== '/search') {
-        console.log(this.router.url)
         this.previous = this.router.url
       }
       this.router.navigate(['/search'])
