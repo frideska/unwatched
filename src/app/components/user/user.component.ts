@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import * as moment from 'moment'
+import 'moment/locale/nb'
+moment.locale('nb')
 
 import { UserService } from 'services/user.service'
 import { HistoryService } from 'services/history.service'
@@ -37,20 +40,14 @@ export class UserComponent implements OnInit {
    * Gets the updates date for displaying on profile-page.
    */
   getUpdated() {
-    const day = this.userService.user.updated.getDate()
-    const month = this.userService.user.updated.getMonth() + 1
-    const year = this.userService.user.updated.getFullYear()
-    return day.toString() + '.' + month.toString() + '.' + year.toString()
+    return moment(this.userService.user.updatedAt).format('Do MMMM YYYY')
   }
 
   /**
    * Gets the date when the user-profile was made.
    */
   getDate() {
-    const day = this.userService.user.date.getDate()
-    const month = this.userService.user.date.getMonth() + 1
-    const year = this.userService.user.date.getFullYear()
-    return day.toString() + '.' + month.toString() + '.' + year.toString()
+    return moment(this.userService.user.createdAt).format('Do MMMM YYYY')
   }
 
 }
