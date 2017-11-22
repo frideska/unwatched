@@ -5,7 +5,7 @@ const Library = require('../models').LibraryMovie
 const Op = require('../models').Sequelize.Op
 
 module.exports = {
-  async addMovieToUser(MovieId, UserId) {
+  async addMovieToUser (MovieId, UserId) {
     try {
       const movie = {MovieId: MovieId, UserId: UserId}
 
@@ -25,7 +25,7 @@ module.exports = {
     }
   },
 
-  async getPageCount(UserId, options) {
+  async getPageCount (UserId, options) {
     try {
       const movies = await Watchlist.findAll({
         where: {UserId: UserId},
@@ -48,7 +48,7 @@ module.exports = {
     }
   },
 
-  async getAllMoviesForUser(UserId, options) {
+  async getAllMoviesForUser (UserId, options) {
     try {
       const dbWatchlistMovie = await Watchlist.findAll({
         where: {UserId: UserId},
@@ -72,7 +72,7 @@ module.exports = {
     }
   },
 
-  async removeMovieFromUser(MovieId, UserId) {
+  async removeMovieFromUser (MovieId, UserId) {
     try {
       const dbWatchlistMovie = await Watchlist.findOne({
         where: {MovieId: MovieId, UserId: UserId}
@@ -87,7 +87,7 @@ module.exports = {
     }
   },
 
-  async movieInWatchlist(MovieId, UserId) {
+  async movieInWatchlist (MovieId, UserId) {
     try {
       const movie = await Watchlist.findOne({
         where: {MovieId: MovieId, UserId: UserId}

@@ -8,7 +8,7 @@ import { HistoryService } from 'services/history/history.service'
 import { SearchService } from 'services/search/search.service'
 import { UserService } from 'services/user/user.service'
 import { HttpModule } from '@angular/http'
-import {CardElement} from "../../classes/CardElement";
+import {CardElement} from '../../classes/CardElement'
 
 describe('CardComponent', () => {
   let component: CardComponent

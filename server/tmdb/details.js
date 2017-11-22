@@ -1,7 +1,7 @@
 
 const tv = async (id, watchlist, library) => {
   try {
-    let tv = await tmdb.tv.details({
+    let tv = await global.tmdb.tv.details({
       tv_id: id || ''
     })
     tv.genres = tv.genres.map((genre) => genre.name)
@@ -29,7 +29,7 @@ const tv = async (id, watchlist, library) => {
 }
 const movie = async (id, watchlist, library) => {
   try {
-    let movie = await tmdb.movie.details({ movie_id: id || '' })
+    let movie = await global.tmdb.movie.details({ movie_id: id || '' })
     movie.genres = movie.genres.map((genre) => genre.name)
     movie.movie_id = movie.id
 
