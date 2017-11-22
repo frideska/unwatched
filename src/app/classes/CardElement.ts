@@ -33,7 +33,7 @@ export class CardElement {
         this.backdropPath = POSTER_URL + backdrop_path
         this.rating = vote_average
         this.genres = genres
-        this.slicedGenres = this.genres.slice(0, 3)
+        this.slicedGenres = this.genres.slice(0, 2)
         this.watchlist = watchlist
         this.library = library
         this.date = new Date(release_date)
