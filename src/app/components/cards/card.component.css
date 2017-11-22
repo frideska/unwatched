@@ -5,6 +5,20 @@
   overflow:hidden;
 }
 
+.card_size{
+  min-width: 400px;
+  max-width: 400px;
+}
+
+.zoom_icon{
+  height: 2.5rem;
+  padding: 8px
+}
+
+.poster_size{
+  height: 45vw;
+}
+
 .title_text {
   font-size: 1.2rem;
 }
