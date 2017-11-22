@@ -40,7 +40,6 @@ button {
   flex-direction: column;
 }
 
-
 h1{
   font-size: 4vw;
   font-weight: bold;
@@ -48,6 +47,12 @@ h1{
 }
 
 h2{
+  font-size: 3vw;
+  font-weight: lighter;
+  color: #00d377;
+}
+
+h3{
   font-size: 3vw;
   font-weight: lighter;
   color: white;
