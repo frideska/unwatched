@@ -25,7 +25,6 @@ export class WatchlistService {
     const id = element.id
     try {
       const response = await this.http.post(this.URL + '/' + type, {id: id}).toPromise()
-      console.log(`[Service|WatchList](addToWatchList) Got response`)
     } catch (err) {
       console.error(err)
     }
