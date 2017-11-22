@@ -30,4 +30,10 @@ describe('AverageRatingComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('should contain a div', async(() => {
+    fixture.detectChanges()
+    const compiled = fixture.debugElement.nativeElement
+    expect(compiled.querySelectorAll('div')).not.toBe(null)
+  }))
 })

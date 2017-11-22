@@ -12,6 +12,13 @@ import { RouterTestingModule } from '@angular/router/testing'
 import {LibraryService} from '../../services/library/library.service'
 import {WatchlistService} from '../../services/watchlist/watchlist.service'
 
+
+
+const userService = {
+  user: {
+    image: 'hello'
+  }
+}
 describe('UserComponent', () => {
   let component: UserComponent
   let fixture: ComponentFixture<UserComponent>
@@ -30,7 +37,7 @@ describe('UserComponent', () => {
         WordCloudWishComponent,
       ],
       providers: [
-        UserService,
+        {provide: UserService, useValue: userService },
         HistoryService,
         LibraryService,
         WatchlistService
@@ -39,7 +46,7 @@ describe('UserComponent', () => {
     .compileComponents()
   }))
 
-  beforeEach(() => {
+  beforeEach( () => {
     fixture = TestBed.createComponent(UserComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
@@ -48,4 +55,5 @@ describe('UserComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
 })
