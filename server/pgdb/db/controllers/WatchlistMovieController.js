@@ -31,7 +31,11 @@ module.exports = {
         where: {UserId: UserId},
         include: [{
           association: 'Movie',
-          where: {title: {[Op.iLike]: `%${options.query}%`}}
+          where: {
+            title: {[Op.iLike]: `%${options.query}%`},
+            vote_average: {[Op.between]: [options.ratingMin, options.ratingMax]},
+            release_date: {[Op.between]: [options.startYear, options.endYear]}
+          }
         }],
         order: [
           ['Movie', options.orderBy, options.order]
