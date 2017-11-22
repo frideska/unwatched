@@ -5,9 +5,9 @@ const Watchlist = require('../models').WatchlistSeries
 const Op = require('../models').Sequelize.Op
 
 module.exports = {
-  async addSeriesToUser (SeriesId, UserId) {
+  async addSeriesToUser(SeriesId, UserId) {
     try {
-      const series = { SeriesId: SeriesId, UserId: UserId }
+      const series = {SeriesId: SeriesId, UserId: UserId}
 
       const dbLibrarySeries = await Library.findOne({
         where: series
@@ -28,13 +28,13 @@ module.exports = {
     }
   },
 
-  async getAllSeriesForUser (UserId, options) {
+  async getAllSeriesForUser(UserId, options) {
     try {
       const dbLibrarySeries = await Library.findAll({
-        where: { UserId: UserId },
+        where: {UserId: UserId},
         include: [{
           association: 'Series',
-          where: { title: { [Op.iLike]: `%${options.query}%` } }
+          where: {title: {[Op.iLike]: `%${options.query}%`}}
         }],
         order: [
           ['Series', options.orderBy, options.order]
@@ -52,10 +52,10 @@ module.exports = {
     }
   },
 
-  async removeSeriesFromUser (SeriesId, UserId) {
+  async removeSeriesFromUser(SeriesId, UserId) {
     try {
       const dbLibrarySeries = await Library.findOne({
-        where: { SeriesId: SeriesId, UserId: UserId }
+        where: {SeriesId: SeriesId, UserId: UserId}
       })
       if (dbLibrarySeries) {
         await dbLibrarySeries.destroy()
@@ -67,13 +67,17 @@ module.exports = {
     }
   },
 
-  async seriesInLibrary (SeriesId, UserId) {
-    const series = await Library.findOne({
-      where: { SeriesId: SeriesId, UserId: UserId }
-    })
-    if (series) {
-      return true
+  async seriesInLibrary(SeriesId, UserId) {
+    try {
+      const series = await Library.findOne({
+        where: {SeriesId: SeriesId, UserId: UserId}
+      })
+      if (series) {
+        return true
+      }
+      return false
+    } catch(err) {
+      console.error(err)
     }
-    return false
   }
 }

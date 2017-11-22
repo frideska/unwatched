@@ -36,13 +36,23 @@ export class LibraryService {
     try {
 
       const response = await this.http.delete(this.URL + '/' + type, { body: {id: id} }).toPromise()
-      console.log(`[Service|Library](removeFromLibrary) Got response`)
+      if (element.type === 'movie') {
+        const index = this.libraryMovie.indexOf(element)
+        if (index >= 0) {
+          this.libraryMovie.splice(index, 1)
+        }
+      } else {
+        const index = this.libraryTv.indexOf(element)
+        if (index >= 0) {
+          this.libraryTv.splice(index, 1)
+        }
+      }
 
     } catch (err) {
       console.error(err)
     }
   }
-  
+
   public async getLibrary(order = '', orderBy = '', search = '') {
 
     try {

@@ -39,6 +39,17 @@ export class WatchlistService {
     const id = element.id
     try {
       const response = await this.http.delete(this.URL + '/' + type, { body: {id: id} }).toPromise()
+      if (element.type === 'movie') {
+        const index = this.watchlistMovie.indexOf(element)
+        if (index >= 0) {
+          this.watchlistMovie.splice(index, 1)
+        }
+      } else {
+        const index = this.watchlistTv.indexOf(element)
+        if (index >= 0) {
+          this.watchlistTv.splice(index, 1)
+        }
+      }
       console.log(`[Service|WatchList](removeFromWatchList) Got response`)
 
     } catch (err) {

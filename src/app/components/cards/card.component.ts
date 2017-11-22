@@ -5,7 +5,9 @@ import { LibraryService } from 'services/library.service'
 import { HistoryService } from 'services/history.service'
 import { SearchService } from 'services/search.service'
 import { CardElement } from 'classes/CardElement'
-import { UserService } from '../../services/user.service'
+import { UserService } from 'services/user.service'
+import { DetailsService } from 'services/details.service'
+
 
 @Component({
   selector: 'app-card',
@@ -21,16 +23,15 @@ export class CardComponent implements OnInit {
     private libraryService: LibraryService,
     private historyService: HistoryService,
     private searchService: SearchService,
-    private userService: UserService
+    private userService: UserService,
+    private detailsService: DetailsService
   ) {}
 
   ngOnInit() {
   }
 
   private async reload() {
-    await this.watchlistService.getWatchlist()
-    await this.libraryService.getLibrary()
-    // await this.searchService.search()
+    this.element =  await this.detailsService.getDetails(this.element)
   }
 
   /**

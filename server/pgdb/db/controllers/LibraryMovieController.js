@@ -5,9 +5,9 @@ const Watchlist = require('../models').WatchlistMovie
 const Op = require('../models').Sequelize.Op
 
 module.exports = {
-  async addMovieToUser (MovieId, UserId) {
+  async addMovieToUser(MovieId, UserId) {
     try {
-      const movie = { MovieId: MovieId, UserId: UserId }
+      const movie = {MovieId: MovieId, UserId: UserId}
 
       const dbLibraryMovie = await Library.findOne({
         where: movie
@@ -28,13 +28,13 @@ module.exports = {
     }
   },
 
-  async getAllMoviesForUser (UserId, options) {
+  async getAllMoviesForUser(UserId, options) {
     try {
       const dbLibraryMovie = await Library.findAll({
-        where: { UserId: UserId },
+        where: {UserId: UserId},
         include: [{
           association: 'Movie',
-          where: { title: { [Op.iLike]: `%${options.query}%` } }
+          where: {title: {[Op.iLike]: `%${options.query}%`}}
         }],
         order: [
           ['Movie', options.orderBy, options.order]
@@ -52,10 +52,10 @@ module.exports = {
     }
   },
 
-  async removeMovieFromUser (MovieId, UserId) {
+  async removeMovieFromUser(MovieId, UserId) {
     try {
       const dbLibraryMovie = await Library.findOne({
-        where: { MovieId: MovieId, UserId: UserId }
+        where: {MovieId: MovieId, UserId: UserId}
       })
       if (dbLibraryMovie) {
         await dbLibraryMovie.destroy()
@@ -67,13 +67,17 @@ module.exports = {
     }
   },
 
-  async movieInLibrary (MovieId, UserId) {
-    const movie = await Library.findOne({
-      where: { MovieId: MovieId, UserId: UserId }
-    })
-    if (movie) {
-      return true
+  async movieInLibrary(MovieId, UserId) {
+    try {
+      const movie = await Library.findOne({
+        where: {MovieId: MovieId, UserId: UserId}
+      })
+      if (movie) {
+        return true
+      }
+      return false
+    } catch (err) {
+      console.error(err)
     }
-    return false
   }
 }
