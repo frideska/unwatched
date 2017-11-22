@@ -27,7 +27,24 @@ module.exports = {
       console.error(err)
     }
   },
-
+  async getPageCount(UserId, options) {
+    try {
+      const tv = await Watchlist.findAll({
+        where: {UserId: UserId},
+        include: [{
+          association: 'Series',
+          where: {title: {[Op.iLike]: `%${options.query}%`}}
+        }],
+        order: [
+          ['Series', options.orderBy, options.order]
+        ]
+      })
+      return tv.length
+    } catch (err) {
+      console.error(err)
+      return -1
+    }
+  },
   async getAllSeriesForUser(UserId, options) {
     try {
       const dbLibrarySeries = await Library.findAll({

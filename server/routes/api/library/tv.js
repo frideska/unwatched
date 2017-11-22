@@ -56,7 +56,8 @@ router.get('/', async (req, res) => {
     res.json({
       docs: series,
       page: options.page,
-      size: options.size
+      size: options.size,
+      pageCount: Math.ceil((await WatchlistSeriesController.getPageCount(req.user.id, options))/options.size)
     })
   } else {
     const response = {
