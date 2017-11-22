@@ -63,6 +63,8 @@ export class FilterComponent implements OnInit {
     this.dateArrow = ''
     this.searchValue = ''
     this.setQueryParms()
+    this.currentSort = this.nameSort
+    this.nameArrow = 'up'
   }
 
   /**
