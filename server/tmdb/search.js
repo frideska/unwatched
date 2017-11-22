@@ -3,7 +3,7 @@ const GenreController = require('../pgdb/db/controllers/GenreController')
 
 const multi = async (query) => {
   try {
-    let response = await tmdb.search.multi({
+    let response = await global.tmdb.search.multi({
       query: query,
       include_adult: '',
       region: ''
@@ -36,7 +36,7 @@ const multi = async (query) => {
 
 const movie = async (query) => {
   try {
-    const results = await tmdb.search.movie({
+    const results = await global.tmdb.search.movie({
       query: query,
       include_adult: '',
       region: '',
@@ -53,7 +53,7 @@ const movie = async (query) => {
 
 const tv = async (query) => {
   try {
-    return await tmdb.search.tv({
+    return await global.tmdb.search.tv({
       query: query,
       first_air_date_year: ''
     })
