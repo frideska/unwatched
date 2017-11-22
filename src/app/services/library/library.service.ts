@@ -4,6 +4,8 @@ import { Http } from '@angular/http'
 import { CardElement } from 'classes/CardElement'
 import { isNullOrUndefined } from 'util'
 
+
+
 @Injectable()
 export class LibraryService {
   public listView = false
@@ -47,7 +49,6 @@ export class LibraryService {
     const type = element.type
     const id = element.id
     try {
-
       const response = await this.http.delete(this.URL + '/' + type, { body: {id: id} }).toPromise()
       if (element.type === 'movie') {
         const index = this.libraryMovie.indexOf(element)
