@@ -8,7 +8,7 @@ const GenreController = require('../../pgdb/db/controllers/GenreController')
 
 const movie = async () => {
   try {
-    const response = await tmdb.discover.movie()
+    const response = await global.tmdb.discover.movie()
     let results = response.results
 
     await Promise.all(results.map(async (movie) => {
@@ -58,7 +58,7 @@ const tv = async () => {
       series.media_type = 'tv'
       return series
     }))
-    
+
     return results
   } catch (err) {
     console.error(err)

@@ -29,7 +29,7 @@
 
 
       <div class="uk-position-relative uk-visible-toggle uk-light "
-           uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 7500;" >
+           uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: false; pause-on-hover: true; autoplay-interval: 7500;" >
 
         <!--Slideshow List-->
         <ul class="uk-slideshow-items uk-height-max-large slideshow_box">
@@ -51,8 +51,10 @@
         </ul>
 
         <!--Slideshow buttons-->
-        <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevMovie()"></a>
-        <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextMovie()"></a>
+<!--        <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"
+           uk-slidenav-previous uk-slideshow-item="previous" (click)="prevMovie()"></a>
+        <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right"
+           uk-slidenav-next uk-slideshow-item="next" (click)="nextMovie()"></a>-->
       </div>
 
 
@@ -66,13 +68,10 @@
     </div>
     <!--Slideshow container-->
     <div class="uk-position-relative uk-visible-toggle uk-light "
-         uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 9000;" >
+         uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: false; pause-on-hover: true; autoplay-interval: 9000;" >
 
       <!--Logged in users-->
       <!--Slideshow container-->
-        <div class="uk-position-relative uk-visible-toggle uk-light "
-             uk-slideshow="max-height: 20rem; animation: slide; velocity: 1; autoplay: true; pause-on-hover: true; autoplay-interval: 7500;" >
-
           <!--Slideshow List-->
           <ul class="uk-slideshow-items uk-height-max-large slideshow_box">
             <li>
@@ -93,9 +92,10 @@
           </ul>
 
           <!--Slideshow buttons-->
-          <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"  uk-slidenav-previous uk-slideshow-item="previous" (click)="prevTv()"></a>
-          <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right" uk-slidenav-next uk-slideshow-item="next" (click)="nextTv()"></a>
+<!--          <a class="uk-position-center-left uk-padding-remove uk-hidden-hover uk-animation-slide-left"
+             uk-slidenav-previous uk-slideshow-item="previous" (click)="prevTv()"></a>
+          <a class="uk-position-center-right uk-padding-remove uk-hidden-hover uk-animation-slide-right"
+             uk-slidenav-next uk-slideshow-item="next" (click)="nextTv()"></a>-->
         </div>
     </div>
   </div>
-</div>

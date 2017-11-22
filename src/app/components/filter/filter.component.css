@@ -114,6 +114,14 @@
   color: #00d377;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+
 /*.no_link_item{
   min-width: 6rem;
 }*/

@@ -28,13 +28,17 @@ module.exports = {
     }
   },
 
-  async getPageCount(UserId, options) {
+  async getPageCount (UserId, options) {
     try {
       const tv = await Library.findAll({
         where: {UserId: UserId},
         include: [{
           association: 'Series',
-          where: {title: {[Op.iLike]: `%${options.query}%`}}
+          where: {
+            title: {[Op.iLike]: `%${options.query}%`},
+            vote_average: {[Op.between]: [options.ratingMin, options.ratingMax]},
+            release_date: {[Op.between]: [new Date(options.startYear).toISOString(), new Date(options.endYear).toISOString()]}
+          }
         }],
         order: [
           ['Series', options.orderBy, options.order]
@@ -47,7 +51,7 @@ module.exports = {
     }
   },
 
-  async getAllSeriesForUser(UserId, options) {
+  async getAllSeriesForUser (UserId, options) {
     try {
       const dbLibrarySeries = await Library.findAll({
         where: {UserId: UserId},

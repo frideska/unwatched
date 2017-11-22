@@ -70,14 +70,18 @@
           We also used the user interface library UIkit for developing our project.
         </li>
         <li>
-          <b class="li_item_title">Backend database</b><br/>
-          We have chosen to use mongoDB for our database and we have set it up so it runs on the virtual machine.
+          <b class="li_item_title">Backend and database</b><br/>
+          Out nodejs/express server is made to be highly modular and expandable with functionality mostly diveden in its own files.
+          We chose PostgreSQL as our database of choice, with Sequelize as our ORM (Object Relational Mapper).
+          This is because it makes relational queries very easy, and lets us do things fast.
+          We started with using MongoDB with Mongoose, but found out our needs were better suited with a SQL database.
         </li>
         <li>
           <b class="li_item_title">Writing and reading to the database and search</b><br/>
           Our web-application demonstrate both writing and reading to the database.
           We have chosen to use TMDB as our API. By extracting data from here, we have implemented
           dynamic user-defined selection by letting users search through the data.
+          The backend caches all used movie and series objects to the database to not tax the TMDb api too much.
         </li>
         <li>
           <b class="li_item_title">List based view</b><br/>
@@ -100,7 +104,10 @@
             </li>
             <li>
               <b class="li_item_title">Dynamic data loading</b><br/>
-              Dynamic data loading..
+              Dynamic data loading is handled with pages.
+              This is a feature supported by our database, and works really well with how PostgreSQL queries are done with Sequelize.
+              Our services store page numbers and loads dynamically from the API seemlessly.
+              We mostly use pages of size 10, and if your library or watchlist has more than 10 elements a 'load more' button will appear.
             </li>
           </ul>
         </li>
@@ -111,7 +118,7 @@
         </li>
         <li>
           <b class="li_item_title">"Session" handling</b><br/>
-          ...
+          Our sessions are handled by express, passport and cookies. We use hte Passport library to handle Oauth 2 login with Google. 
         </li>
         <li>
           <b class="li_item_title">Alternative view</b><br/>

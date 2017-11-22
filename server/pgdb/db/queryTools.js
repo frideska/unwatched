@@ -1,6 +1,5 @@
 
 const configureOrder = (order = 'ASC', orderBy = 'title') => {
-  console.log(order, orderBy)
   if (orderBy.charAt(0) === '-') {
     orderBy = orderBy.substring(1)
     order = 'DESC'

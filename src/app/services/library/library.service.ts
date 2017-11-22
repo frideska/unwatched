@@ -243,7 +243,7 @@ export class LibraryService {
   /**
    * Toggles between listView and gridView.
    */
-  private toggleListView() {
+  toggleListView() {
     this.listView = !this.listView
   }
 

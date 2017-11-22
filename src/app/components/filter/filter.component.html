@@ -7,6 +7,7 @@
       <!--Menu items-->
       <ul class="uk-navbar-nav" >
 
+        <!--View style-->
         <li *ngIf="!service.listView; else cardView_icon">
           <a (click)="service.toggleListView()"><span uk-icon="icon : list"></span></a>
         </li>
@@ -16,6 +17,7 @@
           </li>
         </ng-template>
 
+        <!--Filter Movies/Series-->
         <li (click)="toggleHighlight(1)">
           <a [ngClass]="{'activeClass': highlightedDiv === 1 }" (click)="setType('movie')">Movies</a>
         </li>
@@ -36,6 +38,7 @@
           <div class="list_elements uk-navbar-item no_link_item">Sort by:</div>
         </li>
 
+        <!--Name sort-->
         <li [routerLinkActive]="['active']">
           <a (click) = "toggleNameSort()">
             Name
@@ -48,6 +51,7 @@
           </a>
         </li>
 
+        <!--Rating sort-->
         <li [routerLinkActive]="['active']">
           <a (click) = "toggleRatingSort()">
             Rating
@@ -60,6 +64,7 @@
           </a>
         </li>
 
+        <!--Date sort-->
         <li [routerLinkActive]="['active']">
           <a (click) = "toggleDateSort()">
             Date
@@ -78,6 +83,7 @@
           <div class="list_elements uk-navbar-item no_link_item">Filter by:</div>
         </li>
 
+        <!--Rating filter-->
         <li>
           <div class="flex_input_container">
             <a class="uk-link">Rating:</a>
@@ -108,6 +114,7 @@
 
         </li>
 
+        <!--Date filter-->
         <li>
           <div class="flex_input_container">
             <a class="uk-link">Date:</a>
@@ -145,6 +152,7 @@
 
   </div>
 
+  <!--Search-->
   <div class="uk-navbar-right">
     <form class="uk-search uk-search uk-border-rounded">
       <a href="" class="uk-search-icon-flip" uk-search-icon></a>
