@@ -12,7 +12,7 @@ const movie = async () => {
     let results = response.results
 
     await Promise.all(results.map(async (movie) => {
-      movie.genres = await GenreController.getGenreMovie(movie.genre_ids)
+      movie.genres = GenreController.getGenreMovieMem(movie.genre_ids)
       movie.watchlist = false
       movie.library = false
       movie.media_type = 'movie'
@@ -52,13 +52,13 @@ const tv = async () => {
     await Promise.all(results.map(async (series) => {
       series.title = series.name
       series.release_date = series.first_air_date
-      series.genres = await GenreController.getGenreTv(series.genre_ids)
+      series.genres = GenreController.getGenreTvMem(series.genre_ids)
       series.watchlist = false
       series.library = false
       series.media_type = 'tv'
       return series
     }))
-
+    
     return results
   } catch (err) {
     console.error(err)
