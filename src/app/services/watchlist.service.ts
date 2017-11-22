@@ -8,11 +8,17 @@ import { CardElement } from 'classes/CardElement'
 export class WatchlistService {
   private URL = '/api/watchlist'
   public listView = false
-  watchlistMovie: any
-  watchlistTv: any
+  watchlistMovie: CardElement[]
+  watchlistTv: CardElement[]
+  moviePageID: number
+  currentMoviePageID: number
+  movieMaxPageID: number
 
-
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    this.moviePageID = 1
+    this.watchlistMovie = []
+    this.currentMoviePageID = 1
+  }
 
   public async addToWatchlist(element: CardElement) {
     const type = element.type
@@ -39,18 +45,27 @@ export class WatchlistService {
       console.error(err)
     }
   }
-
-  public async getWatchlist(order = '', orderBy = '', search = '') {
+  public async getWatchlist(order = '', orderBy = '', search = '', reset= false) {
+    if (reset) {
+      this.currentMoviePageID = 1
+    }
+    await this.getWatchlistServerCall(order, orderBy, search)
+    while (this.moviePageID < this.currentMoviePageID) {
+      this.moviePageID++
+      await this.getWatchlistServerCall(order, orderBy, search, this.moviePageID , true )
+    }
+  }
+  private async getWatchlistServerCall(order = '', orderBy = '', search = '', page = 1, append = false ) {
     try {
       const response = await this.http.get(this.URL + '/movie', { params: {
+        page: page,
         order: order,
         orderBy: orderBy,
         search: search
       }}).toPromise()
       if (response.status === 200) {
-        this.reconfigure(response.json(), 'movie')
+        this.reconfigure(response.json(), 'movie', append)
       }
-      console.log(`[Service|WatchList](getWatchList) Got watchlist, movies: ${this.watchlistMovie.length}`)
     } catch (err) {
       console.error(err)
     }
@@ -63,20 +78,28 @@ export class WatchlistService {
       if (response.status === 200) {
         this.reconfigure(response.json(), 'tv')
       }
-      console.log(`[Service|WatchList](getWatchList) Got watchlist, tv: ${this.watchlistTv.length}`)
     } catch (err) {
       console.error(err)
     }
   }
 
-  private reconfigure(json, type) {
+  private reconfigure(json, type, append = false) {
     switch (type) {
       case('movie'):
-        this.watchlistMovie = json.docs.map((result) => {
+        this.moviePageID = json.page
+        console.log(json.page , 'json')
+        this.movieMaxPageID = json.size
+        const watchlistMovie = json.docs.map((result) => {
           result.media_type = 'movie'
           result.watchlist = true
           return new CardElement(result)
         })
+        if (append) {
+          this.watchlistMovie = this.watchlistMovie.concat(watchlistMovie)
+          console.log(this.watchlistMovie)
+          } else {
+          this.watchlistMovie = watchlistMovie
+        }
         break
       case('tv'):
         this.watchlistTv = json.docs.map((result) => {
@@ -87,6 +110,17 @@ export class WatchlistService {
         break
     }
   }
+  public getNext(order = '', orderBy = '', search = '') {
+    this.moviePageID++
+    this.currentMoviePageID++
+    this.getWatchlistServerCall(order, orderBy, search, this.moviePageID , true )
+  }
+  public getPrev(order = '', orderBy = '', search = '') {
+    this.moviePageID--
+    this.currentMoviePageID--
+    this.getWatchlistServerCall(order, orderBy, search, this.moviePageID , true )
+  }
+
   public isEmpty(type): boolean {
     switch (type) {
       case 'movie': {

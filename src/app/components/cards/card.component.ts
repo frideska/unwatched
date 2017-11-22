@@ -60,7 +60,7 @@ export class CardComponent implements OnInit {
   }
 
   /**
-   * Adds the element to the history, when clicking on a card. 
+   * Adds the element to the history, when clicking on a card.
    */
   addToHistory() {
     this.historyService.addToHistory(this.element)
