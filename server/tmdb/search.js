@@ -43,8 +43,6 @@ const movie = async (query) => {
       year: '',
       primary_release_year: ''
     })
-    console.log(`Searching for: ${query}`)
-    // console.log(results)
     return results
   } catch (err) {
     console.error(err)
