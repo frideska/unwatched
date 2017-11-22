@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { LibraryService } from 'services/library.service'
-import { WatchlistService } from 'services/watchlist.service'
+import { LibraryService } from 'services/library/library.service'
+import { WatchlistService } from 'services/watchlist/watchlist.service'
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',

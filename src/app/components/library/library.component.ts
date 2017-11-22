@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
-import { LibraryService } from 'services/library.service'
+import { LibraryService } from 'services/library/library.service'
 import { ActivatedRoute, Router } from '@angular/router'
 
 

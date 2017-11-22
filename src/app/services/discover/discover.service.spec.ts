@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing'
 
-import { DiscoverService } from 'services/discover.service'
+import { DiscoverService } from 'services/discover/discover.service'
 import { HttpModule } from '@angular/http'
 
 describe('DiscoverService', () => {

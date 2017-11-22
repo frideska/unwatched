@@ -1,20 +1,21 @@
 import { TestBed, inject } from '@angular/core/testing'
 
-import { SearchService } from 'services/search.service'
+import { LibraryService } from 'services/library/library.service'
 import { HttpModule } from '@angular/http'
 
-describe('UserService', () => {
+describe('LibraryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpModule
-      ], providers: [
-        SearchService
+      ],
+      providers: [
+        LibraryService
       ]
     })
   })
 
-  it('should be created', inject([SearchService], (service: SearchService) => {
+  it('should be created', inject([LibraryService], (service: LibraryService) => {
     expect(service).toBeTruthy()
   }))
 })

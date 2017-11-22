@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing'
 
-import { WatchlistService } from 'services/watchlist.service'
+import { HistoryService } from 'services/history/history.service'
 import { HttpModule } from '@angular/http'
 
 describe('UserService', () => {
@@ -9,12 +9,12 @@ describe('UserService', () => {
       imports: [
         HttpModule
       ], providers: [
-        WatchlistService
+        HistoryService
       ]
     })
   })
 
-  it('should be created', inject([WatchlistService], (service: WatchlistService) => {
+  it('should be created', inject([HistoryService], (service: HistoryService) => {
     expect(service).toBeTruthy()
   }))
 })
