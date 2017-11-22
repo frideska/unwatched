@@ -30,7 +30,7 @@ export class CardElement {
         this.overview = o
         this.image = poster_path ? POSTER_URL_PREVIEW.concat(poster_path) : MISSING_PATH_PREVIEW
         this.overview2 = o
-        this.poster = poster_path? POSTER_URL + poster_path : MISSING_PATH_POSTER
+        this.poster = poster_path ? POSTER_URL + poster_path : MISSING_PATH_POSTER
         this.backdropPath = POSTER_URL + backdrop_path
         this.rating = vote_average
         this.genres = genres
