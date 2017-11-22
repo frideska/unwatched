@@ -3,7 +3,6 @@ import {Component, Input, OnInit} from '@angular/core'
 import { WatchlistService} from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
 import { CardElement } from '../../classes/CardElement'
-import {DetailsService} from 'services/details.service'
 
 @Component({
   selector: 'app-list-view',
@@ -18,8 +17,7 @@ export class ListViewComponent implements OnInit {
 
   constructor(
     private watchlistService: WatchlistService,
-    private libraryService: LibraryService
-    private detailsService: DetailsService) { }
+    private libraryService: LibraryService) { }
 
 
   ngOnInit() {
@@ -29,12 +27,6 @@ export class ListViewComponent implements OnInit {
       this.service = this.watchlistService
     }
    }
-
-  private async reload() {
-      this.element =  await this.detailsService.getDetails(this.element)
-    }
-
-
 
   /**
    * Adds the element to the watchlist if its not allready there.
@@ -46,7 +38,7 @@ export class ListViewComponent implements OnInit {
     } else  {
       await this.watchlistService.addToWatchlist(element)
     }
-    await this.reload()
+    await this.watchlistService.getWatchlist()
   }
 
   /**
@@ -58,7 +50,8 @@ export class ListViewComponent implements OnInit {
       await this.libraryService.removeFromLibrary(element)
     } else  {
       await this.libraryService.addToLibrary(element)
+      await this.watchlistService.getWatchlist()
     }
-    await this.reload()
+    await this.libraryService.getLibrary()
   }
 }

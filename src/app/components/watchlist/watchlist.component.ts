@@ -13,6 +13,7 @@ export class WatchlistComponent implements OnInit, OnDestroy {
   orderBy: string
   search: string
   private sub: any
+  private loadButton: boolean
   public getListElements: Function
 
   constructor(public watchlistService: WatchlistService, private route: ActivatedRoute, private router: Router) {}
@@ -20,16 +21,19 @@ export class WatchlistComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.sub = this.route.queryParams.subscribe(params => {
+      this.loadButton = true
       this.type = params['type'] || 'movie'
       this.orderBy = params['orderBy'] || 'title'
       this.search = params['search'] || ''
       this.watchlistService.getWatchlist(this.order, this.orderBy, this.search, true)
     })
+    this.loadButton = true
     this.watchlistService.getWatchlist(this.order, this.orderBy, this.search, true)
     this.getListElements = this.getList.bind(this)
   }
   ngOnDestroy() {
     this.sub.unsubscribe()
+
   }
 
   /**
@@ -43,7 +47,7 @@ export class WatchlistComponent implements OnInit, OnDestroy {
     }
   }
 
-  appendWatchlist() {
-    this.watchlistService.getNext(this.order, this.orderBy, this.search)
+  async appendWatchlist() {
+    this.loadButton = await this.watchlistService.getNext(this.type, this.order, this.orderBy, this.search)
   }
 }
