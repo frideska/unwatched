@@ -14,11 +14,20 @@ export class AverageRatingComponent implements OnInit {
 
   constructor(public libraryService: LibraryService) { }
 
+  /**
+   * Initializes the component. Calculates average from library movies and series.
+   * Sets this.rating to calculated rating, and this.interval to the classified interval
+   * the rating belongs to. Interval is used in the CSS to show correct colors.
+   * @returns {Promise<void>}
+   */
   async ngOnInit() {
     await this.libraryService.getLibrary()
     const libraryMov = this.libraryService.libraryMovie.map(movie => movie.rating)
     const libraryTV = this.libraryService.libraryTv.map(show => show.rating)
     const library = libraryMov.concat(libraryTV)
+
+    // If library is empty, give default string back.
+    // Else calculate average.
     if (library.length === 0) {
       this.rating = 'N/A'
       this.interval = 'empty'
@@ -35,6 +44,11 @@ export class AverageRatingComponent implements OnInit {
     }
   }
 
+  /**
+   * Locates number in correct interval [0, 10].
+   * @param number
+   * @returns {string}
+   */
   private roundToInterval(number) {
     if ( number <= 5.0) {
       return 'bad'

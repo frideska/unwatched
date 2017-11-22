@@ -54,6 +54,11 @@ export class ListViewComponent implements OnInit {
     await this.libraryService.getLibrary()
   }
 
+  /**
+   * Locates number in correct interval [0, 10].
+   * @param number
+   * @returns {string}
+   */
   public roundToInterval(number): string {
     if ( number === 0) {
       return 'null'
