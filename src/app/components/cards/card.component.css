@@ -6,12 +6,25 @@
 }
 
 .title_text {
-  font-size: 1.5rem;
-  padding-top: 5px;
+  font-size: 1.1rem;
 }
 
 .subtitle_text {
   font-size: 0.6rem;
+}
+
+.rating_text{
+  font-size: 1rem;
+  margin:0;
+
+}
+
+.rating_container{
+  padding-top: 0.2rem;
+  padding-bottom: -0.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .desc_text {
@@ -44,6 +57,8 @@
 .button_add{
   background-color: #00d377;
   color: white;
+  box-shadow: 0px -10px 5px #222222;
+  z-index: 100;
 }
 
 .button_add:hover{
@@ -54,6 +69,9 @@
 .button_remove{
   background-color: #663399;
   color: white;
+  box-shadow: 3px -10px 5px #222222;
+  z-index: 100;
+
 }
 
 .button_remove:hover{
@@ -99,7 +117,12 @@
 }
 
 .interval_null {
-  color: #666666;
+  color: #909090;
+  font-size: 0.6rem;
+}
+
+.rating_wrapper{
+  padding-left: 2rem;
 }
 
 .rating_wrapper > * {
@@ -108,4 +131,9 @@
 
 .of_ten {
   margin-top: 2.12rem;
+}
+
+.icon_padding{
+  padding-right: 0.3rem;
+  padding-left: 0.3rem;
 }

@@ -26,6 +26,7 @@ import { ListViewComponent } from 'components/list-view/list-view.component'
 import { AverageRatingComponent } from 'components/average-rating/average-rating.component'
 import { DocumentationComponent } from 'components/documentation/documentation.component'
 
+
 /**
  * Import Services
  */
@@ -36,6 +37,8 @@ import { WatchlistService } from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
 import { AuthGuard } from 'services/auth-guard.service'
 import { HistoryService } from 'services/history.service'
+import {DetailsService} from 'services/details.service'
+
 
 export const initUserServiceFactory = (userService: UserService): Function => {
   return () => userService.getUser()
@@ -96,6 +99,7 @@ const routes: Routes = [
     LibraryService,
     AuthGuard,
     HistoryService,
+    DetailsService,
     USER_INIT
   ],
   bootstrap: [AppComponent]
