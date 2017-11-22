@@ -7,6 +7,10 @@ import { LibraryService } from 'services/library/library.service'
 import { RouterTestingModule } from '@angular/router/testing'
 import { HttpModule } from '@angular/http'
 
+const libraryService = {
+  listview: true
+}
+
 describe('ListViewComponent', () => {
   let component: ListViewComponent
   let fixture: ComponentFixture<ListViewComponent>
@@ -20,8 +24,7 @@ describe('ListViewComponent', () => {
         ListViewComponent,
         CardComponent
       ], providers: [
-        LibraryService,
-        WatchlistService
+        {provide: LibraryService, useValue: libraryService }
       ]
     })
     .compileComponents()
@@ -30,6 +33,8 @@ describe('ListViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListViewComponent)
     component = fixture.componentInstance
+    fixture.detectChanges()
+    component.childOf = 'library'
     fixture.detectChanges()
   })
 

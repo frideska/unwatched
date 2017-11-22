@@ -26,7 +26,8 @@ describe('SlideshowItemComponent', () => {
     fixture.detectChanges()
 
     const card = await new CardElement(
-      {id: 268,
+      {
+        id: 268,
         title: 'Batman',
         genres: [ 'Fantasy', 'Action'],
         overview: 'The Dark Knight of Gotham City begins his war on crime with his first major enemy being ' +
