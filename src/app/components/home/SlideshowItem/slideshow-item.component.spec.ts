@@ -48,12 +48,5 @@ describe('SlideshowItemComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  /*
-  it('should contain a "li"', async(() => {
-    fixture.detectChanges()
-    const compiled = fixture.debugElement.nativeElement
-    expect(compiled.querySelector('h3')).not.toBe(null)
-  }))
-  */
 
 })
