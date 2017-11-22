@@ -28,18 +28,21 @@ describe('DocumentationComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  // Checks for only <h1> to contain 'Documentation'.
   it('h1 should contain \"Documentation\"', async(() => {
     fixture.detectChanges()
     const compiled = fixture.debugElement.nativeElement
     expect(compiled.querySelector('h1').textContent).toContain('Documentation')
   }))
 
+  // Checks first <h3> to contain 'Project requirments'.
   it('h3 should contain \"Project requirments\"', async(() => {
     fixture.detectChanges()
     const compiled = fixture.debugElement.nativeElement
     expect(compiled.querySelector('h3').textContent).toContain('Project requirments')
   }))
 
+  // Checks if there is 4 divs. Ugly but ok.
   it('should contain 4 \"div\"s', async(() => {
     fixture.detectChanges()
     const compiled = fixture.debugElement.nativeElement
@@ -47,6 +50,7 @@ describe('DocumentationComponent', () => {
     expect(compiled.querySelectorAll('div').length).toBeGreaterThan(3)
   }))
 
+  // Checks if there is 16 li. Ugly but ok.
   it('should contain 16 \"li\"s', async(() => {
     fixture.detectChanges()
     const compiled = fixture.debugElement.nativeElement
@@ -54,6 +58,7 @@ describe('DocumentationComponent', () => {
     expect(compiled.querySelectorAll('li').length).toBeGreaterThan(15)
   }))
 
+  // Checks if there is 3 ul. Ugly but ok.
   it('should contain 1 \"ul\"', async(() => {
     fixture.detectChanges()
     const compiled = fixture.debugElement.nativeElement
@@ -61,6 +66,7 @@ describe('DocumentationComponent', () => {
     expect(compiled.querySelectorAll('ul').length).toBeGreaterThan(2)
   }))
 
+  // Checks if there is a paragraph p.
   it('should contain a paragraph', async(() => {
     fixture.detectChanges()
     const compiled = fixture.debugElement.nativeElement

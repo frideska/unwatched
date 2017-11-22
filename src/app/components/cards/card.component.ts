@@ -27,6 +27,7 @@ export class CardComponent implements OnInit {
     private detailsService: DetailsService
   ) {}
 
+  //Initalizes and sets rating interval.
   ngOnInit() {
     this.interval = this.roundToInterval(this.element.rating)
   }
@@ -82,8 +83,9 @@ export class CardComponent implements OnInit {
   }
 
   /**
-   *
-   * Returns a string based on the rating value for CSS styling
+   * Locates number in correct interval [0, 10].
+   * @param number
+   * @returns {string}
    */
 
   private roundToInterval(number) {

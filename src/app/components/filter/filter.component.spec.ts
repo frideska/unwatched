@@ -1,11 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-
-import { FilterComponent } from './filter.component'
+import { FilterComponent } from  './Filter.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { LibraryService } from 'services/library/library.service'
 import { WatchlistService } from 'services/watchlist/watchlist.service'
 import { FormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
+
+const libraryService = {
+  listview: true
+}
+const watchlistService = {
+  listview: true
+
+}
 
 describe('FilterComponent', () => {
   let component: FilterComponent
@@ -20,16 +27,19 @@ describe('FilterComponent', () => {
       ], declarations: [
          FilterComponent
        ], providers: [
-        LibraryService,
-        WatchlistService
+        {provide: LibraryService, useValue: libraryService },
+        {provide: WatchlistService, useValue: watchlistService }
       ]
     })
     .compileComponents()
   }))
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(FilterComponent)
     component = fixture.componentInstance
+    fixture.detectChanges()
+
+    component.childOf = 'watchlist'
     fixture.detectChanges()
   })
 
