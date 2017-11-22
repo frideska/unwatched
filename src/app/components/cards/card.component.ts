@@ -56,6 +56,19 @@ export class CardComponent implements OnInit {
     if (this.element.library) {
       await this.libraryService.removeFromLibrary(this.element)
     } else  {
+      if (this.element.watchlist) {
+        if (this.element.type === 'movie') {
+          const index = this.watchlistService.watchlistMovie.indexOf(this.element)
+          if (index >= 0) {
+            this.watchlistService.watchlistMovie.splice(index, 1)
+          }
+        } else {
+          const index = this.watchlistService.watchlistTv.indexOf(this.element)
+          if (index >= 0) {
+            this.watchlistService.watchlistTv.splice(index, 1)
+          }
+        }
+      }
       await this.libraryService.addToLibrary(this.element)
     }
     await this.reload()
