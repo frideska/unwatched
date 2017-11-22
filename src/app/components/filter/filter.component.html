@@ -1,85 +1,131 @@
 <nav class="uk-navbar-container bg_style navbar_position uk-navbar-sticky" uk-sticky="bottom: #top"  uk-navbar>
 
-  <div class="uk-navbar-left">
+  <div class="uk-navbar-left list_container">
 
-    <!--Menu items-->
-    <ul class="uk-navbar-nav" >
+    <div class="container_item">
 
-      <li *ngIf="!service.listView; else cardView_icon">
-        <a (click)="service.toggleListView()"><span uk-icon="icon : list"></span></a>
-      </li>
-      <ng-template #cardView_icon>
-        <li>
-          <a (click)="service.toggleListView()"><span uk-icon="icon : grid"></span></a>
+      <!--Menu items-->
+      <ul class="uk-navbar-nav" >
+
+        <li *ngIf="!service.listView; else cardView_icon">
+          <a (click)="service.toggleListView()"><span uk-icon="icon : list"></span></a>
         </li>
-      </ng-template>
+        <ng-template #cardView_icon>
+          <li>
+            <a (click)="service.toggleListView()"><span uk-icon="icon : grid"></span></a>
+          </li>
+        </ng-template>
 
-      <li (click)="toggleHighlight(1)">
-        <a [ngClass]="{'activeClass': highlightedDiv === 1 }" (click)="setType('movie')">Movies</a>
-      </li>
+        <li (click)="toggleHighlight(1)">
+          <a [ngClass]="{'activeClass': highlightedDiv === 1 }" (click)="setType('movie')">Movies</a>
+        </li>
 
-      <li  (click)="toggleHighlight(2)" >
-        <a [ngClass]="{'activeClass': highlightedDiv === 2 }" (click)="setType('tv')">series</a>
-      </li>
+        <li  (click)="toggleHighlight(2)" >
+          <a [ngClass]="{'activeClass': highlightedDiv === 2 }" (click)="setType('tv')">series</a>
+        </li>
 
-      <li><div class="list_elements uk-navbar-item">|</div></li>
+      </ul>
 
-      <li>
-        <div class="list_elements uk-navbar-item no_link_item">Sort by:</div>
-      </li>
+    </div>
 
-      <li [routerLinkActive]="['active']">
-        <a (click) = "toggleNameSort()">
-          Name
-          <div *ngIf = "nameArrow === 'up'; else nameDown">
-            <span uk-icon="icon : arrow-up"></span>
+    <div style="align-items: center">
+
+      <ul class="uk-navbar-nav" >
+
+        <li>
+          <div class="list_elements uk-navbar-item no_link_item">Sort by:</div>
+        </li>
+
+        <li [routerLinkActive]="['active']">
+          <a (click) = "toggleNameSort()">
+            Name
+            <div *ngIf = "nameArrow === 'up'; else nameDown">
+              <span uk-icon="icon : arrow-up"></span>
+            </div>
+            <div #nameDown *ngIf = "nameArrow === 'down'">
+              <span uk-icon="icon : arrow-down"></span>
+            </div>
+          </a>
+        </li>
+
+        <li [routerLinkActive]="['active']">
+          <a (click) = "toggleRatingSort()">
+            Rating
+            <div *ngIf = "ratingArrow === 'up'; else ratingDown">
+              <span uk-icon="icon : arrow-up"></span>
+            </div>
+            <div #ratingDown *ngIf = "ratingArrow === 'down'">
+              <span uk-icon="icon : arrow-down"></span>
+            </div>
+          </a>
+        </li>
+
+        <li [routerLinkActive]="['active']">
+          <a (click) = "toggleDateSort()">
+            Date
+            <div *ngIf = "dateArrow === 'up'; else dateDown">
+              <span uk-icon="icon : arrow-up"></span>
+            </div>
+            <div #dateDown *ngIf = "dateArrow === 'down'">
+              <span uk-icon="icon : arrow-down"></span>
+            </div>
+          </a>
+        </li>
+
+        <li><div class="list_elements uk-navbar-item">|</div></li>
+
+        <li>
+          <div class="list_elements uk-navbar-item no_link_item">Filter by:</div>
+        </li>
+
+        <li>
+          <div class="flex_input_container">
+            <a class="uk-link">Rating:</a>
+            <div class="filter_box">
+              <input class="filter_input" maxlength="3" type="number" placeholder="From">
+            </div>
+            <div class="seperator uk-padding-remove">-</div>
+            <div class="filter_box">
+              <input class="filter_input" maxlength="3" type="number" placeholder="To">
+            </div>
           </div>
-          <div #nameDown *ngIf = "nameArrow === 'down'">
-            <span uk-icon="icon : arrow-down"></span>
-          </div>
-        </a>
-      </li>
 
-      <li [routerLinkActive]="['active']">
-        <a (click) = "toggleRatingSort()">
-          Rating
-          <div *ngIf = "ratingArrow === 'up'; else ratingDown">
-            <span uk-icon="icon : arrow-up"></span>
-          </div>
-          <div #ratingDown *ngIf = "ratingArrow === 'down'">
-            <span uk-icon="icon : arrow-down"></span>
-          </div>
-        </a>
-      </li>
+        </li>
 
-      <li [routerLinkActive]="['active']">
-        <a (click) = "toggleDateSort()">
-          Date
-          <div *ngIf = "dateArrow === 'up'; else dateDown">
-            <span uk-icon="icon : arrow-up"></span>
+        <li>
+          <div class="flex_input_container">
+            <a class="uk-link">Date:</a>
+            <div class="filter_box">
+              <input class="filter_input" maxlength="4" type="number" placeholder="From">
+            </div>
+            <div class="seperator uk-padding-remove">-</div>
+            <div class="filter_box">
+              <input class="filter_input" maxlength="4" type="number" placeholder="To">
+            </div>
+
           </div>
-          <div #dateDown *ngIf = "dateArrow === 'down'">
-            <span uk-icon="icon : arrow-down"></span>
-          </div>
-        </a>
-      </li>
-    </ul>
+
+        </li>
+
+      </ul>
+
+    </div>
 
   </div>
 
   <div class="uk-navbar-right">
-  <form class="uk-search uk-search uk-border-rounded">
-    <a href="" class="uk-search-icon-flip" uk-search-icon></a>
-    <input
-      class="uk-search-input"
-      type="search"
-      placeholder="Search in {{childOf}}..."
-      value="{{searchValue}}"
-      [(ngModel)]="search"
-      (ngModelChange)="onSearchChange($event)"
-      [ngModelOptions]="{standalone: true}"
-    >
-  </form>
+    <form class="uk-search uk-search uk-border-rounded">
+      <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+      <input
+        class="uk-search-input"
+        type="search"
+        placeholder="Search in {{childOf}}..."
+        value="{{searchValue}}"
+        [(ngModel)]="search"
+        (ngModelChange)="onSearchChange($event)"
+        [ngModelOptions]="{standalone: true}"
+      >
+    </form>
   </div>
 
 </nav>

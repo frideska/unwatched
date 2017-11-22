@@ -5,7 +5,7 @@ const Watchlist = require('../models').WatchlistMovie
 const Op = require('../models').Sequelize.Op
 
 module.exports = {
-  async addMovieToUser(MovieId, UserId) {
+  async addMovieToUser (MovieId, UserId) {
     try {
       const movie = {MovieId: MovieId, UserId: UserId}
 
@@ -27,6 +27,7 @@ module.exports = {
       console.error(err)
     }
   },
+
   async getPageCount(UserId, options) {
     try {
       const movies = await Library.findAll({
@@ -45,13 +46,18 @@ module.exports = {
       return -1
     }
   },
+
   async getAllMoviesForUser(UserId, options) {
     try {
       const dbLibraryMovie = await Library.findAll({
         where: {UserId: UserId},
         include: [{
           association: 'Movie',
-          where: {title: {[Op.iLike]: `%${options.query}%`}}
+          where: {
+            title: {[Op.iLike]: `%${options.query}%`},
+            vote_average: {[Op.between]: [options.ratingMin, options.ratingMax]},
+            release_date: {[Op.between]: [new Date(options.startYear).toISOString(), new Date(options.endYear).toISOString()]}
+          }
         }],
         order: [
           ['Movie', options.orderBy, options.order]
@@ -69,7 +75,7 @@ module.exports = {
     }
   },
 
-  async removeMovieFromUser(MovieId, UserId) {
+  async removeMovieFromUser (MovieId, UserId) {
     try {
       const dbLibraryMovie = await Library.findOne({
         where: {MovieId: MovieId, UserId: UserId}
@@ -84,7 +90,7 @@ module.exports = {
     }
   },
 
-  async movieInLibrary(MovieId, UserId) {
+  async movieInLibrary (MovieId, UserId) {
     try {
       const movie = await Library.findOne({
         where: {MovieId: MovieId, UserId: UserId}

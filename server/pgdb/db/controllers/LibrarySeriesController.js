@@ -5,7 +5,7 @@ const Watchlist = require('../models').WatchlistSeries
 const Op = require('../models').Sequelize.Op
 
 module.exports = {
-  async addSeriesToUser(SeriesId, UserId) {
+  async addSeriesToUser (SeriesId, UserId) {
     try {
       const series = {SeriesId: SeriesId, UserId: UserId}
 
@@ -27,6 +27,7 @@ module.exports = {
       console.error(err)
     }
   },
+
   async getPageCount(UserId, options) {
     try {
       const tv = await Library.findAll({
@@ -45,13 +46,18 @@ module.exports = {
       return -1
     }
   },
+
   async getAllSeriesForUser(UserId, options) {
     try {
       const dbLibrarySeries = await Library.findAll({
         where: {UserId: UserId},
         include: [{
           association: 'Series',
-          where: {title: {[Op.iLike]: `%${options.query}%`}}
+          where: {
+            title: {[Op.iLike]: `%${options.query}%`},
+            vote_average: {[Op.between]: [options.ratingMin, options.ratingMax]},
+            release_date: {[Op.between]: [new Date(options.startYear).toISOString(), new Date(options.endYear).toISOString()]}
+          }
         }],
         order: [
           ['Series', options.orderBy, options.order]
@@ -69,7 +75,7 @@ module.exports = {
     }
   },
 
-  async removeSeriesFromUser(SeriesId, UserId) {
+  async removeSeriesFromUser (SeriesId, UserId) {
     try {
       const dbLibrarySeries = await Library.findOne({
         where: {SeriesId: SeriesId, UserId: UserId}
@@ -84,7 +90,7 @@ module.exports = {
     }
   },
 
-  async seriesInLibrary(SeriesId, UserId) {
+  async seriesInLibrary (SeriesId, UserId) {
     try {
       const series = await Library.findOne({
         where: {SeriesId: SeriesId, UserId: UserId}
@@ -93,7 +99,7 @@ module.exports = {
         return true
       }
       return false
-    } catch(err) {
+    } catch (err) {
       console.error(err)
     }
   }
