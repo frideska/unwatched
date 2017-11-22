@@ -29,7 +29,7 @@ module.exports = {
   },
   async getPageCount(UserId, options) {
     try {
-      const movies = await Watchlist.findAll({
+      const movies = await Library.findAll({
         where: {UserId: UserId},
         include: [{
           association: 'Movie',

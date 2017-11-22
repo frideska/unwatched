@@ -23,7 +23,7 @@
         <p class="uk-display-inline rating_text interval_{{ roundToInterval(card.rating) }}">{{card.rating === 0 ? 'No rating' : card.rating.toFixed(1).toString()}}</p>
 
         <!--Genres-->
-        <h3 *ngFor="let genre of card.slicedGenres.entries()" class="title_content subtitle_text uk-display-inline"><span class="uk-label">{{ genre[1] }}</span> </h3>
+        <h3 *ngFor="let genre of card.slicedGenres" class="title_content subtitle_text uk-display-inline"><span class="uk-label">{{ genre }}</span> </h3>
 
         <!--Card Buttons-->
         <div class="uk-button-group uk-float-right ">
