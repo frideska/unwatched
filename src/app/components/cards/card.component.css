@@ -120,6 +120,10 @@
   font-size: 0.6rem;
 }
 
+.rating_wrapper{
+  padding-left: 2rem;
+}
+
 .rating_wrapper > * {
   padding-left: 0.5rem;
 }
@@ -131,5 +135,9 @@
 .icon_padding{
   padding-right: 0.3rem;
   padding-left: 0.3rem;
+}
+
+.rating_container_modal{
+
 }
 

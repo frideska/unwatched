@@ -127,15 +127,15 @@
                     frameborder="0" allowfullscreen width="560" height="315"
                     uk-responsive uk-video="automute: true; autoplay: false;"></iframe>-->
           </div>
-          <div class="rating_container">
             <p class="uk-text-center">
               Ovarall TMDB rating:
             <div class="rating_wrapper uk-flex-center uk-grid">
               <div class="rating_item interval_{{interval}}">
-                {{element.rating === 0 ? '-' : element.rating.toFixed(1).toString()}}
+                {{element.rating === 0 ? 'No rating' : element.rating.toFixed(1).toString()}}
               </div>
-              <div class="of_ten">/ 10</div>
-          </div>
+              <div class="of_ten">
+               <p> / 10</p>
+              </div>
           </div>
         </div>
 
