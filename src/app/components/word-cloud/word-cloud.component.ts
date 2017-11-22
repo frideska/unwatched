@@ -75,9 +75,20 @@ export class WordCloudComponent implements OnInit {
     await this.libraryService.getLibrary()
     const libraryMov = this.libraryService.libraryMovie
     const libraryTV = this.libraryService.libraryTv
-    const tvs = libraryTV.map(movie => movie.genres)
-    const movs = libraryMov.map(movie => movie.genres)
-    const genres = tvs.concat(movs)
+    let tvs: any
+    let movs: any
+    if (libraryTV != null) {
+      tvs = libraryTV.map(movie => movie.genres)
+    } else {
+      tvs = []
+    }
+
+    if (libraryMov != null) {
+      movs = libraryMov.map(movie => movie.genres)
+    } else {
+      movs = []
+    }
+    const genres = movs.concat(tvs)
 
     // Generate cloud data and update cloud.
     this.generateCloudWords(genres)

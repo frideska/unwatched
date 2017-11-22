@@ -1,8 +1,11 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 
 const misc = require('./misc')
-let User = require('./db/models/User')
-let UserController = require('./db/controllers/UserController')
+// let User = require('./db/models/User')
+// let UserController = require('./db/controllers/UserController')
+
+const UserController = require('./pgdb/db/controllers/UserController')
+const User = require('./pgdb/db/models').User
 
 /**
  * Google OAuth2 configuration options.
@@ -25,18 +28,20 @@ const config = {
  */
 const login = async (token, refreshToken, profile, done) => {
   try {
-    let user = await UserController.getByGoogle(profile.id)
-    if (!user) {
-      user = new User()
+    let user = {
+      id: profile.id,
+      token: token,
+      name: profile.displayName,
+      firstName: profile.name.givenName,
+      lastName: profile.name.familyName,
+      image: profile.photos[0].value,
+      email: profile.emails[0].value
     }
-    user.google.id = profile.id
-    user.google.token = token
-    user.google.name = profile.displayName
-    user.google.firstName = profile.name.givenName
-    user.google.lastName = profile.name.familyName
-    user.google.image = profile.photos[0].value
-    user.google.email = profile.emails[0].value
-    done(null, await UserController.save(user))
+    let dbUser = await UserController.getById(user.id)
+    if (!dbUser) {
+      dbUser = await UserController.createUser(user)
+    }
+    done(null, dbUser)
   } catch (err) {
     console.error(err)
     return done(err)
@@ -45,24 +50,24 @@ const login = async (token, refreshToken, profile, done) => {
 
 module.exports = (passport) => {
   /**
-     * Passport function for serializing user.
-     */
+   * Passport function for serializing user.
+   */
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
   /**
-     * Passport function for deserializing user.
-     */
+   * Passport function for deserializing user.
+   */
   passport.deserializeUser(async (id, done) => {
     try {
-      let user = await User.findById(id)
+      let user = await UserController.getById(id)
       done(null, user)
     } catch (err) {
       done(err)
     }
   })
   /**
-     * Configure Passport to use Google OAuth2 Strategy.
-     */
+   * Configure Passport to use Google OAuth2 Strategy.
+   */
   passport.use(new GoogleStrategy(config, login))
 }
