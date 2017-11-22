@@ -33,10 +33,13 @@
           <!--Card Title-->
           <h3 class="title_text uk-display-inline "> {{ element.title }} </h3>
           <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
-          <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
-          <span class="uk-margin-small-right interval_{{interval}}" uk-icon="icon: star"></span>
-          <hr class="uk-divider-small uk-margin-remove" />
+          <div class="rating_container">
+            <p class="uk-display-inline rating_text interval_{{interval}}">{{element.rating === 0 ? 'No rating' : element.rating.toFixed(1).toString()}}</p>
+            <span class="interval_{{interval}} icon_padding" uk-icon="icon: star"></span>
+            <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
+          </div>
           <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
+          <hr class="uk-divider-small uk-margin-remove" />
 
         </div>
       </div>

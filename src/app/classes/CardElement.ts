@@ -24,7 +24,7 @@ export class CardElement {
 
         this.id = id
         this.title = title
-        this.overview = (o.length <= 30) ? o : o.substring(0, 150).concat(' (...)')
+        this.overview = o
         this.image = poster_path ? PREVIEW_IMG_PATH.concat(poster_path) : MISSING_PATH
         this.overview2 = o
         this.poster = POSTER_URL + poster_path
