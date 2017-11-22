@@ -9,7 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 })
 export class WatchlistComponent implements OnInit, OnDestroy {
   type: string
-  sortBy: string
+  order: string
+  orderBy: string
   search: string
   private sub: any
   public getListElements: Function
@@ -20,11 +21,11 @@ export class WatchlistComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.sub = this.route.queryParams.subscribe(params => {
       this.type = params['type'] || 'movie'
-      this.sortBy = params['sort_by'] || 'standard'
+      this.orderBy = params['orderBy'] || 'title'
       this.search = params['search'] || ''
-      this.watchlistService.getWatchlist(this.sortBy, this.search)
+      this.watchlistService.getWatchlist(this.order, this.orderBy, this.search, true)
     })
-    this.watchlistService.getWatchlist(this.sortBy, this.search)
+    this.watchlistService.getWatchlist(this.order, this.orderBy, this.search, true)
     this.getListElements = this.getList.bind(this)
   }
   ngOnDestroy() {
@@ -40,5 +41,9 @@ export class WatchlistComponent implements OnInit, OnDestroy {
     } else if (this.type === 'tv') {
       return this.watchlistService.watchlistTv
     }
+  }
+
+  appendWatchlist() {
+    this.watchlistService.getNext(this.order, this.orderBy, this.search)
   }
 }
