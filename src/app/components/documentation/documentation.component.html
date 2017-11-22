@@ -70,14 +70,18 @@
           We also used the user interface library UIkit for developing our project.
         </li>
         <li>
-          <b class="li_item_title">Backend database</b><br/>
-          We have chosen to use mongoDB for our database and we have set it up so it runs on the virtual machine.
+          <b class="li_item_title">Backend and database</b><br/>
+          Out nodejs/express server is made to be highly modular and expandable with functionality mostly diveden in its own files.
+          We chose PostgreSQL as our database of choice, with Sequelize as our ORM (Object Relational Mapper).
+          This is because it makes relational queries very easy, and lets us do things fast.
+          We started with using MongoDB with Mongoose, but found out our needs were better suited with a SQL database.
         </li>
         <li>
           <b class="li_item_title">Writing and reading to the database and search</b><br/>
           Our web-application demonstrate both writing and reading to the database.
           We have chosen to use TMDB as our API. By extracting data from here, we have implemented
           dynamic user-defined selection by letting users search through the data.
+          The backend caches all used movie and series objects to the database to not tax the TMDb api too much.
         </li>
         <li>
           <b class="li_item_title">List based view</b><br/>
