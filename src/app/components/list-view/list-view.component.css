@@ -1,5 +1,5 @@
 .title_text {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: white;
   max-width: 200px;
   flex-grow: 2;
@@ -117,4 +117,44 @@ h1{
   background-color: #222222;
 }
 
+.rating_item {
+  font-size: 3rem;
+}
 
+.interval_good {
+  color: #00D377;
+}
+
+.interval_ok {
+  color: #E3D83F;
+}
+
+.interval_bad {
+  color: #982D84;
+}
+
+.interval_null {
+  color: #909090;
+  font-size: 0.6rem;
+}
+
+.rating_wrapper{
+  padding-left: 2rem;
+}
+
+.rating_wrapper > * {
+  padding-left: 0.5rem;
+}
+
+.of_ten {
+  margin-top: 2.12rem;
+}
+
+.icon_padding{
+  padding-left: 0.3rem;
+}
+
+.rating_text{
+  font-size: 1rem;
+  padding-right: 0.3rem;
+}
