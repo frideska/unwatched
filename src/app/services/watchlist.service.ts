@@ -8,6 +8,7 @@ import { CardElement } from 'classes/CardElement'
 export class WatchlistService {
   private URL = '/api/watchlist'
   public listView = false
+  public loadButton: boolean
   watchlistMovie: CardElement[]
   watchlistTv: CardElement[]
   moviePageID: number
@@ -73,10 +74,12 @@ export class WatchlistService {
       this.currentMoviePageID = 1
     }
     await this.getWatchlistServerMovie(order, orderBy, search)
+
     while (this.moviePageID < this.currentMoviePageID) {
       this.moviePageID++
       await this.getWatchlistServerMovie(order, orderBy, search, this.moviePageID , true )
     }
+    this.loadButton = this.currentMoviePageID < this.movieMaxPageID ? true : false
   }
   public async getWatchlistTv(order = '', orderBy = '', search = '', reset= false) {
     if (reset) {
@@ -87,6 +90,7 @@ export class WatchlistService {
       this.tvPageID++
       await this.getWatchlistServerTv(order, orderBy, search, this.tvPageID , true )
     }
+    this.loadButton = this.currentTvPageID < this.tvMaxPageID ? true : false
   }
   private async getWatchlistServerMovie(order = '', orderBy = '', search = '', page = 1, append = false ) {
     try {
@@ -158,23 +162,12 @@ export class WatchlistService {
       this.moviePageID++
       this.currentMoviePageID++
       await this.getWatchlistServerMovie(order, orderBy, search, this.moviePageID , true )
-      return this.currentMoviePageID < this.movieMaxPageID ? true : false
+      this.loadButton =  this.currentMoviePageID < this.movieMaxPageID ? true : false
     } else {
       this.tvPageID++
       this.currentTvPageID++
       await this.getWatchlistServerTv(order, orderBy, search, this.tvPageID , true )
-      return this.currentTvPageID < this.tvMaxPageID ? true : false
-    }
-  }
-  public getPrev(type, order = '', orderBy = '', search = '') {
-    if (type === 'movie') {
-      this.moviePageID--
-      this.currentMoviePageID--
-      this.getWatchlistServerMovie(order, orderBy, search, this.moviePageID , true )
-    } else {
-      this.tvPageID--
-      this.currentTvPageID--
-      this.getWatchlistServerTv(order, orderBy, search, this.tvPageID , true )
+      this.loadButton =  this.currentTvPageID < this.tvMaxPageID ? true : false
     }
   }
 
