@@ -62,7 +62,6 @@ module.exports = {
   },
 
   getGenreMovieMem (ids) {
-    console.log(global.GenreMovies)
     return ids.map((id) => global.GenreMovies[id])
   }
 }
