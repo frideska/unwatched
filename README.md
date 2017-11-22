@@ -4,7 +4,7 @@
 The UnWatched application is a movie- and TV show manager.
 To get access to the main functionality like *Library* and *Watchlist*, you have to log into your Google account.
 
-!!! It is important to add a lot of movies and series to the watchlist and the library, once logged in, to get the full experince of the functionality of the web-application. !!!
+### !!! It is important to add a lot of movies and series to the watchlist and the library, once logged in, to get the full experince of the functionality of the web-application. !!!
 
   * Discover  
    The front page of the application presents the user with kind of fresh news on movies and shows.
