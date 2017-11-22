@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   let orderBy = req.query.orderBy
   let order = 'ASC'
-  if (orderBy.charAt(0) === '-') {
+  if (orderBy && orderBy.charAt(0) === '-') {
     orderBy = orderBy.substring(1)
     order = 'DESC'
   }
@@ -56,7 +56,8 @@ router.get('/', async (req, res) => {
     res.json({
       docs: series,
       page: options.page,
-      size: options.size
+      size: options.size,
+      pageCount: Math.ceil((await WatchlistSeriesController.getPageCount(req.user.id))/options.size)
     })
   } else {
     const response = {
