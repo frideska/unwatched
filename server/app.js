@@ -47,7 +47,6 @@ const TMDb = require('tmdbapi')
  * Get local dependencies
  */
 const misc = require('./misc')
-const db = require('./db')
 const routes = require('./routes')
 const genre = require('./tmdb').genre
 
