@@ -23,7 +23,7 @@ export class WatchlistComponent implements OnInit, OnDestroy {
       this.type = params['type'] || 'movie'
       this.orderBy = params['orderBy'] || 'title'
       this.search = params['search'] || ''
-      this.watchlistService.getWatchlist(this.order, this.orderBy, this.search)
+      this.watchlistService.getWatchlist(this.order, this.orderBy, this.search, true)
     })
     this.watchlistService.getWatchlist(this.order, this.orderBy, this.search, true)
     this.getListElements = this.getList.bind(this)
