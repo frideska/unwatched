@@ -36,4 +36,36 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('a should contain be 3 elements', async(() => {
+    const compiled = fixture.debugElement.nativeElement
+    const el = compiled.querySelectorAll('a')
+    expect(el.length).toBeLessThan(7)
+    expect(el.length).toBeGreaterThan(5)
+  }))
+
+  it('a should contain correct strings', async(() => {
+    const compiled = fixture.debugElement.nativeElement
+    const el = compiled.querySelectorAll('a')
+    expect(el[1].textContent).toBe('Discover')
+    expect(el[2].textContent).toBe('Library')
+    expect(el[3].textContent).toBe('Watchlist')
+    expect(el[5].textContent).toBe('\n' +
+      '        \n' +
+      '\n' +
+      '          \n' +
+      '          \n' +
+      '            \n' +
+      '            Log in\n' +
+      '          \n' +
+      '\n' +
+      '        \n' +
+      '      ')
+  }))
+
+  it('Search div should have textContent Search', async(() => {
+    const compiled = fixture.debugElement.nativeElement
+    const el = compiled.querySelectorAll('div')
+    expect(el[6].textContent).toBe('Search ')
+  }))
 })
