@@ -3,6 +3,11 @@
   <!--Grid Row Container-->
   <div class="uk-text-left uk-animation-slide-bottom-small uk-flex-center" uk-grid>
 
+    <div *ngIf="searchService.overload">
+      <p style="color: white">API is overloaded please wait at most 10 seconds to make a request!</p>
+      <br />
+    </div>
+
     <!--Card-->
       <app-card *ngFor="let result of searchService.results" [element]="result"></app-card>
 
