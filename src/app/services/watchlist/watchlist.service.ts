@@ -191,7 +191,7 @@ export class WatchlistService {
   /**
    * Toggles between listView and gridView.
    */
-  private toggleListView() {
+  toggleListView() {
     this.listView = !this.listView
   }
 }
