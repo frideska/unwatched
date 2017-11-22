@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { CardComponent } from './card.component'
 import { WatchlistService } from 'services/watchlist.service'
 import { LibraryService } from 'services/library.service'
+import { DetailsService } from 'services/details.service'
 import { HistoryService } from 'services/history.service'
 import { SearchService } from 'services/search.service'
 import { UserService } from 'services/user.service'
@@ -23,7 +24,8 @@ describe('CardComponent', () => {
         LibraryService,
         HistoryService,
         SearchService,
-        UserService
+        UserService,
+        DetailsService
       ]
     })
     .compileComponents()
