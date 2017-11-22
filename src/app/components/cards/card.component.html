@@ -33,7 +33,8 @@
           <!--Card Title-->
           <h3 class="title_text uk-display-inline "> {{ element.title }} </h3>
           <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
-          <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
+          <h2 class="uk-margin-remove subtitle_text">{{ element.slicedGenres }}</h2>
+          <span class="uk-margin-small-right interval_{{interval}}" uk-icon="icon: star"></span>
           <hr class="uk-divider-small uk-margin-remove" />
           <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
 
@@ -126,7 +127,12 @@
           <div class="rating_container">
             <p class="uk-text-center">
               Ovarall TMDB rating:
-              <div class="rating_item uk-text-center">{{element.rating === 0 ? '- / 10' : element.rating.toString() + ' / 10'}}</div>
+            <div class="rating_wrapper uk-flex-center uk-grid">
+              <div class="rating_item interval_{{interval}}">
+                {{element.rating === 0 ? '-' : element.rating.toFixed(1).toString()}}
+              </div>
+              <div class="of_ten">/ 10</div>
+          </div>
           </div>
         </div>
 
