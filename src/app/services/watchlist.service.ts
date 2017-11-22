@@ -8,16 +8,24 @@ import { CardElement } from 'classes/CardElement'
 export class WatchlistService {
   private URL = '/api/watchlist'
   public listView = false
+  public loadButton: boolean
   watchlistMovie: CardElement[]
   watchlistTv: CardElement[]
   moviePageID: number
   currentMoviePageID: number
   movieMaxPageID: number
+  tvPageID: number
+  currentTvPageID: number
+  tvMaxPageID: number
+
 
   constructor(private http: Http) {
     this.moviePageID = 1
     this.watchlistMovie = []
     this.currentMoviePageID = 1
+    this.tvPageID = 1
+    this.watchlistTv = []
+    this.currentTvPageID = 1
   }
 
   public async addToWatchlist(element: CardElement) {
@@ -57,37 +65,60 @@ export class WatchlistService {
     }
   }
   public async getWatchlist(order = '', orderBy = '', search = '', reset= false) {
+    this.getWatchlistMovie(order, orderBy, search, reset)
+    this.getWatchlistTv(order, orderBy, search, reset)
+  }
+
+  public async getWatchlistMovie(order = '', orderBy = '', search = '', reset= false) {
     if (reset) {
       this.currentMoviePageID = 1
     }
-    await this.getWatchlistServerCall(order, orderBy, search)
+    await this.getWatchlistServerMovie(order, orderBy, search)
+
     while (this.moviePageID < this.currentMoviePageID) {
       this.moviePageID++
-      await this.getWatchlistServerCall(order, orderBy, search, this.moviePageID , true )
+      await this.getWatchlistServerMovie(order, orderBy, search, this.moviePageID , true )
     }
+    this.loadButton = this.currentMoviePageID < this.movieMaxPageID ? true : false
   }
-  private async getWatchlistServerCall(order = '', orderBy = '', search = '', page = 1, append = false ) {
+  public async getWatchlistTv(order = '', orderBy = '', search = '', reset= false) {
+    if (reset) {
+      this.currentTvPageID = 1
+    }
+    await this.getWatchlistServerTv(order, orderBy, search)
+    while (this.tvPageID < this.currentTvPageID) {
+      this.tvPageID++
+      await this.getWatchlistServerTv(order, orderBy, search, this.tvPageID , true )
+    }
+    this.loadButton = this.currentTvPageID < this.tvMaxPageID ? true : false
+  }
+  private async getWatchlistServerMovie(order = '', orderBy = '', search = '', page = 1, append = false ) {
     try {
-      const response = await this.http.get(this.URL + '/movie', { params: {
-        page: page,
-        order: order,
-        orderBy: orderBy,
-        search: search
-      }}).toPromise()
+      const response = await this.http.get(this.URL + '/movie', {
+        params: {
+          page: page,
+          order: order,
+          orderBy: orderBy,
+          search: search
+        }
+      }).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'movie', append)
       }
     } catch (err) {
       console.error(err)
     }
+  }
+  private async getWatchlistServerTv(order = '', orderBy = '', search = '', page = 1, append = false ) {
     try {
       const response = await this.http.get(this.URL + '/tv', { params: {
+        page: page,
         order: order,
         orderBy: orderBy,
         search: search
       }}).toPromise()
       if (response.status === 200) {
-        this.reconfigure(response.json(), 'tv')
+        this.reconfigure(response.json(), 'tv', append)
       }
     } catch (err) {
       console.error(err)
@@ -98,8 +129,7 @@ export class WatchlistService {
     switch (type) {
       case('movie'):
         this.moviePageID = json.page
-        console.log(json.page , 'json')
-        this.movieMaxPageID = json.size
+        this.movieMaxPageID = json.pageCount
         const watchlistMovie = json.docs.map((result) => {
           result.media_type = 'movie'
           result.watchlist = true
@@ -107,29 +137,38 @@ export class WatchlistService {
         })
         if (append) {
           this.watchlistMovie = this.watchlistMovie.concat(watchlistMovie)
-          console.log(this.watchlistMovie)
-          } else {
+        } else {
           this.watchlistMovie = watchlistMovie
         }
         break
       case('tv'):
-        this.watchlistTv = json.docs.map((result) => {
+        this.tvPageID = json.page
+        this.tvMaxPageID = json.pageCount
+        const watchlistTv = json.docs.map((result) => {
           result.media_type = 'tv'
           result.watchlist = true
           return new CardElement(result)
         })
+        if (append) {
+          this.watchlistTv = this.watchlistTv.concat(watchlistTv)
+        } else {
+          this.watchlistTv = watchlistTv
+        }
         break
     }
   }
-  public getNext(order = '', orderBy = '', search = '') {
-    this.moviePageID++
-    this.currentMoviePageID++
-    this.getWatchlistServerCall(order, orderBy, search, this.moviePageID , true )
-  }
-  public getPrev(order = '', orderBy = '', search = '') {
-    this.moviePageID--
-    this.currentMoviePageID--
-    this.getWatchlistServerCall(order, orderBy, search, this.moviePageID , true )
+  public async getNext(type, order = '', orderBy = '', search = '') {
+    if ( type === 'movie') {
+      this.moviePageID++
+      this.currentMoviePageID++
+      await this.getWatchlistServerMovie(order, orderBy, search, this.moviePageID , true )
+      this.loadButton =  this.currentMoviePageID < this.movieMaxPageID ? true : false
+    } else {
+      this.tvPageID++
+      this.currentTvPageID++
+      await this.getWatchlistServerTv(order, orderBy, search, this.tvPageID , true )
+      this.loadButton =  this.currentTvPageID < this.tvMaxPageID ? true : false
+    }
   }
 
   public isEmpty(type): boolean {

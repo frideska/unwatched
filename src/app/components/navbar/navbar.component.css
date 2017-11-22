@@ -95,6 +95,7 @@
   margin-right: 1rem;
 }
 
-.uk-navbar-item>li>a {
+.uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
   height: auto;
 }
+
