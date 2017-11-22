@@ -81,6 +81,11 @@ export class CardComponent implements OnInit {
     this.historyService.addToHistory(this.element)
   }
 
+  /**
+   *
+   * Returns a string based on the rating value for CSS styling
+   */
+
   private roundToInterval(number) {
     if ( number === 0) {
       return 'null'
