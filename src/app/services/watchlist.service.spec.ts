@@ -1,28 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { TestBed, inject } from '@angular/core/testing'
 
 import { WatchlistService } from 'services/watchlist.service'
+import { HttpModule } from '@angular/http'
 
-describe('WatchlistService', () => {
-    let component: WatchlistService
-    let fixture: ComponentFixture<WatchlistService>
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          imports: [
-          ], declarations: [
-          ], providers: [
-          ]
-        })
-        .compileComponents()
-    }))
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(WatchlistService)
-        component = fixture.componentInstance
-        fixture.detectChanges()
+describe('UserService', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpModule
+      ], providers: [
+        WatchlistService
+      ]
     })
+  })
 
-    it('should create', () => {
-        expect(component).toBeTruthy()
-    })
+  it('should be created', inject([WatchlistService], (service: WatchlistService) => {
+    expect(service).toBeTruthy()
+  }))
 })

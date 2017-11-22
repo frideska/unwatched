@@ -1,28 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { TestBed, inject } from '@angular/core/testing'
 
 import { SearchService } from 'services/search.service'
+import { HttpModule } from '@angular/http'
 
-describe('SearchService', () => {
-    let component: SearchService
-    let fixture: ComponentFixture<SearchService>
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          imports: [
-          ], declarations: [
-          ], providers: [
-          ]
-        })
-        .compileComponents()
-    }))
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(SearchService)
-        component = fixture.componentInstance
-        fixture.detectChanges()
+describe('UserService', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpModule
+      ], providers: [
+        SearchService
+      ]
     })
+  })
 
-    it('should create', () => {
-        expect(component).toBeTruthy()
-    })
+  it('should be created', inject([SearchService], (service: SearchService) => {
+    expect(service).toBeTruthy()
+  }))
 })

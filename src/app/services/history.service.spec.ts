@@ -1,28 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { TestBed, inject } from '@angular/core/testing'
 
 import { HistoryService } from 'services/history.service'
+import { HttpModule } from '@angular/http'
 
-describe('HistoryService', () => {
-    let component: HistoryService
-    let fixture: ComponentFixture<HistoryService>
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          imports: [
-          ], declarations: [
-          ], providers: [
-          ]
-        })
-        .compileComponents()
-    }))
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(HistoryService)
-        component = fixture.componentInstance
-        fixture.detectChanges()
+describe('UserService', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpModule
+      ], providers: [
+        HistoryService
+      ]
     })
+  })
 
-    it('should create', () => {
-        expect(component).toBeTruthy()
-    })
+  it('should be created', inject([HistoryService], (service: HistoryService) => {
+    expect(service).toBeTruthy()
+  }))
 })
