@@ -57,7 +57,8 @@
                 message: '<span uk-icon=\'icon: check\'></span> Successfully added to watchlist!',
                 pos: 'bottom-center', status:'success', timeout: '2500'})"
                   (click)="addToWatchlist()"
-                  class="uk-button uk-text-nowrap button_add" >
+                  class="uk-button uk-text-nowrap"
+                  [ngClass]="element.library ? 'watchlist_button_disabled': 'button_add'">
             <label>Add to <br>watchlist</label>
           </button>
 
@@ -98,6 +99,7 @@
         </div>
       </div>
 
+      <!--Disabled button when not logged in-->
       <ng-template #notLoggedIn>
         <button class="button_disabled uk-button uk-disabled">Not logged in</button>
       </ng-template>
@@ -147,9 +149,11 @@
 
     <!--Modal footer-->
     <div class="uk-modal-footer">
+
       <!--Card Buttons-->
       <div  class="uk-position-bottom-right">
         <div  *ngIf="userService.loggedIn" class="uk-button-group button_padding">
+
           <!--Add to watchlist-->
           <button (click) = "addToWatchlist(element.watchlist)"
                   class="uk-button uk-text-nowrap remove button_add uk-modal-close">
