@@ -57,7 +57,7 @@ router.get('/', async (req, res) => {
       docs: movies,
       page: options.page,
       size: options.size,
-      ageCount: Math.ceil((await LibraryMovieController.getPageCount(req.user.id, options))/options.size)
+      pageCount: Math.ceil((await LibraryMovieController.getPageCount(req.user.id, options))/options.size)
     })
   } else {
     const response = {
