@@ -48,4 +48,12 @@ describe('UserComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('h4s should contain correct strings', async(() => {
+    const compiled = fixture.debugElement.nativeElement
+    const el = compiled.querySelectorAll('h4')
+    expect(el[0].textContent).toBe('Library rating')
+    expect(el[1].textContent).toBe('Favourites')
+    expect(el[2].textContent).toBe('Desires')
+  }))
 })
