@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-
 import { CardElement } from 'classes/CardElement'
 import { isNullOrUndefined } from 'util'
-
 
 @Injectable()
 export class LibraryService {
   public listView = false
   private URL = '/api/library'
-  libraryMovie: any
-  libraryTv: any
+  libraryMovie: CardElement[]
+  libraryTv: CardElement[]
 
   constructor(private http: Http) { }
 
@@ -37,21 +35,32 @@ export class LibraryService {
     const id = element.id
     try {
 
-      const response = await this.http.delete(this.URL + '/' + type + '/remove/' + id).toPromise()
-      console.log(`[Service|Library](removeFromLibrary) Got response`)
+      const response = await this.http.delete(this.URL + '/' + type, { body: {id: id} }).toPromise()
+      if (element.type === 'movie') {
+        const index = this.libraryMovie.indexOf(element)
+        if (index >= 0) {
+          this.libraryMovie.splice(index, 1)
+        }
+      } else {
+        const index = this.libraryTv.indexOf(element)
+        if (index >= 0) {
+          this.libraryTv.splice(index, 1)
+        }
+      }
 
     } catch (err) {
       console.error(err)
     }
   }
 
-  /**
-   * Gets the movies and the tv-series for the library as json objects and then
-   * maps them as CardElements.
-   */
-  public async getLibrary(sortBy= 'standard', search = '') {
+  public async getLibrary(order = '', orderBy = '', search = '') {
+
     try {
-      const response = await this.http.get(this.URL + '/movie', {params: {sort_by: sortBy, search: search}}).toPromise()
+      const response = await this.http.get(this.URL + '/movie', { params: {
+        order: order,
+        orderBy: orderBy,
+        search: search
+      }}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'movie')
       }
@@ -61,7 +70,11 @@ export class LibraryService {
     }
 
     try {
-      const response = await this.http.get(this.URL + '/tv' , {params: {sort_by: sortBy, search: search}}).toPromise()
+      const response = await this.http.get(this.URL + '/tv' , { params: {
+        order: order,
+        orderBy: orderBy,
+        search: search
+      }}).toPromise()
       if (response.status === 200) {
         this.reconfigure(response.json(), 'tv')
       }
@@ -73,10 +86,18 @@ export class LibraryService {
   private reconfigure(json, type) {
     switch (type) {
       case('movie'):
-        this.libraryMovie = json.docs.map((result) => new CardElement(result))
+        this.libraryMovie = json.docs.map((result) => {
+          result.media_type = 'movie'
+          result.library = true
+          return new CardElement(result)
+        })
         break
       case('tv'):
-        this.libraryTv = json.docs.map((result) => new CardElement(result))
+        this.libraryTv = json.docs.map((result) => {
+          result.media_type = 'tv'
+          result.library = true
+          return new CardElement(result)
+        })
         break
     }
   }

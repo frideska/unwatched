@@ -1,21 +1,32 @@
 version: '3'
 services:
 
-  mongodb:
-    image: mongo
+  postgres:
+    image: postgres:10.1
+    logging:
+      driver: none
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: it2810-g22-p4-dev
+    tty: true
+    stdin_open: true
 
   api:
     build: .
     command: bash -c "npm run prod"
     environment:
-      - NODE_ENV=production
-      - P4_ENV=production
+      - NODE_ENV=development
+      - P4_ENV=development
       - P4_AUTH_GOOGLE_KEY
       - P4_AUTH_GOOGLE_SECRET
       - P4_AUTH_GOOGLE_CALLBACK=http://it2810-22.idi.ntnu.no:8084/auth/google-callback
       - P4_TMDB_TOKEN
       - P4_DB_HOST=mongodb
+      - P4_PGDB_HOST=postgres
     volumes:
       - .:/srv/app
     ports:
       - "8084:8000"
+    depends_on:
+      - postgres
