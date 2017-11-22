@@ -1,5 +1,5 @@
 
-const GenreController = require('../db/controllers/GenreController')
+const GenreController = require('../pgdb/db/controllers/GenreController')
 
 const multi = async (query) => {
   try {
@@ -14,10 +14,12 @@ const multi = async (query) => {
     response = await Promise.all(response.results.map(async (result) => {
       if (result.media_type === 'tv') {
         result.release_date = result.first_air_date
+        result.genres = await GenreController.getGenreTv(result.genre_ids)
         result.title = result.name
         result.watchlist = false
         result.library = false
       } else if (result.media_type === 'movie') {
+        result.genres = await GenreController.getGenreMovie(result.genre_ids)
         result.watchlist = false
         result.library = false
       }
