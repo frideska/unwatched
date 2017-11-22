@@ -17,9 +17,7 @@ export class ListViewComponent implements OnInit {
 
   constructor(
     private watchlistService: WatchlistService,
-    private libraryService: LibraryService
-  ) { }
-
+    private libraryService: LibraryService) { }
 
   ngOnInit() {
     if (this.childOf === 'Library') {
@@ -28,13 +26,6 @@ export class ListViewComponent implements OnInit {
       this.service = this.watchlistService
     }
    }
-
-  private async reload() {
-    await this.watchlistService.getWatchlist()
-    await this.libraryService.getLibrary()
-  }
-
-
 
   /**
    * Adds the element to the watchlist if its not allready there.
@@ -46,7 +37,7 @@ export class ListViewComponent implements OnInit {
     } else  {
       await this.watchlistService.addToWatchlist(element)
     }
-    await this.reload()
+    await this.watchlistService.getWatchlist()
   }
 
   /**
@@ -58,8 +49,9 @@ export class ListViewComponent implements OnInit {
       await this.libraryService.removeFromLibrary(element)
     } else  {
       await this.libraryService.addToLibrary(element)
+      await this.watchlistService.getWatchlist()
     }
-    await this.reload()
+    await this.libraryService.getLibrary()
   }
 
   public roundToInterval(number): string {
