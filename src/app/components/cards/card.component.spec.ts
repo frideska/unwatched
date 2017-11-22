@@ -6,6 +6,7 @@ import { LibraryService } from 'services/library.service'
 import { HistoryService } from 'services/history.service'
 import { SearchService } from 'services/search.service'
 import { UserService } from 'services/user.service'
+import { HttpModule } from '@angular/http'
 
 describe('CardComponent', () => {
   let component: CardComponent
@@ -14,6 +15,7 @@ describe('CardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpModule
       ], declarations: [
         CardComponent,
       ], providers: [
