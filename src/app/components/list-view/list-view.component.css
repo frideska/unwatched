@@ -17,10 +17,10 @@
 
 }
 
-.uk-label {
-  font-size: 0.45rem;
+.uk-label{
   background-color: white;
-  flex-grow: 1;
+  color: black;
+  font-size: 0.65rem;
 }
 
 .title_content{
