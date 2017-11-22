@@ -55,5 +55,22 @@ module.exports = {
     } catch (err) {
       console.error(err)
     }
+  },
+
+  getGenreTvMem (ids) {
+    return ids.map((id) => {
+      const genre = global.GenreSeries[id]
+      //console.log(genre)
+      return genre
+    })
+  },
+
+  getGenreMovieMem (ids) {
+    console.log(global.GenreMovies)
+    return ids.map((id) => {
+      const genre = global.GenreMovies[id]
+      //console.log(genre)
+      return genre
+    })
   }
 }
