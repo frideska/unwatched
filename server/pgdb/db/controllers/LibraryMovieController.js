@@ -28,7 +28,7 @@ module.exports = {
     }
   },
 
-  async getPageCount(UserId, options) {
+  async getPageCount (UserId, options) {
     try {
       const movies = await Library.findAll({
         where: {UserId: UserId},
@@ -47,7 +47,7 @@ module.exports = {
     }
   },
 
-  async getAllMoviesForUser(UserId, options) {
+  async getAllMoviesForUser (UserId, options) {
     try {
       const dbLibraryMovie = await Library.findAll({
         where: {UserId: UserId},

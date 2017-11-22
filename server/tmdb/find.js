@@ -1,6 +1,6 @@
 const find = async (id, source) => {
   try {
-    return await tmdb.find(
+    return await global.tmdb.find(
       {
         external_id: id || '',
         external_source: source || ''
