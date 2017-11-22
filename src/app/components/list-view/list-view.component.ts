@@ -19,7 +19,6 @@ export class ListViewComponent implements OnInit {
     private watchlistService: WatchlistService,
     private libraryService: LibraryService) { }
 
-
   ngOnInit() {
     if (this.childOf === 'Library') {
       this.service = this.libraryService
