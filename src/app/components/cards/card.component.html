@@ -33,8 +33,11 @@
           <!--Card Title-->
           <h3 class="title_text uk-display-inline "> {{ element.title }} </h3>
           <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p>
-          <h2 class="uk-margin-remove subtitle_text">{{ element.slicedGenres }}</h2>
-          <span class="uk-margin-small-right interval_{{interval}}" uk-icon="icon: star"></span>
+          <div class="rating_container">
+            <p class="uk-display-inline rating_text interval_{{interval}}">{{element.rating === 0 ? 'No rating' : element.rating.toFixed(1).toString()}}</p>
+            <span class="interval_{{interval}} icon_padding" uk-icon="icon: star"></span>
+            <h3 class="uk-margin-remove subtitle_text"><span class="uk-label">{{ element.genres }}</span> </h3>
+          </div>
           <hr class="uk-divider-small uk-margin-remove" />
           <p class="uk-text-muted desc_text uk-text-break ">{{ element.overview }}</p>
 
@@ -124,39 +127,39 @@
                     frameborder="0" allowfullscreen width="560" height="315"
                     uk-responsive uk-video="automute: true; autoplay: false;"></iframe>-->
           </div>
-          <div class="rating_container">
-            <p class="uk-text-center">
-              Ovarall TMDB rating:
+          <p class="uk-text-center">
+            Ovarall TMDB rating:
             <div class="rating_wrapper uk-flex-center uk-grid">
               <div class="rating_item interval_{{interval}}">
-                {{element.rating === 0 ? '-' : element.rating.toFixed(1).toString()}}
+                {{element.rating === 0 ? 'No rating' : element.rating.toFixed(1).toString()}}
               </div>
-              <div class="of_ten">/ 10</div>
-          </div>
-          </div>
+              <div class="of_ten">
+          <p> / 10</p>
         </div>
+      </div>
+    </div>
 
-        <!--Modal footer-->
-        <div class="uk-modal-footer">
-          <!--Card Buttons-->
-            <div  class="uk-position-bottom-right">
-              <div  *ngIf="userService.loggedIn" class="uk-button-group button_padding">
-                <!--Add to watchlist-->
-                <button (click) = "addToWatchlist(element.watchlist)"
-                        class="uk-button uk-text-nowrap remove button_add uk-modal-close">
-                  <label *ngIf='element.watchlist' >Remove</label>
-                  <label *ngIf='!element.watchlist' >Add to <br>watchlist</label>
-                </button>
+    <!--Modal footer-->
+    <div class="uk-modal-footer">
+      <!--Card Buttons-->
+      <div  class="uk-position-bottom-right">
+        <div  *ngIf="userService.loggedIn" class="uk-button-group button_padding">
+          <!--Add to watchlist-->
+          <button (click) = "addToWatchlist(element.watchlist)"
+                  class="uk-button uk-text-nowrap remove button_add uk-modal-close">
+            <label *ngIf='element.watchlist' >Remove</label>
+            <label *ngIf='!element.watchlist' >Add to <br>watchlist</label>
+          </button>
 
-                <!--Add to library-->
-                <button (click) = "addToLibrary()" class="uk-button uk-padding-remove button_remove uk-modal-close">
-                  <label *ngIf='element.library' >Remove</label>
-                  <label *ngIf='!element.library' >Add to <br>library</label>
-                </button>
-                </div>
-            </div>
+          <!--Add to library-->
+          <button (click) = "addToLibrary()" class="uk-button uk-padding-remove button_remove uk-modal-close">
+            <label *ngIf='element.library' >Remove</label>
+            <label *ngIf='!element.library' >Add to <br>library</label>
+          </button>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
 </div>
