@@ -32,4 +32,17 @@ describe('SearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('should contain 2 \"div\"s', async(() => {
+    fixture.detectChanges()
+    const compiled = fixture.debugElement.nativeElement
+    expect(compiled.querySelectorAll('div').length).toBeLessThan(3)
+    expect(compiled.querySelectorAll('div').length).toBeGreaterThan(1)
+  }))
+
+  it('should contain \"app-card\"', async(() => {
+    fixture.detectChanges()
+    const compiled = fixture.debugElement.nativeElement
+    expect(compiled.querySelectorAll('app-card')).not.toBe(null)
+  }))
 })

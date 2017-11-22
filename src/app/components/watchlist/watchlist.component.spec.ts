@@ -42,4 +42,16 @@ describe('WatchlistComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('should contain a app-card', async(() => {
+    fixture.detectChanges()
+    const compiled = fixture.debugElement.nativeElement
+    expect(compiled.querySelectorAll('app-card')).not.toBe(null)
+  }))
+
+  it('should contain a app-list-view', async(() => {
+    fixture.detectChanges()
+    const compiled = fixture.debugElement.nativeElement
+    expect(compiled.querySelectorAll('app-list-view')).not.toBe(null)
+  }))
 })

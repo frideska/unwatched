@@ -3,7 +3,7 @@ const GenreController = require('../pgdb/db/controllers/GenreController')
 
 const movie = async () => {
   try {
-    let { genres } = await tmdb.genres.movie()
+    let { genres } = await global.tmdb.genres.movie()
     global.GenreMovies = {}
     await genres.forEach((genre) => {
       global.GenreMovies[genre.id] = genre.name
@@ -17,7 +17,7 @@ const movie = async () => {
 }
 const tv = async () => {
   try {
-    let { genres } = await tmdb.genres.tv()
+    let { genres } = await global.tmdb.genres.tv()
     global.GenreSeries = {}
     await genres.forEach((genre) => {
       global.GenreSeries[genre.id] = genre.name

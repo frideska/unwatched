@@ -29,7 +29,7 @@ router.get(
 )
 
 router.get('/google-callback', passport.authenticate('google', {
-  successRedirect: '/user/',
+  successRedirect: '/library',
   failureRedirect: '/'
 }))
 

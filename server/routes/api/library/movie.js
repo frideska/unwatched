@@ -41,14 +41,13 @@ router.post('/', async (req, res) => {
  */
 router.get('/', async (req, res) => {
   const options = queryTools.parse(req.query)
-  console.log(options)
   let movies = await LibraryMovieController.getAllMoviesForUser(req.user.id, options)
   if (movies) {
     res.json({
       docs: movies,
       page: options.page,
       size: options.size,
-      pageCount: Math.ceil((await LibraryMovieController.getPageCount(req.user.id, options))/options.size)
+      pageCount: Math.ceil((await LibraryMovieController.getPageCount(req.user.id, options)) / options.size)
     })
   } else {
     const response = {

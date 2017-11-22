@@ -46,7 +46,7 @@ router.get('/', async (req, res) => {
       docs: series,
       page: options.page,
       size: options.size,
-      pageCount: Math.ceil((await LibrarySeriesController.getPageCount(req.user.id, options))/options.size)
+      pageCount: Math.ceil((await LibrarySeriesController.getPageCount(req.user.id, options)) / options.size)
     })
   } else {
     const response = {
