@@ -116,5 +116,22 @@ h1{
 .uk-card-hover:not(.uk-card-default):not(.uk-card-primary):not(.uk-card-secondary):hover {
   background-color: #222222;
 }
+button {
+  background-color: #663399;
+  border: none;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  display: inline-block;
+  font-size: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttonHolder {
+  margin:2rem;
+  text-align: center;
+}
+
 
 
