@@ -11,6 +11,10 @@
 
 }
 
+.logo_style{
+  max-height: 4rem;
+}
+
 .item_disabled {
   color: #777777;
 
