@@ -87,6 +87,7 @@ export class CardComponent implements OnInit {
    * @param number
    * @returns {string}
    */
+
   private roundToInterval(number) {
     if ( number === 0) {
       return 'null'
