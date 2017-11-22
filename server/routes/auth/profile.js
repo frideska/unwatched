@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const User = require('../../db/models/User')
+const UserController = require('../../pgdb/db/controllers/UserController')
 
 router.get('/', (req, res) => {
   res.json({user: req.user || undefined})
@@ -8,8 +8,7 @@ router.get('/', (req, res) => {
 
 router.delete('/', async (req, res) => {
   try {
-    let user = await User.findById(req.user._id)
-    await user.remove()
+    await UserController.deleteUser(req.user.id)
     res.send()
   } catch (err) {
     console.error(err)

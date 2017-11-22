@@ -63,7 +63,7 @@ const TMDB_TOKEN = process.env.P4_TMDB_TOKEN ? process.env.P4_TMDB_TOKEN : misc.
 /**
  * Initial server setup
  */
-db.init()
+// db.init()
 const app = express()
 
 var sess = {
@@ -99,7 +99,15 @@ app.use(passport.session())
 
 app.use('/', routes)
 
-genre.movie()
-genre.tv()
+const getGenres = async () => {
+  try {
+    await genre.movie()
+    await genre.tv()
+  } catch (err) {
+    console.error()
+  }
+}
+
+getGenres()
 
 app.listen(PORT, HOST, () => console.log(`Project server running on: ${HOST}:${PORT}`))

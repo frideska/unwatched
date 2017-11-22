@@ -1,4 +1,4 @@
-FROM node:8.6.0
+FROM node:8.9.0
 
 ENV APP_DIR=/srv/app
 
