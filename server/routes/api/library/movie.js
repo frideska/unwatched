@@ -3,6 +3,7 @@ const router = require('express').Router()
 const LibraryMovieController = require('../../../pgdb/db/controllers/LibraryMovieController')
 const MovieController = require('../../../pgdb/db/controllers/MovieController')
 const tmdbWrapper = require('../../../tmdb/')
+const queryTools = require('../../../pgdb/db/queryTools')
 
 /**
  * Allows the user to add a movie to library,
@@ -36,21 +37,11 @@ router.post('/', async (req, res) => {
  * @param req.query.orderBy
  * @param req.query.search
  * @param req.query.page
+ * @param req.query.years
  */
 router.get('/', async (req, res) => {
-  let orderBy = req.query.orderBy
-  let order = 'ASC'
-  if (orderBy && orderBy.charAt(0) === '-') {
-    orderBy = orderBy.substring(1)
-    order = 'DESC'
-  }
-  const options = {
-    order: req.query.order || order,
-    orderBy: orderBy || 'title',
-    query: req.query.search || '',
-    page: req.query.page || 1,
-    size: 10
-  }
+  const options = queryTools.parse(req.query)
+  console.log(options)
   let movies = await LibraryMovieController.getAllMoviesForUser(req.user.id, options)
   if (movies) {
     res.json({

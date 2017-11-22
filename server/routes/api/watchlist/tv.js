@@ -3,6 +3,7 @@ const router = require('express').Router()
 const WatchlistSeriesController = require('../../../pgdb/db/controllers/WatchlistSeriesController')
 const SeriesController = require('../../../pgdb/db/controllers/SeriesController')
 const tmdbWrapper = require('../../../tmdb/')
+const queryTools = require('../../../pgdb/db/queryTools')
 
 /**
  * Allows the user to add a Series to Watchlist,
@@ -38,19 +39,7 @@ router.post('/', async (req, res) => {
  * @param req.query.page
  */
 router.get('/', async (req, res) => {
-  let orderBy = req.query.orderBy
-  let order = 'ASC'
-  if (orderBy && orderBy.charAt(0) === '-') {
-    orderBy = orderBy.substring(1)
-    order = 'DESC'
-  }
-  const options = {
-    order: req.query.order || order,
-    orderBy: orderBy || 'title',
-    query: req.query.search || '',
-    page: req.query.page || 1,
-    size: 10
-  }
+  const options = queryTools.parse(req.query)
   let series = await WatchlistSeriesController.getAllSeriesForUser(req.user.id, options)
   if (series) {
     res.json({

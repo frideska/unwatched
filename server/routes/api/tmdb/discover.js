@@ -2,7 +2,6 @@ const route = require('express').Router()
 
 const discover = require('../../../tmdb/discover')
 
-
 const MovieController = require('../../../pgdb/db/controllers/MovieController')
 const SeriesController = require('../../../pgdb/db/controllers/SeriesController')
 
@@ -10,7 +9,6 @@ const WatchlistMovieController = require('../../../pgdb/db/controllers/Watchlist
 const WatchlistSeriesController = require('../../../pgdb/db/controllers/WatchlistSeriesController')
 const LibraryMovieController = require('../../../pgdb/db/controllers/LibraryMovieController')
 const LibrarySeriesController = require('../../../pgdb/db/controllers/LibrarySeriesController')
-
 
 route.get('/movie', async (req, res) => {
   let response = await discover.movie()
