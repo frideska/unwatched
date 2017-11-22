@@ -24,6 +24,15 @@ module.exports = {
       console.error(err)
     }
   },
+  async getPageCount(UserId) {
+    try {
+      const tv = await Watchlist.findAll({ where: {UserId: UserId}})
+      return tv.length
+    } catch (err) {
+      console.error(err)
+      return -1
+    }
+  },
 
   async getAllSeriesForUser(UserId, options) {
     try {
