@@ -1,9 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { WordCloudComponent } from './word-cloud.component'
-import { AgWordCloudModule } from 'angular4-word-cloud'
+import { AgWordCloudModule, AgWordCloudData } from 'angular4-word-cloud'
 import { LibraryService } from '../../services/library/library.service'
 import { HttpModule } from '@angular/http'
+
+import 'rxjs/add/operator/toPromise'
+
+class MockWordcloudService {
+  constructor() {}
+  getWordcloud() {
+    const mockData = {
+      'Action': 4,
+      'Crime': 7,
+      'Documentary': 1
+    }
+    return mockData
+  }
+}
 
 describe('WordCloudComponent', () => {
   let component: WordCloudComponent
@@ -19,7 +33,7 @@ describe('WordCloudComponent', () => {
         WordCloudComponent
       ],
       providers: [
-        LibraryService
+        [{ provide: LibraryService, useClass: MockWordcloudService}]
       ]
     })
     .compileComponents()
@@ -28,10 +42,15 @@ describe('WordCloudComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WordCloudComponent)
     component = fixture.componentInstance
-    fixture.detectChanges()
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('should have no wordData at initial render', () => {
+    const mockData: AgWordCloudData[] = []
+    expect(component.wordData).toEqual(mockData)
+  })
+
 })
