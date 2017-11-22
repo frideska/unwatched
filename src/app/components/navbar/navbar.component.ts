@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
     this.searchService.search()
     if (event.length) {
       if (this.router.url !== '/search') {
-        this.previous = this.router.url
+        this.previous = this.router.url.split('?')[0]
       }
       this.router.navigate(['/search'])
     } else {
