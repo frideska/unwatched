@@ -41,6 +41,7 @@ router.post('/', async (req, res) => {
  */
 router.get('/', async (req, res) => {
   const options = queryTools.parse(req.query)
+  console.log(options)
   let movies = await LibraryMovieController.getAllMoviesForUser(req.user.id, options)
   if (movies) {
     res.json({
