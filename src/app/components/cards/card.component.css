@@ -86,6 +86,7 @@
 .watchlist_button_disabled{
   background-color: #777777;
   pointer-events: none;
+  color: white;
 }
 
 .button_remove{
