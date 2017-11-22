@@ -83,6 +83,11 @@
   line-height:10px;
 }
 
+.watchlist_button_disabled{
+  background-color: #777777;
+  pointer-events: none;
+}
+
 .button_remove{
   background-color: #663399;
   color: white;
