@@ -24,7 +24,8 @@ import { WordCloudComponent } from 'components/word-cloud/word-cloud.component'
 import { WordCloudWishComponent } from './components/word-cloud-wish/word-cloud-wish.component'
 import { ListViewComponent } from 'components/list-view/list-view.component'
 import { AverageRatingComponent } from 'components/average-rating/average-rating.component'
-import { DocumentationComponent } from './documentation/documentation.component'
+import { DocumentationComponent } from 'components/documentation/documentation.component'
+
 
 /**
  * Import Services
