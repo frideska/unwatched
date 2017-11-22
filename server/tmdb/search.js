@@ -27,6 +27,9 @@ const multi = async (query) => {
     }))
     return response
   } catch (err) {
+    if (err && err.statusCode === 429) {
+      return { error: err.statusCode }
+    }
     console.error(err)
   }
 }

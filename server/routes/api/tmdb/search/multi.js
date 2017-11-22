@@ -14,7 +14,9 @@ const LibrarySeriesController = require('../../../../pgdb/db/controllers/Library
 route.get('/', async (req, res) => {
   try {
     let response = await tmdbWrapper.search.multi(req.query.q)
-    if (req.user) {
+    if (response.error) {
+      res.json({ results: [], counter: 0, error: response.error })
+    } else if (req.user) {
       response = await Promise.all(response.map(async element => {
         if (element.media_type === 'movie') {
           element.watchlist = await WatchlistMovieController.movieInWatchlist(element.id, req.user.id)
@@ -26,7 +28,7 @@ route.get('/', async (req, res) => {
         return element
       }))
     }
-    res.json({results: response, counter: req.query.counter || 0})
+    res.json({ results: response, counter: req.query.counter || 0 })
   } catch (err) {
     console.error(err)
   }
