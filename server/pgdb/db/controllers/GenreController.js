@@ -58,19 +58,11 @@ module.exports = {
   },
 
   getGenreTvMem (ids) {
-    return ids.map((id) => {
-      const genre = global.GenreSeries[id]
-      //console.log(genre)
-      return genre
-    })
+    return ids.map((id) => global.GenreSeries[id])
   },
 
   getGenreMovieMem (ids) {
     console.log(global.GenreMovies)
-    return ids.map((id) => {
-      const genre = global.GenreMovies[id]
-      //console.log(genre)
-      return genre
-    })
+    return ids.map((id) => global.GenreMovies[id])
   }
 }
