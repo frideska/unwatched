@@ -6,7 +6,7 @@
 }
 
 .title_text {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .subtitle_text {
@@ -32,7 +32,13 @@
 }
 
 .uk-label {
-  font-size: 0.45rem;
+  background-color: rebeccapurple;
+}
+
+.uk-card-secondary>:not([class*=uk-card-media]) .uk-label{
+  background-color: white;
+  color: black;
+  font-size: 0.6rem;
 }
 
 .uk-divider-small::after{
@@ -93,7 +99,7 @@
 .uk-modal-full .uk-modal-dialog .uk-label {
   font-size: 1rem;
   background-color: white;
-  color: #666666;
+  color: black;
 }
 
 .button_padding{
