@@ -39,6 +39,8 @@ export class FilterComponent implements OnInit {
     this.ratingSort = 'vote_average'
     this.nameSort = 'title'
     this.highlightedDiv = 1
+    this.currentSort = this.nameSort
+    this.nameArrow = 'up'
 
     if (this.childOf === 'library') {
       this.service = this.libraryService
