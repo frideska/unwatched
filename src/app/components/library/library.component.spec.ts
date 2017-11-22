@@ -6,6 +6,9 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { FilterComponent } from 'components/filter/filter.component'
 import { ListViewComponent } from 'components/list-view/list-view.component'
 import { HttpModule } from '@angular/http'
+import {CardComponent} from '../cards/card.component'
+import { FormsModule } from '@angular/forms'
+import {WatchlistService} from '../../services/watchlist.service'
 
 describe('LibraryComponent', () => {
   let component: LibraryComponent
@@ -15,14 +18,18 @@ describe('LibraryComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        HttpModule
+        HttpModule,
+        FormsModule
       ],
       declarations: [
         LibraryComponent,
         FilterComponent,
-        ListViewComponent
-      ], providers: [
-        LibraryService
+        ListViewComponent,
+        CardComponent
+      ],
+      providers: [
+        LibraryService,
+        WatchlistService
       ]
     })
     .compileComponents()
