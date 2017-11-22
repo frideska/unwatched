@@ -35,7 +35,8 @@
                 message: '<span uk-icon=\'icon: check\'></span> Successfully added to watchlist!',
                 pos: 'bottom-center', status:'success', timeout: '2500'})"
                   (click)="addToWatchlist(card)"
-                  class="uk-button uk-text-nowrap button_add" >
+                  class="uk-button uk-text-nowrap"
+                  [ngClass]="card.library ? 'watchlist_button_disabled': 'button_add'" >
             <label>Add to <br>watchlist</label>
           </button>
 
