@@ -18,6 +18,10 @@
         <!--Year-->
         <p class="title_content uk-text-muted subtitle_text uk-display-inline">{{ card.date.getFullYear() }}</p>
 
+        <!--Rating-->
+        <span class="interval_{{ roundToInterval(card.rating) }} icon_padding" uk-icon="icon: star"></span>
+        <p class="uk-display-inline rating_text interval_{{ roundToInterval(card.rating) }}">{{card.rating === 0 ? 'No rating' : card.rating.toFixed(1).toString()}}</p>
+
         <!--Genres-->
         <h3 class="title_content subtitle_text uk-display-inline"><span class="uk-label uk-text-muted">{{ card.genres }}</span> </h3>
 
@@ -76,7 +80,7 @@
 
           <!--Image-->
           <div>
-            <img src="{{ card.image }}" alt="" class="uk-display-inline ">
+            <img src="{{ card.image }}" alt="" class="uk-display-inline uk-width-auto">
           </div>
 
           <div class="flex_box">

@@ -6,6 +6,7 @@ import { HistoryService } from 'services/history.service'
 import { SearchService } from 'services/search.service'
 import { CardElement } from 'classes/CardElement'
 import { UserService } from 'services/user.service'
+import { DetailsService } from 'services/details.service'
 
 @Component({
   selector: 'app-card',
@@ -22,7 +23,8 @@ export class CardComponent implements OnInit {
     private libraryService: LibraryService,
     private historyService: HistoryService,
     private searchService: SearchService,
-    private userService: UserService
+    private userService: UserService,
+    private detailsService: DetailsService
   ) {}
 
   ngOnInit() {
@@ -30,9 +32,7 @@ export class CardComponent implements OnInit {
   }
 
   private async reload() {
-    await this.watchlistService.getWatchlist()
-    await this.libraryService.getLibrary()
-    // await this.searchService.search()
+    this.element =  await this.detailsService.getDetails(this.element)
   }
 
   /**
@@ -65,7 +65,7 @@ export class CardComponent implements OnInit {
    * Adds the element to the history, when clicking on a card.
    */
   addToHistory() {
-    this.historyService.addToHistory(this.element.title)
+    this.historyService.addToHistory(this.element)
   }
 
   private roundToInterval(number) {

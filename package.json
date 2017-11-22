@@ -1,6 +1,6 @@
 {
   "name": "project4",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -46,6 +46,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "jquery": "^3.2.1",
+    "moment": "^2.19.2",
     "mongoose": "^4.12.4",
     "mongoose-paginate": "^5.0.3",
     "node-fetch": "^1.7.3",
@@ -54,7 +55,9 @@
     "passport-google-oauth": "^1.0.0",
     "passport-google-oauth20": "^1.0.0",
     "path": "^0.12.7",
+    "pg": "^7.4.0",
     "rxjs": "^5.4.2",
+    "sequelize": "^4.22.8",
     "tmdbapi": "^1.0.2",
     "uikit": "^3.0.0-beta.32",
     "zone.js": "^0.8.14"
