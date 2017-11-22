@@ -1,21 +1,19 @@
 import { TestBed, inject } from '@angular/core/testing'
 
-import { DetailsService } from 'services/details.service'
+import { UserService } from 'services/user/user.service'
 import { HttpModule } from '@angular/http'
 
-describe('DetailsService', () => {
+describe('UserService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpModule
       ],
-      providers: [
-        DetailsService
-      ]
+      providers: [UserService]
     })
   })
 
-  it('should be created', inject([DetailsService], (service: DetailsService) => {
+  it('should be created', inject([UserService], (service: UserService) => {
     expect(service).toBeTruthy()
   }))
 })

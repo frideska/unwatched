@@ -30,14 +30,14 @@ import { DocumentationComponent } from 'components/documentation/documentation.c
 /**
  * Import Services
  */
-import { UserService } from 'services/user.service'
-import { DiscoverService } from 'services/discover.service'
-import { SearchService } from 'services/search.service'
-import { WatchlistService } from 'services/watchlist.service'
-import { LibraryService } from 'services/library.service'
-import { AuthGuard } from 'services/auth-guard.service'
-import { HistoryService } from 'services/history.service'
-import {DetailsService} from 'services/details.service'
+import { UserService } from 'services/user/user.service'
+import { DiscoverService } from 'services/discover/discover.service'
+import { SearchService } from 'services/search/search.service'
+import { WatchlistService } from 'services/watchlist/watchlist.service'
+import { LibraryService } from 'services/library/library.service'
+import { AuthGuard } from 'services/auth-guard/auth-guard.service'
+import { HistoryService } from 'services/history/history.service'
+import {DetailsService} from 'services/details/details.service'
 
 
 export const initUserServiceFactory = (userService: UserService): Function => {
