@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+
 import { FilterComponent } from './filter.component'
 import { RouterTestingModule } from '@angular/router/testing'
-import { LibraryService } from '../../services/library.service'
-import { HttpModule } from '@angular/http'
+import { LibraryService } from 'services/library.service'
+import { WatchlistService } from 'services/watchlist.service'
 
 describe('FilterComponent', () => {
   let component: FilterComponent
@@ -11,11 +12,12 @@ describe('FilterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        HttpModule
-      ], declarations: [ FilterComponent ],
-      providers: [
-        LibraryService
+        RouterTestingModule
+      ], declarations: [
+         FilterComponent
+       ], providers: [
+        LibraryService,
+        WatchlistService
       ]
     })
     .compileComponents()
