@@ -33,9 +33,9 @@
           <!--Card Title-->
           <h3 class="title_text uk-display-inline "> {{ element.title }} </h3>
           <p class=" uk-display-inline uk-text-muted subtitle_text">{{ element.date.getFullYear() }}</p><br>
-          <h3 *ngFor="let genre of element.slicedGenres.entries()"
+          <h3 *ngFor="let genre of element.slicedGenres"
               class="uk-margin-remove subtitle_text uk-display-inline">
-            <span class="uk-label">{{ genre[1] }}</span> </h3>
+            <span class="uk-label">{{ genre }}</span> </h3>
           <div class="rating_container">
             <p class="uk-display-inline rating_text interval_{{interval}}">
               {{element.rating === 0 ? 'No rating' : element.rating.toFixed(1).toString()}}</p>
@@ -127,8 +127,8 @@
         <div class="uk-modal-header">
           <h1 class="uk-margin-remove uk-display-inline">{{ element.title }}</h1>
           <h1 class=" uk-display-inline uk-text-muted uk-text-muted"> ({{ element.date.getFullYear() }})</h1><br>
-          <h3 *ngFor="let genre of element.genres.entries()" class="uk-margin-remove genere_modal uk-display-inline">
-            <span class="uk-label">{{ genre[1] }}</span> </h3>
+          <h3 *ngFor="let genre of element.genres" class="uk-margin-remove genere_modal uk-display-inline">
+            <span class="uk-label">{{ genre }}</span> </h3>
 
         </div>
 
