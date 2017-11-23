@@ -43,3 +43,4 @@ Thumbs.db
 /yarn.lock
 .config
 .npm
+package-lock.json
